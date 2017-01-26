@@ -1,0 +1,16 @@
+source 'git@github.com:justeat/PodSpecs.iOS.UK.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+
+target 'JustTrack_Example' do
+  pod 'JustTrack', :path => '../'
+
+  target 'JustTrack_Tests' do
+    inherit! :search_paths    
+  end
+end
+
+target 'Example with Objective-C' do
+    pod 'JustTrack', :path => '../'
+end

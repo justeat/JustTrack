@@ -1,0 +1,20 @@
+@objc public class JEEvent<*!event_name*>:NSObject,JEEvent {
+
+    //JEEvent protocol
+    public let name: String = "<*event_name*>"
+
+    public var payload: Payload {
+        return [<*event_keyValueChain*>]
+    }
+
+    public var registeredTrackers: [String] {
+        return [<*event_cs_trackers_str*>]
+    }
+
+    //keys
+    <*event_keysNames*>
+
+    <*event_keysVars*>
+
+    <*event_init*>
+}

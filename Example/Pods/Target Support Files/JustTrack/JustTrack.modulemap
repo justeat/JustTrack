@@ -1,0 +1,6 @@
+framework module JustTrack {
+  umbrella header "JustTrack-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - JustTrack (1.0.0)
+
+DEPENDENCIES:
+  - JustTrack (from `../`)
+
+EXTERNAL SOURCES:
+  JustTrack:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JustTrack: f0f353933cff8087192c220b6ea3a102c12594e5
+
+PODFILE CHECKSUM: d22ffb54681b0e9dd446cdf4d0e4847d3dbf292e
+
+COCOAPODS: 1.1.1

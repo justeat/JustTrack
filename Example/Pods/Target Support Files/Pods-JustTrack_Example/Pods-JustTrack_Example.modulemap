@@ -1,0 +1,6 @@
+framework module Pods_JustTrack_Example {
+  umbrella header "Pods-JustTrack_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

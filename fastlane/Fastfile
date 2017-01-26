@@ -1,0 +1,100 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "1.110.0"
+
+default_platform :ios
+
+platform :ios do
+
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    POD_NAME = "JustTrack"
+  end
+
+  desc "Create and publish a new Pod Lib version"
+  lane :pushNewPodLibVersion do
+  
+    sh "git show-ref"
+  
+    desc "Git preparation"
+    sh "git checkout -b master --track origin/master || git pull origin master"
+      
+    # -------------------
+    desc "Update the podspec version"
+    newVersion = version_bump_podspec(path: "#{POD_NAME}.podspec", bump_type: "patch")
+
+    # -------------------
+    desc "Update the project version"
+    increment_version_number(
+        version_number: newVersion,
+        xcodeproj: "./Example/#{POD_NAME}.xcodeproj"
+    )
+    
+    # -------------------
+    desc "Commit changes"
+    sh "git add --all"
+    sh "git commit -am 'Patch version Bump [skip ci]'"
+
+    # -------------------
+    desc "Add tag"
+    sh "git tag #{newVersion}"
+
+    # -------------------
+    desc "Push master"
+    sh "git push origin master && git push --tags"
+    
+    # -------------------
+    desc "Pod repo push"
+    
+    if !File.directory?(ENV['HOME']+'/.cocoapods/repos/JUSTEAT')
+        sh "pod repo add JUSTEAT git@github.com:justeat/PodSpecs.iOS.UK.git"
+    end
+    
+    pod_push(path: "#{POD_NAME}.podspec", repo: "JUSTEAT", sources: ["git@github.com:justeat/PodSpecs.iOS.UK.git", "https://github.com/CocoaPods/Specs"], allow_warnings: true)
+        
+  end
+
+  # Only post messages on HipChat if the process is run from a CI
+  def should_post_message
+    return !ENV["HIPCHAT_API_TOKEN"].nil? && is_ci?
+  end
+
+  # Posts a message on HipChat with details about the performed operations
+  def notify_hipchat(success = true, error_message)
+  
+  return unless should_post_message
+  if success
+      message = "#{POD_NAME} version #{newVersion} released"
+  else
+      message = "#{POD_NAME} version #{newVersion} release failed: #{error_message}"
+  end
+  hipchat(message: message, channel: ENV["HIPCHAT_CHANNEL"], success: success)
+  end
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+    notify_hipchat(true)
+  end
+
+  error do |lane, exception|
+    notify_hipchat(false, exception)
+  end
+end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+
+# fastlane reports which actions are used
+# No personal data is recorded. Learn more at https://github.com/fastlane/enhancer

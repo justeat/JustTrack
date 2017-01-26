@@ -1,0 +1,4 @@
+public init(<*event_init_params*>) {
+        super.init()
+        <*event_init_assigns_list*>
+    }
