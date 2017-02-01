@@ -11,6 +11,6 @@ target 'JustTrack_Example' do
   end
 end
 
-target 'Example with Objective-C' do
+target 'JustTrack_Example_ObjC' do
     pod 'JustTrack', :path => '../'
 end

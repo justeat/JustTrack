@@ -15,6 +15,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* TrackerTests.swift */; };
+		7AF3A9B57C45917885808E4F /* Pods_JustTrack_Example_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6BCA791E88E0DDE8B9EEE3 /* Pods_JustTrack_Example_ObjC.framework */; };
 		BC293FF24768D5563A9F3F05 /* Pods_JustTrack_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A30E6EF99EC591C444A8D7B /* Pods_JustTrack_Example.framework */; };
 		C8566BEC1E293F8600CC27E3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8566BEA1E293F8600CC27E3 /* main.swift */; };
 		C8566BED1E293FA100CC27E3 /* JEEventInitAssignTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE31E293F8600CC27E3 /* JEEventInitAssignTemplate.jet */; };
@@ -72,6 +73,7 @@
 		483FC80E1DCCF18B008E2EE0 /* Trackers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trackers.swift; sourceTree = "<group>"; };
 		483FC8101DD09CCC008E2EE0 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		4ACC5FA321CD52C8330640C9 /* Pods_Example_with_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_with_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CA4E1D9F2BACAD9A21D947C /* Pods-JustTrack_Example_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example_ObjC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example_ObjC/Pods-JustTrack_Example_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
 		587548F5EB6E75F385206CFC /* Pods-JustTrack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* JustTrack_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustTrack_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,8 +85,10 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTests.swift; sourceTree = "<group>"; };
 		695000F9344F9959D5739C1B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		8BDBAFDA2677AEAF650C3BDC /* Pods-JustTrack_Example_ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example_ObjC.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example_ObjC/Pods-JustTrack_Example_ObjC.release.xcconfig"; sourceTree = "<group>"; };
 		92C2380C0281280B47E02DF4 /* Pods-Example with Objective-C.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example with Objective-C.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example with Objective-C/Pods-Example with Objective-C.debug.xcconfig"; sourceTree = "<group>"; };
 		A50CAE54C8FA146A010BACD4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		AA6BCA791E88E0DDE8B9EEE3 /* Pods_JustTrack_Example_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB838AA6D85DC9B92BE0A7C5 /* Pods-JustTrack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C8566BE31E293F8600CC27E3 /* JEEventInitAssignTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitAssignTemplate.jet; sourceTree = "<group>"; };
 		C8566BE41E293F8600CC27E3 /* JEEventInitParam.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitParam.jet; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B91DDC532BFAED50BF72E5E /* Pods_Example_with_Objective_C.framework in Frameworks */,
+				7AF3A9B57C45917885808E4F /* Pods_JustTrack_Example_ObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +237,8 @@
 				BB838AA6D85DC9B92BE0A7C5 /* Pods-JustTrack_Example.release.xcconfig */,
 				FCF9BF3A2EB6D55D4E1BF401 /* Pods-JustTrack_Tests.debug.xcconfig */,
 				273A64F5DDAC33D55C7BE4A3 /* Pods-JustTrack_Tests.release.xcconfig */,
+				4CA4E1D9F2BACAD9A21D947C /* Pods-JustTrack_Example_ObjC.debug.xcconfig */,
+				8BDBAFDA2677AEAF650C3BDC /* Pods-JustTrack_Example_ObjC.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 				4ACC5FA321CD52C8330640C9 /* Pods_Example_with_Objective_C.framework */,
 				1A30E6EF99EC591C444A8D7B /* Pods_JustTrack_Example.framework */,
 				E0766338A23F3EBF348C3F5C /* Pods_JustTrack_Tests.framework */,
+				AA6BCA791E88E0DDE8B9EEE3 /* Pods_JustTrack_Example_ObjC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -467,7 +475,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example with Objective-C/Pods-Example with Objective-C-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JustTrack_Example_ObjC/Pods-JustTrack_Example_ObjC-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5153A04C33214BEA3DDF113F /* [CP] Check Pods Manifest.lock */ = {
@@ -615,7 +623,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example with Objective-C/Pods-Example with Objective-C-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JustTrack_Example_ObjC/Pods-JustTrack_Example_ObjC-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -892,7 +900,7 @@
 		};
 		E0CC1EC21D524E7A00FD8AF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92C2380C0281280B47E02DF4 /* Pods-Example with Objective-C.debug.xcconfig */;
+			baseConfigurationReference = 4CA4E1D9F2BACAD9A21D947C /* Pods-JustTrack_Example_ObjC.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -913,7 +921,7 @@
 		};
 		E0CC1EC31D524E7A00FD8AF8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D21EAF4E4356F3C03D7F5348 /* Pods-Example with Objective-C.release.xcconfig */;
+			baseConfigurationReference = 8BDBAFDA2677AEAF650C3BDC /* Pods-JustTrack_Example_ObjC.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
