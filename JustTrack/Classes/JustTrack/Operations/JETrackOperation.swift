@@ -1,4 +1,8 @@
-/// Todo: Docs and OS License(Joakim L.)
+//
+//  JustTrack
+//
+//  Copyright © 2017 Just Eat Holding Ltd.
+//
 
 import Foundation
 
@@ -49,7 +53,7 @@ class JETrackOperation: Operation {
 private extension JETrackOperation {
 
     func saveEvent(_ event: JEEvent, key: String) {
-        guard let serializedEvent = event.encode() as? [String: AnyObject] else { return }
+        let serializedEvent = event.encode()
         saveEventDictionary(serializedEvent , key: key)
     }
     
