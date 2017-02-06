@@ -1,4 +1,8 @@
-/// Todo: Docs and OS License(Joakim L.)
+//
+//  JustTrack
+//
+//  Copyright © 2017 Just Eat Holding Ltd.
+//
 
 import Foundation
 

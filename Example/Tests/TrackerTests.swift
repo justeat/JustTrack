@@ -1,3 +1,9 @@
+//
+//  JustTrack
+//
+//  Copyright © 2017 Just Eat Holding Ltd.
+//
+
 import XCTest
 import JustTrack
 

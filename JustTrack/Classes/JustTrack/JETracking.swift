@@ -1,4 +1,9 @@
-/// Todo: Finish Docs and add OS License(Joakim L.)
+//
+//  JustTrack
+//
+//  Copyright © 2017 Just Eat Holding Ltd.
+//
+
 import Foundation
 
 /// Log level, based on severity.
@@ -14,16 +19,9 @@ import Foundation
 ///
 /// - seealso: `logClosure`
 @objc public enum JETrackingLogLevel: NSInteger {
-    /// "Verbose"
     case verbose
-    
-    /// "Debug"
     case debug
-    
-    /// "Info"
     case info
-    
-    /// "Error"
     case error
 }
 
