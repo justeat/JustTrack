@@ -102,8 +102,6 @@ public class JETracking: NSObject {
         case .consoleLogger:
             tracker = JETrackerConsole(configuration: nil)
             break
-        default:
-            break
         }
         
         guard tracker != nil else { return false }
