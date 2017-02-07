@@ -124,9 +124,7 @@ func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
     let result: NSMutableDictionary = NSMutableDictionary()
     
     if FileManager.default.fileExists(atPath: plistPath) {
-        
         let structsDict: NSDictionary? = NSDictionary(contentsOfFile: plistPath)
-    
         if structsDict != nil {
             result.setDictionary(structsDict as! [String: AnyObject])
         }
@@ -216,7 +214,7 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
 
 func replacePlaceholder(_ original: String, placeholder: String, value: String) -> String {
     
-    if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 || value.lengthOfBytes(using: String.Encoding.utf8) < 1{
+    if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 || value.lengthOfBytes(using: String.Encoding.utf8) < 1 {
         return ""
     }
     
@@ -238,9 +236,7 @@ func replacePlaceholder(_ original: String, placeholder: String, value: String) 
 func generateEventKeyValueChain(_ keys: [String]) -> String {
     
     var resultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let keyString = keys[index]
+    for keyString in keys {
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex, with: String(capKeyString[capKeyString.startIndex]).capitalized)
         resultArray.append("k\(capKeyString) : \(keyString) as NSObject")
@@ -252,9 +248,7 @@ func generateEventKeyValueChain(_ keys: [String]) -> String {
 func generateEventCsTrackers(_ trackers: [String]) -> String {
     
     var resultArray: [String] = Array()
-    for index in 0...trackers.count-1 {
-        
-        let keyString = trackers[index]
+    for keyString in trackers {
         resultArray.append("\"\(keyString)\"")
     }
     
@@ -265,13 +259,12 @@ func generateEventKeysNames(_ keys: [String]) throws -> String {
     
     let structKeyNameTemplate: String = try stringFromTemplate(JETemplate.keyName.rawValue)
     var resultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let keyString = keys[index]
+    for keyString in keys {
         var structKeyNameString = replacePlaceholder(structKeyNameTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         structKeyNameString = replacePlaceholder(structKeyNameString, placeholder: "<*!\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         resultArray.append( structKeyNameString )
     }
+    
     return resultArray.joined(separator: "\n    ")
 }
 
@@ -279,10 +272,9 @@ func generateEventKeysVars(_ keys: [String]) throws -> String {
     
     let structVarTemplate: String = try stringFromTemplate(JETemplate.keyVar.rawValue)
     var resultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keys[index])
-        resultArray.append(structVarString)//("let \(keys[index]) : String")
+    for keyString in keys {
+        let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
+        resultArray.append(structVarString)
     }
     return resultArray.joined(separator: "\n    ")
 }
@@ -299,12 +291,11 @@ func generateEventInit(_ keys: [String]) throws -> String {
     
     var assignsResultArray: [String] = Array()
     var paramsResultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let assignsResultString = replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keys[index])
+    for keyString in keys {
+        let assignsResultString = replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         assignsResultArray.append(assignsResultString)
         
-        let paramResultString = replacePlaceholder(initParamTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keys[index])
+        let paramResultString = replacePlaceholder(initParamTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         paramsResultArray.append(paramResultString)
     }
     
