@@ -9,26 +9,26 @@
 import Foundation
 
 private enum JETemplate : String {
-    case eventList = "JEEventListTemplate.jet"
-    case event = "JEEventTemplate.jet"
-    case keyName = "JEEventKeyNameTemplate.jet"
-    case keyVar = "JEEventKeyVarTemplate.jet"
-    case eventInit = "JEEventInitTemplate.jet"
-    case eventInitAssignsList = "JEEventInitAssignTemplate.jet"
-    case eventInitParam = "JEEventInitParam.jet"
+    case eventList              = "JEEventListTemplate.jet"
+    case event                  = "JEEventTemplate.jet"
+    case keyName                = "JEEventKeyNameTemplate.jet"
+    case keyVar                 = "JEEventKeyVarTemplate.jet"
+    case eventInit              = "JEEventInitTemplate.jet"
+    case eventInitAssignsList   = "JEEventInitAssignTemplate.jet"
+    case eventInitParam         = "JEEventInitParam.jet"
 }
 
 private enum JETemplatePlaceholder : String {
-    case eventList = "events_list"
-    case eventName = "event_name"
-    case keyValueChain = "event_keyValueChain"
-    case eventTrackers = "event_cs_trackers_str"
-    case keysNames = "event_keysNames"
-    case keysVars = "event_keysVars"
-    case keyName = "key_name"
-    case eventInit = "event_init"
-    case eventInitParams = "event_init_params"
-    case eventInitAssignsList = "event_init_assigns_list"
+    case eventList              = "events_list"
+    case eventName              = "event_name"
+    case keyValueChain          = "event_keyValueChain"
+    case eventTrackers          = "event_cs_trackers_str"
+    case keysNames              = "event_keysNames"
+    case keysVars               = "event_keysVars"
+    case keyName                = "key_name"
+    case eventInit              = "event_init"
+    case eventInitParams        = "event_init_params"
+    case eventInitAssignsList   = "event_init_assigns_list"
 }
 
 private enum JEPlistKey : String {
@@ -80,7 +80,7 @@ func scriptPath() -> NSString {
 }
 
 func urlForTemplate(_ templateName: String) throws -> URL {
-
+    
     var url: URL?
     
     let path: String? = Bundle.main.path(forResource: templateName, ofType: nil) //uses]d by test target
@@ -95,7 +95,7 @@ func urlForTemplate(_ templateName: String) throws -> URL {
     guard url != nil else {
         throw JEStructsGeneratorError.templateNotFound
     }
-
+    
     return url!
 }
 
@@ -126,7 +126,7 @@ func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
     if FileManager.default.fileExists(atPath: plistPath) {
         
         let structsDict: NSDictionary? = NSDictionary(contentsOfFile: plistPath)
-    
+        
         if structsDict != nil {
             result.setDictionary(structsDict as! [String: AnyObject])
         }
@@ -153,70 +153,77 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
     let resultString: NSMutableString = NSMutableString(string: structListTemplateString)
     var structsArray: [String] = Array()
     
-    for eventName: String in events.keys {
+    for eventName in events.keys {
         
-        let eventDic: [String : AnyObject]? = events[eventName] as? [String : AnyObject]
-        
-        var structString = structTemplate
-        structString = replacePlaceholder(structString, placeholder: "<*!\(JETemplatePlaceholder.eventName.rawValue)*>", value: eventName) //<*!event_name*> = Example
-        structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventName.rawValue)*>", value: eventName) //<*event_name*> = example
-        
-        
-        let keys: [String] = eventDic![JEPlistKey.payload.rawValue] as! [String]
-        //<*event_keyValueChain*> = kKey1 : key1, kKey2 : key2
-        let eventKeyValueChain: String = generateEventKeyValueChain(keys)
-        structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keyValueChain.rawValue)*>", value: eventKeyValueChain)
-        
-        //<*event_cs_trackers_str*> = "console", "GA"
-        let eventCsTrackers: String = generateEventCsTrackers(eventDic![JEPlistKey.trackrs.rawValue] as! [String])
-        structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventTrackers.rawValue)*>", value: eventCsTrackers)
-        
-        /*
-         <*event_keysNames*> =
-         private let kKey1 = "key1"
-         private let kKey2 = "key2"
-         */
-        let eventKeysNames: String = try generateEventKeysNames(keys)
-        structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keysNames.rawValue)*>", value: eventKeysNames)
-        
-        /*
-         <*event_keysVars*> =
-         let key1 : String
-         let key2 : String
-         */
-        let eventKeysVars: String = try generateEventKeysVars(keys)
-        structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keysVars.rawValue)*>", value: eventKeysVars)
-        
-        /*
-         <*event_init*> =
-         init(<*event_init_params*>) {
+        if let eventDic = events[eventName] as? [String : AnyObject] {
+            var structString = structTemplate
+            structString = replacePlaceholder(structString, placeholder: "<*!\(JETemplatePlaceholder.eventName.rawValue)*>", value: swiftyClassName(for: eventName)) //<*!event_name*> = Example
+            structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventName.rawValue)*>", value: eventName) //<*event_name*> = example
+            
+            let keys: [String] = (eventDic[JEPlistKey.payload.rawValue] as? [String]) ?? []
+            
+            /*
+             <*event_keyValueChain*> = kKey1 : key1, kKey2 : key2
+             */
+            let eventKeyValueChain: String = generateEventKeyValueChain(keys)
+            structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keyValueChain.rawValue)*>", value: eventKeyValueChain)
+            
+            /*
+             <*event_cs_trackers_str*> = "console", "GA"
+             */
+            let eventCsTrackers: String = generateEventCsTrackers(eventDic[JEPlistKey.trackrs.rawValue] as! [String])
+            structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventTrackers.rawValue)*>", value: eventCsTrackers)
+            
+            /*
+             <*event_keysNames*> =
+             private let kKey1 = "key1"
+             private let kKey2 = "key2"
+             */
+            let eventKeysNames: String = try generateEventKeysNames(keys)
+            structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keysNames.rawValue)*>", value: eventKeysNames)
+            
+            /*
+             <*event_keysVars*> =
+             let key1 : String
+             let key2 : String
+             */
+            let eventKeysVars: String = try generateEventKeysVars(keys)
+            structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keysVars.rawValue)*>", value: eventKeysVars)
+            
+            /*
+             <*event_init*> =
+             init(<*event_init_params*>) {
              super.init()
              <*event_init_assigns_list*>
-         }
-         
-         <*event_init_params*> = test1: String, test2: String, test3: String
-         <*event_init_assigns_list*> =
-         self.test1 = test1
-         self.test2 = test2
-         self.test3 = test3
-         */
-        let eventInit: String = try generateEventInit(keys)
-        structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventInit.rawValue)*>", value: eventInit)
-        
-        structsArray.append(structString)
+             }
+             
+             <*event_init_params*> = test1: String, test2: String, test3: String
+             <*event_init_assigns_list*> =
+             self.test1 = test1
+             self.test2 = test2
+             self.test3 = test3
+             */
+            var eventInit: String = try generateEventInit(keys)
+            if keys.count == 0 {
+                eventInit = ""
+            }
+            structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventInit.rawValue)*>", value: eventInit)
+            
+            structsArray.append(structString)
+        }
     }
     
     //base list template
     resultString.replaceOccurrences(of: "<*\(JETemplatePlaceholder.eventList.rawValue)*>",
-                                            with: structsArray.joined(separator: "\n\n"),
-                                            options: NSString.CompareOptions.caseInsensitive,
-                                            range: NSRange(location: 0, length: resultString.length) )
+        with: structsArray.joined(separator: "\n\n"),
+        options: NSString.CompareOptions.caseInsensitive,
+        range: NSRange(location: 0, length: resultString.length) )
     return resultString
 }
 
 func replacePlaceholder(_ original: String, placeholder: String, value: String) -> String {
     
-    if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 || value.lengthOfBytes(using: String.Encoding.utf8) < 1{
+    if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 {
         return ""
     }
     
@@ -235,61 +242,67 @@ func replacePlaceholder(_ original: String, placeholder: String, value: String) 
 
 //MARK Components generator
 
-func generateEventKeyValueChain(_ keys: [String]) -> String {
-    
-    var resultArray: [String] = Array()
-    for index in 0...keys.count-1 {
+private func swiftyPropertyName(for string: String) -> String {
+    return string.components(separatedBy: " ").enumerated().reduce("", { result, current in
+        var element = current.element
         
-        let keyString = keys[index]
-        var capKeyString = keyString
-        capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex, with: String(capKeyString[capKeyString.startIndex]).capitalized)
-        resultArray.append("k\(capKeyString) : \(keyString) as NSObject")
-    }
-    
-    return resultArray.joined(separator: ", ")
+        if element.characters.count > 0 {
+            if current.offset == 0 {
+                element.replaceSubrange(element.startIndex...element.startIndex, with: String(element[element.startIndex]).lowercased())
+            } else {
+                element.replaceSubrange(element.startIndex...element.startIndex, with: String(element[element.startIndex]).capitalized)
+            }
+        }
+        
+        return result + element
+    })
 }
 
-func generateEventCsTrackers(_ trackers: [String]) -> String {
-    
-    var resultArray: [String] = Array()
-    for index in 0...trackers.count-1 {
-        
-        let keyString = trackers[index]
-        resultArray.append("\"\(keyString)\"")
+private func swiftyClassName(for string: String) -> String {
+    var swiftyName = swiftyPropertyName(for: string)
+    if swiftyName.characters.count > 0 {
+        swiftyName.replaceSubrange(swiftyName.startIndex...swiftyName.startIndex, with: String(swiftyName[swiftyName.startIndex]).capitalized)
     }
-    
-    return resultArray.joined(separator: ", ")
+    return swiftyName
 }
 
-func generateEventKeysNames(_ keys: [String]) throws -> String {
-    
+private func generateEventKeyValueChain(_ keys: [String]) -> String {
+    if keys.count < 1 {
+        return ":"
+    } else {
+        return keys.flatMap { key in
+            return "k\(swiftyClassName(for: key)): \(key) as NSObject"
+            }.joined(separator: ", ")
+    }
+}
+
+private func generateEventCsTrackers(_ trackers: [String]) -> String {
+    return trackers.flatMap { tracker in
+        return "\"\(tracker)\""
+        }.joined(separator: ", ")
+}
+
+private func generateEventKeysNames(_ keys: [String]) throws -> String {
     let structKeyNameTemplate: String = try stringFromTemplate(JETemplate.keyName.rawValue)
-    var resultArray: [String] = Array()
-    for index in 0...keys.count-1 {
+    
+    return keys.flatMap { key in
+        var structKeyNameValue = structKeyNameTemplate
+        structKeyNameValue = replacePlaceholder(structKeyNameValue, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: key)
+        structKeyNameValue = replacePlaceholder(structKeyNameValue, placeholder: "<*!\(JETemplatePlaceholder.keyName.rawValue)*>", value: swiftyClassName(for: key))
         
-        let keyString = keys[index]
-        var structKeyNameString = replacePlaceholder(structKeyNameTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
-        structKeyNameString = replacePlaceholder(structKeyNameString, placeholder: "<*!\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
-        resultArray.append( structKeyNameString )
-    }
-    return resultArray.joined(separator: "\n    ")
+        return structKeyNameValue
+        }.joined(separator: "\n    ")
 }
 
-func generateEventKeysVars(_ keys: [String]) throws -> String {
-    
+private func generateEventKeysVars(_ keys: [String]) throws -> String {
     let structVarTemplate: String = try stringFromTemplate(JETemplate.keyVar.rawValue)
-    var resultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keys[index])
-        resultArray.append(structVarString)//("let \(keys[index]) : String")
-    }
-    return resultArray.joined(separator: "\n    ")
+    
+    return keys.flatMap { key in
+        return replacePlaceholder(structVarTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: swiftyPropertyName(for: key))
+        }.joined(separator: "\n    ")
 }
 
 func generateEventInit(_ keys: [String]) throws -> String {
-    
-    var initTemplateString: String = try stringFromTemplate(JETemplate.eventInit.rawValue)
     
     //replace event_init_assigns_list
     let initAssignsTemplateString: String = try stringFromTemplate(JETemplate.eventInitAssignsList.rawValue)
@@ -297,21 +310,18 @@ func generateEventInit(_ keys: [String]) throws -> String {
     //replace event_init_params
     let initParamTemplateString: String = try stringFromTemplate(JETemplate.eventInitParam.rawValue)
     
-    var assignsResultArray: [String] = Array()
-    var paramsResultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let assignsResultString = replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keys[index])
-        assignsResultArray.append(assignsResultString)
-        
-        let paramResultString = replacePlaceholder(initParamTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keys[index])
-        paramsResultArray.append(paramResultString)
-    }
+    var initTemplateString: String = try stringFromTemplate(JETemplate.eventInit.rawValue)
     
-    let eventInitAssignsString: String = assignsResultArray.joined(separator: "\n        ")
+    let eventInitAssignsString = keys.flatMap { key in
+        return replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: swiftyPropertyName(for: key))
+        }.joined(separator: "\n        ")
+    
+    let eventInitParamsAssignsString = keys.flatMap { key in
+        return replacePlaceholder(initParamTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: swiftyPropertyName(for: key))
+        }.joined(separator: ", ")
+    
     initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(JETemplatePlaceholder.eventInitAssignsList.rawValue)*>", value: eventInitAssignsString)
     
-    let eventInitParamsAssignsString: String = paramsResultArray.joined(separator: ", ")
     initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(JETemplatePlaceholder.eventInitParams.rawValue)*>", value: eventInitParamsAssignsString)
     
     return initTemplateString
@@ -348,7 +358,7 @@ do {
     //write struct file
     let structSwiftFilePath = CommandLine.arguments[2]
     if !FileManager.default.fileExists(atPath: structSwiftFilePath) {
-        throw JEStructsGeneratorError.swiftFileNotFound
+        FileManager.default.createFile(atPath: structSwiftFilePath, contents: .none, attributes: .none)
     }
     
     //generate struct string
