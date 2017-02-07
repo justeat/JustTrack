@@ -271,7 +271,7 @@ private func generateEventKeyValueChain(_ keys: [String]) -> String {
         return ":"
     } else {
         return keys.flatMap { key in
-            return "k\(swiftyClassName(for: key)): \(key) as NSObject"
+            return "k\(swiftyClassName(for: key)): \(swiftyPropertyName(for: key)) as NSObject"
             }.joined(separator: ", ")
     }
 }
