@@ -15,6 +15,8 @@ At **Just Eat**, tracking events is a fundamental part of our business analysis 
 
 **JustTrack** is the event tracking solution we built for that.
 
+For any feature request, bug report or question please use the [Issues](https://github.com/justeat/JustTrack/issues) page and the appropriate [label](https://github.com/justeat/JustTrack/labels).
+
 ### Features:
 
 * **Events** are declared in a `.plist` file and Swift code is **automatically** generated at build time from it.
