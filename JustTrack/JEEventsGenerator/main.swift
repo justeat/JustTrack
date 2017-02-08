@@ -63,11 +63,11 @@ func log(msg: String) {
 
 //return the current script path
 func scriptPath() -> NSString {
-    
+
     let cwd = FileManager.default.currentDirectoryPath
     let script = CommandLine.arguments[0];
     var path: NSString?
-    
+
     //get script working dir
     if script.hasPrefix("/") {
         path = script as NSString?
@@ -78,15 +78,15 @@ func scriptPath() -> NSString {
             path = urlPath.path as NSString?
         }
     }
-    
+
     path = path!.deletingLastPathComponent as NSString?
     return path!
 }
 
 func urlForTemplate(_ templateName: String) throws -> URL {
-    
+
     var url: URL?
-    
+
     let path: String? = Bundle.main.path(forResource: templateName, ofType: nil) //uses]d by test target
     if path != nil {
         url = URL(fileURLWithPath: path!)
@@ -95,21 +95,21 @@ func urlForTemplate(_ templateName: String) throws -> URL {
         let dir = scriptPath()
         url = URL(fileURLWithPath: dir as String).appendingPathComponent(templateName) //used in the build phase
     }
-    
+
     guard url != nil else {
         throw JEStructsGeneratorError.templateNotFound
     }
-    
+
     return url!
 }
 
 //load the specific template
 func stringFromTemplate(_ templateName: String) throws -> String {
-    
+
     let url: URL = try urlForTemplate(templateName)
-    
+
     var result: String?
-    
+
     //reading
     do {
         log(msg: "Load template \(url)")
@@ -119,18 +119,18 @@ func stringFromTemplate(_ templateName: String) throws -> String {
         log(msg: "Error loading template \(templateName)")
         throw JEStructsGeneratorError.templateMalformed
     }
-    
+
     return result!
 }
 
 func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
-    
+
     let result: NSMutableDictionary = NSMutableDictionary()
-    
+
     if FileManager.default.fileExists(atPath: plistPath) {
-        
+
         let structsDict: NSDictionary? = NSDictionary(contentsOfFile: plistPath)
-        
+
         if structsDict != nil {
             result.setDictionary(structsDict as! [String: AnyObject])
         }
@@ -138,7 +138,7 @@ func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
     else {
         throw JEStructsGeneratorError.plistNotFound
     }
-    
+
     return result
 }
 
@@ -149,35 +149,35 @@ func printHelp() {
 //MARK - Structs generator helpers
 
 func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
-    
+
     //load templates
     let structListTemplateString: String = try stringFromTemplate(JETemplate.eventList.rawValue)
     let structTemplate: String = try stringFromTemplate(JETemplate.event.rawValue)
-    
+
     let resultString: NSMutableString = NSMutableString(string: structListTemplateString)
     var structsArray: [String] = Array()
-    
+
     guard events.keys.count > 0 else {
         throw JEStructsGeneratorError.eventsArrayNotFound
     }
-    
+
     for eventName in events.keys {
         guard let eventDic = events[eventName] as? [String : AnyObject], eventDic.keys.count > 0 else {
             throw JEStructsGeneratorError.eventMalformed
         }
-        
+
         var structString = structTemplate
         structString = replacePlaceholder(structString, placeholder: "<*!\(JETemplatePlaceholder.eventName.rawValue)*>", value: swiftyClassName(for: eventName)) //<*!event_name*> = Example
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventName.rawValue)*>", value: eventName) //<*event_name*> = example
-        
+
         let keys: [String] = (eventDic[JEPlistKey.payload.rawValue] as? [String]) ?? []
-        
+
         /*
          <*event_keyValueChain*> = kKey1 : key1, kKey2 : key2
          */
         let eventKeyValueChain: String = generateEventKeyValueChain(keys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keyValueChain.rawValue)*>", value: eventKeyValueChain)
-        
+
         /*
          <*event_cs_trackers_str*> = "console", "GA"
          */
@@ -186,7 +186,7 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
         }
         let eventCsTrackers: String = generateEventCsTrackers(trackers)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventTrackers.rawValue)*>", value: eventCsTrackers)
-        
+
         /*
          <*event_keysNames*> =
          private let kKey1 = "key1"
@@ -194,7 +194,7 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
          */
         let eventKeysNames: String = try generateEventKeysNames(keys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keysNames.rawValue)*>", value: eventKeysNames)
-        
+
         /*
          <*event_keysVars*> =
          let key1 : String
@@ -202,14 +202,14 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
          */
         let eventKeysVars: String = try generateEventKeysVars(keys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keysVars.rawValue)*>", value: eventKeysVars)
-        
+
         /*
          <*event_init*> =
          init(<*event_init_params*>) {
-         super.init()
-         <*event_init_assigns_list*>
+            super.init()
+            <*event_init_assigns_list*>
          }
-         
+
          <*event_init_params*> = test1: String, test2: String, test3: String
          <*event_init_assigns_list*> =
          self.test1 = test1
@@ -221,10 +221,10 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
             eventInit = ""
         }
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventInit.rawValue)*>", value: eventInit)
-        
+
         structsArray.append(structString)
     }
-    
+
     //base list template
     resultString.replaceOccurrences(of: "<*\(JETemplatePlaceholder.eventList.rawValue)*>",
         with: structsArray.joined(separator: "\n\n"),
@@ -234,11 +234,11 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
 }
 
 func replacePlaceholder(_ original: String, placeholder: String, value: String) -> String {
-    
+
     if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 {
         return ""
     }
-    
+
     let valueToReplace: String
     var mutableValue = value
     if placeholder.contains("<*!") {
@@ -248,7 +248,7 @@ func replacePlaceholder(_ original: String, placeholder: String, value: String) 
     else {
         valueToReplace = value
     }
-    
+
     return original.replacingOccurrences(of: placeholder, with: valueToReplace)
 }
 
@@ -257,7 +257,7 @@ func replacePlaceholder(_ original: String, placeholder: String, value: String) 
 private func swiftyPropertyName(for string: String) -> String {
     return string.components(separatedBy: " ").enumerated().reduce("", { result, current in
         var element = current.element
-        
+
         if element.characters.count > 0 {
             if current.offset == 0 {
                 element.replaceSubrange(element.startIndex...element.startIndex, with: String(element[element.startIndex]).lowercased())
@@ -265,7 +265,7 @@ private func swiftyPropertyName(for string: String) -> String {
                 element.replaceSubrange(element.startIndex...element.startIndex, with: String(element[element.startIndex]).capitalized)
             }
         }
-        
+
         return result + element
     })
 }
@@ -296,46 +296,46 @@ private func generateEventCsTrackers(_ trackers: [String]) -> String {
 
 private func generateEventKeysNames(_ keys: [String]) throws -> String {
     let structKeyNameTemplate: String = try stringFromTemplate(JETemplate.keyName.rawValue)
-    
+
     return keys.flatMap { key in
         var structKeyNameValue = structKeyNameTemplate
         structKeyNameValue = replacePlaceholder(structKeyNameValue, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: key)
         structKeyNameValue = replacePlaceholder(structKeyNameValue, placeholder: "<*!\(JETemplatePlaceholder.keyName.rawValue)*>", value: swiftyClassName(for: key))
-        
+
         return structKeyNameValue
         }.joined(separator: "\n    ")
 }
 
 private func generateEventKeysVars(_ keys: [String]) throws -> String {
     let structVarTemplate: String = try stringFromTemplate(JETemplate.keyVar.rawValue)
-    
+
     return keys.flatMap { key in
         return replacePlaceholder(structVarTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: swiftyPropertyName(for: key))
         }.joined(separator: "\n    ")
 }
 
 func generateEventInit(_ keys: [String]) throws -> String {
-    
+
     //replace event_init_assigns_list
     let initAssignsTemplateString: String = try stringFromTemplate(JETemplate.eventInitAssignsList.rawValue)
-    
+
     //replace event_init_params
     let initParamTemplateString: String = try stringFromTemplate(JETemplate.eventInitParam.rawValue)
-    
+
     var initTemplateString: String = try stringFromTemplate(JETemplate.eventInit.rawValue)
-    
+
     let eventInitAssignsString = keys.flatMap { key in
         return replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: swiftyPropertyName(for: key))
         }.joined(separator: "\n        ")
-    
+
     let eventInitParamsAssignsString = keys.flatMap { key in
         return replacePlaceholder(initParamTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: swiftyPropertyName(for: key))
         }.joined(separator: ", ")
-    
+
     initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(JETemplatePlaceholder.eventInitAssignsList.rawValue)*>", value: eventInitAssignsString)
-    
+
     initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(JETemplatePlaceholder.eventInitParams.rawValue)*>", value: eventInitParamsAssignsString)
-    
+
     return initTemplateString
 }
 
@@ -366,20 +366,20 @@ do {
     let plistPath = CommandLine.arguments[1]
     var structsDict = try loadEventPlist(plistPath)
     log(msg: "Events Plist loaded \(structsDict)")
-    
+
     //write struct file
     let structSwiftFilePath = CommandLine.arguments[2]
     if !FileManager.default.fileExists(atPath: structSwiftFilePath) {
         throw JEStructsGeneratorError.swiftFileNotFound
     }
-    
+
     //generate struct string
     guard let events = structsDict["events"] as? [String : AnyObject] else {
         throw JEStructsGeneratorError.eventsArrayNotFound
     }
     let structsString: NSString = try generateStructs(events)
     log(msg: "Events code correctly generated")
-    
+
     //write struct string in file
     log(msg: "Generating swift code in: \(structSwiftFilePath)")
     try structsString.write(toFile: structSwiftFilePath, atomically: true, encoding: String.Encoding.utf8.rawValue)
