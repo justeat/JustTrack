@@ -158,7 +158,7 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
     var structsArray: [String] = Array()
 
     guard events.keys.count > 0 else {
-        throw JEStructsGeneratorError.eventsArrayNotFound
+        throw JEStructsGeneratorError.eventsArrayEmpty
     }
 
     for eventName in events.keys {
