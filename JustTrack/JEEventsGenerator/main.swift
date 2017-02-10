@@ -120,19 +120,32 @@ func stringFromTemplate(_ templateName: String) throws -> String {
     return result!
 }
 
-func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
+private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
     
     let result: NSMutableDictionary = NSMutableDictionary()
     
     if FileManager.default.fileExists(atPath: plistPath) {
-        let structsDict: NSDictionary? = NSDictionary(contentsOfFile: plistPath)
-        if structsDict != nil {
-            result.setDictionary(structsDict as! [String: AnyObject])
+        var eventsDict: NSDictionary? = NSDictionary(contentsOfFile: plistPath)
+        eventsDict = eventsDict?.object(forKey: "events") as? NSDictionary
+        if eventsDict != nil {
+            result.setDictionary(eventsDict as! [AnyHashable : Any])
         }
     }
     else {
         throw JEStructsGeneratorError.plistNotFound
     }
+    
+    return result
+}
+
+private func sanitised(_ originalString: String) -> String {
+    var result = originalString
+    
+    var components = result.components(separatedBy: .whitespacesAndNewlines)
+    result = components.joined(separator: "")
+    
+    components = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
+    result = components.joined(separator: "")
     
     return result
 }
@@ -156,12 +169,16 @@ private func generateEventClasses(_ events: [String : AnyObject]) throws -> NSSt
         
         let eventDic: [String : AnyObject]? = events[eventName] as? [String : AnyObject]
         
+        let sanitisedValue = sanitised(eventName)
         var structString = structTemplate
-        structString = replacePlaceholder(structString, placeholder: "<*!\(JETemplatePlaceholder.eventName.rawValue)*>", value: eventName) //<*!event_name*> = Example
-        structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventName.rawValue)*>", value: eventName) //<*event_name*> = example
+        structString = replacePlaceholder(structString, placeholder: "<*!\(JETemplatePlaceholder.eventName.rawValue)*>", value: sanitisedValue ) //<*!event_name*> = Example
+        structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventName.rawValue)*>", value: sanitisedValue) //<*event_name*> = example
         
+        var keys: [String] = eventDic![JEPlistKey.payload.rawValue] as! [String]
         
-        let keys: [String] = eventDic![JEPlistKey.payload.rawValue] as! [String]
+        //sanitise keys
+        keys = keys.map{ sanitised($0) }
+        
         //<*event_keyValueChain*> = kKey1 : key1, kKey2 : key2
         let eventKeyValueChain: String = generateEventKeyValueChain(keys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keyValueChain.rawValue)*>", value: eventKeyValueChain)
@@ -352,7 +369,7 @@ do {
     }
     
     //generate struct string
-    let structsString: NSString = try generateEventClasses(structsDict["events"] as! [String : AnyObject])
+    let structsString: NSString = try generateEventClasses(structsDict as! [String : AnyObject])
     log(msg: "Events code correctly generated")
     
     //write struct string in file
