@@ -4,7 +4,7 @@
 <dict>
 	<key>events</key>
 	<dict>
-		<key>example</key>
+		<key>spa ce</key>
 		<dict>
 			<key>registeredTrackers</key>
 			<array>
@@ -13,12 +13,12 @@
 			</array>
 			<key>payloadKeys</key>
 			<array>
-				<string>test1</string>
-				<string>test2</string>
-				<string>test3</string>
+				<string>tes     t1</string>
+				<string>tes £$%^ t2</string>
+				<string>test   3</string>
 			</array>
 		</dict>
-		<key>ViewScreen</key>
+		<key>NewLine AfterSpace</key>
 		<dict>
 			<key>registeredTrackers</key>
 			<array>
@@ -31,7 +31,7 @@
 				<string>screenData</string>
 			</array>
 		</dict>
-		<key>Tap</key>
+		<key>Tap!@£$%^&amp;*()END</key>
 		<dict>
 			<key>registeredTrackers</key>
 			<array>
@@ -66,15 +66,6 @@
 			</array>
 			<key>payloadKeys</key>
 			<array/>
-		</dict>
-		<key>NoTrackers</key>
-		<dict>
-			<key>registeredTrackers</key>
-			<array/>
-			<key>payloadKeys</key>
-			<array>
-				<string>action</string>
-			</array>
 		</dict>
 	</dict>
 </dict>
