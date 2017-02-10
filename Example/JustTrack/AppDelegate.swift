@@ -18,6 +18,7 @@ import JustTrack
         trackingService.trackEvent(JEEventViewScreen(screenName: "MainView", screenData: "fake screendata"))
         trackingService.trackEvent(JEEventViewScreen(screenName: "RestaurantView", screenData: "fake screendata"))
         trackingService.trackEvent(JEEventViewScreen(screenName: "MenuView", screenData: "fake screendata"))
+        trackingService.trackEvent(JEEventNoPayload())
         return true
     }
 
