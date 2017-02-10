@@ -44,6 +44,7 @@ enum JEStructsGeneratorError: Error {
     case templateMalformed
     //event plist
     case plistNotFound
+    case trackerMissing
     //swift file
     case swiftFileNotFound
     //events
@@ -124,9 +125,7 @@ func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
     let result: NSMutableDictionary = NSMutableDictionary()
     
     if FileManager.default.fileExists(atPath: plistPath) {
-        
         let structsDict: NSDictionary? = NSDictionary(contentsOfFile: plistPath)
-    
         if structsDict != nil {
             result.setDictionary(structsDict as! [String: AnyObject])
         }
@@ -144,7 +143,7 @@ func printHelp() {
 
 //MARK - Structs generator helpers
 
-func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
+private func generateEventClasses(_ events: [String : AnyObject]) throws -> NSString {
     
     //load templates
     let structListTemplateString: String = try stringFromTemplate(JETemplate.eventList.rawValue)
@@ -168,7 +167,7 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keyValueChain.rawValue)*>", value: eventKeyValueChain)
         
         //<*event_cs_trackers_str*> = "console", "GA"
-        let eventCsTrackers: String = generateEventCsTrackers(eventDic![JEPlistKey.trackrs.rawValue] as! [String])
+        let eventCsTrackers: String = try generateEventCsTrackers(eventDic![JEPlistKey.trackrs.rawValue] as! [String])
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventTrackers.rawValue)*>", value: eventCsTrackers)
         
         /*
@@ -202,7 +201,7 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
          */
         let eventInit: String = try generateEventInit(keys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventInit.rawValue)*>", value: eventInit)
-        
+
         structsArray.append(structString)
     }
     
@@ -214,10 +213,10 @@ func generateStructs(_ events: [String : AnyObject]) throws -> NSString {
     return resultString
 }
 
-func replacePlaceholder(_ original: String, placeholder: String, value: String) -> String {
+private func replacePlaceholder(_ original: String, placeholder: String, value: String) -> String {
     
-    if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 || value.lengthOfBytes(using: String.Encoding.utf8) < 1{
-        return ""
+    if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 {
+        return original
     }
     
     let valueToReplace: String
@@ -238,56 +237,58 @@ func replacePlaceholder(_ original: String, placeholder: String, value: String) 
 func generateEventKeyValueChain(_ keys: [String]) -> String {
     
     var resultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let keyString = keys[index]
+    for keyString in keys {
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex, with: String(capKeyString[capKeyString.startIndex]).capitalized)
         resultArray.append("k\(capKeyString) : \(keyString) as NSObject")
     }
     
-    return resultArray.joined(separator: ", ")
+    return resultArray.count > 0 ? resultArray.joined(separator: ", ") : ":"
 }
 
-func generateEventCsTrackers(_ trackers: [String]) -> String {
+private func generateEventCsTrackers(_ trackers: [String]) throws -> String {
     
     var resultArray: [String] = Array()
-    for index in 0...trackers.count-1 {
-        
-        let keyString = trackers[index]
+    for keyString in trackers {
         resultArray.append("\"\(keyString)\"")
+    }
+    
+    if resultArray.count < 1 {
+        throw JEStructsGeneratorError.trackerMissing
     }
     
     return resultArray.joined(separator: ", ")
 }
 
-func generateEventKeysNames(_ keys: [String]) throws -> String {
+private func generateEventKeysNames(_ keys: [String]) throws -> String {
     
     let structKeyNameTemplate: String = try stringFromTemplate(JETemplate.keyName.rawValue)
     var resultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let keyString = keys[index]
+    for keyString in keys {
         var structKeyNameString = replacePlaceholder(structKeyNameTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         structKeyNameString = replacePlaceholder(structKeyNameString, placeholder: "<*!\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         resultArray.append( structKeyNameString )
     }
-    return resultArray.joined(separator: "\n    ")
+    
+    return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
 }
 
-func generateEventKeysVars(_ keys: [String]) throws -> String {
+private func generateEventKeysVars(_ keys: [String]) throws -> String {
     
     let structVarTemplate: String = try stringFromTemplate(JETemplate.keyVar.rawValue)
     var resultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keys[index])
-        resultArray.append(structVarString)//("let \(keys[index]) : String")
+    for keyString in keys {
+        let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
+        resultArray.append(structVarString)
     }
     return resultArray.joined(separator: "\n    ")
 }
 
-func generateEventInit(_ keys: [String]) throws -> String {
+private func generateEventInit(_ keys: [String]) throws -> String {
+    
+    if keys.count == 0 {
+        return "//MARK: Payload not configured"
+    }
     
     var initTemplateString: String = try stringFromTemplate(JETemplate.eventInit.rawValue)
     
@@ -299,12 +300,11 @@ func generateEventInit(_ keys: [String]) throws -> String {
     
     var assignsResultArray: [String] = Array()
     var paramsResultArray: [String] = Array()
-    for index in 0...keys.count-1 {
-        
-        let assignsResultString = replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keys[index])
+    for keyString in keys {
+        let assignsResultString = replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         assignsResultArray.append(assignsResultString)
         
-        let paramResultString = replacePlaceholder(initParamTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keys[index])
+        let paramResultString = replacePlaceholder(initParamTemplateString, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         paramsResultArray.append(paramResultString)
     }
     
@@ -317,8 +317,8 @@ func generateEventInit(_ keys: [String]) throws -> String {
     return initTemplateString
 }
 
-func exitWithError() {
-    printHelp()
+private func exitWithError() {
+//    printHelp()
     exit(1)
 }
 
@@ -352,7 +352,7 @@ do {
     }
     
     //generate struct string
-    let structsString: NSString = try generateStructs(structsDict["events"] as! [String : AnyObject])
+    let structsString: NSString = try generateEventClasses(structsDict["events"] as! [String : AnyObject])
     log(msg: "Events code correctly generated")
     
     //write struct string in file
@@ -361,6 +361,10 @@ do {
 }
 catch JEStructsGeneratorError.plistNotFound {
     log(msg: "Invalid plist path")
+    exitWithError()
+}
+catch JEStructsGeneratorError.trackerMissing {
+    log(msg: "Tracker(s) missing in one or more event(s)")
     exitWithError()
 }
 catch JEStructsGeneratorError.templateNotFound {

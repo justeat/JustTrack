@@ -67,6 +67,15 @@
 			<key>payloadKeys</key>
 			<array/>
 		</dict>
+		<key>NoTrackers</key>
+		<dict>
+			<key>registeredTrackers</key>
+			<array/>
+			<key>payloadKeys</key>
+			<array>
+				<string>action</string>
+			</array>
+		</dict>
 	</dict>
 </dict>
 </plist>
