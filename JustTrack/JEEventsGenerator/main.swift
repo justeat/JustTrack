@@ -224,7 +224,7 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
     
     //base list template
     resultString.replaceOccurrences(of: "<*\(JETemplatePlaceholder.eventList.rawValue)*>",
-                                            with: structsArray.joined(separator: "\n\n"),
+                                            with: structsArray.joined(separator: "\n"),
                                             options: NSString.CompareOptions.caseInsensitive,
                                             range: NSRange(location: 0, length: resultString.length) )
     return resultString
@@ -257,7 +257,6 @@ func generateEventKeyValueChain(_ keys: [String]) -> String {
     for keyString in keys {
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex, with: String(capKeyString[capKeyString.startIndex]).capitalized)
-//        resultArray.append("k\(capKeyString) : \(keyString) as NSObject")
         resultArray.append("k\(capKeyString) : \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
     }
     
@@ -299,7 +298,7 @@ private func generateEventKeysVars(_ keys: [String]) throws -> String {
         let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         resultArray.append(structVarString)
     }
-    return resultArray.joined(separator: "\n    ")
+    return resultArray.joined(separator:"    ")
 }
 
 private func generateEventInit(_ keys: [String]) throws -> String {

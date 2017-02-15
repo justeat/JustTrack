@@ -3,12 +3,10 @@
 /*example
 
 @objc public class JEEventExample:NSObject,JEEvent {
-
-    //JEEvent protocol
     public let name: String = "example"
 
     public var payload: Payload {
-        return [kTest1 : test1, kTest2 : test2, kTest3 : test3]
+        return [kTest1 : test1 == "" ? NSNull() : test1 as NSString, kTest2 : test2 == "" ? NSNull() : test2 as NSString, kTest3 : test3 == "" ? NSNull() : test3 as NSString]
     }
 
     public var registeredTrackers: [String] {
@@ -20,9 +18,9 @@
     private let kTest2 = "test2"
     private let kTest3 = "test3"
 
-    var test1 : String = ""
-    var test2 : String = ""
-    var test3 : String = ""
+    public var test1 : String = ""
+    public var test2 : String = ""
+    public var test3 : String = ""
 
     public init(test1: String, test2: String, test3: String) {
         super.init()
@@ -37,7 +35,6 @@ import Foundation
 import JustTrack
 
 @objc public class JEEventExample:NSObject,JEEvent {
-
     public let name: String = "example"
 
     public var payload: Payload {
@@ -52,9 +49,9 @@ import JustTrack
     private let kTest2 = "test2"
     private let kTest3 = "test3"
 
-    var test1: String = ""
-    var test2: String = ""
-    var test3: String = ""
+    public var test1: String = ""
+    public var test2: String = ""
+    public var test3: String = ""
 
     public init(test1: String, test2: String, test3: String) {
         super.init()
@@ -64,9 +61,7 @@ import JustTrack
     }
 }
 
-
 @objc public class JEEventViewScreen:NSObject,JEEvent {
-
     public let name: String = "ViewScreen"
 
     public var payload: Payload {
@@ -80,8 +75,8 @@ import JustTrack
     private let kScreenName = "screenName"
     private let kScreenData = "screenData"
 
-    var screenName: String = ""
-    var screenData: String = ""
+    public var screenName: String = ""
+    public var screenData: String = ""
 
     public init(screenName: String, screenData: String) {
         super.init()
@@ -90,9 +85,7 @@ import JustTrack
     }
 }
 
-
 @objc public class JEEventNoPayload:NSObject,JEEvent {
-
     public let name: String = "NoPayload"
 
     public var payload: Payload {
@@ -106,13 +99,10 @@ import JustTrack
     
 
     
-
     //MARK: Payload not configured
 }
 
-
 @objc public class JEEventTap:NSObject,JEEvent {
-
     public let name: String = "Tap"
 
     public var payload: Payload {
@@ -125,7 +115,7 @@ import JustTrack
 
     private let kElementName = "elementName"
 
-    var elementName: String = ""
+    public var elementName: String = ""
 
     public init(elementName: String) {
         super.init()
@@ -133,9 +123,7 @@ import JustTrack
     }
 }
 
-
 @objc public class JEEventUser:NSObject,JEEvent {
-
     public let name: String = "User"
 
     public var payload: Payload {
@@ -150,9 +138,9 @@ import JustTrack
     private let kResponse = "response"
     private let kExtra = "extra"
 
-    var action: String = ""
-    var response: String = ""
-    var extra: String = ""
+    public var action: String = ""
+    public var response: String = ""
+    public var extra: String = ""
 
     public init(action: String, response: String, extra: String) {
         super.init()
