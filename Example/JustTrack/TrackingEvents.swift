@@ -41,7 +41,7 @@ import JustTrack
     public let name: String = "example"
 
     public var payload: Payload {
-        return [kTest1 : test1 as NSObject, kTest2 : test2 as NSObject, kTest3 : test3 as NSObject]
+        return [kTest1 : test1 == "" ? NSNull() : test1 as NSString, kTest2 : test2 == "" ? NSNull() : test2 as NSString, kTest3 : test3 == "" ? NSNull() : test3 as NSString]
     }
 
     public var registeredTrackers: [String] {
@@ -70,7 +70,7 @@ import JustTrack
     public let name: String = "ViewScreen"
 
     public var payload: Payload {
-        return [kScreenName : screenName as NSObject, kScreenData : screenData as NSObject]
+        return [kScreenName : screenName == "" ? NSNull() : screenName as NSString, kScreenData : screenData == "" ? NSNull() : screenData as NSString]
     }
 
     public var registeredTrackers: [String] {
@@ -116,7 +116,7 @@ import JustTrack
     public let name: String = "Tap"
 
     public var payload: Payload {
-        return [kElementName : elementName as NSObject]
+        return [kElementName : elementName == "" ? NSNull() : elementName as NSString]
     }
 
     public var registeredTrackers: [String] {
@@ -139,7 +139,7 @@ import JustTrack
     public let name: String = "User"
 
     public var payload: Payload {
-        return [kAction : action as NSObject, kResponse : response as NSObject, kExtra : extra as NSObject]
+        return [kAction : action == "" ? NSNull() : action as NSString, kResponse : response == "" ? NSNull() : response as NSString, kExtra : extra == "" ? NSNull() : extra as NSString]
     }
 
     public var registeredTrackers: [String] {
