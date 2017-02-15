@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JustTrack'
-  s.version          = '1.0.1'
+  s.version          = '1.1.0'
   s.summary          = 'The Just Eat solution to better manage the analytics tracking on iOS and improve the relationship with your BI team.'
 
   s.description      = <<-DESC
@@ -18,7 +18,7 @@ JustTrack is the event tracking solution we built for that.
 
   s.homepage         = 'https://github.com/JustEat/JustTrack'
   s.license          = { :type => 'Apache 2.0', :file => 'LICENSE' }
-  s.authors          = { 'Just Eat iOS team' => 'justeat.ios.team@gmail.com', 'Federico Cappelli' => 'federico.cappelli@just-eat.com', 'Giordano Scalzo' => 'giordano.scalzo@just-eat.com', 'Joakim Lazakis' => 'joakim.lazakis@just-eat.com' }
+  s.authors          = { 'Just Eat iOS team' => 'justeat.ios.team@gmail.com', 'Federico Cappelli' => 'federico.cappelli@just-eat.com', 'Joakim Lazakis' => 'joakim.lazakis@just-eat.com' }
   s.source           = { :git => 'https://github.com/justeat/JustTrack.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/justeat_tech'
   

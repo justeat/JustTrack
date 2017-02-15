@@ -156,7 +156,7 @@ func printHelp() {
 
 //MARK - Structs generator helpers
 
-private func generateEventClasses(_ events: [String : AnyObject]) throws -> NSString {
+private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
     
     //load templates
     let structListTemplateString: String = try stringFromTemplate(JETemplate.eventList.rawValue)
@@ -179,7 +179,7 @@ private func generateEventClasses(_ events: [String : AnyObject]) throws -> NSSt
         //sanitise keys
         keys = keys.map{ sanitised($0) }
         
-        //<*event_keyValueChain*> = kKey1 : key1, kKey2 : key2
+        //<*event_keyValueChain*> = kKey1 : key1 == "" ? NSNull() : key1 as NSString
         let eventKeyValueChain: String = generateEventKeyValueChain(keys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keyValueChain.rawValue)*>", value: eventKeyValueChain)
         
@@ -257,7 +257,8 @@ func generateEventKeyValueChain(_ keys: [String]) -> String {
     for keyString in keys {
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex, with: String(capKeyString[capKeyString.startIndex]).capitalized)
-        resultArray.append("k\(capKeyString) : \(keyString) as NSObject")
+//        resultArray.append("k\(capKeyString) : \(keyString) as NSObject")
+        resultArray.append("k\(capKeyString) : \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
     }
     
     return resultArray.count > 0 ? resultArray.joined(separator: ", ") : ":"
@@ -369,7 +370,7 @@ do {
     }
     
     //generate struct string
-    let structsString: NSString = try generateEventClasses(structsDict as! [String : AnyObject])
+    let structsString: NSString = try generateEvents(structsDict as! [String : AnyObject])
     log(msg: "Events code correctly generated")
     
     //write struct string in file
