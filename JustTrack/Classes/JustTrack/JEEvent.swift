@@ -6,7 +6,7 @@
 
 import Foundation
 
-public typealias Payload = [String: Any]
+public typealias Payload = [String: AnyObject]
 
 public enum JEEventEncodingKey: String {
     case name
