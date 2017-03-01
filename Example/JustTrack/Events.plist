@@ -13,9 +13,9 @@
 			</array>
 			<key>payloadKeys</key>
 			<array>
-				<string>test1</string>
-				<string>test2</string>
-				<string>test3</string>
+				<string>test_1</string>
+				<string>test_2</string>
+				<string>test_3</string>
 			</array>
 		</dict>
 		<key>ViewScreen</key>

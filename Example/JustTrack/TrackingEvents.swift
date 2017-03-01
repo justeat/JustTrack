@@ -45,9 +45,9 @@ import JustTrack
         return ["console", "tracker2"]
     }
 
-    private let kTest1 = "test1"
-    private let kTest2 = "test2"
-    private let kTest3 = "test3"
+    private let kTest_1 = "test_1"
+    private let kTest_2 = "test_2"
+    private let kTest_3 = "test_3"
 
     public var test1: String = ""
     public var test2: String = ""

@@ -174,13 +174,13 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
         structString = replacePlaceholder(structString, placeholder: "<*!\(JETemplatePlaceholder.eventName.rawValue)*>", value: sanitisedValue ) //<*!event_name*> = Example
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventName.rawValue)*>", value: sanitisedValue) //<*event_name*> = example
         
-        var keys: [String] = eventDic![JEPlistKey.payload.rawValue] as! [String]
+        let keys:[String] = eventDic![JEPlistKey.payload.rawValue] as! [String]
         
         //sanitise keys
-        keys = keys.map{ sanitised($0) }
+        let cleanKeys:[String] = keys.map{ sanitised($0) }
         
         //<*event_keyValueChain*> = kKey1 : key1 == "" ? NSNull() : key1 as NSString
-        let eventKeyValueChain: String = generateEventKeyValueChain(keys)
+        let eventKeyValueChain: String = generateEventKeyValueChain(cleanKeys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keyValueChain.rawValue)*>", value: eventKeyValueChain)
         
         //<*event_cs_trackers_str*> = "console", "GA"
@@ -200,7 +200,7 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
          let key1 : String
          let key2 : String
          */
-        let eventKeysVars: String = try generateEventKeysVars(keys)
+        let eventKeysVars: String = try generateEventKeysVars(cleanKeys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keysVars.rawValue)*>", value: eventKeysVars)
         
         /*
@@ -216,7 +216,7 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
          self.test2 = test2
          self.test3 = test3
          */
-        let eventInit: String = try generateEventInit(keys)
+        let eventInit: String = try generateEventInit(cleanKeys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventInit.rawValue)*>", value: eventInit)
 
         structsArray.append(structString)
