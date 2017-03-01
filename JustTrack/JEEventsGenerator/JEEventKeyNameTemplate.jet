@@ -1,1 +1,1 @@
-private let k<*!key_name*> = "<*key_name*>"
+private let k<*!key_name*> = "<*key_name_original*>"

@@ -45,9 +45,9 @@ import JustTrack
         return ["console", "tracker2"]
     }
 
-    private let kTest_1 = "test_1"
-    private let kTest_2 = "test_2"
-    private let kTest_3 = "test_3"
+    private let kTest1 = "test_1"
+    private let kTest2 = "test_2"
+    private let kTest3 = "test_3"
 
     public var test1: String = ""
     public var test2: String = ""
@@ -60,7 +60,6 @@ import JustTrack
         self.test3 = test3
     }
 }
-
 @objc public class JEEventViewScreen:NSObject,JEEvent {
     public let name: String = "ViewScreen"
 
@@ -84,7 +83,6 @@ import JustTrack
         self.screenData = screenData
     }
 }
-
 @objc public class JEEventNoPayload:NSObject,JEEvent {
     public let name: String = "NoPayload"
 
@@ -99,9 +97,9 @@ import JustTrack
     
 
     
+
     //MARK: Payload not configured
 }
-
 @objc public class JEEventTap:NSObject,JEEvent {
     public let name: String = "Tap"
 
@@ -122,7 +120,6 @@ import JustTrack
         self.elementName = elementName
     }
 }
-
 @objc public class JEEventUser:NSObject,JEEvent {
     public let name: String = "User"
 
@@ -149,4 +146,3 @@ import JustTrack
         self.extra = extra
     }
 }
-

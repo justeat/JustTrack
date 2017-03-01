@@ -26,6 +26,7 @@ private enum JETemplatePlaceholder : String {
     case keysNames = "event_keysNames"
     case keysVars = "event_keysVars"
     case keyName = "key_name"
+    case keyNameOriginal = "key_name_original"
     case eventInit = "event_init"
     case eventInitParams = "event_init_params"
     case eventInitAssignsList = "event_init_assigns_list"
@@ -104,13 +105,12 @@ func urlForTemplate(_ templateName: String) throws -> URL {
 func stringFromTemplate(_ templateName: String) throws -> String {
     
     let url: URL = try urlForTemplate(templateName)
-    
     var result: String?
-    
     //reading
     do {
         log(msg: "Load template \(url)")
-        result = try NSString(contentsOf: url, encoding: String.Encoding.utf8.rawValue) as String
+        result = try String(contentsOf: url)
+        result = result?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     catch {
         log(msg: "Error loading template \(templateName)")
@@ -174,10 +174,10 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
         structString = replacePlaceholder(structString, placeholder: "<*!\(JETemplatePlaceholder.eventName.rawValue)*>", value: sanitisedValue ) //<*!event_name*> = Example
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.eventName.rawValue)*>", value: sanitisedValue) //<*event_name*> = example
         
-        let keys:[String] = eventDic![JEPlistKey.payload.rawValue] as! [String]
+        let originalKeys:[String] = eventDic![JEPlistKey.payload.rawValue] as! [String]
         
         //sanitise keys
-        let cleanKeys:[String] = keys.map{ sanitised($0) }
+        let cleanKeys:[String] = originalKeys.map{ sanitised($0) }
         
         //<*event_keyValueChain*> = kKey1 : key1 == "" ? NSNull() : key1 as NSString
         let eventKeyValueChain: String = generateEventKeyValueChain(cleanKeys)
@@ -192,7 +192,7 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
          private let kKey1 = "key1"
          private let kKey2 = "key2"
          */
-        let eventKeysNames: String = try generateEventKeysNames(keys)
+        let eventKeysNames: String = try generateEventKeysNames(originalKeys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keysNames.rawValue)*>", value: eventKeysNames)
         
         /*
@@ -282,9 +282,9 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
     let structKeyNameTemplate: String = try stringFromTemplate(JETemplate.keyName.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
-        var structKeyNameString = replacePlaceholder(structKeyNameTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
-        structKeyNameString = replacePlaceholder(structKeyNameString, placeholder: "<*!\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
-        resultArray.append( structKeyNameString )
+        var structKeyNameString = replacePlaceholder(structKeyNameTemplate, placeholder: "<*\(JETemplatePlaceholder.keyNameOriginal.rawValue)*>", value: keyString)
+        structKeyNameString = replacePlaceholder(structKeyNameString, placeholder: "<*!\(JETemplatePlaceholder.keyName.rawValue)*>", value: sanitised(keyString))
+        resultArray.append(structKeyNameString)
     }
     
     return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
@@ -298,7 +298,7 @@ private func generateEventKeysVars(_ keys: [String]) throws -> String {
         let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(JETemplatePlaceholder.keyName.rawValue)*>", value: keyString)
         resultArray.append(structVarString)
     }
-    return resultArray.joined(separator:"    ")
+    return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
 }
 
 private func generateEventInit(_ keys: [String]) throws -> String {
