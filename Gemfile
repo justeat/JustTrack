@@ -1,5 +1,6 @@
-source "https://rubygems.org"
+ruby '~> 2.4.0'
 
-gem "fastlane"
-gem 'cocoapods', '~> 1.1'
-gem 'xcodeproj', '~> 1.3'
+source 'https://rubygems.org'
+
+gem 'cocoapods', '~> 1.2.1'
+gem 'fastlane', '~> 2.29.0'
