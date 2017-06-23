@@ -2,11 +2,15 @@
 
 /*example
 
-@objc public class JEEventExample:NSObject,JEEvent {
+@objc public class JEEventExample: NSObject, JEEvent {
     public let name: String = "example"
 
     public var payload: Payload {
-        return [kTest1 : test1 == "" ? NSNull() : test1 as NSString, kTest2 : test2 == "" ? NSNull() : test2 as NSString, kTest3 : test3 == "" ? NSNull() : test3 as NSString]
+        return [
+            kTest1 : test1 == "" ? NSNull() : test1 as NSString,
+            kTest2 : test2 == "" ? NSNull() : test2 as NSString,
+            kTest3 : test3 == "" ? NSNull() : test3 as NSString
+        ]
     }
 
     public var registeredTrackers: [String] {
@@ -22,7 +26,9 @@
     public var test2 : String = ""
     public var test3 : String = ""
 
-    public init(test1: String, test2: String, test3: String) {
+    public init(test1: String,
+                test2: String,
+                test3: String) {
         super.init()
         self.test1 = test1
         self.test2 = test2
@@ -34,77 +40,46 @@
 import Foundation
 import JustTrack
 
-@objc public class JEEventExample:NSObject,JEEvent {
-    public let name: String = "example"
+@objc public class JEEventSpace: NSObject, JEEvent {
+    public let name: String = "space"
 
     public var payload: Payload {
-        return [kTest1 : test1 == "" ? NSNull() : test1 as NSString, kTest2 : test2 == "" ? NSNull() : test2 as NSString, kTest3 : test3 == "" ? NSNull() : test3 as NSString]
+        return [
+            kTest1: test1 == "" ? NSNull() : test1 as NSString, 
+            kTest2: test2 == "" ? NSNull() : test2 as NSString, 
+            kTest3: test3 == "" ? NSNull() : test3 as NSString
+        ]
     }
 
     public var registeredTrackers: [String] {
         return ["console", "tracker2"]
     }
 
-    private let kTest1 = "test_1"
-    private let kTest2 = "test_2"
-    private let kTest3 = "test_3"
+    private let kTest1 = "tes     t1"
+    private let kTest2 = "tes £$%^ t2"
+    private let kTest3 = "test   3"
 
     public var test1: String = ""
     public var test2: String = ""
     public var test3: String = ""
 
-    public init(test1: String, test2: String, test3: String) {
+    public init(test1: String,
+                test2: String,
+                test3: String) {
         super.init()
         self.test1 = test1
         self.test2 = test2
         self.test3 = test3
     }
 }
-@objc public class JEEventViewScreen:NSObject,JEEvent {
-    public let name: String = "ViewScreen"
+
+@objc public class JEEventTapEND: NSObject, JEEvent {
+    public let name: String = "TapEND"
 
     public var payload: Payload {
-        return [kScreenName : screenName == "" ? NSNull() : screenName as NSString, kScreenData : screenData == "" ? NSNull() : screenData as NSString]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    private let kScreenName = "screenName"
-    private let kScreenData = "screenData"
-
-    public var screenName: String = ""
-    public var screenData: String = ""
-
-    public init(screenName: String, screenData: String) {
-        super.init()
-        self.screenName = screenName
-        self.screenData = screenData
-    }
-}
-@objc public class JEEventNoPayload:NSObject,JEEvent {
-    public let name: String = "NoPayload"
-
-    public var payload: Payload {
-        return [:]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    
-
-    
-
-    //MARK: Payload not configured
-}
-@objc public class JEEventTap:NSObject,JEEvent {
-    public let name: String = "Tap"
-
-    public var payload: Payload {
-        return [kElementName : elementName == "" ? NSNull() : elementName as NSString]
+        return [
+            kElementName: elementName == "" ? NSNull() : elementName as NSString
+        ]
     }
 
     public var registeredTrackers: [String] {
@@ -120,11 +95,44 @@ import JustTrack
         self.elementName = elementName
     }
 }
-@objc public class JEEventUser:NSObject,JEEvent {
+
+@objc public class JEEventNewLineAfterSpace: NSObject, JEEvent {
+    public let name: String = "NewLineAfterSpace"
+
+    public var payload: Payload {
+        return [
+            kScreenName: screenName == "" ? NSNull() : screenName as NSString, 
+            kScreenData: screenData == "" ? NSNull() : screenData as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    private let kScreenName = "screenName"
+    private let kScreenData = "screenData"
+
+    public var screenName: String = ""
+    public var screenData: String = ""
+
+    public init(screenName: String,
+                screenData: String) {
+        super.init()
+        self.screenName = screenName
+        self.screenData = screenData
+    }
+}
+
+@objc public class JEEventUser: NSObject, JEEvent {
     public let name: String = "User"
 
     public var payload: Payload {
-        return [kAction : action == "" ? NSNull() : action as NSString, kResponse : response == "" ? NSNull() : response as NSString, kExtra : extra == "" ? NSNull() : extra as NSString]
+        return [
+            kAction: action == "" ? NSNull() : action as NSString, 
+            kResponse: response == "" ? NSNull() : response as NSString, 
+            kExtra: extra == "" ? NSNull() : extra as NSString
+        ]
     }
 
     public var registeredTrackers: [String] {
@@ -139,10 +147,30 @@ import JustTrack
     public var response: String = ""
     public var extra: String = ""
 
-    public init(action: String, response: String, extra: String) {
+    public init(action: String,
+                response: String,
+                extra: String) {
         super.init()
         self.action = action
         self.response = response
         self.extra = extra
     }
+}
+
+@objc public class JEEventNoPayload: NSObject, JEEvent {
+    public let name: String = "NoPayload"
+
+    public var payload: Payload {
+        return [:]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    
+
+    
+
+    //MARK: Payload not configured
 }

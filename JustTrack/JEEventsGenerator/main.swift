@@ -224,7 +224,7 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
     
     //base list template
     resultString.replaceOccurrences(of: "<*\(JETemplatePlaceholder.eventList.rawValue)*>",
-                                            with: structsArray.joined(separator: "\n"),
+                                            with: structsArray.joined(separator: "\n\n"),
                                             options: NSString.CompareOptions.caseInsensitive,
                                             range: NSRange(location: 0, length: resultString.length) )
     return resultString
@@ -257,10 +257,14 @@ func generateEventKeyValueChain(_ keys: [String]) -> String {
     for keyString in keys {
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex, with: String(capKeyString[capKeyString.startIndex]).capitalized)
-        resultArray.append("k\(capKeyString) : \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
+        resultArray.append("k\(capKeyString): \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
     }
     
-    return resultArray.count > 0 ? resultArray.joined(separator: ", ") : ":"
+    if (resultArray.count > 0) {
+        return "\n            " + resultArray.joined(separator: ", \n            ") + "\n        "
+    }
+    
+    return ":"
 }
 
 private func generateEventCsTrackers(_ trackers: [String]) throws -> String {
@@ -328,7 +332,7 @@ private func generateEventInit(_ keys: [String]) throws -> String {
     let eventInitAssignsString: String = assignsResultArray.joined(separator: "\n        ")
     initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(JETemplatePlaceholder.eventInitAssignsList.rawValue)*>", value: eventInitAssignsString)
     
-    let eventInitParamsAssignsString: String = paramsResultArray.joined(separator: ", ")
+    let eventInitParamsAssignsString: String = paramsResultArray.joined(separator: ",\n                ")
     initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(JETemplatePlaceholder.eventInitParams.rawValue)*>", value: eventInitParamsAssignsString)
     
     return initTemplateString

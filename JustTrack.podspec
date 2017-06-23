@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JustTrack'
-  s.version          = '1.1.3'
+  s.version          = '1.1.4'
   s.summary          = 'The Just Eat solution to better manage the analytics tracking on iOS and improve the relationship with your BI team.'
 
   s.description      = <<-DESC

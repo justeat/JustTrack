@@ -6,7 +6,7 @@
 
 import Foundation
 
-class JEEventInternal:NSObject,JEEvent {
+class JEEventInternal: NSObject, JEEvent {
     var name: String = ""
     var payload: Payload = [:]
     var registeredTrackers: [String] = []
