@@ -2,11 +2,15 @@
 
 /*example
 
-@objc public class JEEventExample:NSObject,JEEvent {
+@objc public class JEEventExample: NSObject, JEEvent {
     public let name: String = "example"
 
     public var payload: Payload {
-        return [kTest1 : test1 == "" ? NSNull() : test1 as NSString, kTest2 : test2 == "" ? NSNull() : test2 as NSString, kTest3 : test3 == "" ? NSNull() : test3 as NSString]
+        return [
+            kTest1 : test1 == "" ? NSNull() : test1 as NSString,
+            kTest2 : test2 == "" ? NSNull() : test2 as NSString,
+            kTest3 : test3 == "" ? NSNull() : test3 as NSString
+        ]
     }
 
     public var registeredTrackers: [String] {
@@ -22,7 +26,9 @@
     public var test2 : String = ""
     public var test3 : String = ""
 
-    public init(test1: String, test2: String, test3: String) {
+    public init(test1: String,
+                test2: String,
+                test3: String) {
         super.init()
         self.test1 = test1
         self.test2 = test2
