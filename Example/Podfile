@@ -1,4 +1,4 @@
-source 'git@github.com:justeat/PodSpecs.iOS.UK.git'
+source 'git@github.com:justeat/iOS.Specs.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
