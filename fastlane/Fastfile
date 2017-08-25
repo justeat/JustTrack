@@ -58,10 +58,10 @@ platform :ios do
     desc "Pod repo push"
     
     if !File.directory?(ENV['HOME']+'/.cocoapods/repos/JUSTEAT')
-        sh "pod repo add JUSTEAT git@github.com:justeat/PodSpecs.iOS.UK.git"
+        sh "pod repo add JUSTEAT git@github.com:justeat/iOS.Specs.git"
     end
     
-    pod_push(path: "#{POD_NAME}.podspec", repo: "JUSTEAT", sources: ["git@github.com:justeat/PodSpecs.iOS.UK.git", "https://github.com/CocoaPods/Specs"], allow_warnings: true)
+    pod_push(path: "#{POD_NAME}.podspec", repo: "JUSTEAT", sources: ["git@github.com:justeat/iOS.Specs.git", "https://github.com/CocoaPods/Specs"], allow_warnings: true)
         
   end
 
