@@ -166,13 +166,13 @@ An Event is made of:
 ```Swift
 //Swift
 let trackingService: JETracking = configureJustTrack()
-trackingService.trackEvent(JEEventUser(action: "UseLogiIn", response: "success", extra: "Additional info"))
+trackingService.trackEvent(JEEventUser(action: "UserLogIn", response: "success", extra: "Additional info"))
 ```
 
 ```Objective-C
 //Objective-C
 JETracking *trackingService =  [self configureJustTrack];
-[trackingService trackEvent:[[JEEventUser alloc] initWithAction:@"UseLogiIn" response:@"success" extra:@"Additional info"] ];
+[trackingService trackEvent:[[JEEventUser alloc] initWithAction:@"UserLogIn" response:@"success" extra:@"Additional info"] ];
 ```
 
 ##### Hardcoded events

@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
         let trackingService: JETracking = configureJustTrack()
         
-        trackingService.trackEvent(JEEventUser(action: "UseLogiIn", response: "success", extra: "Additional info"))
+        trackingService.trackEvent(JEEventUser(action: "UserLogIn", response: "success", extra: "Additional info"))
         trackingService.trackEvent(JEEventViewScreen(screenName: "MainView", screenData: "fake screendata"))
         trackingService.trackEvent(JEEventViewScreen(screenName: "RestaurantView", screenData: "fake screendata"))
         trackingService.trackEvent(JEEventViewScreen(screenName: "MenuView", screenData: "fake screendata"))

@@ -49,11 +49,11 @@
 		0B190DD9CDF432884031DC9C72550757 /* Pods-JustTrack_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JustTrack_Example-umbrella.h"; sourceTree = "<group>"; };
 		0B3574F8ABB5181CB6F25679C9CC3B57 /* Pods-JustTrack_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Tests-resources.sh"; sourceTree = "<group>"; };
 		110F29E7FCAE01FAFBAB0484722875B8 /* JETracker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JETracker.swift; path = JustTrack/Classes/JustTrack/JETracker.swift; sourceTree = "<group>"; };
-		1706744FF97D3EF2597BC81B56002D6B /* JustTrack.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = JustTrack.modulemap; sourceTree = "<group>"; };
+		1706744FF97D3EF2597BC81B56002D6B /* JustTrack.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = JustTrack.modulemap; sourceTree = "<group>"; };
 		1E851FDAFF6B901831D476B273843EC5 /* JEEventInternal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JEEventInternal.swift; path = JustTrack/Classes/JustTrack/JEEventInternal.swift; sourceTree = "<group>"; };
 		2836952DE712339CE41D1D0995F269CB /* JustTrack-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JustTrack-umbrella.h"; sourceTree = "<group>"; };
-		29851D8FD8DF869F91C1BF456140FD56 /* Pods-JustTrack_Example_ObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-JustTrack_Example_ObjC.modulemap"; sourceTree = "<group>"; };
-		3F531F9ED240BEFD59E9A364C88893CC /* Pods_JustTrack_Example_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JustTrack_Example_ObjC.framework; path = "Pods-JustTrack_Example_ObjC.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29851D8FD8DF869F91C1BF456140FD56 /* Pods-JustTrack_Example_ObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-JustTrack_Example_ObjC.modulemap"; sourceTree = "<group>"; };
+		3F531F9ED240BEFD59E9A364C88893CC /* Pods_JustTrack_Example_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B694A3B246C48D878860437017E4DE /* JustTrack-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JustTrack-prefix.pch"; sourceTree = "<group>"; };
 		41FA9F321ED0463E13542F4499E6C5B0 /* JEEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JEEvent.swift; path = JustTrack/Classes/JustTrack/JEEvent.swift; sourceTree = "<group>"; };
 		484AA828AB6B543AC2A3984E64ED04D4 /* Pods-JustTrack_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example-resources.sh"; sourceTree = "<group>"; };
@@ -64,24 +64,24 @@
 		6B6C5FDF80AAAA04DC268A1AAA2BD975 /* Pods-JustTrack_Example_ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example_ObjC.release.xcconfig"; sourceTree = "<group>"; };
 		803BBC9CFD1094F3B2B96A47E5ECFB7F /* JETrackOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JETrackOperation.swift; sourceTree = "<group>"; };
 		842C94C0403EDFF1C243B485D6339509 /* Pods-JustTrack_Example_ObjC-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JustTrack_Example_ObjC-umbrella.h"; sourceTree = "<group>"; };
-		88D45EF4BEB2C76D9E8205F975FB790D /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JustTrack_Example.framework; path = "Pods-JustTrack_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		88D45EF4BEB2C76D9E8205F975FB790D /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		99DB6D3FD13A726D8FB653BF9A2A5C65 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9E4B7149B3D0FA3FFA4396FAF57B0677 /* Pods_JustTrack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JustTrack_Tests.framework; path = "Pods-JustTrack_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E4B7149B3D0FA3FFA4396FAF57B0677 /* Pods_JustTrack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E960BE8892E94FBA1CB96AE4BA858AD /* Pods-JustTrack_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JustTrack_Example-dummy.m"; sourceTree = "<group>"; };
 		A2F0183ABCFE5D8476E3E43865EB5421 /* Pods-JustTrack_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JustTrack_Tests-umbrella.h"; sourceTree = "<group>"; };
 		A634BDE092409B72376306C64C8EFAD7 /* Pods-JustTrack_Example_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
 		A7EBFB65509F26AAA817722138C95B51 /* Pods-JustTrack_Example_ObjC-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example_ObjC-resources.sh"; sourceTree = "<group>"; };
-		ACB2443B6F05D675FDD213AF6E8D8D8F /* JustTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JustTrack.framework; path = JustTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB2443B6F05D675FDD213AF6E8D8D8F /* JustTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JustTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D8B1DD6ACCB0351A4C7661E3D3B1BC /* JETrackerConsole.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JETrackerConsole.swift; sourceTree = "<group>"; };
 		B0F78172F0B452E824DB7C2EFEF488A5 /* Pods-JustTrack_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		BA205632743A1006B771C633623B157F /* Pods-JustTrack_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-JustTrack_Tests.modulemap"; sourceTree = "<group>"; };
+		BA205632743A1006B771C633623B157F /* Pods-JustTrack_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-JustTrack_Tests.modulemap"; sourceTree = "<group>"; };
 		BB657599958045CEC0C2677ADF1836CB /* Pods-JustTrack_Example_ObjC-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JustTrack_Example_ObjC-acknowledgements.plist"; sourceTree = "<group>"; };
 		C0EE8C3BA1D2DD9E6B92B9FD3A13EB70 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C274F23FF689413B8DE664C558AAF618 /* Pods-JustTrack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C4D0FA97D8E7A05A69C337FA057F3EC7 /* Pods-JustTrack_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JustTrack_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		D2BC7A8B5D72699A5526370205FE8611 /* Pods-JustTrack_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JustTrack_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		D3A35B237F07EC1DD1A4D78FA07CEBB7 /* Pods-JustTrack_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-JustTrack_Example.modulemap"; sourceTree = "<group>"; };
+		D3A35B237F07EC1DD1A4D78FA07CEBB7 /* Pods-JustTrack_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-JustTrack_Example.modulemap"; sourceTree = "<group>"; };
 		D769CAE27B80039CAAFB4125F19E5E97 /* Pods-JustTrack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		DCA31A39116A1F36FF4B7D5558A135E1 /* Pods-JustTrack_Example_ObjC-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JustTrack_Example_ObjC-dummy.m"; sourceTree = "<group>"; };
 		DF8FC2217EE8DAE3852DB6BFEC4FDF14 /* Pods-JustTrack_Example_ObjC-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JustTrack_Example_ObjC-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -404,6 +404,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					4A0AA5B572192B8AD272FC91ABC5844F = {
+						LastSwiftMigration = 0910;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
