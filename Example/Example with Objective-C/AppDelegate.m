@@ -16,7 +16,7 @@
 {
     JETracking *trackingService =  [self configureJustTrack];
     [trackingService trackEvent:[[JEEventViewScreen alloc] initWithScreenName:@"RestaurantView" screenData:@"fake screendata"]];
-    [trackingService trackEvent:[[JEEventUser alloc] initWithAction:@"UseLogiIn" response:@"success" extra:@"Additional info"] ];
+    [trackingService trackEvent:[[JEEventUser alloc] initWithAction:@"UserLogIn" response:@"success" extra:@"Additional info"] ];
     return YES;
 }
 

@@ -40,8 +40,8 @@
 import Foundation
 import JustTrack
 
-@objc public class JEEventSpace: NSObject, JEEvent {
-    public let name: String = "space"
+@objc public class JEEventExample: NSObject, JEEvent {
+    public let name: String = "example"
 
     public var payload: Payload {
         return [
@@ -55,9 +55,9 @@ import JustTrack
         return ["console", "tracker2"]
     }
 
-    private let kTest1 = "tes     t1"
-    private let kTest2 = "tes £$%^ t2"
-    private let kTest3 = "test   3"
+    private let kTest1 = "test_1"
+    private let kTest2 = "test_2"
+    private let kTest3 = "test_3"
 
     public var test1: String = ""
     public var test2: String = ""
@@ -73,31 +73,8 @@ import JustTrack
     }
 }
 
-@objc public class JEEventTapEND: NSObject, JEEvent {
-    public let name: String = "TapEND"
-
-    public var payload: Payload {
-        return [
-            kElementName: elementName == "" ? NSNull() : elementName as NSString
-        ]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    private let kElementName = "elementName"
-
-    public var elementName: String = ""
-
-    public init(elementName: String) {
-        super.init()
-        self.elementName = elementName
-    }
-}
-
-@objc public class JEEventNewLineAfterSpace: NSObject, JEEvent {
-    public let name: String = "NewLineAfterSpace"
+@objc public class JEEventViewScreen: NSObject, JEEvent {
+    public let name: String = "ViewScreen"
 
     public var payload: Payload {
         return [
@@ -121,6 +98,47 @@ import JustTrack
         super.init()
         self.screenName = screenName
         self.screenData = screenData
+    }
+}
+
+@objc public class JEEventNoPayload: NSObject, JEEvent {
+    public let name: String = "NoPayload"
+
+    public var payload: Payload {
+        return [:]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    
+
+    
+
+    //MARK: Payload not configured
+}
+
+@objc public class JEEventTap: NSObject, JEEvent {
+    public let name: String = "Tap"
+
+    public var payload: Payload {
+        return [
+            kElementName: elementName == "" ? NSNull() : elementName as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    private let kElementName = "elementName"
+
+    public var elementName: String = ""
+
+    public init(elementName: String) {
+        super.init()
+        self.elementName = elementName
     }
 }
 
@@ -155,22 +173,4 @@ import JustTrack
         self.response = response
         self.extra = extra
     }
-}
-
-@objc public class JEEventNoPayload: NSObject, JEEvent {
-    public let name: String = "NoPayload"
-
-    public var payload: Payload {
-        return [:]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    
-
-    
-
-    //MARK: Payload not configured
 }

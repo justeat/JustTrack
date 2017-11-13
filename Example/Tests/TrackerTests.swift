@@ -14,18 +14,27 @@ class TrackerTests: XCTestCase {
     
     // MARK: - Stubs / Mocks
     
-    let tracker1 = MockTracker(configuration: nil)
-    let tracker2 = SomeOtherMockTracker(configuration: nil)
+    var tracker1:MockTracker?
+    var tracker2:SomeOtherMockTracker?
     
     // MARK: - Setup
     override func setUp() {
         super.setUp()
         trackerService = JETracking.sharedInstance
+        trackerService.loadDefaultTracker(.consoleLogger)
+        trackerService.logClosure = { (logString: String, logLevel: JETrackingLogLevel) -> Void in
+            print("[trackerService] [\(logLevel.rawValue)] \(logString)")
+        }
+        
+        tracker1  = MockTracker(configuration: nil)
+        tracker2 = SomeOtherMockTracker(configuration: nil)
     }
     
     // MARK: - Teardown
     override func tearDown() {
         trackerService = nil
+        tracker1 = nil
+        tracker2 = nil
         super.tearDown()
     }
     
@@ -39,8 +48,8 @@ class TrackerTests: XCTestCase {
         let event = JEEventExample(trackers: "MockTracker", "SomeOtherMockTracker")
         
         // AND a tracker service using these two trackers in "immediate" mode
-        trackerService.loadCustomTracker(tracker1)
-        trackerService.loadCustomTracker(tracker2)
+        trackerService.loadCustomTracker(tracker1!)
+        trackerService.loadCustomTracker(tracker2!)
         trackerService.deliveryType = .immediate
         
         // WHEN we ask JustTrack to track the event
@@ -53,8 +62,8 @@ class TrackerTests: XCTestCase {
         
         // THEN the expected trackers have been asked to "track / post" that event
         waitForExpectations(timeout: 1) { error in
-            XCTAssertTrue(self.tracker1.didTrackEvent)
-            XCTAssertTrue(self.tracker2.didTrackEvent)
+            XCTAssertTrue(self.tracker1!.didTrackEvent)
+            XCTAssertTrue(self.tracker2!.didTrackEvent)
         }
     }
     
@@ -68,8 +77,8 @@ class TrackerTests: XCTestCase {
         let event = JEEventExample(trackers: "MockTracker", "SomeOtherMockTracker")
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
-        trackerService.loadCustomTracker(tracker1)
-        trackerService.loadCustomTracker(tracker2)
+        trackerService.loadCustomTracker(tracker1!)
+        trackerService.loadCustomTracker(tracker2!)
         trackerService.deliveryType = .batch
         trackerService.dispatchInterval = 2.0
         
@@ -83,8 +92,8 @@ class TrackerTests: XCTestCase {
         
         // THEN the expected trackers have been asked to "track / post" that event
         waitForExpectations(timeout: 3) { error in
-            XCTAssertTrue(self.tracker1.didTrackEvent)
-            XCTAssertTrue(self.tracker2.didTrackEvent)
+            XCTAssertTrue(self.tracker1!.didTrackEvent)
+            XCTAssertTrue(self.tracker2!.didTrackEvent)
         }
     }
     
@@ -96,8 +105,8 @@ class TrackerTests: XCTestCase {
         let event = JEEventExample(trackers: "MockTracker", "SomeOtherMockTracker")
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
-        trackerService.loadCustomTracker(tracker1)
-        trackerService.loadCustomTracker(tracker2)
+        trackerService.loadCustomTracker(tracker1!)
+        trackerService.loadCustomTracker(tracker2!)
         trackerService.deliveryType = .batch
         trackerService.dispatchInterval = 2.0
         
@@ -111,8 +120,8 @@ class TrackerTests: XCTestCase {
         
         // THEN the expected trackers have NOT been asked to "track / post" that event yet
         waitForExpectations(timeout: 1) { error in
-            XCTAssertFalse(self.tracker1.didTrackEvent)
-            XCTAssertFalse(self.tracker2.didTrackEvent)
+            XCTAssertFalse(self.tracker1!.didTrackEvent)
+            XCTAssertFalse(self.tracker2!.didTrackEvent)
         }
         
         // BUT if we wait for MORE seconds than the batch size for the events to be processed
@@ -123,12 +132,40 @@ class TrackerTests: XCTestCase {
         
         // THEN the expected trackers have been asked to "track / post" that event
         waitForExpectations(timeout: 3) { error in
-            XCTAssertTrue(self.tracker1.didTrackEvent)
-            XCTAssertTrue(self.tracker2.didTrackEvent)
+            XCTAssertTrue(self.tracker1!.didTrackEvent)
+            XCTAssertTrue(self.tracker2!.didTrackEvent)
         }
     }
     
     // MARK: - Event-Tracker Mapping
+    
+    func testEventsTrackedByTracker() {
+        
+        let eventExpectation = expectation(description: "Event should be tracked by the registered tracker.")
+        
+        // GIVEN an event targeted to "Mock Tracker" only
+        let event = JEEventExample(trackers: "MockTracker")
+        event.test1 = "value1"
+        event.test2 = "value2"
+        event.test3 = "value3"
+        
+        trackerService.loadCustomTracker(tracker1!)
+        trackerService.deliveryType = .immediate
+        trackerService.enable()
+        
+        // WHEN we ask JustTrack to track the event
+        trackerService.trackEvent(event)
+        
+        // AND wait for the events to be processed
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            eventExpectation.fulfill()
+        }
+        
+        // THEN ONLY tracker1 ("MockTracker") has been asked to track the event
+        waitForExpectations(timeout: 3) { error in
+            XCTAssertTrue(self.tracker1!.didTrackEvent)
+        }
+    }
     
     func testEventsAreNotTrackedByNonWantedTrackers() {
     
@@ -141,22 +178,23 @@ class TrackerTests: XCTestCase {
         event.test3 = "value3"
         
         // AND a tracker service using "MockTracker" and "SomeOtherMockTracker"
-        trackerService.loadCustomTracker(tracker1)
-        trackerService.loadCustomTracker(tracker2)
+        trackerService.loadCustomTracker(tracker1!)
+        trackerService.loadCustomTracker(tracker2!)
         trackerService.deliveryType = .immediate
+        trackerService.enable()
         
         // WHEN we ask JustTrack to track the event
         trackerService.trackEvent(event)
         
-        // AND wait for a few seconds for the events to be processed
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        // AND wait for the events to be processed
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             eventExpectation.fulfill()
         }
         
         // THEN ONLY tracker1 ("MockTracker") has been asked to track the event
         waitForExpectations(timeout: 3) { error in
-            XCTAssertTrue(self.tracker1.didTrackEvent)
-            XCTAssertFalse(self.tracker2.didTrackEvent)
+            XCTAssertTrue(self.tracker1!.didTrackEvent)
+            XCTAssertFalse(self.tracker2!.didTrackEvent)
         }
     }
     
@@ -168,8 +206,8 @@ class TrackerTests: XCTestCase {
         let event = JEEventExample(trackers: "mockTracker")
         
         // AND a tracker service using "MockTracker" and "SomeOtherMockTracker"
-        trackerService.loadCustomTracker(tracker1)
-        trackerService.loadCustomTracker(tracker2)
+        trackerService.loadCustomTracker(tracker1!)
+        trackerService.loadCustomTracker(tracker2!)
         trackerService.deliveryType = .immediate
         
         // WHEN we ask JustTrack to track the event
@@ -182,8 +220,8 @@ class TrackerTests: XCTestCase {
         
         // THEN ONLY tracker1 ("MockTracker") has been asked to track the event
         waitForExpectations(timeout: 1) { error in
-            XCTAssertTrue(self.tracker1.didTrackEvent)
-            XCTAssertFalse(self.tracker2.didTrackEvent)
+            XCTAssertTrue(self.tracker1!.didTrackEvent)
+            XCTAssertFalse(self.tracker2!.didTrackEvent)
         }
     }
     
@@ -197,7 +235,7 @@ class TrackerTests: XCTestCase {
         let event = JEEventInvalid()
         
         // AND a tracker service using some tracker
-        trackerService.loadCustomTracker(tracker1)
+        trackerService.loadCustomTracker(tracker1!)
         trackerService.deliveryType = .immediate
         
         // WHEN we ask JustTrack to track the event
@@ -211,7 +249,7 @@ class TrackerTests: XCTestCase {
         // THEN we should not have attempted to track the event
         waitForExpectations(timeout: 1) { error in
             XCTAssertFalse(didAttemptToTrack)
-            XCTAssertFalse(self.tracker1.didTrackEvent)
+            XCTAssertFalse(self.tracker1!.didTrackEvent)
         }
     }
 }

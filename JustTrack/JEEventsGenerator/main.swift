@@ -363,7 +363,7 @@ if CommandLine.arguments.count < 3 {
 do {
     //load plist
     let plistPath = CommandLine.arguments[1]
-    var structsDict = try loadEventPlist(plistPath)
+    let structsDict = try loadEventPlist(plistPath)
     log(msg: "Events Plist loaded \(structsDict)")
     
     //write struct file
