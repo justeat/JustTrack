@@ -156,7 +156,7 @@ class TrackerTests: XCTestCase {
         // WHEN we ask JustTrack to track the event
         trackerService.trackEvent(event)
         
-        // AND wait for a few seconds for the events to be processed
+        // AND wait for the events to be processed
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             eventExpectation.fulfill()
         }
@@ -186,7 +186,7 @@ class TrackerTests: XCTestCase {
         // WHEN we ask JustTrack to track the event
         trackerService.trackEvent(event)
         
-        // AND wait for a few seconds for the events to be processed
+        // AND wait for the events to be processed
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             eventExpectation.fulfill()
         }
