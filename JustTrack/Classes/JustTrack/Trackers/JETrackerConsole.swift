@@ -6,7 +6,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class JETrackerConsole: NSObject, JETracker {
     
     var name: String
