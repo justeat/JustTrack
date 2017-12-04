@@ -1,4 +1,4 @@
-@objc public class JEEvent<*!event_name*>: NSObject, JEEvent {
+@objcMembers public class JEEvent<*!event_name*>: NSObject, JEEvent {
     public let name: String = "<*event_name*>"
 
     public var payload: Payload {

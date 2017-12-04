@@ -24,7 +24,6 @@ For any feature request, bug report or question please use the [Issues](https://
 * Custom *Trackers* are easy to create and use.
 
 ## Usage
-**NOTE: JustTrack requires Swift 3 and iOS 8+**
 
 ## Installation
 
@@ -130,7 +129,7 @@ An Event is made of:
 ##### Generated Swift Class
 
 ```Swift
-@objc public class JEEventUser: NSObject, JEEvent {
+@objcMembers public class JEEventUser: NSObject, JEEvent {
 
     // JEEvent protocol
     public let name: String = "User"
