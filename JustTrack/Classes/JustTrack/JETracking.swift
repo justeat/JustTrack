@@ -52,7 +52,7 @@ import Foundation
 
 /// JETracking manages the mapping and dispatching of events to trackers.
 /// - TODO: More elaborate documentation for this with example usage.
-public class JETracking: NSObject {
+@objcMembers public class JETracking: NSObject {
     
     // MARK: - Internal Properties
     
