@@ -2,7 +2,7 @@
 
 /*example
 
-@objc public class JEEventExample: NSObject, JEEvent {
+@objcMembers public class JEEventExample: NSObject, JEEvent {
     public let name: String = "example"
 
     public var payload: Payload {
@@ -40,7 +40,7 @@
 import Foundation
 import JustTrack
 
-@objc public class JEEventExample: NSObject, JEEvent {
+@objcMembers public class JEEventExample: NSObject, JEEvent {
     public let name: String = "example"
 
     public var payload: Payload {
@@ -73,7 +73,7 @@ import JustTrack
     }
 }
 
-@objc public class JEEventViewScreen: NSObject, JEEvent {
+@objcMembers public class JEEventViewScreen: NSObject, JEEvent {
     public let name: String = "ViewScreen"
 
     public var payload: Payload {
@@ -101,7 +101,7 @@ import JustTrack
     }
 }
 
-@objc public class JEEventNoPayload: NSObject, JEEvent {
+@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
     public let name: String = "NoPayload"
 
     public var payload: Payload {
@@ -119,7 +119,7 @@ import JustTrack
     //MARK: Payload not configured
 }
 
-@objc public class JEEventTap: NSObject, JEEvent {
+@objcMembers public class JEEventTap: NSObject, JEEvent {
     public let name: String = "Tap"
 
     public var payload: Payload {
@@ -142,7 +142,7 @@ import JustTrack
     }
 }
 
-@objc public class JEEventUser: NSObject, JEEvent {
+@objcMembers public class JEEventUser: NSObject, JEEvent {
     public let name: String = "User"
 
     public var payload: Payload {
