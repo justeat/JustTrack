@@ -100,7 +100,7 @@ import Foundation
         
         switch type {
         case .consoleLogger:
-            tracker = JETrackerConsole(configuration: nil)
+            tracker = JETrackerConsole()
             break
         }
         
@@ -131,7 +131,7 @@ import Foundation
         //TODO: validate event
         if eventIsValid(internalEvent) == false {
             
-            JTLog("Invalid event \(event)", level: JETrackingLogLevel.error)
+            JTLog("Invalid event \(event)", level: .error)
             return false
         }
         
@@ -152,7 +152,7 @@ import Foundation
                 self.operationQueue.addOperation(operation)
             }
             else {
-                JTLog("Trying to track and event  (\(event.name)) in an invalid Tracker (\(trackerName))", level: JETrackingLogLevel.error)
+                JTLog("Trying to track and event  (\(event.name)) in an invalid Tracker (\(trackerName))", level: .error)
             }
         }
         
@@ -166,11 +166,11 @@ import Foundation
             return
         }
         
-        JTLog("Enabling tracker...", level: JETrackingLogLevel.info)
+        JTLog("Enabling tracker...", level: .info)
         
         let restoredEventsCount = self.restoreUncompletedTracking()
         if restoredEventsCount > 0 {
-            JTLog("\(restoredEventsCount) events restored", level: JETrackingLogLevel.info)
+            JTLog("\(restoredEventsCount) events restored", level: .info)
         }
     }
     

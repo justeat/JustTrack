@@ -9,12 +9,9 @@ import Foundation
 import JustTrack
 
 final class MockTracker: NSObject, JETracker {
-    let name: String
+    let name =  "MockTracker"
     var didTrackEvent = false
     
-    public init(configuration: Configuration?) {
-        self.name = "MockTracker"
-    }
     open func trackEvent(_ name: String, payload: Payload, completion: (_ success: Bool) -> Void) {
         didTrackEvent = true
         completion(true)
@@ -22,12 +19,9 @@ final class MockTracker: NSObject, JETracker {
 }
 
 final class SomeOtherMockTracker: NSObject, JETracker {
-    let name: String
+    let name = "SomeOtherMockTracker"
     var didTrackEvent = false
     
-    public init(configuration: Configuration?) {
-        self.name = "SomeOtherMockTracker"
-    }
     open func trackEvent(_ name: String, payload: Payload, completion: (_ success: Bool) -> Void) {
         didTrackEvent = true
         completion(true)
