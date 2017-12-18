@@ -23,8 +23,6 @@ For any feature request, bug report or question please use the [Issues](https://
 * Events can be sent to multiple destinations (called *Trackers*) at the same time.
 * Custom *Trackers* are easy to create and use.
 
-## Usage
-
 ## Installation
 
 JustTrack is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
@@ -57,6 +55,7 @@ Where:
 * ```"${SRCROOT}/JustTrack/TrackingEvents.swift"``` Is the destination file for the automatically generated Swift code.
 
 _**NOTE:** Consider giving this script a meaningful name (e.g. "Name: JustTrack Events Generation")_
+
 
 ## Usage
 
@@ -186,6 +185,40 @@ A Tracker is an object implementing the **JETracker** protocol and is loaded usi
 * [ ] JEFacebookTraker (not yet implemented)
 * [ ] ~~JEGoogleAnalyticsTraker~~ (not yet implemented, Google's pods can't be used as a dependency in a pod)
 * [ ] ~~JETrakerFirebase~~ (not yet implemented, Google's pods can't be used as a dependency in a pod)
+
+
+
+
+## Upgrading to v3.0
+
+In version 3.0 of JustTrack the Configuration class has been removed from the JETracker protocol.
+
+If your client code uses Objective-C then your code should continue to function without changes when upgrading.
+
+If your client code uses Swift then then you have two options.
+
+Option 1) The simplest way to upgrade to v3.0 of the SDK is to reintroduce the Configuration typealias in your client code as follows:
+
+```
+public typealias Configuration = [String : String]
+```
+
+Option 2) Replace your initialisers with an equivalent where your arguments are passed in a strongly typed manner.  For example, this old init method....
+
+```
+public init(configuration: Configuration) {
+    super.init()
+    self.token = conifiguration[TokenKey]
+}
+```
+might become...
+
+```
+public init(token: String) {
+    super.init()
+    self.token = token
+}
+```
 
 ## License
 

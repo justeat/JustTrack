@@ -9,14 +9,12 @@ import Foundation
 @objcMembers
 class JETrackerConsole: NSObject, JETracker {
     
-    var name: String
+    // MARK: - JETracker protocol implementation
     
-    required init(configuration: Configuration?) {
-        self.name = "console"
-    }
+    let name = "console"
     
     func trackEvent(_ name: String, payload: Payload, completion: (_ success: Bool) -> Void) {
-         print("[\(self.name)] ☞ Event: \(name) \(payload)")
+        print("[\(self.name)] ☞ Event: \(name) \(payload)")
         completion(true)
     }
 }

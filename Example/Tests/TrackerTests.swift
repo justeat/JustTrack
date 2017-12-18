@@ -26,8 +26,8 @@ class TrackerTests: XCTestCase {
             print("[trackerService] [\(logLevel.rawValue)] \(logString)")
         }
         
-        tracker1  = MockTracker(configuration: nil)
-        tracker2 = SomeOtherMockTracker(configuration: nil)
+        tracker1  = MockTracker()
+        tracker2 = SomeOtherMockTracker()
     }
     
     // MARK: - Teardown
