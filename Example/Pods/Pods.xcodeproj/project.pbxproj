@@ -7,346 +7,407 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		034F68FE009DD5016E2894FD5E76F893 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		0CBC5166DACC341B0696B5B6CF3C6AC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		217F1E55ADD29D2B6DC2CFA7085447FD /* Pods-JustTrack_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FF59CAD131BFFD0C9D70952C5946B8CF /* Pods-JustTrack_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		483186E4569E8D42E9A85CC45577FC98 /* JEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4288301E637A585E26A503624CC6FED1 /* JEEvent.swift */; };
-		5E770CA064E8878F453DBC6A3640F675 /* JETracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECACF18BAE026589F97215C43708F2B7 /* JETracking.swift */; };
-		7022E42C75099974C48F1272DCDB752A /* JustTrack-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CF275075D17DFAC2E2C565B331E7B424 /* JustTrack-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		743F861E78AD10E58D1363D18682753E /* JETracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CD0ED4DAC8FF0CD947849F078E43CC /* JETracker.swift */; };
-		74CA1756BAEFB2FCC924B9B36939413C /* Pods-JustTrack_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E0FC09E743E1CEBA82D2109B5E5BE0 /* Pods-JustTrack_Example-dummy.m */; };
-		81EF9E74F8EB097D856C4BD93776FC9F /* Pods-JustTrack_Example_ObjC-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CE5D23C3B9B3E20D6C13049836E4 /* Pods-JustTrack_Example_ObjC-dummy.m */; };
-		8BBCCFD96E1C163DFD6B6612CC96E1BE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		97FE623D3B3B5C64BB76572F27012DB4 /* JustTrack-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 849EC3AA7EBB17F8D9569138F5B682B7 /* JustTrack-dummy.m */; };
-		9B225596FC0C1E0EFD7546C6BF41A021 /* Pods-JustTrack_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BD34EFDC836966E6025AE49691C0F4 /* Pods-JustTrack_Tests-dummy.m */; };
-		9C16CA869B2BD7F158511380B4AA3AE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		A9FCB9567CA90B3EA26363017B362486 /* JETrackerConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C554D6DC80BB762FB9EB93216ABBEE /* JETrackerConsole.swift */; };
-		C21844DC1CC67E59CF945C43E083A780 /* JEEventInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C939DB78DF17FAA59599A12AB6FB0B5 /* JEEventInternal.swift */; };
-		C2E0B0B2B069FE4CACFBD300413DD53E /* JETrackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE651ED2DA2D846A06503417D99CE47 /* JETrackOperation.swift */; };
-		F448186DF6629B2C04A0FCD765A16176 /* Pods-JustTrack_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 864B5141F086BBAD693AB9A2A524191D /* Pods-JustTrack_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F76AD4620A28344F66A45F1AE5267BFE /* Pods-JustTrack_Example_ObjC-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 01899836A5EA036A44CE7306E36A90DB /* Pods-JustTrack_Example_ObjC-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38B3D29FEED23838DA30ECE1DBA8F677 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D0D8A466C5339E21C4C273AF23EB9E /* Foundation.framework */; };
+		3CB9A43F6CBF633B3EFCB370BB17F7B4 /* Pods-JustTrack_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E0B5135A78DFDB6EBEC1FFBEF8219D4 /* Pods-JustTrack_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		429B17B1CA6C00E0B82D69C9AB11927D /* JustTrack-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 90459980F62CFB038DDF9510AB955C3A /* JustTrack-dummy.m */; };
+		5D172630829A769088257FCDB43BDC10 /* Pods-JustTrack_Example_ObjC-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C4B3ED939374FD18D50CEFB5CFDD8 /* Pods-JustTrack_Example_ObjC-dummy.m */; };
+		5DC8EC5220B107BDEABF5CFF602D0B7A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D0D8A466C5339E21C4C273AF23EB9E /* Foundation.framework */; };
+		7FFB1E7E6A300BAAEBF6817692B98BE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D0D8A466C5339E21C4C273AF23EB9E /* Foundation.framework */; };
+		8CBAF6A43A4B9B28360BC17BEF576729 /* JEEventInternalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160CF144A12784BB522AE558F3BD18A7 /* JEEventInternalTests.swift */; };
+		8E7562C1C2066F53624C2A5DADBC03AD /* Pods-JustTrack_Example_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 937CC920F8DAC7E51138E5AA0A682E1F /* Pods-JustTrack_Example_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91B49023A810F5A8CE8D66D6CCC4B039 /* JETrackerConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1399A33A57F6F1E6485014755ED6A4D /* JETrackerConsole.swift */; };
+		963D6BCCA935C8989B11044BBFD661A0 /* JustTrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E570EF94D3DF48EFBE2B162E9E33A4 /* JustTrack.framework */; };
+		9E52680AFCD787EE453EE80C54AC9538 /* Pods-JustTrack_Example_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F46621AB943959A5660DC7884150D5B /* Pods-JustTrack_Example_Tests-dummy.m */; };
+		AE07A78F4383DB0926F32AAF088F8962 /* JustTrack-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CD51A8EF0F3F42E90FD6A233078F67A /* JustTrack-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0370BE692CB7EE1AC304B6C9A5B4BD3 /* JEEventInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A0CD1E70D370BA7A13A0604D91157E /* JEEventInternal.swift */; };
+		C1232190455DCEA4814E965B6A1A2E1C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D0D8A466C5339E21C4C273AF23EB9E /* Foundation.framework */; };
+		C801D6278E50D516C1D81F7AFEEF70E1 /* Pods-JustTrack_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8A12B0B01652DE0CAD98D0AC782A0 /* Pods-JustTrack_Example-dummy.m */; };
+		E17A005C86699A35CE2432D6CE710B00 /* JETrackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E9377166F6F8B15ABBD910EB6BFEAD /* JETrackOperation.swift */; };
+		E25E886285FE5C4A8CF553B7DFEB8850 /* Pods-JustTrack_Example_ObjC-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C88ACA354A8ADF9B7BD66FC7D62F121C /* Pods-JustTrack_Example_ObjC-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E6FC5403DF9FEE7EAF3ED69AF7ABA225 /* JETracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05BA334234500E9AE0B720107B0A2FF /* JETracking.swift */; };
+		E94BA48C097A6144F9E4CFA1C7577213 /* JETracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208C6BC461BC85E02379C0F895D8D4D4 /* JETracker.swift */; };
+		E95F23329D69428266159B3FE766E016 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D0D8A466C5339E21C4C273AF23EB9E /* Foundation.framework */; };
+		F784FE5AB72585979C17AF390005DC59 /* JEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0ABAE5F990FB4254C82D72122AE4FC /* JEEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B34302BBA680AD2D98B471D9CB015E2C /* PBXContainerItemProxy */ = {
+		10045142B4DF9FC629F6409B677C7BC8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4A0AA5B572192B8AD272FC91ABC5844F;
+			remoteGlobalIDString = 163DA240F240130BD7D591DE3E0A4435;
 			remoteInfo = JustTrack;
 		};
-		BDDB1434296014850177CE3F0D4879FC /* PBXContainerItemProxy */ = {
+		112AEF28C3B6A671390549A34E453014 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4A0AA5B572192B8AD272FC91ABC5844F;
+			remoteGlobalIDString = 163DA240F240130BD7D591DE3E0A4435;
+			remoteInfo = JustTrack;
+		};
+		8222BBD290595366FB5F64526A0FE813 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 163DA240F240130BD7D591DE3E0A4435;
 			remoteInfo = JustTrack;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01899836A5EA036A44CE7306E36A90DB /* Pods-JustTrack_Example_ObjC-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JustTrack_Example_ObjC-umbrella.h"; sourceTree = "<group>"; };
-		018BC49CC3782709CB2BA7D6AF211522 /* Pods-JustTrack_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Tests-resources.sh"; sourceTree = "<group>"; };
-		06905ED51D727E6930BC1D754F70B4B4 /* Pods-JustTrack_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JustTrack_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		0C939DB78DF17FAA59599A12AB6FB0B5 /* JEEventInternal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JEEventInternal.swift; path = JustTrack/Classes/JustTrack/JEEventInternal.swift; sourceTree = "<group>"; };
-		10A786CC35FF11805F4AB45DACF0004E /* Pods-JustTrack_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		12420FE84FBD6EDB031890B2A9082494 /* Pods-JustTrack_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JustTrack_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		15C554D6DC80BB762FB9EB93216ABBEE /* JETrackerConsole.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JETrackerConsole.swift; sourceTree = "<group>"; };
-		1B73F5D9A93D74015A037BA66E13FC42 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		1CC89D91118FABE4427F0F3C867C2C31 /* Pods-JustTrack_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JustTrack_Example.modulemap"; sourceTree = "<group>"; };
-		20EDDEF753329F45917B9FF1D642B519 /* Pods-JustTrack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		22652A183A78AD5C9C48A8463881F363 /* Pods-JustTrack_Example_ObjC-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example_ObjC-frameworks.sh"; sourceTree = "<group>"; };
-		2776CE5D23C3B9B3E20D6C13049836E4 /* Pods-JustTrack_Example_ObjC-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JustTrack_Example_ObjC-dummy.m"; sourceTree = "<group>"; };
-		280C39B3131EDAF4E78230D8A20888AE /* Pods-JustTrack_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example-frameworks.sh"; sourceTree = "<group>"; };
-		34BD34EFDC836966E6025AE49691C0F4 /* Pods-JustTrack_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JustTrack_Tests-dummy.m"; sourceTree = "<group>"; };
-		39F75D0A5A79C919541537C89D6FF75D /* Pods-JustTrack_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JustTrack_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3D22FDCDF14E7896ABBE2B501EB31FEE /* Pods-JustTrack_Example_ObjC-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JustTrack_Example_ObjC-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3F531F9ED240BEFD59E9A364C88893CC /* Pods_JustTrack_Example_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JustTrack_Example_ObjC.framework; path = "Pods-JustTrack_Example_ObjC.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		40CD0ED4DAC8FF0CD947849F078E43CC /* JETracker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JETracker.swift; path = JustTrack/Classes/JustTrack/JETracker.swift; sourceTree = "<group>"; };
-		4288301E637A585E26A503624CC6FED1 /* JEEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JEEvent.swift; path = JustTrack/Classes/JustTrack/JEEvent.swift; sourceTree = "<group>"; };
-		472B290F70FC2A1AE9DD5141FAC4FB3A /* Pods-JustTrack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		4907D2EC2E5E3201D6E4BAF2AAF97B51 /* JustTrack.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JustTrack.xcconfig; sourceTree = "<group>"; };
-		4F2E7972A5934DF42981EF0A7B51205D /* Pods-JustTrack_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JustTrack_Tests.modulemap"; sourceTree = "<group>"; };
-		4FE651ED2DA2D846A06503417D99CE47 /* JETrackOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JETrackOperation.swift; sourceTree = "<group>"; };
-		50A686E942C60EDA229EFE6339337428 /* JustTrack.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = JustTrack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		535525C485E2A9AF7545A6EFCDAE5653 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		751E2BA9A6D50BF1A328B244D32028DA /* Pods-JustTrack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example.release.xcconfig"; sourceTree = "<group>"; };
-		7810E27AB1A4A3934C006D43793EB04F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E9756D0D30FB35BEE06779F2B914FDB /* Pods-JustTrack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		849EC3AA7EBB17F8D9569138F5B682B7 /* JustTrack-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JustTrack-dummy.m"; sourceTree = "<group>"; };
-		85C6D73433D1DA6E345D8E554B4C122A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		864B5141F086BBAD693AB9A2A524191D /* Pods-JustTrack_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JustTrack_Tests-umbrella.h"; sourceTree = "<group>"; };
-		885A33117385FDF893AEEAA511657CF7 /* Pods-JustTrack_Example_ObjC-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example_ObjC-resources.sh"; sourceTree = "<group>"; };
-		88D45EF4BEB2C76D9E8205F975FB790D /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JustTrack_Example.framework; path = "Pods-JustTrack_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DED056333D06D574DA52AA94C0BF738 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9E4B7149B3D0FA3FFA4396FAF57B0677 /* Pods_JustTrack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JustTrack_Tests.framework; path = "Pods-JustTrack_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACB2443B6F05D675FDD213AF6E8D8D8F /* JustTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JustTrack.framework; path = JustTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BAEF68BCDBBEE81B7E561AD6F3D115B4 /* Pods-JustTrack_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example-resources.sh"; sourceTree = "<group>"; };
-		BCAF83943C1B38DA033CF9358224AAE5 /* Pods-JustTrack_Example_ObjC-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JustTrack_Example_ObjC-acknowledgements.plist"; sourceTree = "<group>"; };
-		C76B7452ACF03DF767631F9977656947 /* JustTrack.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JustTrack.modulemap; sourceTree = "<group>"; };
-		C9E0FC09E743E1CEBA82D2109B5E5BE0 /* Pods-JustTrack_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JustTrack_Example-dummy.m"; sourceTree = "<group>"; };
-		CF275075D17DFAC2E2C565B331E7B424 /* JustTrack-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JustTrack-umbrella.h"; sourceTree = "<group>"; };
-		D79530EE0F2CCC631503F5D8D9A22890 /* Pods-JustTrack_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JustTrack_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		D9347DF55C1DB0ECD619F58D152D75A5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DAAB6276CEF33168173255EAAF99CEE5 /* Pods-JustTrack_Example_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
-		DC92B41BE7BFDEDADC3F9C8E06F7E3D4 /* Pods-JustTrack_Example_ObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JustTrack_Example_ObjC.modulemap"; sourceTree = "<group>"; };
-		ECACF18BAE026589F97215C43708F2B7 /* JETracking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JETracking.swift; path = JustTrack/Classes/JustTrack/JETracking.swift; sourceTree = "<group>"; };
-		EE730DAA93A7CFE65BC692662562F4BF /* Pods-JustTrack_Example_ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example_ObjC.release.xcconfig"; sourceTree = "<group>"; };
-		FAC7E68CBB756991B70ADA5813788E7A /* JustTrack-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JustTrack-prefix.pch"; sourceTree = "<group>"; };
-		FF59CAD131BFFD0C9D70952C5946B8CF /* Pods-JustTrack_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JustTrack_Example-umbrella.h"; sourceTree = "<group>"; };
+		010E1AC49CC6CA7455E21D4C7619A70E /* Pods-JustTrack_Example_ObjC-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example_ObjC-resources.sh"; sourceTree = "<group>"; };
+		01434117D081DCCCC2AE9D9B206AFBC4 /* JustTrack-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JustTrack-prefix.pch"; sourceTree = "<group>"; };
+		021E147B17D931001DE08D91B7CC75D9 /* Pods-JustTrack_Example_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example_Tests-resources.sh"; sourceTree = "<group>"; };
+		05B3D6FFCCD04130AD37F8070FB60DD7 /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AC237C31B65EFE962FD48AF59A1268B /* Pods-JustTrack_Example_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		0C2A4E5C5DCC540FC225DFF89F8B09C5 /* Pods-JustTrack_Example_ObjC-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JustTrack_Example_ObjC-acknowledgements.plist"; sourceTree = "<group>"; };
+		0CD52EF447E7F2BACBC2698219775BD6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DC92D7334BB50DDEBF51CE0D8B76F5D /* Pods-JustTrack_Example_ObjC-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example_ObjC-frameworks.sh"; sourceTree = "<group>"; };
+		160CF144A12784BB522AE558F3BD18A7 /* JEEventInternalTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JEEventInternalTests.swift; path = JustTrack/UnitTests/JEEventInternalTests.swift; sourceTree = "<group>"; };
+		208C6BC461BC85E02379C0F895D8D4D4 /* JETracker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JETracker.swift; path = JustTrack/Classes/JustTrack/JETracker.swift; sourceTree = "<group>"; };
+		20C94D56CC826F09D5B6E6E03AE46EBA /* JustTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JustTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E0B5135A78DFDB6EBEC1FFBEF8219D4 /* Pods-JustTrack_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JustTrack_Example-umbrella.h"; sourceTree = "<group>"; };
+		31327A31544C3E6053B33ADDCC7E2B19 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D5A01D3913DF442BE0716CC36E84060 /* JustTrack-Unit-Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "JustTrack-Unit-Tests-frameworks.sh"; sourceTree = "<group>"; };
+		3DEF9260B8C7136285BE4E9DE260359D /* Pods-JustTrack_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example-frameworks.sh"; sourceTree = "<group>"; };
+		3F86AAC3B897A53708BECE9471136A8B /* Pods-JustTrack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example.release.xcconfig"; sourceTree = "<group>"; };
+		41A0CD1E70D370BA7A13A0604D91157E /* JEEventInternal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JEEventInternal.swift; path = JustTrack/Classes/JustTrack/JEEventInternal.swift; sourceTree = "<group>"; };
+		46D0D8A466C5339E21C4C273AF23EB9E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		46F361310140EE2DD5EAFD24A06B238B /* Pods-JustTrack_Example_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JustTrack_Example_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4D19874253BD9F04312FDA4D29BCC954 /* Pods-JustTrack_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JustTrack_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4F46621AB943959A5660DC7884150D5B /* Pods-JustTrack_Example_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JustTrack_Example_Tests-dummy.m"; sourceTree = "<group>"; };
+		5631C78C3EB347B77C7EF5337A4E6FCC /* Pods-JustTrack_Example_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
+		69E9377166F6F8B15ABBD910EB6BFEAD /* JETrackOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JETrackOperation.swift; sourceTree = "<group>"; };
+		74E9DDB9A2515C03CEE07CC5CA503CE0 /* Pods_JustTrack_Example_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		799E77851A57F536DC5DEB7DA942F15C /* Pods-JustTrack_Example_ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example_ObjC.release.xcconfig"; sourceTree = "<group>"; };
+		79C2C67164C8B3ED1DE6B38EF1DEE73D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		7CD19A46F4158D5076CE3E1E361C93E4 /* Pods-JustTrack_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JustTrack_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		7EA72E1ED9E497CBC3C32B5D03A29786 /* JustTrack-Unit-Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "JustTrack-Unit-Tests"; path = "JustTrack-Unit-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8257C071F2C7431FFDCD75AD761CE47A /* JustTrack.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JustTrack.xcconfig; sourceTree = "<group>"; };
+		83A6BDEA62F1106713E6FC11CA0564A5 /* Pods-JustTrack_Example_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JustTrack_Example_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		8CD51A8EF0F3F42E90FD6A233078F67A /* JustTrack-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JustTrack-umbrella.h"; sourceTree = "<group>"; };
+		8F0ABAE5F990FB4254C82D72122AE4FC /* JEEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JEEvent.swift; path = JustTrack/Classes/JustTrack/JEEvent.swift; sourceTree = "<group>"; };
+		90459980F62CFB038DDF9510AB955C3A /* JustTrack-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JustTrack-dummy.m"; sourceTree = "<group>"; };
+		90ED1B8156026F0107F6877D632229A2 /* Pods-JustTrack_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example-resources.sh"; sourceTree = "<group>"; };
+		937CC920F8DAC7E51138E5AA0A682E1F /* Pods-JustTrack_Example_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JustTrack_Example_Tests-umbrella.h"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		94E570EF94D3DF48EFBE2B162E9E33A4 /* JustTrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JustTrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		951441FE4E5747F2B0E900E174AF4FB8 /* JustTrack.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JustTrack.modulemap; sourceTree = "<group>"; };
+		9FC2264B1FD088F3B758E75B72F9E6A9 /* Pods-JustTrack_Example_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		A22BE143B00F890918092705E5973CEC /* JustTrack.unit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JustTrack.unit.xcconfig; sourceTree = "<group>"; };
+		AB4F21C7A906CC4B0040C2DD5BF94C4C /* Pods-JustTrack_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JustTrack_Example.modulemap"; sourceTree = "<group>"; };
+		AB5689C3D4A4E70BFE8EB3F0047D731F /* JustTrack-Unit-Tests-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JustTrack-Unit-Tests-prefix.pch"; sourceTree = "<group>"; };
+		AC1AEE84C3BAB7BF99ADF1FD69FAC892 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACF93DCB8FCCF38D498FCFFA324E2601 /* JustTrack.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = JustTrack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AFF227BA26C89E4E794A0668B8805CE5 /* Pods-JustTrack_Example_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JustTrack_Example_Tests.modulemap"; sourceTree = "<group>"; };
+		B9CB6F992C44443421CF5F7002A75B37 /* JustTrack-Unit-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "JustTrack-Unit-Tests-resources.sh"; sourceTree = "<group>"; };
+		C2E3972B467FD5F44613E9E464731F4F /* Pods-JustTrack_Example_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JustTrack_Example_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		C88ACA354A8ADF9B7BD66FC7D62F121C /* Pods-JustTrack_Example_ObjC-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JustTrack_Example_ObjC-umbrella.h"; sourceTree = "<group>"; };
+		CD471D06AB0ECEF342A8D3643C60496E /* Pods_JustTrack_Example_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D05BA334234500E9AE0B720107B0A2FF /* JETracking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JETracking.swift; path = JustTrack/Classes/JustTrack/JETracking.swift; sourceTree = "<group>"; };
+		D135E204AB0E57766405985E7F45B8D8 /* Pods-JustTrack_Example_ObjC-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JustTrack_Example_ObjC-acknowledgements.markdown"; sourceTree = "<group>"; };
+		DB9356C563A3BCC20DC0EEDA6A02E4C0 /* Pods-JustTrack_Example_ObjC.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JustTrack_Example_ObjC.modulemap"; sourceTree = "<group>"; };
+		DD41CEA7F605B5AEE892BC76AE0E848B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DECC503298938CF73B3A2F2C8A9514D0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2A34E938C6DAC9C33E903EA9F134BA4 /* Pods-JustTrack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JustTrack_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E93C4B3ED939374FD18D50CEFB5CFDD8 /* Pods-JustTrack_Example_ObjC-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JustTrack_Example_ObjC-dummy.m"; sourceTree = "<group>"; };
+		EFA8A12B0B01652DE0CAD98D0AC782A0 /* Pods-JustTrack_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JustTrack_Example-dummy.m"; sourceTree = "<group>"; };
+		F1399A33A57F6F1E6485014755ED6A4D /* JETrackerConsole.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JETrackerConsole.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0811FD651EDA4DF6460D7F20D77BA400 /* Frameworks */ = {
+		A29DAEE88127B2F88EDF3B1EA11D050D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C16CA869B2BD7F158511380B4AA3AE0 /* Foundation.framework in Frameworks */,
+				7FFB1E7E6A300BAAEBF6817692B98BE8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		87765B6AAE6D83469844AE4B69022B9A /* Frameworks */ = {
+		B7B7699ED9340EA8968D50FF39D0D79E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				034F68FE009DD5016E2894FD5E76F893 /* Foundation.framework in Frameworks */,
+				38B3D29FEED23838DA30ECE1DBA8F677 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BF7B17A9639DBB0A5FDD4F0C8246931E /* Frameworks */ = {
+		B8811D153287DF63004E50759D44403C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BBCCFD96E1C163DFD6B6612CC96E1BE /* Foundation.framework in Frameworks */,
+				5DC8EC5220B107BDEABF5CFF602D0B7A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C96986A57E6C135B8C1954601F687659 /* Frameworks */ = {
+		C007940D0B65F0E2DF9727DCD03BB3D0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CBC5166DACC341B0696B5B6CF3C6AC3 /* Foundation.framework in Frameworks */,
+				C1232190455DCEA4814E965B6A1A2E1C /* Foundation.framework in Frameworks */,
+				963D6BCCA935C8989B11044BBFD661A0 /* JustTrack.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7F5B214270AAE99B6351AF79BD81A85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E95F23329D69428266159B3FE766E016 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4CC8B411BE2C25CC8E5164C378E01A2A /* Pods-JustTrack_Example */ = {
+		2167AAE15E4F78FA0AF1EAD98005F6C5 /* Pods-JustTrack_Example */ = {
 			isa = PBXGroup;
 			children = (
-				7810E27AB1A4A3934C006D43793EB04F /* Info.plist */,
-				1CC89D91118FABE4427F0F3C867C2C31 /* Pods-JustTrack_Example.modulemap */,
-				12420FE84FBD6EDB031890B2A9082494 /* Pods-JustTrack_Example-acknowledgements.markdown */,
-				06905ED51D727E6930BC1D754F70B4B4 /* Pods-JustTrack_Example-acknowledgements.plist */,
-				C9E0FC09E743E1CEBA82D2109B5E5BE0 /* Pods-JustTrack_Example-dummy.m */,
-				280C39B3131EDAF4E78230D8A20888AE /* Pods-JustTrack_Example-frameworks.sh */,
-				BAEF68BCDBBEE81B7E561AD6F3D115B4 /* Pods-JustTrack_Example-resources.sh */,
-				FF59CAD131BFFD0C9D70952C5946B8CF /* Pods-JustTrack_Example-umbrella.h */,
-				7E9756D0D30FB35BEE06779F2B914FDB /* Pods-JustTrack_Example.debug.xcconfig */,
-				751E2BA9A6D50BF1A328B244D32028DA /* Pods-JustTrack_Example.release.xcconfig */,
+				AC1AEE84C3BAB7BF99ADF1FD69FAC892 /* Info.plist */,
+				AB4F21C7A906CC4B0040C2DD5BF94C4C /* Pods-JustTrack_Example.modulemap */,
+				4D19874253BD9F04312FDA4D29BCC954 /* Pods-JustTrack_Example-acknowledgements.markdown */,
+				7CD19A46F4158D5076CE3E1E361C93E4 /* Pods-JustTrack_Example-acknowledgements.plist */,
+				EFA8A12B0B01652DE0CAD98D0AC782A0 /* Pods-JustTrack_Example-dummy.m */,
+				3DEF9260B8C7136285BE4E9DE260359D /* Pods-JustTrack_Example-frameworks.sh */,
+				90ED1B8156026F0107F6877D632229A2 /* Pods-JustTrack_Example-resources.sh */,
+				2E0B5135A78DFDB6EBEC1FFBEF8219D4 /* Pods-JustTrack_Example-umbrella.h */,
+				E2A34E938C6DAC9C33E903EA9F134BA4 /* Pods-JustTrack_Example.debug.xcconfig */,
+				3F86AAC3B897A53708BECE9471136A8B /* Pods-JustTrack_Example.release.xcconfig */,
 			);
 			name = "Pods-JustTrack_Example";
 			path = "Target Support Files/Pods-JustTrack_Example";
 			sourceTree = "<group>";
 		};
-		71FFE2EF8884911DF6B42B9CC2DCF21A /* Support Files */ = {
+		3349D4E636AE234594B6594D8A6A43A4 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				535525C485E2A9AF7545A6EFCDAE5653 /* Info.plist */,
-				C76B7452ACF03DF767631F9977656947 /* JustTrack.modulemap */,
-				4907D2EC2E5E3201D6E4BAF2AAF97B51 /* JustTrack.xcconfig */,
-				849EC3AA7EBB17F8D9569138F5B682B7 /* JustTrack-dummy.m */,
-				FAC7E68CBB756991B70ADA5813788E7A /* JustTrack-prefix.pch */,
-				CF275075D17DFAC2E2C565B331E7B424 /* JustTrack-umbrella.h */,
+				160CF144A12784BB522AE558F3BD18A7 /* JEEventInternalTests.swift */,
+			);
+			name = UnitTests;
+			sourceTree = "<group>";
+		};
+		42BCCA90A5312C1D22653623240E4153 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DECC503298938CF73B3A2F2C8A9514D0 /* Info.plist */,
+				951441FE4E5747F2B0E900E174AF4FB8 /* JustTrack.modulemap */,
+				8257C071F2C7431FFDCD75AD761CE47A /* JustTrack.xcconfig */,
+				90459980F62CFB038DDF9510AB955C3A /* JustTrack-dummy.m */,
+				01434117D081DCCCC2AE9D9B206AFBC4 /* JustTrack-prefix.pch */,
+				8CD51A8EF0F3F42E90FD6A233078F67A /* JustTrack-umbrella.h */,
+				3D5A01D3913DF442BE0716CC36E84060 /* JustTrack-Unit-Tests-frameworks.sh */,
+				AB5689C3D4A4E70BFE8EB3F0047D731F /* JustTrack-Unit-Tests-prefix.pch */,
+				B9CB6F992C44443421CF5F7002A75B37 /* JustTrack-Unit-Tests-resources.sh */,
+				A22BE143B00F890918092705E5973CEC /* JustTrack.unit.xcconfig */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/JustTrack";
+			sourceTree = "<group>";
+		};
+		66F28E3ADF8831AC3AC9E74BE6B6E46A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2167AAE15E4F78FA0AF1EAD98005F6C5 /* Pods-JustTrack_Example */,
+				80D90A3A193166A6AF23FAC88637C46F /* Pods-JustTrack_Example_ObjC */,
+				85284F87A234227836934CBFA0F808D6 /* Pods-JustTrack_Example_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7B7CC0A289EBE18266041F1B66AE5A69 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				46D0D8A466C5339E21C4C273AF23EB9E /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				96C6610426EB5C1E4DBBB2FF5C9D6BCE /* Development Pods */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				BF450737492C7F54A03823BE2BDA47DA /* Products */,
-				BAAC9720D112A0C122BE79C9D3E7270B /* Targets Support Files */,
+				96132657569995CDE8B3B1A809C1543D /* Development Pods */,
+				B0E0068A3F7B57B63C3D8EF2F38F6F75 /* Frameworks */,
+				98256253E56C0E5431FCA7985BC36724 /* Products */,
+				66F28E3ADF8831AC3AC9E74BE6B6E46A /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		96C6610426EB5C1E4DBBB2FF5C9D6BCE /* Development Pods */ = {
+		80D90A3A193166A6AF23FAC88637C46F /* Pods-JustTrack_Example_ObjC */ = {
 			isa = PBXGroup;
 			children = (
-				C63851332CD0A3D178D2B7B5F5548BA9 /* JustTrack */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		A01CBA6324576CAC69F695CE5EE6F8D3 /* Operations */ = {
-			isa = PBXGroup;
-			children = (
-				4FE651ED2DA2D846A06503417D99CE47 /* JETrackOperation.swift */,
-			);
-			name = Operations;
-			path = JustTrack/Classes/JustTrack/Operations;
-			sourceTree = "<group>";
-		};
-		B875B32912F19469B7AF686E76D26960 /* Pods-JustTrack_Example_ObjC */ = {
-			isa = PBXGroup;
-			children = (
-				8DED056333D06D574DA52AA94C0BF738 /* Info.plist */,
-				DC92B41BE7BFDEDADC3F9C8E06F7E3D4 /* Pods-JustTrack_Example_ObjC.modulemap */,
-				3D22FDCDF14E7896ABBE2B501EB31FEE /* Pods-JustTrack_Example_ObjC-acknowledgements.markdown */,
-				BCAF83943C1B38DA033CF9358224AAE5 /* Pods-JustTrack_Example_ObjC-acknowledgements.plist */,
-				2776CE5D23C3B9B3E20D6C13049836E4 /* Pods-JustTrack_Example_ObjC-dummy.m */,
-				22652A183A78AD5C9C48A8463881F363 /* Pods-JustTrack_Example_ObjC-frameworks.sh */,
-				885A33117385FDF893AEEAA511657CF7 /* Pods-JustTrack_Example_ObjC-resources.sh */,
-				01899836A5EA036A44CE7306E36A90DB /* Pods-JustTrack_Example_ObjC-umbrella.h */,
-				DAAB6276CEF33168173255EAAF99CEE5 /* Pods-JustTrack_Example_ObjC.debug.xcconfig */,
-				EE730DAA93A7CFE65BC692662562F4BF /* Pods-JustTrack_Example_ObjC.release.xcconfig */,
+				31327A31544C3E6053B33ADDCC7E2B19 /* Info.plist */,
+				DB9356C563A3BCC20DC0EEDA6A02E4C0 /* Pods-JustTrack_Example_ObjC.modulemap */,
+				D135E204AB0E57766405985E7F45B8D8 /* Pods-JustTrack_Example_ObjC-acknowledgements.markdown */,
+				0C2A4E5C5DCC540FC225DFF89F8B09C5 /* Pods-JustTrack_Example_ObjC-acknowledgements.plist */,
+				E93C4B3ED939374FD18D50CEFB5CFDD8 /* Pods-JustTrack_Example_ObjC-dummy.m */,
+				0DC92D7334BB50DDEBF51CE0D8B76F5D /* Pods-JustTrack_Example_ObjC-frameworks.sh */,
+				010E1AC49CC6CA7455E21D4C7619A70E /* Pods-JustTrack_Example_ObjC-resources.sh */,
+				C88ACA354A8ADF9B7BD66FC7D62F121C /* Pods-JustTrack_Example_ObjC-umbrella.h */,
+				5631C78C3EB347B77C7EF5337A4E6FCC /* Pods-JustTrack_Example_ObjC.debug.xcconfig */,
+				799E77851A57F536DC5DEB7DA942F15C /* Pods-JustTrack_Example_ObjC.release.xcconfig */,
 			);
 			name = "Pods-JustTrack_Example_ObjC";
 			path = "Target Support Files/Pods-JustTrack_Example_ObjC";
 			sourceTree = "<group>";
 		};
-		BAAC9720D112A0C122BE79C9D3E7270B /* Targets Support Files */ = {
+		85284F87A234227836934CBFA0F808D6 /* Pods-JustTrack_Example_Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4CC8B411BE2C25CC8E5164C378E01A2A /* Pods-JustTrack_Example */,
-				B875B32912F19469B7AF686E76D26960 /* Pods-JustTrack_Example_ObjC */,
-				CC5BDBE85092E88471A59E40038EE6FC /* Pods-JustTrack_Tests */,
+				0CD52EF447E7F2BACBC2698219775BD6 /* Info.plist */,
+				AFF227BA26C89E4E794A0668B8805CE5 /* Pods-JustTrack_Example_Tests.modulemap */,
+				46F361310140EE2DD5EAFD24A06B238B /* Pods-JustTrack_Example_Tests-acknowledgements.markdown */,
+				83A6BDEA62F1106713E6FC11CA0564A5 /* Pods-JustTrack_Example_Tests-acknowledgements.plist */,
+				4F46621AB943959A5660DC7884150D5B /* Pods-JustTrack_Example_Tests-dummy.m */,
+				C2E3972B467FD5F44613E9E464731F4F /* Pods-JustTrack_Example_Tests-frameworks.sh */,
+				021E147B17D931001DE08D91B7CC75D9 /* Pods-JustTrack_Example_Tests-resources.sh */,
+				937CC920F8DAC7E51138E5AA0A682E1F /* Pods-JustTrack_Example_Tests-umbrella.h */,
+				0AC237C31B65EFE962FD48AF59A1268B /* Pods-JustTrack_Example_Tests.debug.xcconfig */,
+				9FC2264B1FD088F3B758E75B72F9E6A9 /* Pods-JustTrack_Example_Tests.release.xcconfig */,
 			);
-			name = "Targets Support Files";
+			name = "Pods-JustTrack_Example_Tests";
+			path = "Target Support Files/Pods-JustTrack_Example_Tests";
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		8FB6AC0A72550FF9023F04D737CAE386 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BEB05AE8AA0114A33D9DE22F47F6B562 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				50A686E942C60EDA229EFE6339337428 /* JustTrack.podspec */,
-				85C6D73433D1DA6E345D8E554B4C122A /* LICENSE */,
-				1B73F5D9A93D74015A037BA66E13FC42 /* README.md */,
+				ACF93DCB8FCCF38D498FCFFA324E2601 /* JustTrack.podspec */,
+				79C2C67164C8B3ED1DE6B38EF1DEE73D /* LICENSE */,
+				DD41CEA7F605B5AEE892BC76AE0E848B /* README.md */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		BF450737492C7F54A03823BE2BDA47DA /* Products */ = {
+		96132657569995CDE8B3B1A809C1543D /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ACB2443B6F05D675FDD213AF6E8D8D8F /* JustTrack.framework */,
-				88D45EF4BEB2C76D9E8205F975FB790D /* Pods_JustTrack_Example.framework */,
-				3F531F9ED240BEFD59E9A364C88893CC /* Pods_JustTrack_Example_ObjC.framework */,
-				9E4B7149B3D0FA3FFA4396FAF57B0677 /* Pods_JustTrack_Tests.framework */,
+				A79C0BB43503B59381D645E113374C23 /* JustTrack */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		98256253E56C0E5431FCA7985BC36724 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20C94D56CC826F09D5B6E6E03AE46EBA /* JustTrack.framework */,
+				7EA72E1ED9E497CBC3C32B5D03A29786 /* JustTrack-Unit-Tests */,
+				05B3D6FFCCD04130AD37F8070FB60DD7 /* Pods_JustTrack_Example.framework */,
+				74E9DDB9A2515C03CEE07CC5CA503CE0 /* Pods_JustTrack_Example_ObjC.framework */,
+				CD471D06AB0ECEF342A8D3643C60496E /* Pods_JustTrack_Example_Tests.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C63851332CD0A3D178D2B7B5F5548BA9 /* JustTrack */ = {
+		A79C0BB43503B59381D645E113374C23 /* JustTrack */ = {
 			isa = PBXGroup;
 			children = (
-				4288301E637A585E26A503624CC6FED1 /* JEEvent.swift */,
-				0C939DB78DF17FAA59599A12AB6FB0B5 /* JEEventInternal.swift */,
-				40CD0ED4DAC8FF0CD947849F078E43CC /* JETracker.swift */,
-				ECACF18BAE026589F97215C43708F2B7 /* JETracking.swift */,
-				A01CBA6324576CAC69F695CE5EE6F8D3 /* Operations */,
-				BEB05AE8AA0114A33D9DE22F47F6B562 /* Pod */,
-				71FFE2EF8884911DF6B42B9CC2DCF21A /* Support Files */,
-				EDFB1E2DBB63C992A460739C75F2C307 /* Trackers */,
+				8F0ABAE5F990FB4254C82D72122AE4FC /* JEEvent.swift */,
+				41A0CD1E70D370BA7A13A0604D91157E /* JEEventInternal.swift */,
+				208C6BC461BC85E02379C0F895D8D4D4 /* JETracker.swift */,
+				D05BA334234500E9AE0B720107B0A2FF /* JETracking.swift */,
+				FB59AD2528B2B58207B58D4EF7274D2A /* Operations */,
+				8FB6AC0A72550FF9023F04D737CAE386 /* Pod */,
+				42BCCA90A5312C1D22653623240E4153 /* Support Files */,
+				A89632CBF9396A49CCDE0E460965F7EC /* Trackers */,
+				3349D4E636AE234594B6594D8A6A43A4 /* UnitTests */,
 			);
 			name = JustTrack;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		CC5BDBE85092E88471A59E40038EE6FC /* Pods-JustTrack_Tests */ = {
+		A89632CBF9396A49CCDE0E460965F7EC /* Trackers */ = {
 			isa = PBXGroup;
 			children = (
-				D9347DF55C1DB0ECD619F58D152D75A5 /* Info.plist */,
-				4F2E7972A5934DF42981EF0A7B51205D /* Pods-JustTrack_Tests.modulemap */,
-				39F75D0A5A79C919541537C89D6FF75D /* Pods-JustTrack_Tests-acknowledgements.markdown */,
-				D79530EE0F2CCC631503F5D8D9A22890 /* Pods-JustTrack_Tests-acknowledgements.plist */,
-				34BD34EFDC836966E6025AE49691C0F4 /* Pods-JustTrack_Tests-dummy.m */,
-				10A786CC35FF11805F4AB45DACF0004E /* Pods-JustTrack_Tests-frameworks.sh */,
-				018BC49CC3782709CB2BA7D6AF211522 /* Pods-JustTrack_Tests-resources.sh */,
-				864B5141F086BBAD693AB9A2A524191D /* Pods-JustTrack_Tests-umbrella.h */,
-				20EDDEF753329F45917B9FF1D642B519 /* Pods-JustTrack_Tests.debug.xcconfig */,
-				472B290F70FC2A1AE9DD5141FAC4FB3A /* Pods-JustTrack_Tests.release.xcconfig */,
-			);
-			name = "Pods-JustTrack_Tests";
-			path = "Target Support Files/Pods-JustTrack_Tests";
-			sourceTree = "<group>";
-		};
-		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		EDFB1E2DBB63C992A460739C75F2C307 /* Trackers */ = {
-			isa = PBXGroup;
-			children = (
-				15C554D6DC80BB762FB9EB93216ABBEE /* JETrackerConsole.swift */,
+				F1399A33A57F6F1E6485014755ED6A4D /* JETrackerConsole.swift */,
 			);
 			name = Trackers;
 			path = JustTrack/Classes/JustTrack/Trackers;
 			sourceTree = "<group>";
 		};
+		B0E0068A3F7B57B63C3D8EF2F38F6F75 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94E570EF94D3DF48EFBE2B162E9E33A4 /* JustTrack.framework */,
+				7B7CC0A289EBE18266041F1B66AE5A69 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB59AD2528B2B58207B58D4EF7274D2A /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				69E9377166F6F8B15ABBD910EB6BFEAD /* JETrackOperation.swift */,
+			);
+			name = Operations;
+			path = JustTrack/Classes/JustTrack/Operations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		2F2811F9279B846CF0049D7D61885201 /* Headers */ = {
+		52B69C50AB43B6A76B75E19674849929 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217F1E55ADD29D2B6DC2CFA7085447FD /* Pods-JustTrack_Example-umbrella.h in Headers */,
+				AE07A78F4383DB0926F32AAF088F8962 /* JustTrack-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		54CEBD478537262E2002ED0DD46CE553 /* Headers */ = {
+		AAA55C6455ABA778C4D5BE9286B39E8C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F76AD4620A28344F66A45F1AE5267BFE /* Pods-JustTrack_Example_ObjC-umbrella.h in Headers */,
+				3CB9A43F6CBF633B3EFCB370BB17F7B4 /* Pods-JustTrack_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6310F830F898AE23A3EB3960BF9C9DB6 /* Headers */ = {
+		B4A993DE5AD0042E93A55DCF63EA550F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F448186DF6629B2C04A0FCD765A16176 /* Pods-JustTrack_Tests-umbrella.h in Headers */,
+				8E7562C1C2066F53624C2A5DADBC03AD /* Pods-JustTrack_Example_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E0CABC3CEB17611DCFD20A20C6AE47EA /* Headers */ = {
+		D111ED80D2C7EB870DB7C6F93AEDD0C8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7022E42C75099974C48F1272DCDB752A /* JustTrack-umbrella.h in Headers */,
+				E25E886285FE5C4A8CF553B7DFEB8850 /* Pods-JustTrack_Example_ObjC-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4A0AA5B572192B8AD272FC91ABC5844F /* JustTrack */ = {
+		13B00F3382B2F8553868EFAFA6252145 /* Pods-JustTrack_Example_ObjC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 121FE023E2E964C8FB9A6154D38BF5E1 /* Build configuration list for PBXNativeTarget "JustTrack" */;
+			buildConfigurationList = E2FA03ABAB5EB8194D0591525F7B9456 /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example_ObjC" */;
 			buildPhases = (
-				7A51078948603A72DFD8CE919A33E9E6 /* Sources */,
-				C96986A57E6C135B8C1954601F687659 /* Frameworks */,
-				E0CABC3CEB17611DCFD20A20C6AE47EA /* Headers */,
+				D111ED80D2C7EB870DB7C6F93AEDD0C8 /* Headers */,
+				5BAE60C69E243DD11AFC676076042709 /* Sources */,
+				B7B7699ED9340EA8968D50FF39D0D79E /* Frameworks */,
+				C90D161C7B768E3651AA90D46D6D0D1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6B5C3C3F6AE83FD3230095573B41E64D /* PBXTargetDependency */,
+			);
+			name = "Pods-JustTrack_Example_ObjC";
+			productName = "Pods-JustTrack_Example_ObjC";
+			productReference = 74E9DDB9A2515C03CEE07CC5CA503CE0 /* Pods_JustTrack_Example_ObjC.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		163DA240F240130BD7D591DE3E0A4435 /* JustTrack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B142B51034BE8FB265433C58421E2986 /* Build configuration list for PBXNativeTarget "JustTrack" */;
+			buildPhases = (
+				52B69C50AB43B6A76B75E19674849929 /* Headers */,
+				174E6951A123C32310442B2C1B815551 /* Sources */,
+				B8811D153287DF63004E50759D44403C /* Frameworks */,
+				85E9D6059C39FDE59DAA272E1856E776 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -354,61 +415,65 @@
 			);
 			name = JustTrack;
 			productName = JustTrack;
-			productReference = ACB2443B6F05D675FDD213AF6E8D8D8F /* JustTrack.framework */;
+			productReference = 20C94D56CC826F09D5B6E6E03AE46EBA /* JustTrack.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7C44B87860197590D124FECEBF80D4D1 /* Pods-JustTrack_Example */ = {
+		28EF669D290CD21B0105D93A6A999E4B /* Pods-JustTrack_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F21CC305375AA84FDBF2E27DD837EBCC /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example" */;
+			buildConfigurationList = 48B486A5DC7AF1E1593CF366DF4150DE /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example" */;
 			buildPhases = (
-				242316FB9F1AF9BAA0850BB2F57B7AA6 /* Sources */,
-				BF7B17A9639DBB0A5FDD4F0C8246931E /* Frameworks */,
-				2F2811F9279B846CF0049D7D61885201 /* Headers */,
+				AAA55C6455ABA778C4D5BE9286B39E8C /* Headers */,
+				A780C7D24E34049A7B0561D71DD23BE0 /* Sources */,
+				A29DAEE88127B2F88EDF3B1EA11D050D /* Frameworks */,
+				6B572F3C519949C0C4864CBCBB41EC84 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6EEA6B8453D684715C667BE802D37A86 /* PBXTargetDependency */,
+				D80F471422E8646715AAC229560FCF3F /* PBXTargetDependency */,
 			);
 			name = "Pods-JustTrack_Example";
 			productName = "Pods-JustTrack_Example";
-			productReference = 88D45EF4BEB2C76D9E8205F975FB790D /* Pods_JustTrack_Example.framework */;
+			productReference = 05B3D6FFCCD04130AD37F8070FB60DD7 /* Pods_JustTrack_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8EAFFDAB4C10A1BA1BEC1B5E2EA7D2F3 /* Pods-JustTrack_Tests */ = {
+		2DB34262B4B44CA2212E9374A9335957 /* Pods-JustTrack_Example_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F3BF7FF639F15B1497B5BA408AD59FB5 /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Tests" */;
+			buildConfigurationList = 51BAA84AEF8E24DBBFE2C29B7CD2BB71 /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example_Tests" */;
 			buildPhases = (
-				7528E0E90BA72486EBEBF7199A8E4DB5 /* Sources */,
-				87765B6AAE6D83469844AE4B69022B9A /* Frameworks */,
-				6310F830F898AE23A3EB3960BF9C9DB6 /* Headers */,
+				B4A993DE5AD0042E93A55DCF63EA550F /* Headers */,
+				F9DAF683D25479E7E23570923B1D1736 /* Sources */,
+				D7F5B214270AAE99B6351AF79BD81A85 /* Frameworks */,
+				92A09DEBBFA2FA60EBD7C776AC74D0CA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-JustTrack_Tests";
-			productName = "Pods-JustTrack_Tests";
-			productReference = 9E4B7149B3D0FA3FFA4396FAF57B0677 /* Pods_JustTrack_Tests.framework */;
+			name = "Pods-JustTrack_Example_Tests";
+			productName = "Pods-JustTrack_Example_Tests";
+			productReference = CD471D06AB0ECEF342A8D3643C60496E /* Pods_JustTrack_Example_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D8D060C0A6E461D5F453C445BE7A4FF3 /* Pods-JustTrack_Example_ObjC */ = {
+		D64B70A38558B9CC6D9833F7AB0E8FF4 /* JustTrack-Unit-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA4953D31B22D88F4F53DC41EA554855 /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example_ObjC" */;
+			buildConfigurationList = 4C80D7373069A1A4BB2089C5B4640D25 /* Build configuration list for PBXNativeTarget "JustTrack-Unit-Tests" */;
 			buildPhases = (
-				A411BD14DED57A575897B2BFE092DE84 /* Sources */,
-				0811FD651EDA4DF6460D7F20D77BA400 /* Frameworks */,
-				54CEBD478537262E2002ED0DD46CE553 /* Headers */,
+				9E7BB2B511F757CB5BE69249074FC28D /* Sources */,
+				C007940D0B65F0E2DF9727DCD03BB3D0 /* Frameworks */,
+				B95E10B097EFF9BF7ABB5CE88BEADE68 /* Resources */,
+				09C5ED46FC6E3693AA85306C7962652E /* [CP] Embed Pods Frameworks */,
+				B0626C78890C5ECC7F6E24A5BEB5E562 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4AF414571AF307099C98C10C0387217D /* PBXTargetDependency */,
+				E2D44655693DAB2233E3F0F40755E6AB /* PBXTargetDependency */,
 			);
-			name = "Pods-JustTrack_Example_ObjC";
-			productName = "Pods-JustTrack_Example_ObjC";
-			productReference = 3F531F9ED240BEFD59E9A364C88893CC /* Pods_JustTrack_Example_ObjC.framework */;
-			productType = "com.apple.product-type.framework";
+			name = "JustTrack-Unit-Tests";
+			productName = "JustTrack-Unit-Tests";
+			productReference = 7EA72E1ED9E497CBC3C32B5D03A29786 /* JustTrack-Unit-Tests */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -427,76 +492,341 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = BF450737492C7F54A03823BE2BDA47DA /* Products */;
+			productRefGroup = 98256253E56C0E5431FCA7985BC36724 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4A0AA5B572192B8AD272FC91ABC5844F /* JustTrack */,
-				7C44B87860197590D124FECEBF80D4D1 /* Pods-JustTrack_Example */,
-				D8D060C0A6E461D5F453C445BE7A4FF3 /* Pods-JustTrack_Example_ObjC */,
-				8EAFFDAB4C10A1BA1BEC1B5E2EA7D2F3 /* Pods-JustTrack_Tests */,
+				163DA240F240130BD7D591DE3E0A4435 /* JustTrack */,
+				D64B70A38558B9CC6D9833F7AB0E8FF4 /* JustTrack-Unit-Tests */,
+				28EF669D290CD21B0105D93A6A999E4B /* Pods-JustTrack_Example */,
+				13B00F3382B2F8553868EFAFA6252145 /* Pods-JustTrack_Example_ObjC */,
+				2DB34262B4B44CA2212E9374A9335957 /* Pods-JustTrack_Example_Tests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		6B572F3C519949C0C4864CBCBB41EC84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		85E9D6059C39FDE59DAA272E1856E776 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92A09DEBBFA2FA60EBD7C776AC74D0CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B95E10B097EFF9BF7ABB5CE88BEADE68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C90D161C7B768E3651AA90D46D6D0D1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09C5ED46FC6E3693AA85306C7962652E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/JustTrack/JustTrack-Unit-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JustTrack/JustTrack.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JustTrack.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/JustTrack/JustTrack-Unit-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0626C78890C5ECC7F6E24A5BEB5E562 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/JustTrack/JustTrack-Unit-Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		242316FB9F1AF9BAA0850BB2F57B7AA6 /* Sources */ = {
+		174E6951A123C32310442B2C1B815551 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74CA1756BAEFB2FCC924B9B36939413C /* Pods-JustTrack_Example-dummy.m in Sources */,
+				F784FE5AB72585979C17AF390005DC59 /* JEEvent.swift in Sources */,
+				B0370BE692CB7EE1AC304B6C9A5B4BD3 /* JEEventInternal.swift in Sources */,
+				E94BA48C097A6144F9E4CFA1C7577213 /* JETracker.swift in Sources */,
+				91B49023A810F5A8CE8D66D6CCC4B039 /* JETrackerConsole.swift in Sources */,
+				E6FC5403DF9FEE7EAF3ED69AF7ABA225 /* JETracking.swift in Sources */,
+				E17A005C86699A35CE2432D6CE710B00 /* JETrackOperation.swift in Sources */,
+				429B17B1CA6C00E0B82D69C9AB11927D /* JustTrack-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7528E0E90BA72486EBEBF7199A8E4DB5 /* Sources */ = {
+		5BAE60C69E243DD11AFC676076042709 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B225596FC0C1E0EFD7546C6BF41A021 /* Pods-JustTrack_Tests-dummy.m in Sources */,
+				5D172630829A769088257FCDB43BDC10 /* Pods-JustTrack_Example_ObjC-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7A51078948603A72DFD8CE919A33E9E6 /* Sources */ = {
+		9E7BB2B511F757CB5BE69249074FC28D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				483186E4569E8D42E9A85CC45577FC98 /* JEEvent.swift in Sources */,
-				C21844DC1CC67E59CF945C43E083A780 /* JEEventInternal.swift in Sources */,
-				743F861E78AD10E58D1363D18682753E /* JETracker.swift in Sources */,
-				A9FCB9567CA90B3EA26363017B362486 /* JETrackerConsole.swift in Sources */,
-				5E770CA064E8878F453DBC6A3640F675 /* JETracking.swift in Sources */,
-				C2E0B0B2B069FE4CACFBD300413DD53E /* JETrackOperation.swift in Sources */,
-				97FE623D3B3B5C64BB76572F27012DB4 /* JustTrack-dummy.m in Sources */,
+				8CBAF6A43A4B9B28360BC17BEF576729 /* JEEventInternalTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A411BD14DED57A575897B2BFE092DE84 /* Sources */ = {
+		A780C7D24E34049A7B0561D71DD23BE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81EF9E74F8EB097D856C4BD93776FC9F /* Pods-JustTrack_Example_ObjC-dummy.m in Sources */,
+				C801D6278E50D516C1D81F7AFEEF70E1 /* Pods-JustTrack_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9DAF683D25479E7E23570923B1D1736 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E52680AFCD787EE453EE80C54AC9538 /* Pods-JustTrack_Example_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4AF414571AF307099C98C10C0387217D /* PBXTargetDependency */ = {
+		6B5C3C3F6AE83FD3230095573B41E64D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = JustTrack;
-			target = 4A0AA5B572192B8AD272FC91ABC5844F /* JustTrack */;
-			targetProxy = BDDB1434296014850177CE3F0D4879FC /* PBXContainerItemProxy */;
+			target = 163DA240F240130BD7D591DE3E0A4435 /* JustTrack */;
+			targetProxy = 112AEF28C3B6A671390549A34E453014 /* PBXContainerItemProxy */;
 		};
-		6EEA6B8453D684715C667BE802D37A86 /* PBXTargetDependency */ = {
+		D80F471422E8646715AAC229560FCF3F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = JustTrack;
-			target = 4A0AA5B572192B8AD272FC91ABC5844F /* JustTrack */;
-			targetProxy = B34302BBA680AD2D98B471D9CB015E2C /* PBXContainerItemProxy */;
+			target = 163DA240F240130BD7D591DE3E0A4435 /* JustTrack */;
+			targetProxy = 8222BBD290595366FB5F64526A0FE813 /* PBXContainerItemProxy */;
+		};
+		E2D44655693DAB2233E3F0F40755E6AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JustTrack;
+			target = 163DA240F240130BD7D591DE3E0A4435 /* JustTrack */;
+			targetProxy = 10045142B4DF9FC629F6409B677C7BC8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		26F954BA177A9A46FFFD4E23ED11D67A /* Release */ = {
+		1C355B7E293C2984D2868292A51D2C3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FC2264B1FD088F3B758E75B72F9E6A9 /* Pods-JustTrack_Example_Tests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-JustTrack_Example_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-JustTrack_Example_Tests/Pods-JustTrack_Example_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_JustTrack_Example_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2819474F9E73079A6353E0C39925CE49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A22BE143B00F890918092705E5973CEC /* JustTrack.unit.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/JustTrack/JustTrack-Unit-Tests-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lswiftSwiftOnoneSupport",
+				);
+				PRODUCT_NAME = "JustTrack-Unit-Tests";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		2CF343CC1FDED55C612F310DECD51EB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A22BE143B00F890918092705E5973CEC /* JustTrack.unit.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/JustTrack/JustTrack-Unit-Tests-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = "JustTrack-Unit-Tests";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		41FBE8AF870D4CB7D676DD05B40EDF7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AC237C31B65EFE962FD48AF59A1268B /* Pods-JustTrack_Example_Tests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-JustTrack_Example_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-JustTrack_Example_Tests/Pods-JustTrack_Example_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_JustTrack_Example_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		51C138E2B61C9E592C256A7EBD82035D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F86AAC3B897A53708BECE9471136A8B /* Pods-JustTrack_Example.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-JustTrack_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_JustTrack_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5B5303338F9F13D21366B50E8E637BB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2A34E938C6DAC9C33E903EA9F134BA4 /* Pods-JustTrack_Example.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-JustTrack_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_JustTrack_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		798F283DEF5D6E82C13E1DBA995AA1B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -547,6 +877,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -554,107 +885,9 @@
 			};
 			name = Release;
 		};
-		2B8D9F322F81E56CE568F9F6D8252DC2 /* Debug */ = {
+		82305127A4885B5577392E1BD8E68308 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E9756D0D30FB35BEE06779F2B914FDB /* Pods-JustTrack_Example.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-JustTrack_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_JustTrack_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		58004F5B6793D050D8AFE32B686A1B4A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 472B290F70FC2A1AE9DD5141FAC4FB3A /* Pods-JustTrack_Tests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-JustTrack_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-JustTrack_Tests/Pods-JustTrack_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_JustTrack_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		600F505F6E0E6240DE5C411CB1DF9193 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4907D2EC2E5E3201D6E4BAF2AAF97B51 /* JustTrack.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/JustTrack/JustTrack-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/JustTrack/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/JustTrack/JustTrack.modulemap";
-				PRODUCT_NAME = JustTrack;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		6EEE038ADB454B0725869ACF39C624DB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE730DAA93A7CFE65BC692662562F4BF /* Pods-JustTrack_Example_ObjC.release.xcconfig */;
+			baseConfigurationReference = 799E77851A57F536DC5DEB7DA942F15C /* Pods-JustTrack_Example_ObjC.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -686,9 +919,72 @@
 			};
 			name = Release;
 		};
-		72F4BB46D20D14238073382442AC88D0 /* Debug */ = {
+		A2831B02C02A381490A5064C8AD615E2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAAB6276CEF33168173255EAAF99CEE5 /* Pods-JustTrack_Example_ObjC.debug.xcconfig */;
+			baseConfigurationReference = 8257C071F2C7431FFDCD75AD761CE47A /* JustTrack.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JustTrack/JustTrack-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JustTrack/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JustTrack/JustTrack.modulemap";
+				PRODUCT_NAME = JustTrack;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B00FE5B3A80B656C5E78158BF95100DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8257C071F2C7431FFDCD75AD761CE47A /* JustTrack.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/JustTrack/JustTrack-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/JustTrack/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/JustTrack/JustTrack.modulemap";
+				PRODUCT_NAME = JustTrack;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C9137D1F97EF085503576988345C42D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5631C78C3EB347B77C7EF5337A4E6FCC /* Pods-JustTrack_Example_ObjC.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -720,105 +1016,7 @@
 			};
 			name = Debug;
 		};
-		7C8CAD42927C622384D25D458438FECA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20EDDEF753329F45917B9FF1D642B519 /* Pods-JustTrack_Tests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-JustTrack_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-JustTrack_Tests/Pods-JustTrack_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_JustTrack_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		D64FEE4681C7E2FB320FE38CA1F6B8AB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 751E2BA9A6D50BF1A328B244D32028DA /* Pods-JustTrack_Example.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-JustTrack_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_JustTrack_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E0BEA57E3E580E8E13208D93F7C9650F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4907D2EC2E5E3201D6E4BAF2AAF97B51 /* JustTrack.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/JustTrack/JustTrack-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/JustTrack/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/JustTrack/JustTrack.modulemap";
-				PRODUCT_NAME = JustTrack;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E2BF6D6731C31DE69900B7B24E6F0445 /* Debug */ = {
+		CE271817CBC0BF8DB9C70409CD854479 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -871,7 +1069,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
@@ -884,47 +1083,56 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		121FE023E2E964C8FB9A6154D38BF5E1 /* Build configuration list for PBXNativeTarget "JustTrack" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				600F505F6E0E6240DE5C411CB1DF9193 /* Debug */,
-				E0BEA57E3E580E8E13208D93F7C9650F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2BF6D6731C31DE69900B7B24E6F0445 /* Debug */,
-				26F954BA177A9A46FFFD4E23ED11D67A /* Release */,
+				CE271817CBC0BF8DB9C70409CD854479 /* Debug */,
+				798F283DEF5D6E82C13E1DBA995AA1B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA4953D31B22D88F4F53DC41EA554855 /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example_ObjC" */ = {
+		48B486A5DC7AF1E1593CF366DF4150DE /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				72F4BB46D20D14238073382442AC88D0 /* Debug */,
-				6EEE038ADB454B0725869ACF39C624DB /* Release */,
+				5B5303338F9F13D21366B50E8E637BB7 /* Debug */,
+				51C138E2B61C9E592C256A7EBD82035D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F21CC305375AA84FDBF2E27DD837EBCC /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example" */ = {
+		4C80D7373069A1A4BB2089C5B4640D25 /* Build configuration list for PBXNativeTarget "JustTrack-Unit-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2B8D9F322F81E56CE568F9F6D8252DC2 /* Debug */,
-				D64FEE4681C7E2FB320FE38CA1F6B8AB /* Release */,
+				2819474F9E73079A6353E0C39925CE49 /* Debug */,
+				2CF343CC1FDED55C612F310DECD51EB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F3BF7FF639F15B1497B5BA408AD59FB5 /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Tests" */ = {
+		51BAA84AEF8E24DBBFE2C29B7CD2BB71 /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7C8CAD42927C622384D25D458438FECA /* Debug */,
-				58004F5B6793D050D8AFE32B686A1B4A /* Release */,
+				41FBE8AF870D4CB7D676DD05B40EDF7D /* Debug */,
+				1C355B7E293C2984D2868292A51D2C3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B142B51034BE8FB265433C58421E2986 /* Build configuration list for PBXNativeTarget "JustTrack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B00FE5B3A80B656C5E78158BF95100DE /* Debug */,
+				A2831B02C02A381490A5064C8AD615E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2FA03ABAB5EB8194D0591525F7B9456 /* Build configuration list for PBXNativeTarget "Pods-JustTrack_Example_ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9137D1F97EF085503576988345C42D1 /* Debug */,
+				82305127A4885B5577392E1BD8E68308 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

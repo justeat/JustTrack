@@ -22,11 +22,11 @@ public enum JEEventEncodingKey: String {
 
 extension JEEvent {
     
-    func encode() -> [String: AnyObject] {
-        var dictionary = Dictionary<String, AnyObject>()
-        dictionary[JEEventEncodingKey.payload.rawValue] = self.payload as AnyObject?
-        dictionary[JEEventEncodingKey.name.rawValue] = self.name as AnyObject?
-        dictionary[JEEventEncodingKey.trackers.rawValue] = self.registeredTrackers as AnyObject?
+    func encode() -> [String: Any] {
+        var dictionary = Dictionary<String, Any>()
+        dictionary[JEEventEncodingKey.payload.rawValue] = self.payload
+        dictionary[JEEventEncodingKey.name.rawValue] = self.name
+        dictionary[JEEventEncodingKey.trackers.rawValue] = self.registeredTrackers
         return dictionary
     }
 }

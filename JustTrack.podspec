@@ -27,4 +27,7 @@ JustTrack is the event tracking solution we built for that.
   s.source_files = 'JustTrack/Classes/**/*'
   s.preserve_paths = 'JustTrack/JEEventsGenerator/*'
 
+  s.test_spec 'UnitTests' do |test_spec|
+    test_spec.source_files = 'JustTrack/UnitTests/*'
+  end
 end
