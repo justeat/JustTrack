@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "463CD32BF0419C6872ED5F0732DF42E3"
+               BlueprintIdentifier = "9D080C1E7E156DE9BCE1733CFECCEDFD"
                BuildableName = "JustTrack-Unit-Tests.xctest"
                BlueprintName = "JustTrack-Unit-Tests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">

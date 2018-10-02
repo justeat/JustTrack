@@ -2,7 +2,7 @@
 //  JEEventInternalTests.swift
 //  JustTrack
 //
-//  Created by Richard Rauser [Contractor] on 01/10/2018.
+//  Copyright © 2018 Just Eat Holding Ltd.
 //
 
 import XCTest
