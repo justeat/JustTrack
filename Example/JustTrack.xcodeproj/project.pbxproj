@@ -7,14 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46BC26FD3A5388DB6F0C9956 /* Pods_JustTrack_Example_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80A28E106E29B09E01D0DAA /* Pods_JustTrack_Example_Tests.framework */; };
-		483FC80F1DCCF18B008E2EE0 /* Trackers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483FC80E1DCCF18B008E2EE0 /* Trackers.swift */; };
-		483FC8111DD09CCC008E2EE0 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483FC8101DD09CCC008E2EE0 /* Events.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* TrackerTests.swift */; };
 		7AF3A9B57C45917885808E4F /* Pods_JustTrack_Example_ObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6BCA791E88E0DDE8B9EEE3 /* Pods_JustTrack_Example_ObjC.framework */; };
 		BC293FF24768D5563A9F3F05 /* Pods_JustTrack_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A30E6EF99EC591C444A8D7B /* Pods_JustTrack_Example.framework */; };
 		C8566BEC1E293F8600CC27E3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8566BEA1E293F8600CC27E3 /* main.swift */; };
@@ -36,16 +32,6 @@
 		E0CC1EBC1D524E7A00FD8AF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0CC1EBB1D524E7A00FD8AF8 /* Assets.xcassets */; };
 		E0CC1EBF1D524E7A00FD8AF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0CC1EBD1D524E7A00FD8AF8 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		607FACE61AFB9204008FA782 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 607FACCF1AFB9204008FA782;
-			remoteInfo = JustTrack;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		E0CC1E9A1D5238F500FD8AF8 /* CopyFiles */ = {
@@ -70,12 +56,11 @@
 		1A30E6EF99EC591C444A8D7B /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21675A35E21330467F875074 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A64F5DDAC33D55C7BE4A3 /* Pods-JustTrack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Tests/Pods-JustTrack_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		4544CED3F31AEB9E0E041E76 /* JustTrack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JustTrack.podspec; path = ../JustTrack.podspec; sourceTree = "<group>"; };
+		4544CED3F31AEB9E0E041E76 /* JustTrack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JustTrack.podspec; path = ../JustTrack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		483FC80E1DCCF18B008E2EE0 /* Trackers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trackers.swift; sourceTree = "<group>"; };
 		483FC8101DD09CCC008E2EE0 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		4ACC5FA321CD52C8330640C9 /* Pods_Example_with_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_with_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CA4E1D9F2BACAD9A21D947C /* Pods-JustTrack_Example_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example_ObjC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example_ObjC/Pods-JustTrack_Example_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
-		50622F4885A3073A79D1DCBE /* Pods-JustTrack_Example_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example_Tests/Pods-JustTrack_Example_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		587548F5EB6E75F385206CFC /* Pods-JustTrack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* JustTrack_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustTrack_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,7 +68,6 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		607FACE51AFB9204008FA782 /* JustTrack_Example_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JustTrack_Example_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTests.swift; sourceTree = "<group>"; };
 		695000F9344F9959D5739C1B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -92,7 +76,6 @@
 		A50CAE54C8FA146A010BACD4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		AA6BCA791E88E0DDE8B9EEE3 /* Pods_JustTrack_Example_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB838AA6D85DC9B92BE0A7C5 /* Pods-JustTrack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.release.xcconfig"; sourceTree = "<group>"; };
-		BDCA1DF5F3C97DF7D10F5A5B /* Pods-JustTrack_Example_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example_Tests/Pods-JustTrack_Example_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C8566BE31E293F8600CC27E3 /* JEEventInitAssignTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitAssignTemplate.jet; sourceTree = "<group>"; };
 		C8566BE41E293F8600CC27E3 /* JEEventInitParam.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitParam.jet; sourceTree = "<group>"; };
 		C8566BE51E293F8600CC27E3 /* JEEventInitTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitTemplate.jet; sourceTree = "<group>"; };
@@ -127,14 +110,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC293FF24768D5563A9F3F05 /* Pods_JustTrack_Example.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		607FACE21AFB9204008FA782 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				46BC26FD3A5388DB6F0C9956 /* Pods_JustTrack_Example_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				607FACD01AFB9204008FA782 /* JustTrack_Example.app */,
-				607FACE51AFB9204008FA782 /* JustTrack_Example_Tests.xctest */,
 				E0CC1E9C1D5238F500FD8AF8 /* JEStructsGenerator */,
 				E0CC1EAD1D524E7900FD8AF8 /* JustTrack_Example_ObjC.app */,
 			);
@@ -246,8 +220,6 @@
 				273A64F5DDAC33D55C7BE4A3 /* Pods-JustTrack_Tests.release.xcconfig */,
 				4CA4E1D9F2BACAD9A21D947C /* Pods-JustTrack_Example_ObjC.debug.xcconfig */,
 				8BDBAFDA2677AEAF650C3BDC /* Pods-JustTrack_Example_ObjC.release.xcconfig */,
-				50622F4885A3073A79D1DCBE /* Pods-JustTrack_Example_Tests.debug.xcconfig */,
-				BDCA1DF5F3C97DF7D10F5A5B /* Pods-JustTrack_Example_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -329,27 +301,6 @@
 			productReference = 607FACD01AFB9204008FA782 /* JustTrack_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		607FACE41AFB9204008FA782 /* JustTrack_Example_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "JustTrack_Example_Tests" */;
-			buildPhases = (
-				C0F5B190F352AEC2880B92AC /* [CP] Check Pods Manifest.lock */,
-				607FACE11AFB9204008FA782 /* Sources */,
-				607FACE21AFB9204008FA782 /* Frameworks */,
-				607FACE31AFB9204008FA782 /* Resources */,
-				6E164AB917F2F56BCD08666D /* [CP] Embed Pods Frameworks */,
-				AA292971F1C516DE47C1A317 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				607FACE71AFB9204008FA782 /* PBXTargetDependency */,
-			);
-			name = JustTrack_Example_Tests;
-			productName = Tests;
-			productReference = 607FACE51AFB9204008FA782 /* JustTrack_Example_Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		E0CC1E9B1D5238F500FD8AF8 /* JEStructsGenerator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0CC1EA21D5238F500FD8AF8 /* Build configuration list for PBXNativeTarget "JEStructsGenerator" */;
@@ -404,11 +355,6 @@
 						DevelopmentTeam = ZKPN288GRK;
 						LastSwiftMigration = 0910;
 					};
-					607FACE41AFB9204008FA782 = {
-						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0910;
-						TestTargetID = 607FACCF1AFB9204008FA782;
-					};
 					E0CC1E9B1D5238F500FD8AF8 = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0800;
@@ -436,7 +382,6 @@
 				607FACCF1AFB9204008FA782 /* JustTrack_Example */,
 				E0CC1EAC1D524E7900FD8AF8 /* JustTrack_Example_ObjC */,
 				E0CC1E9B1D5238F500FD8AF8 /* JEStructsGenerator */,
-				607FACE41AFB9204008FA782 /* JustTrack_Example_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -451,13 +396,6 @@
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				E073ABC41D47A414001B8D51 /* Events.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		607FACE31AFB9204008FA782 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,21 +445,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6E164AB917F2F56BCD08666D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JustTrack_Example_Tests/Pods-JustTrack_Example_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7B413EB374A95C1B45FB7830 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -558,21 +481,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AA292971F1C516DE47C1A317 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JustTrack_Example_Tests/Pods-JustTrack_Example_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AD7E63179B65315457E913E5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -586,24 +494,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C0F5B190F352AEC2880B92AC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JustTrack_Example_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E073ABC51D47BEAC001B8D51 /* [JustTrack] Generate events */ = {
@@ -665,16 +555,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		607FACE11AFB9204008FA782 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				483FC8111DD09CCC008E2EE0 /* Events.swift in Sources */,
-				483FC80F1DCCF18B008E2EE0 /* Trackers.swift in Sources */,
-				607FACEC1AFB9204008FA782 /* TrackerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E0CC1E981D5238F500FD8AF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -694,14 +574,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		607FACE71AFB9204008FA782 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 607FACCF1AFB9204008FA782 /* JustTrack_Example */;
-			targetProxy = 607FACE61AFB9204008FA782 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		607FACD91AFB9204008FA782 /* Main.storyboard */ = {
@@ -870,42 +742,6 @@
 			};
 			name = Release;
 		};
-		607FACF31AFB9204008FA782 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50622F4885A3073A79D1DCBE /* Pods-JustTrack_Example_Tests.debug.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JustTrack_Example.app/JustTrack_Example";
-			};
-			name = Debug;
-		};
-		607FACF41AFB9204008FA782 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BDCA1DF5F3C97DF7D10F5A5B /* Pods-JustTrack_Example_Tests.release.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JustTrack_Example.app/JustTrack_Example";
-			};
-			name = Release;
-		};
 		E0CC1EA01D5238F500FD8AF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -980,15 +816,6 @@
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
 				607FACF11AFB9204008FA782 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "JustTrack_Example_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				607FACF31AFB9204008FA782 /* Debug */,
-				607FACF41AFB9204008FA782 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

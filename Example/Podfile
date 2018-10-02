@@ -5,10 +5,6 @@ use_frameworks!
 
 target 'JustTrack_Example' do
   pod 'JustTrack', :path => '../', :testspecs => ['UnitTests']
-
-  target 'JustTrack_Example_Tests' do
-    inherit! :search_paths    
-  end
 end
 
 target 'JustTrack_Example_ObjC' do

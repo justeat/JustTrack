@@ -46,17 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "JustTrack_Example_Tests.xctest"
-               BlueprintName = "JustTrack_Example_Tests"
-               ReferencedContainer = "container:JustTrack.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D64B70A38558B9CC6D9833F7AB0E8FF4"
+               BlueprintIdentifier = "463CD32BF0419C6872ED5F0732DF42E3"
                BuildableName = "JustTrack-Unit-Tests.xctest"
                BlueprintName = "JustTrack-Unit-Tests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
