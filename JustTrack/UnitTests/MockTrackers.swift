@@ -1,5 +1,5 @@
 //
-//  Trackers.swift
+//  MockTrackers.swift
 //  JustTrack
 //
 //  Copyright © 2017 Just Eat Holding Ltd.

@@ -152,7 +152,7 @@ import Foundation
                 self.operationQueue.addOperation(operation)
             }
             else {
-                JTLog("Trying to track and event  (\(event.name)) in an invalid Tracker (\(trackerName))", level: .error)
+                JTLog("Trying to track an event (\"\(event.name)\") in an invalid Tracker (\"\(trackerName)\")", level: .error)
             }
         }
         

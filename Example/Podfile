@@ -4,11 +4,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'JustTrack_Example' do
-  pod 'JustTrack', :path => '../'
-
-  target 'JustTrack_Tests' do
-    inherit! :search_paths    
-  end
+  pod 'JustTrack', :path => '../', :testspecs => ['UnitTests']
 end
 
 target 'JustTrack_Example_ObjC' do

@@ -11,7 +11,7 @@ class JEEventInternal: NSObject, JEEvent {
     var payload: Payload = [:]
     var registeredTrackers: [String] = []
     
-    static func decode(_ dictionary: [String : AnyObject]) -> JEEventInternal? {
+    static func decode(_ dictionary: [String : Any]) -> JEEventInternal? {
         return JEEventInternal(name: dictionary[JEEventEncodingKey.name.rawValue] as! String,
                                payload: dictionary[JEEventEncodingKey.payload.rawValue] as! Payload,
                                registeredTrackers: dictionary[JEEventEncodingKey.trackers.rawValue] as! [String])

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JustTrack'
-  s.version          = '3.0.1'
+  s.version          = '3.1.0'
   s.summary          = 'The Just Eat solution to better manage the analytics tracking on iOS and improve the relationship with your BI team.'
 
   s.description      = <<-DESC
@@ -27,4 +27,7 @@ JustTrack is the event tracking solution we built for that.
   s.source_files = 'JustTrack/Classes/**/*'
   s.preserve_paths = 'JustTrack/JEEventsGenerator/*'
 
+  s.test_spec 'UnitTests' do |test_spec|
+    test_spec.source_files = 'JustTrack/UnitTests/*'
+  end
 end

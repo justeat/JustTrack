@@ -57,7 +57,7 @@ private extension JETrackOperation {
         saveEventDictionary(serializedEvent , key: key)
     }
     
-    func saveEventDictionary(_ eventDictionary: [String: AnyObject], key: String) {
+    func saveEventDictionary(_ eventDictionary: [String: Any], key: String) {
         
         var operations: NSMutableDictionary
         if let outData = UserDefaults.standard.data(forKey: JETracking.kPersistentStorageName) {
