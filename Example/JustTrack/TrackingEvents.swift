@@ -40,13 +40,14 @@
 import Foundation
 import JustTrack
 
-@objcMembers public class JEEventViewScreen: NSObject, JEEvent {
-    public let name: String = "ViewScreen"
+@objcMembers public class JEEventUser: NSObject, JEEvent {
+    public let name: String = "User"
 
     public var payload: Payload {
         return [
-            kScreenName: screenName == "" ? NSNull() : screenName as NSString, 
-            kScreenData: screenData == "" ? NSNull() : screenData as NSString
+            kAction: action == "" ? NSNull() : action as NSString, 
+            kResponse: response == "" ? NSNull() : response as NSString, 
+            kExtra: extra == "" ? NSNull() : extra as NSString
         ]
     }
 
@@ -54,17 +55,21 @@ import JustTrack
         return ["console", "Firebase"]
     }
 
-    private let kScreenName = "screenName"
-    private let kScreenData = "screenData"
+    private let kAction = "action"
+    private let kResponse = "response"
+    private let kExtra = "extra"
 
-    public var screenName: String = ""
-    public var screenData: String = ""
+    public var action: String = ""
+    public var response: String = ""
+    public var extra: String = ""
 
-    public init(screenName: String,
-                screenData: String) {
+    public init(action: String,
+                response: String,
+                extra: String) {
         super.init()
-        self.screenName = screenName
-        self.screenData = screenData
+        self.action = action
+        self.response = response
+        self.extra = extra
     }
 }
 
@@ -101,24 +106,6 @@ import JustTrack
     }
 }
 
-@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
-    public let name: String = "NoPayload"
-
-    public var payload: Payload {
-        return [:]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    
-
-    
-
-    //MARK: Payload not configured
-}
-
 @objcMembers public class JEEventTap: NSObject, JEEvent {
     public let name: String = "Tap"
 
@@ -142,14 +129,31 @@ import JustTrack
     }
 }
 
-@objcMembers public class JEEventUser: NSObject, JEEvent {
-    public let name: String = "User"
+@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
+    public let name: String = "NoPayload"
+
+    public var payload: Payload {
+        return [:]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    
+
+    
+
+    //MARK: Payload not configured
+}
+
+@objcMembers public class JEEventViewScreen: NSObject, JEEvent {
+    public let name: String = "ViewScreen"
 
     public var payload: Payload {
         return [
-            kAction: action == "" ? NSNull() : action as NSString, 
-            kResponse: response == "" ? NSNull() : response as NSString, 
-            kExtra: extra == "" ? NSNull() : extra as NSString
+            kScreenName: screenName == "" ? NSNull() : screenName as NSString, 
+            kScreenData: screenData == "" ? NSNull() : screenData as NSString
         ]
     }
 
@@ -157,20 +161,16 @@ import JustTrack
         return ["console", "Firebase"]
     }
 
-    private let kAction = "action"
-    private let kResponse = "response"
-    private let kExtra = "extra"
+    private let kScreenName = "screenName"
+    private let kScreenData = "screenData"
 
-    public var action: String = ""
-    public var response: String = ""
-    public var extra: String = ""
+    public var screenName: String = ""
+    public var screenData: String = ""
 
-    public init(action: String,
-                response: String,
-                extra: String) {
+    public init(screenName: String,
+                screenData: String) {
         super.init()
-        self.action = action
-        self.response = response
-        self.extra = extra
+        self.screenName = screenName
+        self.screenData = screenData
     }
 }

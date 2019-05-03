@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E0CC1E9B1D5238F500FD8AF8"
-               BuildableName = "JEStructsGenerator"
-               BlueprintName = "JEStructsGenerator"
+               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+               BuildableName = "JustTrack_Example.app"
+               BlueprintName = "JustTrack_Example"
                ReferencedContainer = "container:JustTrack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,13 +28,23 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BAF36B48FE76F37516EBC7519280CB95"
+               BuildableName = "JustTrack-Unit-UnitTests.xctest"
+               BlueprintName = "JustTrack-Unit-UnitTests"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E0CC1E9B1D5238F500FD8AF8"
-            BuildableName = "JEStructsGenerator"
-            BlueprintName = "JEStructsGenerator"
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "JustTrack_Example.app"
+            BlueprintName = "JustTrack_Example"
             ReferencedContainer = "container:JustTrack.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,22 +65,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E0CC1E9B1D5238F500FD8AF8"
-            BuildableName = "JEStructsGenerator"
-            BlueprintName = "JEStructsGenerator"
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "JustTrack_Example.app"
+            BlueprintName = "JustTrack_Example"
             ReferencedContainer = "container:JustTrack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "${SRCROOT}/JustTrack/Events.plist"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "${SRCROOT}/JustTrack/TrackingEvents.swift"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -84,9 +84,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E0CC1E9B1D5238F500FD8AF8"
-            BuildableName = "JEStructsGenerator"
-            BlueprintName = "JEStructsGenerator"
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "JustTrack_Example.app"
+            BlueprintName = "JustTrack_Example"
             ReferencedContainer = "container:JustTrack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

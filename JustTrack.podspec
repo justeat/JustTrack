@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JustTrack'
-  s.version          = '3.2.0'
+  s.version          = '3.3.0'
   s.summary          = 'The Just Eat solution to better manage the analytics tracking on iOS and improve the relationship with your BI team.'
 
   s.description      = <<-DESC
@@ -22,7 +22,7 @@ JustTrack is the event tracking solution we built for that.
   s.source           = { :git => 'https://github.com/justeat/JustTrack.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/justeat_tech'
   
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'JustTrack/Classes/**/*'
