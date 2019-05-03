@@ -40,39 +40,6 @@
 import Foundation
 import JustTrack
 
-@objcMembers public class JEEventUser: NSObject, JEEvent {
-    public let name: String = "User"
-
-    public var payload: Payload {
-        return [
-            kAction: action == "" ? NSNull() : action as NSString, 
-            kResponse: response == "" ? NSNull() : response as NSString, 
-            kExtra: extra == "" ? NSNull() : extra as NSString
-        ]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    private let kAction = "action"
-    private let kResponse = "response"
-    private let kExtra = "extra"
-
-    public var action: String = ""
-    public var response: String = ""
-    public var extra: String = ""
-
-    public init(action: String,
-                response: String,
-                extra: String) {
-        super.init()
-        self.action = action
-        self.response = response
-        self.extra = extra
-    }
-}
-
 @objcMembers public class JEEventExample: NSObject, JEEvent {
     public let name: String = "example"
 
@@ -106,12 +73,14 @@ import JustTrack
     }
 }
 
-@objcMembers public class JEEventTap: NSObject, JEEvent {
-    public let name: String = "Tap"
+@objcMembers public class JEEventUser: NSObject, JEEvent {
+    public let name: String = "User"
 
     public var payload: Payload {
         return [
-            kElementName: elementName == "" ? NSNull() : elementName as NSString
+            kAction: action == "" ? NSNull() : action as NSString, 
+            kResponse: response == "" ? NSNull() : response as NSString, 
+            kExtra: extra == "" ? NSNull() : extra as NSString
         ]
     }
 
@@ -119,32 +88,22 @@ import JustTrack
         return ["console", "Firebase"]
     }
 
-    private let kElementName = "elementName"
+    private let kAction = "action"
+    private let kResponse = "response"
+    private let kExtra = "extra"
 
-    public var elementName: String = ""
+    public var action: String = ""
+    public var response: String = ""
+    public var extra: String = ""
 
-    public init(elementName: String) {
+    public init(action: String,
+                response: String,
+                extra: String) {
         super.init()
-        self.elementName = elementName
+        self.action = action
+        self.response = response
+        self.extra = extra
     }
-}
-
-@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
-    public let name: String = "NoPayload"
-
-    public var payload: Payload {
-        return [:]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    
-
-    
-
-    //MARK: Payload not configured
 }
 
 @objcMembers public class JEEventViewScreen: NSObject, JEEvent {
@@ -172,5 +131,46 @@ import JustTrack
         super.init()
         self.screenName = screenName
         self.screenData = screenData
+    }
+}
+
+@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
+    public let name: String = "NoPayload"
+
+    public var payload: Payload {
+        return [:]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    
+
+    
+
+    //MARK: Payload not configured
+}
+
+@objcMembers public class JEEventTap: NSObject, JEEvent {
+    public let name: String = "Tap"
+
+    public var payload: Payload {
+        return [
+            kElementName: elementName == "" ? NSNull() : elementName as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    private let kElementName = "elementName"
+
+    public var elementName: String = ""
+
+    public init(elementName: String) {
+        super.init()
+        self.elementName = elementName
     }
 }
