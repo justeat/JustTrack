@@ -40,37 +40,45 @@
 import Foundation
 import JustTrack
 
-@objcMembers public class JEEventExample: NSObject, JEEvent {
-    public let name: String = "example"
+@objcMembers public class JEEventTap: NSObject, JEEvent {
+    public let name: String = "Tap"
 
     public var payload: Payload {
         return [
-            kTest1: test1 == "" ? NSNull() : test1 as NSString, 
-            kTest2: test2 == "" ? NSNull() : test2 as NSString, 
-            kTest3: test3 == "" ? NSNull() : test3 as NSString
+            kElementName: elementName == "" ? NSNull() : elementName as NSString
         ]
     }
 
     public var registeredTrackers: [String] {
-        return ["console", "tracker2"]
+        return ["console", "Firebase"]
     }
 
-    private let kTest1 = "test_1"
-    private let kTest2 = "test_2"
-    private let kTest3 = "test_3"
+    private let kElementName = "elementName"
 
-    public var test1: String = ""
-    public var test2: String = ""
-    public var test3: String = ""
+    public var elementName: String = ""
 
-    public init(test1: String,
-                test2: String,
-                test3: String) {
+    public init(elementName: String) {
         super.init()
-        self.test1 = test1
-        self.test2 = test2
-        self.test3 = test3
+        self.elementName = elementName
     }
+}
+
+@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
+    public let name: String = "NoPayload"
+
+    public var payload: Payload {
+        return [:]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    
+
+    
+
+    //MARK: Payload not configured
 }
 
 @objcMembers public class JEEventUser: NSObject, JEEvent {
@@ -106,6 +114,39 @@ import JustTrack
     }
 }
 
+@objcMembers public class JEEventExample: NSObject, JEEvent {
+    public let name: String = "example"
+
+    public var payload: Payload {
+        return [
+            kTest1: test1 == "" ? NSNull() : test1 as NSString, 
+            kTest2: test2 == "" ? NSNull() : test2 as NSString, 
+            kTest3: test3 == "" ? NSNull() : test3 as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "tracker2"]
+    }
+
+    private let kTest1 = "test_1"
+    private let kTest2 = "test_2"
+    private let kTest3 = "test_3"
+
+    public var test1: String = ""
+    public var test2: String = ""
+    public var test3: String = ""
+
+    public init(test1: String,
+                test2: String,
+                test3: String) {
+        super.init()
+        self.test1 = test1
+        self.test2 = test2
+        self.test3 = test3
+    }
+}
+
 @objcMembers public class JEEventViewScreen: NSObject, JEEvent {
     public let name: String = "ViewScreen"
 
@@ -131,46 +172,5 @@ import JustTrack
         super.init()
         self.screenName = screenName
         self.screenData = screenData
-    }
-}
-
-@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
-    public let name: String = "NoPayload"
-
-    public var payload: Payload {
-        return [:]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    
-
-    
-
-    //MARK: Payload not configured
-}
-
-@objcMembers public class JEEventTap: NSObject, JEEvent {
-    public let name: String = "Tap"
-
-    public var payload: Payload {
-        return [
-            kElementName: elementName == "" ? NSNull() : elementName as NSString
-        ]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    private let kElementName = "elementName"
-
-    public var elementName: String = ""
-
-    public init(elementName: String) {
-        super.init()
-        self.elementName = elementName
     }
 }
