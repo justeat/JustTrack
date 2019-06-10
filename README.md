@@ -2,12 +2,14 @@
 
 # JustTrack
 
-[![Build Status](https://app.bitrise.io/app/1cfda509ef91818b/status.svg?token=WF2YoPSZuIctfjiK4H0hjA&branch=master)](https://app.bitrise.io/app/1cfda509ef91818b)
+[![Build Status](https://travis-ci.org/justeat/JustTrack.svg?branch=master)](https://travis-ci.org/justeat/JustTrack)
 [![Version](https://img.shields.io/cocoapods/v/JustTrack.svg?style=flat)](http://cocoapods.org/pods/JustTrack)
 [![License](https://img.shields.io/cocoapods/l/JustTrack.svg?style=flat)](http://cocoapods.org/pods/JustTrack)
 [![Platform](https://img.shields.io/cocoapods/p/JustTrack.svg?style=flat)](http://cocoapods.org/pods/JustTrack)
 
 The Just Eat solution to better manage the analytics tracking on iOS and improve the relationship with your BI team.
+
+- [Just Eat Tech blog](https://tech.just-eat.com/2017/02/01/ios-event-tracking-with-justtrack/)
 
 ## Overview
 
