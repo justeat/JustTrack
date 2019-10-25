@@ -82,16 +82,18 @@ class TrackerTests: XCTestCase {
         trackerService.deliveryType = .batch
         trackerService.dispatchInterval = 2.0
         
+        let expectationTimeout = 4.0
+        
         // WHEN we ask JustTrack to track the event
         trackerService.trackEvent(event)
         
         // AND wait for MORE seconds than the batch size for the events to be processed
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + expectationTimeout) {
             eventExpectation.fulfill()
         }
         
         // THEN the expected trackers have been asked to "track / post" that event
-        waitForExpectations(timeout: 3) { error in
+        waitForExpectations(timeout: expectationTimeout) { error in
             XCTAssertTrue(self.tracker1!.didTrackEvent)
             XCTAssertTrue(self.tracker2!.didTrackEvent)
         }
