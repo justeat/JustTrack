@@ -40,47 +40,6 @@
 import Foundation
 import JustTrack
 
-@objcMembers public class JEEventTap: NSObject, JEEvent {
-    public let name: String = "Tap"
-
-    public var payload: Payload {
-        return [
-            kElementName: elementName == "" ? NSNull() : elementName as NSString
-        ]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    private let kElementName = "elementName"
-
-    public var elementName: String = ""
-
-    public init(elementName: String) {
-        super.init()
-        self.elementName = elementName
-    }
-}
-
-@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
-    public let name: String = "NoPayload"
-
-    public var payload: Payload {
-        return [:]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    
-
-    
-
-    //MARK: Payload not configured
-}
-
 @objcMembers public class JEEventUser: NSObject, JEEvent {
     public let name: String = "User"
 
@@ -172,5 +131,46 @@ import JustTrack
         super.init()
         self.screenName = screenName
         self.screenData = screenData
+    }
+}
+
+@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
+    public let name: String = "NoPayload"
+
+    public var payload: Payload {
+        return [:]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    
+
+    
+
+    //MARK: Payload not configured
+}
+
+@objcMembers public class JEEventTap: NSObject, JEEvent {
+    public let name: String = "Tap"
+
+    public var payload: Payload {
+        return [
+            kElementName: elementName == "" ? NSNull() : elementName as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    private let kElementName = "elementName"
+
+    public var elementName: String = ""
+
+    public init(elementName: String) {
+        super.init()
+        self.elementName = elementName
     }
 }
