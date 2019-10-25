@@ -56,7 +56,7 @@ class TrackerTests: XCTestCase {
         trackerService.trackEvent(event)
         
         // AND wait for a few seconds for the events to be processed
-        let intervalToFireExpectationFulfill = 1.0
+        let intervalToFireExpectationFulfill = 3.0
         DispatchQueue.main.asyncAfter(deadline: .now() + intervalToFireExpectationFulfill) {
             eventExpectation.fulfill()
         }
