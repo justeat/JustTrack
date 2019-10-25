@@ -128,12 +128,13 @@ class TrackerTests: XCTestCase {
         
         // BUT if we wait for MORE seconds than the batch size for the events to be processed
         let eventTrackedExpectation = expectation(description: "Event expectation, BATCH mode.")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        let intervalToFireExpectationFulfill = 3.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + intervalToFireExpectationFulfill) {
             eventTrackedExpectation.fulfill()
         }
         
         // THEN the expected trackers have been asked to "track / post" that event
-        waitForExpectations(timeout: 3) { error in
+        waitForExpectations(timeout: intervalToFireExpectationFulfill + 1) { error in
             XCTAssertTrue(self.tracker1!.didTrackEvent)
             XCTAssertTrue(self.tracker2!.didTrackEvent)
         }
