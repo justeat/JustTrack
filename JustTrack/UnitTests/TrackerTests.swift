@@ -56,12 +56,13 @@ class TrackerTests: XCTestCase {
         trackerService.trackEvent(event)
         
         // AND wait for a few seconds for the events to be processed
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        let intervalToFireExpectationFulfill = 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + intervalToFireExpectationFulfill) {
             eventExpectation.fulfill()
         }
         
         // THEN the expected trackers have been asked to "track / post" that event
-        waitForExpectations(timeout: 1) { error in
+        waitForExpectations(timeout: intervalToFireExpectationFulfill + 1) { error in
             XCTAssertTrue(self.tracker1!.didTrackEvent)
             XCTAssertTrue(self.tracker2!.didTrackEvent)
         }
@@ -93,7 +94,7 @@ class TrackerTests: XCTestCase {
         }
         
         // THEN the expected trackers have been asked to "track / post" that event
-        waitForExpectations(timeout: expectationTimeout) { error in
+        waitForExpectations(timeout: expectationTimeout + 1) { error in
             XCTAssertTrue(self.tracker1!.didTrackEvent)
             XCTAssertTrue(self.tracker2!.didTrackEvent)
         }
@@ -217,12 +218,13 @@ class TrackerTests: XCTestCase {
         trackerService.trackEvent(event)
         
         // AND wait for a few seconds for the events to be processed
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        let intervalToFireExpectationFulfill = 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + intervalToFireExpectationFulfill) {
             eventExpectation.fulfill()
         }
         
         // THEN ONLY tracker1 ("MockTracker") has been asked to track the event
-        waitForExpectations(timeout: 1) { error in
+        waitForExpectations(timeout: intervalToFireExpectationFulfill + 1) { error in
             XCTAssertTrue(self.tracker1!.didTrackEvent)
             XCTAssertFalse(self.tracker2!.didTrackEvent)
         }
@@ -245,12 +247,13 @@ class TrackerTests: XCTestCase {
         let didAttemptToTrack = trackerService.trackEvent(event)
         
         // AND wait for a few seconds for the events to be processed
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        let intervalToFireExpectationFulfill = 1.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + intervalToFireExpectationFulfill) {
             eventExpectation.fulfill()
         }
         
         // THEN we should not have attempted to track the event
-        waitForExpectations(timeout: 1) { error in
+        waitForExpectations(timeout: intervalToFireExpectationFulfill + 1) { error in
             XCTAssertFalse(didAttemptToTrack)
             XCTAssertFalse(self.tracker1!.didTrackEvent)
         }
