@@ -73,6 +73,34 @@ import JustTrack
     }
 }
 
+@objcMembers public class JEEventViewScreen: NSObject, JEEvent {
+    public let name: String = "ViewScreen"
+
+    public var payload: Payload {
+        return [
+            kScreenName: screenName == "" ? NSNull() : screenName as NSString, 
+            kScreenData: screenData == "" ? NSNull() : screenData as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    private let kScreenName = "screenName"
+    private let kScreenData = "screenData"
+
+    public var screenName: String = ""
+    public var screenData: String = ""
+
+    public init(screenName: String,
+                screenData: String) {
+        super.init()
+        self.screenName = screenName
+        self.screenData = screenData
+    }
+}
+
 @objcMembers public class JEEventExample: NSObject, JEEvent {
     public let name: String = "example"
 
@@ -103,34 +131,6 @@ import JustTrack
         self.test1 = test1
         self.test2 = test2
         self.test3 = test3
-    }
-}
-
-@objcMembers public class JEEventViewScreen: NSObject, JEEvent {
-    public let name: String = "ViewScreen"
-
-    public var payload: Payload {
-        return [
-            kScreenName: screenName == "" ? NSNull() : screenName as NSString, 
-            kScreenData: screenData == "" ? NSNull() : screenData as NSString
-        ]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    private let kScreenName = "screenName"
-    private let kScreenData = "screenData"
-
-    public var screenName: String = ""
-    public var screenData: String = ""
-
-    public init(screenName: String,
-                screenData: String) {
-        super.init()
-        self.screenName = screenName
-        self.screenData = screenData
     }
 }
 
