@@ -20,13 +20,13 @@ class TrackerTests: XCTestCase {
     // MARK: - Setup
     override func setUp() {
         super.setUp()
-        trackerService = JETracking.sharedInstance
+        trackerService = JETracking()
         trackerService.loadDefaultTracker(.consoleLogger)
         trackerService.logClosure = { (logString: String, logLevel: JETrackingLogLevel) -> Void in
             print("[trackerService] [\(logLevel.rawValue)] \(logString)")
         }
         
-        tracker1  = MockTracker()
+        tracker1 = MockTracker()
         tracker2 = SomeOtherMockTracker()
     }
     
@@ -109,7 +109,7 @@ class TrackerTests: XCTestCase {
         
         // AND wait for LESS seconds than the batch size for the events to be processed
         // THEN the expected trackers have NOT been asked to "track / post" that event yet
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             XCTAssertEqual(self.tracker1!.trackEventInvocationCount, 0)
             XCTAssertEqual(self.tracker2!.trackEventInvocationCount, 0)
             eventNotTrackedExpectation.fulfill()
