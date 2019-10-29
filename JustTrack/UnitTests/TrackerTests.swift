@@ -143,9 +143,9 @@ class TrackerTests: XCTestCase {
         
         // AND wait for the events to be processed
         // THEN ONLY tracker1 ("MockTracker") has been asked to track the event
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertEqual(self.tracker1!.trackEventInvocationCount, 1)
-            XCTAssertEqual(self.tracker2!.trackEventInvocationCount, 0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            XCTAssertEqual(self.tracker1!.trackEventInvocationCount, 1, "Registered Tracker1 has not been called")
+            XCTAssertEqual(self.tracker2!.trackEventInvocationCount, 0, "Unregistered Tracker2 has been called, but it should not be called")
             eventExpectation.fulfill()
         }
         
