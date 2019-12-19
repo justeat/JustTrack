@@ -6,7 +6,3 @@ use_frameworks!
 target 'JustTrack_Example' do
   pod 'JustTrack', :path => '../', :testspecs => ['UnitTests']
 end
-
-target 'JustTrack_Example_ObjC' do
-    pod 'JustTrack', :path => '../'
-end
