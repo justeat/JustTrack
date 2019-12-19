@@ -208,7 +208,7 @@ import Foundation
     fileprivate lazy var operationQueue: OperationQueue = {
         
         var queue: OperationQueue = OperationQueue()
-        queue.name = "Tracking brackground queue"
+        queue.name = "Tracking background queue"
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = QualityOfService.background
         
