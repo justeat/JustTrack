@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E0CC1E9B1D5238F500FD8AF8"
-               BuildableName = "JEStructsGenerator"
-               BlueprintName = "JEStructsGenerator"
+               BuildableName = "EventGenerator"
+               BlueprintName = "EventGenerator"
                ReferencedContainer = "container:JustTrack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,19 +27,17 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E0CC1E9B1D5238F500FD8AF8"
-            BuildableName = "JEStructsGenerator"
-            BlueprintName = "JEStructsGenerator"
+            BuildableName = "EventGenerator"
+            BlueprintName = "EventGenerator"
             ReferencedContainer = "container:JustTrack.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -56,14 +54,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E0CC1E9B1D5238F500FD8AF8"
-            BuildableName = "JEStructsGenerator"
-            BlueprintName = "JEStructsGenerator"
+            BuildableName = "EventGenerator"
+            BlueprintName = "EventGenerator"
             ReferencedContainer = "container:JustTrack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "${SRCROOT}/JustTrack/Events.plist"
+            argument = "${SRCROOT}/JustTrack/Events_with_errors.plist"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -71,8 +69,6 @@
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -85,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E0CC1E9B1D5238F500FD8AF8"
-            BuildableName = "JEStructsGenerator"
-            BlueprintName = "JEStructsGenerator"
+            BuildableName = "EventGenerator"
+            BlueprintName = "EventGenerator"
             ReferencedContainer = "container:JustTrack.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
