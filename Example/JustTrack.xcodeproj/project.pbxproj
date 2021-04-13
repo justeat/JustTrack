@@ -515,6 +515,7 @@
 				DEVELOPMENT_TEAM = ZKPN288GRK;
 				INFOPLIST_FILE = JustTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.justeat.JustTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -530,6 +531,7 @@
 				DEVELOPMENT_TEAM = ZKPN288GRK;
 				INFOPLIST_FILE = JustTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.justeat.JustTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
