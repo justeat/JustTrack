@@ -208,7 +208,7 @@ import Foundation
     fileprivate lazy var operationQueue: OperationQueue = {
         
         var queue: OperationQueue = OperationQueue()
-        queue.name = "Tracking background queue"
+        queue.name = "com.justtrack.trackDispatchQueue"
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = QualityOfService.background
         
