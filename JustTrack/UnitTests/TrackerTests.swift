@@ -15,7 +15,7 @@ class TrackerTests: XCTestCase {
     // MARK: - Stubs / Mocks
     
     var tracker1:MockTracker?
-    var tracker2:SomeOtherMockTracker?
+    var tracker2:AnotherMockTracker?
     
     // MARK: - Setup
     override func setUp() {
@@ -27,7 +27,7 @@ class TrackerTests: XCTestCase {
         }
         
         tracker1 = MockTracker()
-        tracker2 = SomeOtherMockTracker()
+        tracker2 = AnotherMockTracker()
     }
     
     // MARK: - Teardown
@@ -46,7 +46,7 @@ class TrackerTests: XCTestCase {
         let tracker2EventExpectation = expectation(description: "Event is tracked in IMMEDIATE dispatch mode for tracker2")
         
         // GIVEN an event targeted to "Mock Tracker" and "Some Other Mock Tracker"
-        let event = JEEventExample(trackers: "MockTracker", "SomeOtherMockTracker")
+        let event = JEEventExample(trackers: "MockTracker", "AnotherMockTracker")
         
         // AND a tracker service using these two trackers in "immediate" mode
         trackerService.loadCustomTracker(tracker1!)
@@ -70,7 +70,7 @@ class TrackerTests: XCTestCase {
         let tracker2EventExpectation = expectation(description: "Event is tracked in BATCH dispatch mode for tracker2")
 
         // GIVEN an event targeted to "Mock Tracker" and "Some Other Mock Tracker"
-        let event = JEEventExample(trackers: "MockTracker", "SomeOtherMockTracker")
+        let event = JEEventExample(trackers: "MockTracker", "AnotherMockTracker")
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
         trackerService.loadCustomTracker(tracker1!)
@@ -94,7 +94,7 @@ class TrackerTests: XCTestCase {
         let tracker2EventExpectation = expectation(description: "Event tracking should respect BATCH mode dispatch times for tracker2")
 
         // GIVEN an event targeted to "Mock Tracker" and "Some Other Mock Tracker"
-        let event = JEEventExample(trackers: "MockTracker", "SomeOtherMockTracker")
+        let event = JEEventExample(trackers: "MockTracker", "AnotherMockTracker")
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
         trackerService.loadCustomTracker(tracker1!)
@@ -162,7 +162,7 @@ class TrackerTests: XCTestCase {
         event.test2 = "value2"
         event.test3 = "value3"
         
-        // AND a tracker service using "MockTracker" and "SomeOtherMockTracker"
+        // AND a tracker service using "MockTracker" and "AnotherMockTracker"
         trackerService.loadCustomTracker(tracker1!)
         trackerService.loadCustomTracker(tracker2!)
         trackerService.deliveryType = .immediate
@@ -189,7 +189,7 @@ class TrackerTests: XCTestCase {
         // GIVEN an event targeted to "Mock Tracker" only
         let event = JEEventExample(trackers: "mockTracker")
         
-        // AND a tracker service using "MockTracker" and "SomeOtherMockTracker"
+        // AND a tracker service using "MockTracker" and "AnotherMockTracker"
         trackerService.loadCustomTracker(tracker1!)
         trackerService.loadCustomTracker(tracker2!)
         trackerService.deliveryType = .immediate
@@ -216,7 +216,7 @@ class TrackerTests: XCTestCase {
         let eventExpectation = expectation(description: "Service should not attempt to track invalid event.")
         
         // GIVEN an INVALID event (event without name and / or trackers)
-        let event = JEEventInvalid()
+        let event = JEEventInvalidExample()
         
         // AND a tracker service using some tracker
         trackerService.loadCustomTracker(tracker1!)

@@ -200,7 +200,7 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
          let key1 : String
          let key2 : String
          */
-        let eventKeysVars: String = try generateEventKeysVars(cleanKeys)
+        let eventKeysVars: String = try generateEventKeysVariables(cleanKeys)
         structString = replacePlaceholder(structString, placeholder: "<*\(JETemplatePlaceholder.keysVars.rawValue)*>", value: eventKeysVars)
         
         /*
@@ -294,7 +294,7 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
     return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
 }
 
-private func generateEventKeysVars(_ keys: [String]) throws -> String {
+private func generateEventKeysVariables(_ keys: [String]) throws -> String {
     
     let structVarTemplate: String = try stringFromTemplate(JETemplate.keyVar.rawValue)
     var resultArray: [String] = Array()

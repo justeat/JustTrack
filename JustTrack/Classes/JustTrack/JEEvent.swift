@@ -14,7 +14,7 @@ public enum JEEventEncodingKey: String {
     case trackers
 }
 
-@objc public protocol JEEvent {
+public protocol JEEvent {
     var name: String { get }
     var payload: Payload { get }
     var registeredTrackers: [String] { get }
