@@ -21,7 +21,7 @@ final class MockTracker: NSObject, JETracker {
     }
 }
 
-final class SomeOtherMockTracker: NSObject, JETracker {
+final class AnotherMockTracker: NSObject, JETracker {
     let name = "SomeOtherMockTracker"
     var didTrackExpectation: XCTestExpectation?
     var trackEventInvocationCount = 0

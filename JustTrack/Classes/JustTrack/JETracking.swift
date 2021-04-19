@@ -18,7 +18,7 @@ import Foundation
 /// ````
 ///
 /// - seealso: `logClosure`
-@objc public enum JETrackingLogLevel: NSInteger {
+public enum JETrackingLogLevel: NSInteger {
     case verbose
     case debug
     case info
@@ -33,7 +33,7 @@ import Foundation
 /// ```
 ///
 /// - seealso: `dispatchInterval`
-@objc public enum JETrackingDeliveryType: NSInteger {
+public enum JETrackingDeliveryType: NSInteger {
     /// Will wait before dispatching events to trackers based on `dispatchInterval`.
     case batch
     
@@ -46,13 +46,13 @@ import Foundation
 /// ````
 /// case consoleLogger
 /// ````
-@objc public enum JETrackerType : NSInteger {
+public enum JETrackerType : NSInteger {
     case consoleLogger
 }
 
 /// JETracking manages the mapping and dispatching of events to trackers.
 /// - TODO: More elaborate documentation for this with example usage.
-@objcMembers public class JETracking: NSObject {
+public class JETracking: NSObject {
     
     // MARK: - Internal Properties
     

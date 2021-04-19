@@ -130,7 +130,7 @@ An Event is made of:
 ##### Generated Swift Class
 
 ```Swift
-@objcMembers public class JEEventUser: NSObject, JEEvent {
+public class JEEventUser: NSObject, JEEvent {
 
     // JEEvent protocol
     public let name: String = "User"

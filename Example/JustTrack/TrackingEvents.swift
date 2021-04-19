@@ -2,7 +2,7 @@
 
 /*example
 
-@objcMembers public class JEEventExample: NSObject, JEEvent {
+public class JEEventExample: NSObject, JEEvent {
     public let name: String = "example"
 
     public var payload: Payload {
@@ -40,58 +40,25 @@
 import Foundation
 import JustTrack
 
-@objcMembers public class JEEventTap: NSObject, JEEvent {
-    public let name: String = "Tap"
+public class JEEventNoPayload: NSObject, JEEvent {
+    public let name: String = "NoPayload"
 
     public var payload: Payload {
-        return [
-            kElementName: elementName == "" ? NSNull() : elementName as NSString
-        ]
+        return [:]
     }
 
     public var registeredTrackers: [String] {
         return ["console", "Firebase"]
     }
 
-    private let kElementName = "elementName"
+    
 
-    public var elementName: String = ""
+    
 
-    public init(elementName: String) {
-        super.init()
-        self.elementName = elementName
-    }
+    //MARK: Payload not configured
 }
 
-@objcMembers public class JEEventViewScreen: NSObject, JEEvent {
-    public let name: String = "ViewScreen"
-
-    public var payload: Payload {
-        return [
-            kScreenName: screenName == "" ? NSNull() : screenName as NSString, 
-            kScreenData: screenData == "" ? NSNull() : screenData as NSString
-        ]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    private let kScreenName = "screenName"
-    private let kScreenData = "screenData"
-
-    public var screenName: String = ""
-    public var screenData: String = ""
-
-    public init(screenName: String,
-                screenData: String) {
-        super.init()
-        self.screenName = screenName
-        self.screenData = screenData
-    }
-}
-
-@objcMembers public class JEEventExample: NSObject, JEEvent {
+public class JEEventExample: NSObject, JEEvent {
     public let name: String = "example"
 
     public var payload: Payload {
@@ -124,25 +91,30 @@ import JustTrack
     }
 }
 
-@objcMembers public class JEEventNoPayload: NSObject, JEEvent {
-    public let name: String = "NoPayload"
+public class JEEventTap: NSObject, JEEvent {
+    public let name: String = "Tap"
 
     public var payload: Payload {
-        return [:]
+        return [
+            kElementName: elementName == "" ? NSNull() : elementName as NSString
+        ]
     }
 
     public var registeredTrackers: [String] {
         return ["console", "Firebase"]
     }
 
-    
+    private let kElementName = "elementName"
 
-    
+    public var elementName: String = ""
 
-    //MARK: Payload not configured
+    public init(elementName: String) {
+        super.init()
+        self.elementName = elementName
+    }
 }
 
-@objcMembers public class JEEventUser: NSObject, JEEvent {
+public class JEEventUser: NSObject, JEEvent {
     public let name: String = "User"
 
     public var payload: Payload {
@@ -172,5 +144,33 @@ import JustTrack
         self.action = action
         self.response = response
         self.extra = extra
+    }
+}
+
+public class JEEventViewScreen: NSObject, JEEvent {
+    public let name: String = "ViewScreen"
+
+    public var payload: Payload {
+        return [
+            kScreenName: screenName == "" ? NSNull() : screenName as NSString, 
+            kScreenData: screenData == "" ? NSNull() : screenData as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    private let kScreenName = "screenName"
+    private let kScreenData = "screenData"
+
+    public var screenName: String = ""
+    public var screenData: String = ""
+
+    public init(screenName: String,
+                screenData: String) {
+        super.init()
+        self.screenName = screenName
+        self.screenData = screenData
     }
 }
