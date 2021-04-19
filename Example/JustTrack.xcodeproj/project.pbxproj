@@ -50,8 +50,6 @@
 		21675A35E21330467F875074 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A64F5DDAC33D55C7BE4A3 /* Pods-JustTrack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Tests/Pods-JustTrack_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4544CED3F31AEB9E0E041E76 /* JustTrack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JustTrack.podspec; path = ../JustTrack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		483FC80E1DCCF18B008E2EE0 /* Trackers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trackers.swift; sourceTree = "<group>"; };
-		483FC8101DD09CCC008E2EE0 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		4ACC5FA321CD52C8330640C9 /* Pods_Example_with_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_with_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CA4E1D9F2BACAD9A21D947C /* Pods-JustTrack_Example_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example_ObjC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example_ObjC/Pods-JustTrack_Example_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
 		587548F5EB6E75F385206CFC /* Pods-JustTrack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -61,8 +59,6 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTests.swift; sourceTree = "<group>"; };
 		695000F9344F9959D5739C1B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		8BDBAFDA2677AEAF650C3BDC /* Pods-JustTrack_Example_ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example_ObjC.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example_ObjC/Pods-JustTrack_Example_ObjC.release.xcconfig"; sourceTree = "<group>"; };
 		92C2380C0281280B47E02DF4 /* Pods-Example with Objective-C.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example with Objective-C.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example with Objective-C/Pods-Example with Objective-C.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +110,6 @@
 				C8566BE21E293F8500CC27E3 /* JEEventsGenerator */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for JustTrack */,
-				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				C7FDF60032E4F6772636D32B /* Frameworks */,
 				78EEC4026664FC2BF79F01FB /* Pods */,
@@ -151,25 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				607FACD41AFB9204008FA782 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		607FACE81AFB9204008FA782 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEB1AFB9204008FA782 /* TrackerTests.swift */,
-				483FC8101DD09CCC008E2EE0 /* Events.swift */,
-				483FC80E1DCCF18B008E2EE0 /* Trackers.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		607FACE91AFB9204008FA782 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -539,6 +515,7 @@
 				DEVELOPMENT_TEAM = ZKPN288GRK;
 				INFOPLIST_FILE = JustTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.justeat.JustTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -554,6 +531,7 @@
 				DEVELOPMENT_TEAM = ZKPN288GRK;
 				INFOPLIST_FILE = JustTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.justeat.JustTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";

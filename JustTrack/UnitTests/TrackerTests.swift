@@ -15,7 +15,7 @@ class TrackerTests: XCTestCase {
     // MARK: - Stubs / Mocks
     
     var tracker1:MockTracker?
-    var tracker2:SomeOtherMockTracker?
+    var tracker2:AnotherMockTracker?
     
     // MARK: - Setup
     override func setUp() {
@@ -27,7 +27,7 @@ class TrackerTests: XCTestCase {
         }
         
         tracker1 = MockTracker()
-        tracker2 = SomeOtherMockTracker()
+        tracker2 = AnotherMockTracker()
     }
     
     // MARK: - Teardown
@@ -216,7 +216,7 @@ class TrackerTests: XCTestCase {
         let eventExpectation = expectation(description: "Service should not attempt to track invalid event.")
         
         // GIVEN an INVALID event (event without name and / or trackers)
-        let event = JEEventInvalid()
+        let event = JEEventInvalidExample()
         
         // AND a tracker service using some tracker
         trackerService.loadCustomTracker(tracker1!)

@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         trackingService.trackEvent(JEEventNoPayload())
     }
     
-    func  configureJustTrack() -> JETracking {
+    func configureJustTrack() -> JETracking {
         let jeTracker: JETracking = JETracking.sharedInstance
         jeTracker.deliveryType = .batch
         jeTracker.logClosure = { (logString: String, logLevel: JETrackingLogLevel) -> Void in
