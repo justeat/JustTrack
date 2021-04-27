@@ -151,14 +151,12 @@ private func sanitised(_ originalString: String) -> String {
     {
         result = ""
         for component in componantsByUnderscore {
-            print (component.startIndex)
             if component != componantsByUnderscore[0] {
                 result.append(component.capitalized)
             }
             else {
                 result.append(component)
             }
-
         }
     }
     return result
@@ -420,14 +418,3 @@ catch {
 }
 
 log(msg: "**Swift code generated successfully**")
-
-
-//func camelCase(string: String) -> String {
-//    for char in string {
-//        if char == "_" {
-//            string[char + 1].uppercased()
-//            string.drop(while: char)
-//
-//        }
-//    }
-//}
