@@ -40,8 +40,8 @@ public class JEEventExample: NSObject, JEEvent {
 import Foundation
 import JustTrack
 
-public class JEEventUser: NSObject, JEEvent {
-    public let name: String = "User"
+public class JEEventNoPayload: NSObject, JEEvent {
+    public let name: String = "NoPayload"
 
     public var payload: Payload {
         return [:]
@@ -51,21 +51,33 @@ public class JEEventUser: NSObject, JEEvent {
         return ["console", "Firebase"]
     }
 
-    private let kAction = "action"
-    private let kResponse = "response"
-    private let kExtra = "extra"
+    
 
-    public var action: String = ""
-    public var response: String = ""
-    public var extra: String = ""
+    
 
-    public init(action: String,
-                response: String,
-                extra: String) {
+    //MARK: Payload not configured
+}
+
+public class JEEventTap: NSObject, JEEvent {
+    public let name: String = "Tap"
+
+    public var payload: Payload {
+        return [
+            kElementName: elementName == "" ? NSNull() : elementName as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    private let kElementName = "elementName"
+
+    public var elementName: String = ""
+
+    public init(elementName: String) {
         super.init()
-        self.action = action
-        self.response = response
-        self.extra = extra
+        self.elementName = elementName
     }
 }
 
@@ -73,7 +85,12 @@ public class JEEventViewScreen: NSObject, JEEvent {
     public let name: String = "ViewScreen"
 
     public var payload: Payload {
-        return [:]
+        return [
+            kScreenName: screenName == "" ? NSNull() : screenName as NSString, 
+            kScreenData: screenData == "" ? NSNull() : screenData as NSString, 
+            kScreenDataVar: screenDataVar == "" ? NSNull() : screenDataVar as NSString, 
+            kScreenDataVarSetting: screenDataVarSetting == "" ? NSNull() : screenDataVarSetting as NSString
+        ]
     }
 
     public var registeredTrackers: [String] {
@@ -102,11 +119,48 @@ public class JEEventViewScreen: NSObject, JEEvent {
     }
 }
 
+public class JEEventUser: NSObject, JEEvent {
+    public let name: String = "User"
+
+    public var payload: Payload {
+        return [
+            kAction: action == "" ? NSNull() : action as NSString, 
+            kResponse: response == "" ? NSNull() : response as NSString, 
+            kExtra: extra == "" ? NSNull() : extra as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    private let kAction = "action"
+    private let kResponse = "response"
+    private let kExtra = "extra"
+
+    public var action: String = ""
+    public var response: String = ""
+    public var extra: String = ""
+
+    public init(action: String,
+                response: String,
+                extra: String) {
+        super.init()
+        self.action = action
+        self.response = response
+        self.extra = extra
+    }
+}
+
 public class JEEventExample: NSObject, JEEvent {
     public let name: String = "example"
 
     public var payload: Payload {
-        return [:]
+        return [
+            kTest1: test1 == "" ? NSNull() : test1 as NSString, 
+            kTest2: test2 == "" ? NSNull() : test2 as NSString, 
+            kTest3: test3 == "" ? NSNull() : test3 as NSString
+        ]
     }
 
     public var registeredTrackers: [String] {
@@ -128,44 +182,5 @@ public class JEEventExample: NSObject, JEEvent {
         self.test1 = test1
         self.test2 = test2
         self.test3 = test3
-    }
-}
-
-public class JEEventNoPayload: NSObject, JEEvent {
-    public let name: String = "NoPayload"
-
-    public var payload: Payload {
-        return [:]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    
-
-    
-
-    //MARK: Payload not configured
-}
-
-public class JEEventTap: NSObject, JEEvent {
-    public let name: String = "Tap"
-
-    public var payload: Payload {
-        return [:]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    private let kElementName = "elementName"
-
-    public var elementName: String = ""
-
-    public init(elementName: String) {
-        super.init()
-        self.elementName = elementName
     }
 }
