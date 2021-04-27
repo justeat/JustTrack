@@ -101,7 +101,8 @@ func urlForTemplate(_ templateName: String) throws -> URL {
     return url!
 }
 
-//load the specific template
+//Load the specific template
+
 func stringFromTemplate(_ templateName: String) throws -> String {
     
     let url: URL = try urlForTemplate(templateName)
@@ -264,11 +265,11 @@ private func replacePlaceholder(_ original: String, placeholder: String, value: 
 
 func generateEventKeyValueChain(_ keys: [String]) -> String {
     
-    let resultArray: [String] = Array()
+    var resultArray: [String] = Array()
     for keyString in keys {
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex, with: String(capKeyString[capKeyString.startIndex]).capitalized)
-        //resultArray.append("k\(capKeyString): \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
+        resultArray.append("k\(capKeyString): \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
     }
     
     if (resultArray.count > 0) {
