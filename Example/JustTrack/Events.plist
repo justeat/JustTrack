@@ -29,6 +29,7 @@
 			<array>
 				<string>screenName</string>
 				<string>screenData</string>
+				<string>screenData_var</string>
 			</array>
 		</dict>
 		<key>Tap</key>

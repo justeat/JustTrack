@@ -141,12 +141,26 @@ private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
 private func sanitised(_ originalString: String) -> String {
     var result = originalString
     
-    var components = result.components(separatedBy: .whitespacesAndNewlines)
+    let components = result.components(separatedBy: .whitespacesAndNewlines)
     result = components.joined(separator: "")
     
-    components = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
-    result = components.joined(separator: "")
+    let componantsByUnderscore = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
     
+    print (componantsByUnderscore)
+    if !componantsByUnderscore.isEmpty
+    {
+        result = ""
+        for component in componantsByUnderscore {
+            print (component.startIndex)
+            if component != componantsByUnderscore[0] {
+                result.append(component.capitalized)
+            }
+            else {
+                result.append(component)
+            }
+
+        }
+    }
     return result
 }
 
@@ -253,11 +267,11 @@ private func replacePlaceholder(_ original: String, placeholder: String, value: 
 
 func generateEventKeyValueChain(_ keys: [String]) -> String {
     
-    var resultArray: [String] = Array()
+    let resultArray: [String] = Array()
     for keyString in keys {
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex, with: String(capKeyString[capKeyString.startIndex]).capitalized)
-        resultArray.append("k\(capKeyString): \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
+        //resultArray.append("k\(capKeyString): \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
     }
     
     if (resultArray.count > 0) {
@@ -406,3 +420,14 @@ catch {
 }
 
 log(msg: "**Swift code generated successfully**")
+
+
+//func camelCase(string: String) -> String {
+//    for char in string {
+//        if char == "_" {
+//            string[char + 1].uppercased()
+//            string.drop(while: char)
+//
+//        }
+//    }
+//}
