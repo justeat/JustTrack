@@ -145,14 +145,13 @@ private func sanitised(_ originalString: String) -> String {
     result = components.joined(separator: "")
     
     let componantsByUnderscore = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
-    
-    print (componantsByUnderscore)
+
     if !componantsByUnderscore.isEmpty
     {
         result = ""
         for component in componantsByUnderscore {
             if component != componantsByUnderscore[0] {
-                result.append(component.capitalized)
+                result.append(component.capitalizingFirstLetter())
             }
             else {
                 result.append(component)
@@ -418,3 +417,9 @@ catch {
 }
 
 log(msg: "**Swift code generated successfully**")
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.dropFirst()
+    }
+}

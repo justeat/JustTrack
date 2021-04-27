@@ -69,8 +69,8 @@ public class JEEventUser: NSObject, JEEvent {
     }
 }
 
-public class JEEventTap: NSObject, JEEvent {
-    public let name: String = "Tap"
+public class JEEventViewScreen: NSObject, JEEvent {
+    public let name: String = "ViewScreen"
 
     public var payload: Payload {
         return [:]
@@ -80,32 +80,26 @@ public class JEEventTap: NSObject, JEEvent {
         return ["console", "Firebase"]
     }
 
-    private let kElementName = "elementName"
+    private let kScreenName = "screenName"
+    private let kScreenData = "screenData"
+    private let kScreenDataVar = "screenData_var"
+    private let kScreenDataVarSetting = "screenData_varSetting"
 
-    public var elementName: String = ""
+    public var screenName: String = ""
+    public var screenData: String = ""
+    public var screenDataVar: String = ""
+    public var screenDataVarSetting: String = ""
 
-    public init(elementName: String) {
+    public init(screenName: String,
+                screenData: String,
+                screenDataVar: String,
+                screenDataVarSetting: String) {
         super.init()
-        self.elementName = elementName
+        self.screenName = screenName
+        self.screenData = screenData
+        self.screenDataVar = screenDataVar
+        self.screenDataVarSetting = screenDataVarSetting
     }
-}
-
-public class JEEventNoPayload: NSObject, JEEvent {
-    public let name: String = "NoPayload"
-
-    public var payload: Payload {
-        return [:]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "Firebase"]
-    }
-
-    
-
-    
-
-    //MARK: Payload not configured
 }
 
 public class JEEventExample: NSObject, JEEvent {
@@ -137,8 +131,8 @@ public class JEEventExample: NSObject, JEEvent {
     }
 }
 
-public class JEEventViewScreen: NSObject, JEEvent {
-    public let name: String = "ViewScreen"
+public class JEEventNoPayload: NSObject, JEEvent {
+    public let name: String = "NoPayload"
 
     public var payload: Payload {
         return [:]
@@ -148,20 +142,30 @@ public class JEEventViewScreen: NSObject, JEEvent {
         return ["console", "Firebase"]
     }
 
-    private let kScreenName = "screenName"
-    private let kScreenData = "screenData"
-    private let kScreenDataVar = "screenData_var"
+    
 
-    public var screenName: String = ""
-    public var screenData: String = ""
-    public var screenDataVar: String = ""
+    
 
-    public init(screenName: String,
-                screenData: String,
-                screenDataVar: String) {
+    //MARK: Payload not configured
+}
+
+public class JEEventTap: NSObject, JEEvent {
+    public let name: String = "Tap"
+
+    public var payload: Payload {
+        return [:]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "Firebase"]
+    }
+
+    private let kElementName = "elementName"
+
+    public var elementName: String = ""
+
+    public init(elementName: String) {
         super.init()
-        self.screenName = screenName
-        self.screenData = screenData
-        self.screenDataVar = screenDataVar
+        self.elementName = elementName
     }
 }
