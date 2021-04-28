@@ -101,7 +101,8 @@ func urlForTemplate(_ templateName: String) throws -> URL {
     return url!
 }
 
-//load the specific template
+//Load the specific template
+
 func stringFromTemplate(_ templateName: String) throws -> String {
     
     let url: URL = try urlForTemplate(templateName)
@@ -141,12 +142,23 @@ private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
 private func sanitised(_ originalString: String) -> String {
     var result = originalString
     
-    var components = result.components(separatedBy: .whitespacesAndNewlines)
+    let components = result.components(separatedBy: .whitespacesAndNewlines)
     result = components.joined(separator: "")
     
-    components = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
-    result = components.joined(separator: "")
-    
+    let componantsByUnderscore = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
+
+    if !componantsByUnderscore.isEmpty
+    {
+        result = ""
+        for component in componantsByUnderscore {
+            if component != componantsByUnderscore[0] {
+                result.append(component.capitalizingFirstLetter())
+            }
+            else {
+                result.append(component)
+            }
+        }
+    }
     return result
 }
 
@@ -406,3 +418,9 @@ catch {
 }
 
 log(msg: "**Swift code generated successfully**")
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.dropFirst()
+    }
+}
