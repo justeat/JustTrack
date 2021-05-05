@@ -177,7 +177,7 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
     let resultString: NSMutableString = NSMutableString(string: structListTemplateString)
     var structsArray: [String] = Array()
     
-    for eventName: String in events.keys {
+    for eventName: String in events.keys.sorted(by: >) {
         
         let eventDic: [String : AnyObject]? = events[eventName] as? [String : AnyObject]
         
