@@ -46,18 +46,18 @@ public enum TrackingDeliveryType: NSInteger {
 /// ````
 /// case consoleLogger
 /// ````
-public enum JETrackerType : NSInteger {
+public enum TrackerType : NSInteger {
     case consoleLogger
 }
 
-/// JETracking manages the mapping and dispatching of events to trackers.
+/// Tracking manages the mapping and dispatching of events to trackers.
 /// - TODO: More elaborate documentation for this with example usage.
 public class EventTracking: NSObject {
     
     // MARK: - Internal Properties
     
-    static let kJEEventTrackerEventsPlistName = "kJEEventTrackerEventsPlistName"
-    static let kPersistentStorageName = "com.justeat.JETrackOperations"
+    static let kEventTrackerEventsPlistName = "kEventTrackerEventsPlistName"
+    static let kPersistentStorageName = "com.justeat.TrackOperations"
     
     // MARK: - API
     
@@ -74,7 +74,7 @@ public class EventTracking: NSObject {
     ///
     /// For example, you could use:
     /// ````
-    /// myTrackingService.logClosure = { (logString: String, logLevel: JETrackingLogLevel) -> Void in
+    /// myTrackingService.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
     ///        print("[TrackingService] [\(logLevel.rawValue)] \(logString)")
     /// }
     /// ````
@@ -86,15 +86,15 @@ public class EventTracking: NSObject {
     ///
     /// Default value is `immediate`.
     ///
-    /// - seealso: `JETrackingDeliveryType`.
+    /// - seealso: `TrackingDeliveryType`.
     public var deliveryType = TrackingDeliveryType.immediate
     
-    /// Registers a `JETrackerConsole` for event tracking.
+    /// Registers a `TrackerConsole` for event tracking.
     /// Helpful for debugging purposes, as it will cause all events to be logged on the console.
     ///
-    /// - seealso: `JETrackerConsole`.
+    /// - seealso: `TrackerConsole`.
     @discardableResult
-    public func loadDefaultTracker(_ type: JETrackerType) -> Bool {
+    public func loadDefaultTracker(_ type: TrackerType) -> Bool {
         
         var tracker: EventTracker?
         
@@ -121,7 +121,7 @@ public class EventTracking: NSObject {
     ///     1. have a non-empty name
     ///     2. have at least one registered tracker (otherwise there's noone there to track it)
     ///
-    /// - seealso: `JEEvent`
+    /// - seealso: `Event`
     @discardableResult
     public func trackEvent(_ event: Event) -> Bool {
         

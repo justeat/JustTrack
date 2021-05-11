@@ -1,5 +1,5 @@
 //
-//  JEEventInternalTests.swift
+//  EventInternalTests.swift
 //  JustTrack
 //
 //  Copyright © 2018 Just Eat Holding Ltd.

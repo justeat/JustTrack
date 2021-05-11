@@ -8,7 +8,7 @@ import Foundation
 
 class TrackerConsole: NSObject, EventTracker {
     
-    // MARK: - JETracker protocol implementation
+    // MARK: - Tracker protocol implementation
     
     let name = "console"
     

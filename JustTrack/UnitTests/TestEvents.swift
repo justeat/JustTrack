@@ -10,7 +10,7 @@ import JustTrack
 
 final class ExampleEvent: NSObject, Event {
     
-    //JEEvent protocol
+    //Event protocol
     public let name: String = "example"
     
     public var payload: Payload {
@@ -44,7 +44,7 @@ final class ExampleEvent: NSObject, Event {
 
 final class InvalidEventExample: NSObject, Event {
     
-    //JEEvent protocol
+    //Event protocol
     public let name: String = ""
     
     public var payload: Payload {

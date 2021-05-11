@@ -26,7 +26,7 @@ JustTrack is the event tracking solution we built for that.
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'JustTrack/Classes/**/*'
-  s.preserve_paths = 'JustTrack/JEEventsGenerator/*'
+  s.preserve_paths = 'JustTrack/EventsGenerator/*'
 
   s.test_spec 'UnitTests' do |test_spec|
     test_spec.source_files = 'JustTrack/UnitTests/*'

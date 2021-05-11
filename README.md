@@ -40,12 +40,18 @@ Import it into your files like so:
 import JustTrack
 ```
 
-```Objective-C
+```Objective-C (Pre 4.0)
 // Objective-C
 @import JustTrack;
 ```
 
 #### In your target *Build Phases* add this script
+
+```
+xcrun --sdk macosx swift "${PODS_ROOT}/../../JustTrack/EventsGenerator/main.swift" "${SRCROOT}/JustTrack/Events.plist" "${SRCROOT}/JustTrack/TrackingEvents.swift"
+```
+
+Objective C (Versions before 4.0)
 
 ```
 xcrun --sdk macosx swift "${PODS_ROOT}/../../JustTrack/JEEventsGenerator/main.swift" "${SRCROOT}/JustTrack/Events.plist" "${SRCROOT}/JustTrack/TrackingEvents.swift"
@@ -65,25 +71,29 @@ Let's see how we use JustTrack:
 
 ### JustTrack Configuration
 
-```Swift
-func configureJustTrack() -> JETracking {
+```
+Swift
+
+func configureJustTrack() -> EventTracking {
     // configure the tracking Singleton with settings and trackers
-    let tracker: JETracking = JETracking.sharedInstance
     
-    tracker.deliveryType = .batch
+    let eventTracker: EventTracking = EventTracking.sharedInstance
+    eventTracker.deliveryType = .batch
     
-    tracker.logClosure = { (logString: String, logLevel: JETrackingLogLevel) -> Void in
-        print("[JEEventTracker] [\(logLevel.rawValue)] \(logString)")
+    eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
+        print("[EventTracker] [\(logLevel.rawValue)] \(logString)")
     }
     
     // load the default tracker, in this case the console tracker
-    tracker.loadDefaultTracker(.consoleLogger)
+    
+    eventTracker.loadDefaultTracker(.consoleLogger)
     
     //enable JustTrack
-    tracker.enable()
+    eventTracker.enable()
     
-    return tracker
+    return eventTracker
 }
+
 ```
 
 ### Events Definition
@@ -130,29 +140,32 @@ An Event is made of:
 ##### Generated Swift Class
 
 ```Swift
-public class JEEventUser: NSObject, JEEvent {
-
-    // JEEvent protocol
+public class EventUser: NSObject, Event {
     public let name: String = "User"
 
     public var payload: Payload {
-        return [kAction : action as NSObject, kResponse : response as NSObject, kExtra : extra as NSObject]
+        return [
+            kAction: action == "" ? NSNull() : action as NSString, 
+            kResponse: response == "" ? NSNull() : response as NSString, 
+            kExtra: extra == "" ? NSNull() : extra as NSString
+        ]
     }
 
     public var registeredTrackers: [String] {
         return ["console", "Firebase"]
     }
 
-    // keys
     private let kAction = "action"
     private let kResponse = "response"
     private let kExtra = "extra"
 
-    var action: String = ""
-    var response: String = ""
-    var extra: String = ""
+    public var action: String = ""
+    public var response: String = ""
+    public var extra: String = ""
 
-    public init(action: String, response: String, extra: String) {
+    public init(action: String,
+                response: String,
+                extra: String) {
         super.init()
         self.action = action
         self.response = response
@@ -165,11 +178,11 @@ public class JEEventUser: NSObject, JEEvent {
 
 ```Swift
 //Swift
-let trackingService: JETracking = configureJustTrack()
-trackingService.trackEvent(JEEventUser(action: "UserLogIn", response: "success", extra: "Additional info"))
+let trackingService: EventTracking = configureJustTrack()
+trackingService.trackEvent(EventUser(action: "UserLogIn", response: "success", extra: "Additional info"))
 ```
 
-```Objective-C
+```Objective-C (Prior to 4.0)
 //Objective-C
 JETracking *trackingService =  [self configureJustTrack];
 [trackingService trackEvent:[[JEEventUser alloc] initWithAction:@"UserLogIn" response:@"success" extra:@"Additional info"] ];
@@ -177,19 +190,47 @@ JETracking *trackingService =  [self configureJustTrack];
 
 ##### Hardcoded events
 
-You can also create "hardcoded" events by implementing the JEEvent protocol. However we do recommend that you use a `plist` file exclusively.
+You can also create "hardcoded" events by implementing the Event protocol. However we do recommend that you use a `plist` file exclusively.
 
 ### Trackers
 
-A Tracker is an object implementing the **JETracker** protocol and is loaded using: ```tracker.loadCustomTracker( ... )``` function. You can implement any tracker you want and **JustTrack** provides a few default trackers:
+A Tracker is an object implementing the **Tracker** protocol and is loaded using: ```tracker.loadCustomTracker( ... )``` function. You can implement any tracker you want and **JustTrack** provides a few default trackers:
 
-* [x] JETrackerConsole - print events to the system's console
-* [ ] JEFacebookTraker (not yet implemented)
-* [ ] ~~JEGoogleAnalyticsTraker~~ (not yet implemented, Google's pods can't be used as a dependency in a pod)
-* [ ] ~~JETrakerFirebase~~ (not yet implemented, Google's pods can't be used as a dependency in a pod)
+* [x] TrackerConsole - print events to the system's console
+* [ ] FacebookTraker (not yet implemented)
+* [ ] ~~GoogleAnalyticsTraker~~ (not yet implemented, Google's pods can't be used as a dependency in a pod)
+* [ ] ~~TrakerFirebase~~ (not yet implemented, Google's pods can't be used as a dependency in a pod)
 
+## Upgrading to v4.0
 
+In version 4.0 Just Track has been refactoried to bring it up to date with current Swift standards. As such, Just Track no longer supports Objective C implementations. Please consider updating any applications that consume this feature.  As a result, the way events are named and must be called has been adjusted substatially. Please consider the following point when upgrading
 
+### Adopting Swift 
+
+This update to Just Track removes Objective C attributes and prefixes, modernising the implmenetation in line with Swift standards whilst also removing the Objective C Interopilbility. 
+
+For example, a generated event class previously defined as:
+
+```
+JEEventUser
+```
+
+will now adopt the naming scheme:
+
+```
+EventUser
+```
+The effects of this change on your pre-defined events can be determined within the generated TrackingEvents.Swift file. 
+
+Please note that any programs that adopt this version will need to adopt this new naming scheme. 
+
+### Updated Naming 
+
+The naming of the events and associated payload has also been adjusted in order to ensure the camelCase naming convention is adopted throughout. 
+
+### Preserving order across runs
+
+Another change made within version 4.0 is the preservation of order within the auto-generated TrackingEvents.swift files. This allows for greater clarity when comparing changes. 
 
 ## Upgrading to v3.0
 
