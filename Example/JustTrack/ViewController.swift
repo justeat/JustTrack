@@ -17,23 +17,23 @@ class ViewController: UIViewController {
 
     @IBAction func fireEventsHandler(sender: UIButton?) {
         
-        let trackingService: JETracking = configureJustTrack()
+        let trackingService: EventTracking = configureJustTrack()
         
-        trackingService.trackEvent(JEEventUser(action: "UserLogIn", response: "success", extra: "Additional info"))
-        trackingService.trackEvent(JEEventViewScreen(screenName: "MainView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
-        trackingService.trackEvent(JEEventViewScreen(screenName: "RestaurantView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
-        trackingService.trackEvent(JEEventViewScreen(screenName: "MenuView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
-        trackingService.trackEvent(JEEventNoPayload())
+        trackingService.trackEvent(EventUser(action: "UserLogIn", response: "success", extra: "Additional info"))
+        trackingService.trackEvent(EventViewScreen(screenName: "MainView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
+        trackingService.trackEvent(EventViewScreen(screenName: "RestaurantView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
+        trackingService.trackEvent(EventViewScreen(screenName: "MenuView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
+        trackingService.trackEvent(EventNoPayload())
     }
     
-    func configureJustTrack() -> JETracking {
-        let jeTracker: JETracking = JETracking.sharedInstance
-        jeTracker.deliveryType = .batch
-        jeTracker.logClosure = { (logString: String, logLevel: JETrackingLogLevel) -> Void in
-            print("[JEEventTracker] [\(logLevel.rawValue)] \(logString)")
+    func configureJustTrack() -> EventTracking {
+        let eventTracker: EventTracking = EventTracking.sharedInstance
+        eventTracker.deliveryType = .batch
+        eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
+            print("[EventTracker] [\(logLevel.rawValue)] \(logString)")
         }
-        jeTracker.loadDefaultTracker(.consoleLogger)
-        jeTracker.enable()
-        return jeTracker
+        eventTracker.loadDefaultTracker(.consoleLogger)
+        eventTracker.enable()
+        return eventTracker
     }
 }

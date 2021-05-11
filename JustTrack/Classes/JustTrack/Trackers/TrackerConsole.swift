@@ -6,7 +6,7 @@
 
 import Foundation
 
-class JETrackerConsole: NSObject, JETracker {
+class TrackerConsole: NSObject, EventTracker {
     
     // MARK: - JETracker protocol implementation
     

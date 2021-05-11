@@ -8,10 +8,10 @@
 import XCTest
 @testable import JustTrack
 
-class JEEventInternalTests: XCTestCase {
+class EventInternalTests: XCTestCase {
     
     func testEventDictionaryEncoding() {        
-        let event = JEEventInternal(name: "AmazingEvent", payload:["AmazingId": 123456], registeredTrackers: ["AmazingTracker"])
+        let event = EventInternal(name: "AmazingEvent", payload:["AmazingId": 123456], registeredTrackers: ["AmazingTracker"])
         let eventDictionary = event.encode()
         
         let eventName = eventDictionary["name"] as! String
@@ -29,7 +29,7 @@ class JEEventInternalTests: XCTestCase {
         let eventDictionary = ["name": "UnrealEvent",
                                "payload": ["unrealId": 654321],
                                "trackers": ["UnrealTracker"]] as [String : AnyObject]
-        let event = JEEventInternal.decode(eventDictionary)!
+        let event = EventInternal.decode(eventDictionary)!
         
         XCTAssertEqual(event.name, "UnrealEvent")
         XCTAssertEqual(event.payload["unrealId"] as! Int, 654321)

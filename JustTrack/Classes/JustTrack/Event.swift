@@ -8,25 +8,25 @@ import Foundation
 
 public typealias Payload = [String: Any]
 
-public enum JEEventEncodingKey: String {
+public enum EventEncodingKey: String {
     case name
     case payload
     case trackers
 }
 
-public protocol JEEvent {
+public protocol Event {
     var name: String { get }
     var payload: Payload { get }
     var registeredTrackers: [String] { get }
 }
 
-extension JEEvent {
+extension Event {
     
     func encode() -> [String: Any] {
         var dictionary = Dictionary<String, Any>()
-        dictionary[JEEventEncodingKey.payload.rawValue] = self.payload
-        dictionary[JEEventEncodingKey.name.rawValue] = self.name
-        dictionary[JEEventEncodingKey.trackers.rawValue] = self.registeredTrackers
+        dictionary[EventEncodingKey.payload.rawValue] = self.payload
+        dictionary[EventEncodingKey.name.rawValue] = self.name
+        dictionary[EventEncodingKey.trackers.rawValue] = self.registeredTrackers
         return dictionary
     }
 }

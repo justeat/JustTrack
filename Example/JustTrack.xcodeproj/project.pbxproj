@@ -11,14 +11,15 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		78C1E524E41E0331D8302F54 /* Pods_JustTrack_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6BDAD91D9CC197F11ADBF3 /* Pods_JustTrack_Example.framework */; };
 		C8566BEC1E293F8600CC27E3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8566BEA1E293F8600CC27E3 /* main.swift */; };
-		C8566BED1E293FA100CC27E3 /* JEEventInitAssignTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE31E293F8600CC27E3 /* JEEventInitAssignTemplate.jet */; };
-		C8566BEE1E293FA100CC27E3 /* JEEventInitParam.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE41E293F8600CC27E3 /* JEEventInitParam.jet */; };
-		C8566BEF1E293FA100CC27E3 /* JEEventInitTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE51E293F8600CC27E3 /* JEEventInitTemplate.jet */; };
-		C8566BF01E293FA100CC27E3 /* JEEventKeyNameTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE61E293F8600CC27E3 /* JEEventKeyNameTemplate.jet */; };
-		C8566BF11E293FA100CC27E3 /* JEEventKeyVarTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE71E293F8600CC27E3 /* JEEventKeyVarTemplate.jet */; };
-		C8566BF21E293FA100CC27E3 /* JEEventListTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE81E293F8600CC27E3 /* JEEventListTemplate.jet */; };
-		C8566BF31E293FA100CC27E3 /* JEEventTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE91E293F8600CC27E3 /* JEEventTemplate.jet */; };
+		C8566BED1E293FA100CC27E3 /* EventInitAssignTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */; };
+		C8566BEE1E293FA100CC27E3 /* EventInitParam.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE41E293F8600CC27E3 /* EventInitParam.jet */; };
+		C8566BEF1E293FA100CC27E3 /* EventInitTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE51E293F8600CC27E3 /* EventInitTemplate.jet */; };
+		C8566BF01E293FA100CC27E3 /* EventKeyNameTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE61E293F8600CC27E3 /* EventKeyNameTemplate.jet */; };
+		C8566BF11E293FA100CC27E3 /* EventKeyVarTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE71E293F8600CC27E3 /* EventKeyVarTemplate.jet */; };
+		C8566BF21E293FA100CC27E3 /* EventListTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE81E293F8600CC27E3 /* EventListTemplate.jet */; };
+		C8566BF31E293FA100CC27E3 /* EventTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE91E293F8600CC27E3 /* EventTemplate.jet */; };
 		C8C75BEC1E4E0D5B006BC73B /* Events_with_errors.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8C75BEB1E4E0D5B006BC73B /* Events_with_errors.plist */; };
 		C8EDCE1E1FB9CBE000296B37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EDCE1D1FB9CBE000296B37 /* ViewController.swift */; };
 		E073ABC41D47A414001B8D51 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = E073ABC31D47A414001B8D51 /* Events.plist */; };
@@ -32,19 +33,20 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				C8566BED1E293FA100CC27E3 /* JEEventInitAssignTemplate.jet in CopyFiles */,
-				C8566BEE1E293FA100CC27E3 /* JEEventInitParam.jet in CopyFiles */,
-				C8566BEF1E293FA100CC27E3 /* JEEventInitTemplate.jet in CopyFiles */,
-				C8566BF01E293FA100CC27E3 /* JEEventKeyNameTemplate.jet in CopyFiles */,
-				C8566BF11E293FA100CC27E3 /* JEEventKeyVarTemplate.jet in CopyFiles */,
-				C8566BF21E293FA100CC27E3 /* JEEventListTemplate.jet in CopyFiles */,
-				C8566BF31E293FA100CC27E3 /* JEEventTemplate.jet in CopyFiles */,
+				C8566BED1E293FA100CC27E3 /* EventInitAssignTemplate.jet in CopyFiles */,
+				C8566BEE1E293FA100CC27E3 /* EventInitParam.jet in CopyFiles */,
+				C8566BEF1E293FA100CC27E3 /* EventInitTemplate.jet in CopyFiles */,
+				C8566BF01E293FA100CC27E3 /* EventKeyNameTemplate.jet in CopyFiles */,
+				C8566BF11E293FA100CC27E3 /* EventKeyVarTemplate.jet in CopyFiles */,
+				C8566BF21E293FA100CC27E3 /* EventListTemplate.jet in CopyFiles */,
+				C8566BF31E293FA100CC27E3 /* EventTemplate.jet in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A6BDAD91D9CC197F11ADBF3 /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4544CED3F31AEB9E0E041E76 /* JustTrack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JustTrack.podspec; path = ../JustTrack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		587548F5EB6E75F385206CFC /* Pods-JustTrack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* JustTrack_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustTrack_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,13 +58,13 @@
 		695000F9344F9959D5739C1B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A50CAE54C8FA146A010BACD4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		BB838AA6D85DC9B92BE0A7C5 /* Pods-JustTrack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.release.xcconfig"; sourceTree = "<group>"; };
-		C8566BE31E293F8600CC27E3 /* JEEventInitAssignTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitAssignTemplate.jet; sourceTree = "<group>"; };
-		C8566BE41E293F8600CC27E3 /* JEEventInitParam.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitParam.jet; sourceTree = "<group>"; };
-		C8566BE51E293F8600CC27E3 /* JEEventInitTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitTemplate.jet; sourceTree = "<group>"; };
-		C8566BE61E293F8600CC27E3 /* JEEventKeyNameTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventKeyNameTemplate.jet; sourceTree = "<group>"; };
-		C8566BE71E293F8600CC27E3 /* JEEventKeyVarTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventKeyVarTemplate.jet; sourceTree = "<group>"; };
-		C8566BE81E293F8600CC27E3 /* JEEventListTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventListTemplate.jet; sourceTree = "<group>"; };
-		C8566BE91E293F8600CC27E3 /* JEEventTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventTemplate.jet; sourceTree = "<group>"; };
+		C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventInitAssignTemplate.jet; sourceTree = "<group>"; };
+		C8566BE41E293F8600CC27E3 /* EventInitParam.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventInitParam.jet; sourceTree = "<group>"; };
+		C8566BE51E293F8600CC27E3 /* EventInitTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventInitTemplate.jet; sourceTree = "<group>"; };
+		C8566BE61E293F8600CC27E3 /* EventKeyNameTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventKeyNameTemplate.jet; sourceTree = "<group>"; };
+		C8566BE71E293F8600CC27E3 /* EventKeyVarTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventKeyVarTemplate.jet; sourceTree = "<group>"; };
+		C8566BE81E293F8600CC27E3 /* EventListTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventListTemplate.jet; sourceTree = "<group>"; };
+		C8566BE91E293F8600CC27E3 /* EventTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventTemplate.jet; sourceTree = "<group>"; };
 		C8566BEA1E293F8600CC27E3 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C8566BEB1E293F8600CC27E3 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		C8C75BEB1E4E0D5B006BC73B /* Events_with_errors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events_with_errors.plist; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78C1E524E41E0331D8302F54 /* Pods_JustTrack_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,11 +96,12 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				C8566BE21E293F8500CC27E3 /* JEEventsGenerator */,
+				C8566BE21E293F8500CC27E3 /* EventsGenerator */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for JustTrack */,
 				607FACD11AFB9204008FA782 /* Products */,
 				78EEC4026664FC2BF79F01FB /* Pods */,
+				7A4E64690C9416CEC77BEF12 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,21 +158,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		C8566BE21E293F8500CC27E3 /* JEEventsGenerator */ = {
+		7A4E64690C9416CEC77BEF12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C8566BE31E293F8600CC27E3 /* JEEventInitAssignTemplate.jet */,
-				C8566BE41E293F8600CC27E3 /* JEEventInitParam.jet */,
-				C8566BE51E293F8600CC27E3 /* JEEventInitTemplate.jet */,
-				C8566BE61E293F8600CC27E3 /* JEEventKeyNameTemplate.jet */,
-				C8566BE71E293F8600CC27E3 /* JEEventKeyVarTemplate.jet */,
-				C8566BE81E293F8600CC27E3 /* JEEventListTemplate.jet */,
-				C8566BE91E293F8600CC27E3 /* JEEventTemplate.jet */,
+				1A6BDAD91D9CC197F11ADBF3 /* Pods_JustTrack_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C8566BE21E293F8500CC27E3 /* EventsGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */,
+				C8566BE41E293F8600CC27E3 /* EventInitParam.jet */,
+				C8566BE51E293F8600CC27E3 /* EventInitTemplate.jet */,
+				C8566BE61E293F8600CC27E3 /* EventKeyNameTemplate.jet */,
+				C8566BE71E293F8600CC27E3 /* EventKeyVarTemplate.jet */,
+				C8566BE81E293F8600CC27E3 /* EventListTemplate.jet */,
+				C8566BE91E293F8600CC27E3 /* EventTemplate.jet */,
 				C8566BEA1E293F8600CC27E3 /* main.swift */,
 				C8566BEB1E293F8600CC27E3 /* test.txt */,
 			);
-			name = JEEventsGenerator;
-			path = ../JustTrack/JEEventsGenerator;
+			name = EventsGenerator;
+			path = ../JustTrack/EventsGenerator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,7 +329,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcrun --sdk macosx swift \"${PODS_ROOT}/../../JustTrack/JEEventsGenerator/main.swift\" \"${SRCROOT}/JustTrack/Events.plist\" \"${SRCROOT}/JustTrack/TrackingEvents.swift\"\n";
+			shellScript = "xcrun --sdk macosx swift \"${PODS_ROOT}/../../JustTrack/EventsGenerator/main.swift\" \"${SRCROOT}/JustTrack/Events.plist\" \"${SRCROOT}/JustTrack/TrackingEvents.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

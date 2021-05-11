@@ -18,7 +18,7 @@ import Foundation
 /// ````
 ///
 /// - seealso: `logClosure`
-public enum JETrackingLogLevel: NSInteger {
+public enum TrackingLogLevel: NSInteger {
     case verbose
     case debug
     case info
@@ -33,7 +33,7 @@ public enum JETrackingLogLevel: NSInteger {
 /// ```
 ///
 /// - seealso: `dispatchInterval`
-public enum JETrackingDeliveryType: NSInteger {
+public enum TrackingDeliveryType: NSInteger {
     /// Will wait before dispatching events to trackers based on `dispatchInterval`.
     case batch
     
@@ -52,7 +52,7 @@ public enum JETrackerType : NSInteger {
 
 /// JETracking manages the mapping and dispatching of events to trackers.
 /// - TODO: More elaborate documentation for this with example usage.
-public class JETracking: NSObject {
+public class EventTracking: NSObject {
     
     // MARK: - Internal Properties
     
@@ -80,14 +80,14 @@ public class JETracking: NSObject {
     /// ````
     /// to output the type of the message (log level) and associated string to the console.
     /// Or you could use the closure to log to your logging framework of choice etc.
-    public var logClosure : ((_ logString: String, _ logLevel: JETrackingLogLevel) -> Void)?
+    public var logClosure : ((_ logString: String, _ logLevel: TrackingLogLevel) -> Void)?
     
     /// The delivery type used for pushing events to trackers.
     ///
     /// Default value is `immediate`.
     ///
     /// - seealso: `JETrackingDeliveryType`.
-    public var deliveryType = JETrackingDeliveryType.immediate
+    public var deliveryType = TrackingDeliveryType.immediate
     
     /// Registers a `JETrackerConsole` for event tracking.
     /// Helpful for debugging purposes, as it will cause all events to be logged on the console.
@@ -96,11 +96,11 @@ public class JETracking: NSObject {
     @discardableResult
     public func loadDefaultTracker(_ type: JETrackerType) -> Bool {
         
-        var tracker: JETracker?
+        var tracker: EventTracker?
         
         switch type {
         case .consoleLogger:
-            tracker = JETrackerConsole()
+            tracker = TrackerConsole()
             break
         }
         
@@ -110,7 +110,7 @@ public class JETracking: NSObject {
     }
 
     /// Singleton accessor
-    public static let sharedInstance = JETracking()
+    public static let sharedInstance = EventTracking()
     
     /// Validates the passed event and schedules it for posting
     /// with its associated `registeredTrackers`.
@@ -123,10 +123,10 @@ public class JETracking: NSObject {
     ///
     /// - seealso: `JEEvent`
     @discardableResult
-    public func trackEvent(_ event: JEEvent) -> Bool {
+    public func trackEvent(_ event: Event) -> Bool {
         
         //transform generic event in an internal event
-        let internalEvent: JEEventInternal = JEEventInternal(name: event.name, payload: event.payload, registeredTrackers: event.registeredTrackers)
+        let internalEvent: EventInternal = EventInternal(name: event.name, payload: event.payload, registeredTrackers: event.registeredTrackers)
         
         //TODO: validate event
         if eventIsValid(internalEvent) == false {
@@ -141,7 +141,7 @@ public class JETracking: NSObject {
             if let tracker = self.trackersInstances[trackerName.lowercased()] {
                 
                 //enqueue
-                let operation: JETrackOperation = JETrackOperation(tracker: tracker, event: internalEvent)
+                let operation: TrackOperation = TrackOperation(tracker: tracker, event: internalEvent)
                 
                 // TODO: This conditional is sketchy, if the app dies while the queue is paused, we're going to lose the events.
                 // Need to rethink the policy here and / or cap the dispatch time to a sensible max value.
@@ -183,25 +183,25 @@ public class JETracking: NSObject {
     /// Registers the passed tracker instance for tracking events.
     ///
     /// - parameter tracker: The tracker instance to start tracking events.
-    public func loadCustomTracker(_ tracker: JETracker) {
+    public func loadCustomTracker(_ tracker: EventTracker) {
         self.trackersInstances[tracker.name.lowercased()] = tracker //register trackers
     }
     
     // MARK: - Private
     
-    fileprivate func eventIsValid(_ event: JEEvent) -> Bool {
+    fileprivate func eventIsValid(_ event: Event) -> Bool {
         
         return event.name.isEmpty == false && event.registeredTrackers.count > 0
     }
     
-    fileprivate func JTLog(_ string: String, level: JETrackingLogLevel) {
+    fileprivate func JTLog(_ string: String, level: TrackingLogLevel) {
         if self.logClosure != nil {
             self.logClosure!(string, level)
         }
     }
 
-    fileprivate lazy var trackersInstances: [String : JETracker] = {
-        var dictionary = [String : JETracker]()
+    fileprivate lazy var trackersInstances: [String : EventTracker] = {
+        var dictionary = [String : EventTracker]()
         return dictionary
     }()
     
@@ -218,7 +218,7 @@ public class JETracking: NSObject {
     fileprivate func restoreUncompletedTracking() -> Int {
         
         var operations: NSMutableDictionary
-        guard let outData = UserDefaults.standard.data(forKey: JETracking.kPersistentStorageName),
+        guard let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName),
               let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any]
         else {
             return 0
@@ -228,7 +228,7 @@ public class JETracking: NSObject {
         if operations.count > 0 {
             
             //remove all the events stored
-            UserDefaults.standard.set(nil, forKey: JETracking.kPersistentStorageName)
+            UserDefaults.standard.set(nil, forKey: EventTracking.kPersistentStorageName)
             UserDefaults.standard.synchronize()
             
             for eventKey: String in operations.allKeys as! [String] {
@@ -236,7 +236,7 @@ public class JETracking: NSObject {
                 //get uncompleted event tracking
                 if let eventDictionary = operations[eventKey] as? [String : AnyObject] {
                     
-                    let internalEvent: JEEventInternal? = JEEventInternal.decode(eventDictionary)
+                    let internalEvent: EventInternal? = EventInternal.decode(eventDictionary)
                     
                     if internalEvent != nil {
                         //enqueue event
