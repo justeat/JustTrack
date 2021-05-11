@@ -229,7 +229,6 @@ public class EventTracking: NSObject {
             
             //remove all the events stored
             UserDefaults.standard.set(nil, forKey: EventTracking.kPersistentStorageName)
-            UserDefaults.standard.synchronize()
             
             for eventKey: String in operations.allKeys as! [String] {
                 

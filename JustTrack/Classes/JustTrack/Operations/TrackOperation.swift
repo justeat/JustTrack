@@ -75,7 +75,6 @@ private extension TrackOperation {
         operations.setObject(eventDictionary, forKey: key as NSCopying)
         let data = NSKeyedArchiver.archivedData(withRootObject: operations)
         UserDefaults.standard.set(data, forKey: EventTracking.kPersistentStorageName)
-        UserDefaults.standard.synchronize()
     }
     
     func deleteEvent(_ key: String) {
@@ -90,7 +89,6 @@ private extension TrackOperation {
             operations.removeObject(forKey: key)
             let data = NSKeyedArchiver.archivedData(withRootObject: operations)
             UserDefaults.standard.set(data, forKey: EventTracking.kPersistentStorageName)
-            UserDefaults.standard.synchronize()
         }
     }
 }
