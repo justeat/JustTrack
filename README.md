@@ -207,7 +207,7 @@ In version 4.0 Just Track has been refactoried to bring it up to date with curre
 
 ### Adopting Swift 
 
-This update to Just Track removes Objective C attributes and prefixes, modernising the implmenetation in line with Swift standards whilst also removing the Objective C Interopilbility. 
+This update to Just Track removes Objective C attributes and prefixes, modernising the implementation in line with Swift standards whilst also removing the Objective C interoperability. 
 
 For example, a generated event class previously defined as:
 
