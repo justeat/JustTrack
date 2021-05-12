@@ -2,7 +2,7 @@
 
 /*example
 
-public class JEEventExample: NSObject, JEEvent {
+public class EventExample: NSObject, Event {
     public let name: String = "example"
 
     public var payload: Payload {

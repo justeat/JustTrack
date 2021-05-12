@@ -2,7 +2,7 @@
 
 /*example
 
-public class JEEventExample: NSObject, JEEvent {
+public class EventExample: NSObject, Event {
     public let name: String = "example"
 
     public var payload: Payload {
@@ -40,7 +40,7 @@ public class JEEventExample: NSObject, JEEvent {
 import Foundation
 import JustTrack
 
-public class JEEventExample: NSObject, JEEvent {
+public class EventExample: NSObject, Event {
     public let name: String = "example"
 
     public var payload: Payload {
@@ -73,7 +73,7 @@ public class JEEventExample: NSObject, JEEvent {
     }
 }
 
-public class JEEventViewScreen: NSObject, JEEvent {
+public class EventViewScreen: NSObject, Event {
     public let name: String = "ViewScreen"
 
     public var payload: Payload {
@@ -111,7 +111,7 @@ public class JEEventViewScreen: NSObject, JEEvent {
     }
 }
 
-public class JEEventUser: NSObject, JEEvent {
+public class EventUser: NSObject, Event {
     public let name: String = "User"
 
     public var payload: Payload {
@@ -144,7 +144,7 @@ public class JEEventUser: NSObject, JEEvent {
     }
 }
 
-public class JEEventTap: NSObject, JEEvent {
+public class EventTap: NSObject, Event {
     public let name: String = "Tap"
 
     public var payload: Payload {
@@ -167,7 +167,7 @@ public class JEEventTap: NSObject, JEEvent {
     }
 }
 
-public class JEEventNoPayload: NSObject, JEEvent {
+public class EventNoPayload: NSObject, Event {
     public let name: String = "NoPayload"
 
     public var payload: Payload {

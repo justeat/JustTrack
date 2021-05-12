@@ -8,9 +8,9 @@
 import Foundation
 import JustTrack
 
-final class JEEventExample: NSObject, JEEvent {
+final class ExampleEvent: NSObject, Event {
     
-    //JEEvent protocol
+    //Event protocol
     public let name: String = "example"
     
     public var payload: Payload {
@@ -42,9 +42,9 @@ final class JEEventExample: NSObject, JEEvent {
     }
 }
 
-final class JEEventInvalidExample: NSObject, JEEvent {
+final class InvalidEventExample: NSObject, Event {
     
-    //JEEvent protocol
+    //Event protocol
     public let name: String = ""
     
     public var payload: Payload {
