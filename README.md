@@ -203,11 +203,11 @@ A Tracker is an object implementing the **Tracker** protocol and is loaded using
 
 ## Upgrading to v4.0
 
-In version 4.0 Just Track has been refactoried to bring it up to date with current Swift standards. As such, Just Track no longer supports Objective C implementations. Please consider updating any applications that consume this feature.  As a result, the way events are named and must be called has been adjusted substatially. Please consider the following point when upgrading
+In version 4.0 Just Track has been refactored to bring it up to date with current Swift standards. As such, Just Track no longer supports Objective-C implementations. Please consider updating any applications that consume this feature.  As a result, the way events are named and must be called has been adjusted substatially. Please consider the following points when upgrading.
 
 ### Adopting Swift 
 
-This update to Just Track removes Objective C attributes and prefixes, modernising the implementation in line with Swift standards whilst also removing the Objective C interoperability. 
+This update to Just Track removes Objective-C attributes and prefixes, modernising the implementation in line with Swift standards whilst also removing the Objective-C interoperability. 
 
 For example, a generated event class previously defined as:
 
@@ -220,7 +220,7 @@ will now adopt the naming scheme:
 ```
 EventUser
 ```
-The effects of this change on your pre-defined events can be determined within the generated TrackingEvents.Swift file. 
+The effects of this change on your pre-defined events can be determined within the generated TrackingEvents.swift file. 
 
 Please note that any programs that adopt this version will need to adopt this new naming scheme. 
 
