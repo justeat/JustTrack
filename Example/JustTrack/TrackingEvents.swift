@@ -2,7 +2,7 @@
 
 /*example
 
-public class EventExample: NSObject, Event {
+public class EventExample: Event {
     public let name: String = "example"
 
     public var payload: Payload {
@@ -29,7 +29,6 @@ public class EventExample: NSObject, Event {
     public init(test1: String,
                 test2: String,
                 test3: String) {
-        super.init()
         self.test1 = test1
         self.test2 = test2
         self.test3 = test3
@@ -40,7 +39,7 @@ public class EventExample: NSObject, Event {
 import Foundation
 import JustTrack
 
-public class EventExample: NSObject, Event {
+public class EventExample: Event {
     public let name: String = "example"
 
     public var payload: Payload {
@@ -66,14 +65,13 @@ public class EventExample: NSObject, Event {
     public init(test1: String,
                 test2: String,
                 test3: String) {
-        super.init()
         self.test1 = test1
         self.test2 = test2
         self.test3 = test3
     }
 }
 
-public class EventViewScreen: NSObject, Event {
+public class EventViewScreen: Event {
     public let name: String = "ViewScreen"
 
     public var payload: Payload {
@@ -103,7 +101,6 @@ public class EventViewScreen: NSObject, Event {
                 screenData: String,
                 screenDataVar: String,
                 screenDataVarSetting: String) {
-        super.init()
         self.screenName = screenName
         self.screenData = screenData
         self.screenDataVar = screenDataVar
@@ -111,7 +108,7 @@ public class EventViewScreen: NSObject, Event {
     }
 }
 
-public class EventUser: NSObject, Event {
+public class EventUser: Event {
     public let name: String = "User"
 
     public var payload: Payload {
@@ -137,14 +134,13 @@ public class EventUser: NSObject, Event {
     public init(action: String,
                 response: String,
                 extra: String) {
-        super.init()
         self.action = action
         self.response = response
         self.extra = extra
     }
 }
 
-public class EventTap: NSObject, Event {
+public class EventTap: Event {
     public let name: String = "Tap"
 
     public var payload: Payload {
@@ -162,12 +158,11 @@ public class EventTap: NSObject, Event {
     public var elementName: String = ""
 
     public init(elementName: String) {
-        super.init()
         self.elementName = elementName
     }
 }
 
-public class EventNoPayload: NSObject, Event {
+public class EventNoPayload: Event {
     public let name: String = "NoPayload"
 
     public var payload: Payload {

@@ -1,4 +1,4 @@
-public class Event<*!event_name*>: NSObject, Event {
+public class Event<*!event_name*>: Event {
     public let name: String = "<*event_name*>"
 
     public var payload: Payload {
