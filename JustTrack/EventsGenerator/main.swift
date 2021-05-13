@@ -144,18 +144,22 @@ private func sanitised(_ originalString: String) -> String {
     
     let components = result.components(separatedBy: .whitespacesAndNewlines)
     result = components.joined(separator: "")
-    
-    let componantsByUnderscore = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
-
-    if !componantsByUnderscore.isEmpty
-    {
-        result = ""
-        for component in componantsByUnderscore {
-            if component != componantsByUnderscore[0] {
-                result.append(component.capitalizingFirstLetter())
-            }
-            else {
-                result.append(component)
+    if result.hasPrefix("&") {
+        let substring = originalString.dropFirst(1)
+        result = String(substring)
+    }
+    else {
+        let componantsByUnderscore = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
+        if !componantsByUnderscore.isEmpty
+        {
+            result = ""
+            for component in componantsByUnderscore {
+                if component != componantsByUnderscore[0] {
+                    result.append(component.capitalizingFirstLetter())
+                }
+                else {
+                    result.append(component)
+                }
             }
         }
     }
@@ -248,7 +252,7 @@ private func replacePlaceholder(_ original: String, placeholder: String, value: 
         return original
     }
     
-    let valueToReplace: String
+    var valueToReplace = ""
     var mutableValue = value
     if placeholder.contains("<*!") {
         mutableValue.replaceSubrange(mutableValue.startIndex...mutableValue.startIndex, with: String(mutableValue[value.startIndex]).capitalized) //only first capitalised letter, maintain the rest immutated
@@ -256,6 +260,12 @@ private func replacePlaceholder(_ original: String, placeholder: String, value: 
     }
     else {
         valueToReplace = value
+    }
+    
+    if valueToReplace.hasPrefix("&")
+    {
+        let valueSubstring = value.dropFirst()
+        valueToReplace = String(valueSubstring)
     }
     
     return original.replacingOccurrences(of: placeholder, with: valueToReplace)
@@ -312,8 +322,10 @@ private func generateEventKeysVariables(_ keys: [String]) throws -> String {
     var resultArray: [String] = Array()
     for keyString in keys {
         let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: keyString)
+        
         resultArray.append(structVarString)
     }
+    
     return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
 }
 

@@ -57,6 +57,7 @@
 				<string>action</string>
 				<string>response</string>
 				<string>extra</string>
+				<string>&amp;view_item_list</string>
 			</array>
 		</dict>
 		<key>NoPayload</key>

@@ -115,7 +115,8 @@ public class EventUser: Event {
         return [
             kAction: action == "" ? NSNull() : action as NSString, 
             kResponse: response == "" ? NSNull() : response as NSString, 
-            kExtra: extra == "" ? NSNull() : extra as NSString
+            kExtra: extra == "" ? NSNull() : extra as NSString, 
+            kView_item_list: view_item_list == "" ? NSNull() : view_item_list as NSString
         ]
     }
 
@@ -126,17 +127,21 @@ public class EventUser: Event {
     private let kAction = "action"
     private let kResponse = "response"
     private let kExtra = "extra"
+    private let kView_item_list = "view_item_list"
 
     public var action: String = ""
     public var response: String = ""
     public var extra: String = ""
+    public var view_item_list: String = ""
 
     public init(action: String,
                 response: String,
-                extra: String) {
+                extra: String,
+                view_item_list: String) {
         self.action = action
         self.response = response
         self.extra = extra
+        self.view_item_list = view_item_list
     }
 }
 
