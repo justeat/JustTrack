@@ -22,7 +22,7 @@
     "ios": "9.0"
   },
   "source_files": "JustTrack/Classes/**/*",
-  "preserve_paths": "JustTrack/EventsGenerator/*",
+  "preserve_paths": "JustTrack/JEEventsGenerator/*",
   "testspecs": [
     {
       "name": "UnitTests",

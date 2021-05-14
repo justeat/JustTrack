@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
         let trackingService: EventTracking = configureJustTrack()
         
-        trackingService.trackEvent(EventUser(action: "UserLogIn", response: "success", extra: "Additional info", view_item_list: "Event_Item_List"))
+        trackingService.trackEvent(EventUser(action: "UserLogIn", response: "success", extra: "Additional info"))
         trackingService.trackEvent(EventViewScreen(screenName: "MainView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
         trackingService.trackEvent(EventViewScreen(screenName: "RestaurantView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
         trackingService.trackEvent(EventViewScreen(screenName: "MenuView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
