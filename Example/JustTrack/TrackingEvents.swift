@@ -39,40 +39,8 @@ public class EventExample: Event {
 import Foundation
 import JustTrack
 
-public class EventExample: Event {
-    public let name: String = "example"
-
-    public var payload: Payload {
-        return [
-            kTest1: test1 == "" ? NSNull() : test1 as NSString, 
-            kTest2: test2 == "" ? NSNull() : test2 as NSString, 
-            kTest3: test3 == "" ? NSNull() : test3 as NSString
-        ]
-    }
-
-    public var registeredTrackers: [String] {
-        return ["console", "tracker2"]
-    }
-
-    private let kTest1 = "test_1"
-    private let kTest2 = "test_2"
-    private let kTest3 = "test_3"
-
-    public var test1: String = ""
-    public var test2: String = ""
-    public var test3: String = ""
-
-    public init(test1: String,
-                test2: String,
-                test3: String) {
-        self.test1 = test1
-        self.test2 = test2
-        self.test3 = test3
-    }
-}
-
 public class EventViewScreen: Event {
-    public let name: String = "ViewScreen"
+    public let name: String = "view_screen"
 
     public var payload: Payload {
         return [
@@ -105,6 +73,38 @@ public class EventViewScreen: Event {
         self.screenData = screenData
         self.screenDataVar = screenDataVar
         self.screenDataVarSetting = screenDataVarSetting
+    }
+}
+
+public class EventExample: Event {
+    public let name: String = "example"
+
+    public var payload: Payload {
+        return [
+            kTest1: test1 == "" ? NSNull() : test1 as NSString, 
+            kTest2: test2 == "" ? NSNull() : test2 as NSString, 
+            kTest3: test3 == "" ? NSNull() : test3 as NSString
+        ]
+    }
+
+    public var registeredTrackers: [String] {
+        return ["console", "tracker2"]
+    }
+
+    private let kTest1 = "test_1"
+    private let kTest2 = "test_2"
+    private let kTest3 = "test_3"
+
+    public var test1: String = ""
+    public var test2: String = ""
+    public var test3: String = ""
+
+    public init(test1: String,
+                test2: String,
+                test3: String) {
+        self.test1 = test1
+        self.test2 = test2
+        self.test3 = test3
     }
 }
 

@@ -6,6 +6,8 @@
 	<dict>
 		<key>example</key>
 		<dict>
+			<key>name</key>
+			<string>example</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>
@@ -18,8 +20,10 @@
 				<string>test_3</string>
 			</array>
 		</dict>
-		<key>ViewScreen</key>
+		<key>view_screen</key>
 		<dict>
+			<key>name</key>
+			<string>view_screen</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>
@@ -35,6 +39,8 @@
 		</dict>
 		<key>Tap</key>
 		<dict>
+			<key>name</key>
+			<string>Tap</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>
@@ -47,6 +53,8 @@
 		</dict>
 		<key>User</key>
 		<dict>
+			<key>name</key>
+			<string>User</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>
@@ -61,6 +69,8 @@
 		</dict>
 		<key>NoPayload</key>
 		<dict>
+			<key>name</key>
+			<string>NoPayload</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>

@@ -20,7 +20,8 @@ private enum EventTemplate : String {
 
 private enum EventTemplatePlaceholder : String {
     case eventList = "events_list"
-    case eventName = "event_name"
+    case event = "event"
+    case eventName = "name"
     case keyValueChain = "event_keyValueChain"
     case eventTrackers = "event_cs_trackers_str"
     case keysNames = "event_keysNames"
@@ -177,14 +178,14 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
     let resultString: NSMutableString = NSMutableString(string: structListTemplateString)
     var structsArray: [String] = Array()
     
-    for eventName: String in events.keys.sorted(by: >) {
+    for event: String in events.keys.sorted(by: >) {
         
-        let eventDic: [String : AnyObject]? = events[eventName] as? [String : AnyObject]
+        let eventDic: [String : AnyObject]? = events[event] as? [String : AnyObject]
         
-        let sanitisedValue = sanitised(eventName)
+        let sanitisedValue = sanitised(event)
         var structString = structTemplate
-        structString = replacePlaceholder(structString, placeholder: "<*!\(EventTemplatePlaceholder.eventName.rawValue)*>", value: sanitisedValue ) //<*!event_name*> = Example
-        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.eventName.rawValue)*>", value: sanitisedValue) //<*event_name*> = example
+        structString = replacePlaceholder(structString, placeholder: "<*!\(EventTemplatePlaceholder.event.rawValue)*>", value: sanitisedValue) //<*!event*> = Example
+        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.eventName.rawValue)*>", value: event) //<*event*> = example
         
         let originalKeys:[String] = eventDic![EventPlistKey.payload.rawValue] as! [String]
         

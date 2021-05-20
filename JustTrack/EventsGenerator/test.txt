@@ -1,4 +1,4 @@
-class Event<*!event_name*>: NSObject, Event {
+class Event<*!event*>: Event {
 
     //Event protocol
     let name: String = "<*event_name*>"

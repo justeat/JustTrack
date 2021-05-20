@@ -1,5 +1,5 @@
-public class Event<*!event_name*>: Event {
-    public let name: String = "<*event_name*>"
+public class Event<*!event*>: Event {
+    public let name: String = "<*name*>"
 
     public var payload: Payload {
         return [<*event_keyValueChain*>]
