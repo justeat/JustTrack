@@ -203,11 +203,11 @@ A Tracker is an object implementing the **Tracker** protocol and is loaded using
 
 ## Upgrading to v4.0
 
-In version 4.0 Just Track has been refactored to bring it up to date with current Swift standards. As such, Just Track no longer supports Objective-C implementations. Please consider updating any applications that consume this feature.  As a result, the way events are named and must be called has been adjusted substatially. Please consider the following points when upgrading.
+In version 4.0 **JustTrack** has been refactored to bring it up to date with current Swift standards. As such, **JustTrack** no longer supports Objective-C implementations. Please consider updating any applications that consume this feature.  As a result, the way events are named and must be called has been adjusted substatially. Please consider the following points when upgrading.
 
 ### Adopting Swift 
 
-This update to Just Track removes Objective-C attributes and prefixes, modernising the implementation in line with Swift standards whilst also removing the Objective-C interoperability. 
+This update to **JustTrack** removes Objective-C attributes and prefixes, modernising the implementation in line with Swift standards whilst also removing the Objective-C interoperability. 
 
 For example, a generated event class previously defined as:
 
@@ -232,9 +232,13 @@ The naming of the events and associated payload has also been adjusted in order 
 
 Another change made within version 4.0 is the preservation of order within the auto-generated TrackingEvents.swift files. This allows for greater clarity when comparing changes. 
 
+### Facilitating an array of objects
+
+**JustTrack** now allows for the implementation of an array of objects as part of the payload. In order to implement such events, create a new item of type Dictionary and adhere to the objectPayloadKeys notation as detailed by the Example Event.
+
 ## Upgrading to v3.0
 
-In version 3.0 of JustTrack the Configuration class has been removed from the JETracker protocol.
+In version 3.0 of **JustTrack** the Configuration class has been removed from the JETracker protocol.
 
 If your client code uses Objective-C then your code should continue to function without changes when upgrading.
 
@@ -265,7 +269,7 @@ public init(token: String) {
 
 ## License
 
-JustTrack is available under the Apache License, Version 2.0. See the LICENSE file for more info.
+**JustTrack** is available under the Apache License, Version 2.0. See the LICENSE file for more info.
 
 
 - Just Eat iOS team
