@@ -64,10 +64,10 @@ public class EventViewScreen: Event {
     
     
 
-    public var screenName: String = ""
-    public var screenData: String = ""
-    public var screenDataVar: String = ""
-    public var screenDataVarSetting: String = ""
+    public var screenName = ""
+    public var screenData = ""
+    public var screenDataVar = ""
+    public var screenDataVarSetting = ""
     
 
     public init(screenName: String,
@@ -85,13 +85,13 @@ public class EventExample: Event {
     public let name: String = "example"
     
     public struct TestObject: Equatable {
-        public var itemName: String = ""
-        public var itemNumber: String = ""        
+        public var itemName = ""
+        public var itemNumber = ""        
     }
 
     public struct SecondTestObject: Equatable {
-        public var itemName: String = ""
-        public var itemNumber: String = ""        
+        public var itemName = ""
+        public var itemNumber = ""        
     }
       
 
@@ -117,9 +117,9 @@ public class EventExample: Event {
     private let kTestObject = "testObject"
     private let kSecondTestObject = "secondTestObject"
 
-    public var test1: String = ""
-    public var test2: String = ""
-    public var test3: String = ""
+    public var test1 = ""
+    public var test2 = ""
+    public var test3 = ""
     public var testObject: [TestObject]
     public var secondTestObject: [SecondTestObject]
 
@@ -158,9 +158,9 @@ public class EventUser: Event {
     
     
 
-    public var action: String = ""
-    public var response: String = ""
-    public var extra: String = ""
+    public var action = ""
+    public var response = ""
+    public var extra = ""
     
 
     public init(action: String,
@@ -190,7 +190,7 @@ public class EventTap: Event {
     
     
 
-    public var elementName: String = ""
+    public var elementName = ""
     
 
     public init(elementName: String) {
