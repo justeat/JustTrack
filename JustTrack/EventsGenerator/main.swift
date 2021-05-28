@@ -430,7 +430,7 @@ private func generateKeyVariables(_ keys: [String], keyType: String) throws -> S
     let structVarTemplate: String = try stringFromTemplate(EventTemplate.keyVar.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
-        let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: keyString, placeholderType: "routine")
+        let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: sanitised(keyString), placeholderType: "routine")
         resultArray.append(structVarString)
     }
     

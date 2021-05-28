@@ -85,13 +85,13 @@ public class EventExample: Event {
     public let name: String = "example"
     
     public struct TestObject: Equatable {
-        public var item_name: String = ""
-        public var item_number: String = ""        
+        public var itemName: String = ""
+        public var itemNumber: String = ""        
     }
 
     public struct SecondTestObject: Equatable {
-        public var item_name: String = ""
-        public var item_number: String = ""        
+        public var itemName: String = ""
+        public var itemNumber: String = ""        
     }
       
 
