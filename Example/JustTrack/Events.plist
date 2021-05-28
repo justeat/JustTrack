@@ -18,6 +18,24 @@
 				<string>test_1</string>
 				<string>test_2</string>
 				<string>test_3</string>
+				<dict>
+					<key>name</key>
+					<string>testObject</string>
+					<key>objectPayloadKeys</key>
+					<array>
+						<string>item_name</string>
+						<string>item_number</string>
+					</array>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>secondTestObject</string>
+					<key>objectPayloadKeys</key>
+					<array>
+						<string>item_name</string>
+						<string>item_number</string>
+					</array>
+				</dict>
 			</array>
 		</dict>
 		<key>view_screen</key>

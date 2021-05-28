@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23CCE1EA265D30FE007B5F64 /* EventObjectStructTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */; };
+		23CCE1EB265D4BF1007B5F64 /* EventObjectStructTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */; };
+		23CCE233265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */; };
+		23CCE234265F0AE9007B5F64 /* EventObjectKeyVarTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -33,6 +37,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				23CCE234265F0AE9007B5F64 /* EventObjectKeyVarTemplate.jet in CopyFiles */,
+				23CCE1EB265D4BF1007B5F64 /* EventObjectStructTemplate.jet in CopyFiles */,
 				C8566BED1E293FA100CC27E3 /* EventInitAssignTemplate.jet in CopyFiles */,
 				C8566BEE1E293FA100CC27E3 /* EventInitParam.jet in CopyFiles */,
 				C8566BEF1E293FA100CC27E3 /* EventInitTemplate.jet in CopyFiles */,
@@ -47,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		1A6BDAD91D9CC197F11ADBF3 /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectStructTemplate.jet; sourceTree = "<group>"; };
+		23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectKeyVarTemplate.jet; sourceTree = "<group>"; };
 		4544CED3F31AEB9E0E041E76 /* JustTrack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JustTrack.podspec; path = ../JustTrack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		587548F5EB6E75F385206CFC /* Pods-JustTrack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* JustTrack_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustTrack_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,9 +180,11 @@
 				C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */,
 				C8566BE41E293F8600CC27E3 /* EventInitParam.jet */,
 				C8566BE51E293F8600CC27E3 /* EventInitTemplate.jet */,
+				23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */,
 				C8566BE61E293F8600CC27E3 /* EventKeyNameTemplate.jet */,
 				C8566BE71E293F8600CC27E3 /* EventKeyVarTemplate.jet */,
 				C8566BE81E293F8600CC27E3 /* EventListTemplate.jet */,
+				23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */,
 				C8566BE91E293F8600CC27E3 /* EventTemplate.jet */,
 				C8566BEA1E293F8600CC27E3 /* main.swift */,
 				C8566BEB1E293F8600CC27E3 /* test.txt */,
@@ -274,6 +284,8 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				23CCE233265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet in Resources */,
+				23CCE1EA265D30FE007B5F64 /* EventObjectStructTemplate.jet in Resources */,
 				E073ABC41D47A414001B8D51 /* Events.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

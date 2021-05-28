@@ -1,0 +1,4 @@
+public struct <*object_name*>: Equatable {
+        <*object_paramter_list*>
+        
+    }

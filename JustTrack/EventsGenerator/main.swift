@@ -16,6 +16,8 @@ private enum EventTemplate : String {
     case eventInit = "EventInitTemplate.jet"
     case eventInitAssignsList = "EventInitAssignTemplate.jet"
     case eventInitParam = "EventInitParam.jet"
+    case eventObjectStruct = "EventObjectStructTemplate.jet"
+    case objectKeyVar = "EventObjectKeyVarTemplate.jet"
 }
 
 private enum EventTemplatePlaceholder : String {
@@ -25,16 +27,28 @@ private enum EventTemplatePlaceholder : String {
     case keyValueChain = "event_keyValueChain"
     case eventTrackers = "event_cs_trackers_str"
     case keysNames = "event_keysNames"
+    
     case keysVars = "event_keysVars"
     case keyName = "key_name"
+    case formattedObjectKeyName = "formatted_object_key_name"
     case keyNameOriginal = "key_name_original"
     case eventInit = "event_init"
     case eventInitParams = "event_init_params"
     case eventInitAssignsList = "event_init_assigns_list"
+    
+    //Facilitates array of objects
+    case objectKeyChain = "event_objectKeyChain"
+    case objectName = "object_name"
+    case objectKeyName = "object_key_name"
+    case objectKeysVars = "object_keysVars"
+    case objectKeyNames = "object_keyNames"
+    case objectStruct = "event_ObjectStructs"
+    case objectStructParams = "object_paramter_list"
 }
 
 private enum EventPlistKey : String {
     case payload = "payloadKeys"
+    case objectPayload = "objectPayloadKeys"
     case trackrs = "registeredTrackers"
 }
 
@@ -180,41 +194,86 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
     
     for event: String in events.keys.sorted(by: >) {
         
+        var objectNames: [String] = []
+        
         let eventDic: [String : AnyObject]? = events[event] as? [String : AnyObject]
         
         let sanitisedValue = sanitised(event)
         var structString = structTemplate
-        structString = replacePlaceholder(structString, placeholder: "<*!\(EventTemplatePlaceholder.event.rawValue)*>", value: sanitisedValue) //<*!event*> = Example
-        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.eventName.rawValue)*>", value: event) //<*event*> = example
+        structString = replacePlaceholder(structString, placeholder: "<*!\(EventTemplatePlaceholder.event.rawValue)*>", value: sanitisedValue, placeholderType: "routine") //<*!event*> = Example
+        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.eventName.rawValue)*>", value: event, placeholderType: "routine") //<*event*> = example
+    
+        let originalKeys:[Any] = eventDic![EventPlistKey.payload.rawValue] as! [Any]
+        var originalStringKeys: [String] = []
         
-        let originalKeys:[String] = eventDic![EventPlistKey.payload.rawValue] as! [String]
+        var cleanKeys: [String] = [] //array of string items
         
-        //sanitise keys
-        let cleanKeys:[String] = originalKeys.map{ sanitised($0) }
+        var objects: [Any] = [] //array of object items?
         
-        //<*event_keyValueChain*> = kKey1 : key1 == "" ? NSNull() : key1 as NSString
-        let eventKeyValueChain: String = generateEventKeyValueChain(cleanKeys)
-        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.keyValueChain.rawValue)*>", value: eventKeyValueChain)
+        for key in originalKeys { //Go through payload items
+            if key is String {
+                let setKey = key as! String
+                cleanKeys.append(sanitised(setKey)) //sanitise keys //let cleanKeys:[String] = originalKeys.map{ sanitised($0) }
+                originalStringKeys.append(setKey)
+            }
+            else if key is NSDictionary {
+                objects.append(key)
+            }
+        }
+        
+        if !objects.isEmpty {
+            for item in objects {
+                let object = (item as! NSDictionary)
+                let objectName = object["name"] as! String
+                objectNames.append(objectName)
+            }
+        }
+    
+        // <*event_keyValueChain*> = kKey1 : key1 == "" ? NSNull() : key1 as NSString
+        let eventKeyValueChain = generateEventKeyValueChain(cleanKeys, eventHasObjects: !objects.isEmpty)
+        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.keyValueChain.rawValue)*>", value: eventKeyValueChain, placeholderType: "routine")
+        
+        if !objects.isEmpty { //Create array definition for each object item using name definiton
+            let objectKeyValueKeyChain = generateObjectKeyValue(objectNames)
+            structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.objectKeyChain.rawValue)*>", value: objectKeyValueKeyChain, placeholderType: "routine")
+        }
+        else {
+            structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.objectKeyChain.rawValue)*>", value: "", placeholderType: "routine")
+        }
         
         //<*event_cs_trackers_str*> = "console", "GA"
         let eventCsTrackers: String = try generateEventCsTrackers(eventDic![EventPlistKey.trackrs.rawValue] as! [String])
-        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.eventTrackers.rawValue)*>", value: eventCsTrackers)
+        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.eventTrackers.rawValue)*>", value: eventCsTrackers, placeholderType: "routine")
         
         /*
          <*event_keysNames*> =
          private let kKey1 = "key1"
          private let kKey2 = "key2"
          */
-        let eventKeysNames: String = try generateEventKeysNames(originalKeys)
-        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.keysNames.rawValue)*>", value: eventKeysNames)
+        let eventKeyNames: String = try generateEventKeysNames(originalStringKeys)
+        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.keysNames.rawValue)*>", value: eventKeyNames, placeholderType: "routine")
         
+        let objectKeyNames: String = try generateEventKeysNames(objectNames)
+        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.objectKeyNames.rawValue)*>", value: objectKeyNames, placeholderType: "routine")
+        
+        if !objects.isEmpty {
+                let objectStructure = try generateObjectStructs(objects)
+                structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.objectStruct.rawValue)*>", value: objectStructure, placeholderType: "routine")
+        }
+        else {
+            structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.objectStruct.rawValue)*>", value: "", placeholderType: "routine")
+        }
+       
         /*
          <*event_keysVars*> =
          let key1 : String
          let key2 : String
          */
-        let eventKeysVars: String = try generateEventKeysVariables(cleanKeys)
-        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.keysVars.rawValue)*>", value: eventKeysVars)
+        
+        let eventKeysVars: String = try generateKeyVariables(cleanKeys, keyType: "eventKey")
+        let objectKeysVars: String = try generateObjectKeysVariables(objectNames)
+        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.keysVars.rawValue)*>", value: eventKeysVars, placeholderType: "routine")
+        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.objectKeysVars.rawValue)*>", value: objectKeysVars, placeholderType: "routine")
         
         /*
          <*event_init*> =
@@ -229,21 +288,23 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
          self.test2 = test2
          self.test3 = test3
          */
-        let eventInit: String = try generateEventInit(cleanKeys)
-        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.eventInit.rawValue)*>", value: eventInit)
+        
+        let eventInit: String = try generateEventInit(cleanKeys, objectNames)
+        structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.eventInit.rawValue)*>", value: eventInit, placeholderType: "routine")
 
         structsArray.append(structString)
+
     }
     
     //base list template
     resultString.replaceOccurrences(of: "<*\(EventTemplatePlaceholder.eventList.rawValue)*>",
-                                            with: structsArray.joined(separator: "\n\n"),
+                                            with: structsArray.joined(separator: "\n"),
                                             options: NSString.CompareOptions.caseInsensitive,
                                             range: NSRange(location: 0, length: resultString.length) )
     return resultString
 }
 
-private func replacePlaceholder(_ original: String, placeholder: String, value: String) -> String {
+private func replacePlaceholder(_ original: String, placeholder: String, value: String, placeholderType: String) -> String {
     
     if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 {
         return original
@@ -259,12 +320,21 @@ private func replacePlaceholder(_ original: String, placeholder: String, value: 
         valueToReplace = value
     }
     
-    return original.replacingOccurrences(of: placeholder, with: valueToReplace)
-}
+    switch placeholderType {
+        case "routine":
+            return original.replacingOccurrences(of: placeholder, with: valueToReplace)
+        case "eventParameter":
+            return original.replacingOccurrences(of: placeholder, with: valueToReplace + ": String")
+        case "objectPlaceholder":
+            return original.replacingOccurrences(of: placeholder, with: valueToReplace + ": [\(sanitised(valueToReplace).capitalizingFirstLetter())]")
+        default:
+            return original.replacingOccurrences(of: placeholder, with: valueToReplace)
+    }
 
+}
 //MARK Components generator
 
-func generateEventKeyValueChain(_ keys: [String]) -> String {
+func generateEventKeyValueChain(_ keys: [String], eventHasObjects: Bool) -> String {
     
     var resultArray: [String] = Array()
     for keyString in keys {
@@ -273,11 +343,58 @@ func generateEventKeyValueChain(_ keys: [String]) -> String {
         resultArray.append("k\(capKeyString): \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
     }
     
+    if (eventHasObjects) {
+        return "\n            " + resultArray.joined(separator: ", \n            ") + ",\n        "
+    }
+    else if (resultArray.count > 0) {
+        return "\n            " + resultArray.joined(separator: ", \n            ") + "\n        "
+    }
+    
+    return ":"
+}
+
+func generateObjectKeyValue(_ keys: [String]) -> String {
+    
+    var resultArray: [String] = Array()
+    for keyString in keys {
+        var capKeyString = keyString
+        capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex, with: String(capKeyString[capKeyString.startIndex]).capitalized)
+        resultArray.append("k\(capKeyString): \(keyString) == [] ? NSNull() : \(keyString) as [\(sanitised(capKeyString))] ")
+    }
+    
     if (resultArray.count > 0) {
         return "\n            " + resultArray.joined(separator: ", \n            ") + "\n        "
     }
     
     return ":"
+}
+
+func generateObjectStructs(_ objects: [Any]) throws -> String {
+    
+    var resultArray: [String] = Array()
+    
+    let structEventObjectTemplate: String = try stringFromTemplate(EventTemplate.eventObjectStruct.rawValue)
+    
+    for object in objects {
+        let key = (object as! NSDictionary)
+        let objectName = key["name"] as! String
+        let objectParamters: [String] = key[EventPlistKey.objectPayload.rawValue] as! [String]
+        var capItemName = objectName
+        capItemName.replaceSubrange(capItemName.startIndex...capItemName.startIndex, with: String(capItemName[capItemName.startIndex]).capitalized)
+        var structObjectKeyString = replacePlaceholder(structEventObjectTemplate, placeholder: "<*\(EventTemplatePlaceholder.objectName.rawValue)*>", value: sanitised(capItemName), placeholderType: "routine")
+        
+        let objectKeysVars: String = try generateKeyVariables(objectParamters, keyType: "objectKey")
+        structObjectKeyString = replacePlaceholder(structObjectKeyString, placeholder: "<*\(EventTemplatePlaceholder.objectStructParams.rawValue)*>\n", value: objectKeysVars, placeholderType: "routine")
+        
+        resultArray.append(structObjectKeyString)
+    }
+    
+    if (resultArray.count > 0) {
+        return "\n    " + resultArray.joined(separator: "\n\n    ") + "\n      "
+    }
+    else {
+        return "\n" + resultArray.joined(separator: "\n") + "\n        "
+    }
 }
 
 private func generateEventCsTrackers(_ trackers: [String]) throws -> String {
@@ -299,26 +416,47 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
     let structKeyNameTemplate: String = try stringFromTemplate(EventTemplate.keyName.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
-        var structKeyNameString = replacePlaceholder(structKeyNameTemplate, placeholder: "<*\(EventTemplatePlaceholder.keyNameOriginal.rawValue)*>", value: keyString)
-        structKeyNameString = replacePlaceholder(structKeyNameString, placeholder: "<*!\(EventTemplatePlaceholder.keyName.rawValue)*>", value: sanitised(keyString))
+        var structKeyNameString = replacePlaceholder(structKeyNameTemplate, placeholder: "<*\(EventTemplatePlaceholder.keyNameOriginal.rawValue)*>", value: keyString, placeholderType: "routine")
+        structKeyNameString = replacePlaceholder(structKeyNameString, placeholder: "<*!\(EventTemplatePlaceholder.keyName.rawValue)*>", value: sanitised(keyString), placeholderType: "routine")
         resultArray.append(structKeyNameString)
     }
     
     return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
 }
 
-private func generateEventKeysVariables(_ keys: [String]) throws -> String {
+
+private func generateKeyVariables(_ keys: [String], keyType: String) throws -> String {
     
     let structVarTemplate: String = try stringFromTemplate(EventTemplate.keyVar.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
-        let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: keyString)
+        let structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: keyString, placeholderType: "routine")
+        resultArray.append(structVarString)
+    }
+    
+    switch keyType {
+        case "eventKey":
+            return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
+        case "objectKey":
+            return resultArray.count > 0 ? resultArray.joined(separator: "\n        ") : ""
+        default:
+            return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
+    }
+}
+
+private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
+    
+    let structVarTemplate: String = try stringFromTemplate(EventTemplate.objectKeyVar.rawValue)
+    var resultArray: [String] = Array()
+    for keyString in keys {
+        var structVarString = replacePlaceholder(structVarTemplate, placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>", value: keyString, placeholderType: "routine")
+        structVarString = replacePlaceholder(structVarString, placeholder: "<*\(EventTemplatePlaceholder.formattedObjectKeyName.rawValue)*>", value: keyString.capitalizingFirstLetter(), placeholderType: "routine")
         resultArray.append(structVarString)
     }
     return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
 }
 
-private func generateEventInit(_ keys: [String]) throws -> String {
+private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws -> String {
     
     if keys.count == 0 {
         return "//MARK: Payload not configured"
@@ -334,19 +472,31 @@ private func generateEventInit(_ keys: [String]) throws -> String {
     
     var assignsResultArray: [String] = Array()
     var paramsResultArray: [String] = Array()
+    
     for keyString in keys {
-        let assignsResultString = replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: keyString)
+        let assignsResultString = replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: keyString, placeholderType: "routine")
         assignsResultArray.append(assignsResultString)
         
-        let paramResultString = replacePlaceholder(initParamTemplateString, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: keyString)
+        let paramResultString = replacePlaceholder(initParamTemplateString, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: keyString, placeholderType: "eventParameter")
         paramsResultArray.append(paramResultString)
     }
     
+    // Object Keys
+    if !objectKeys.isEmpty {
+        for key in objectKeys {
+            let assignsResultString = replacePlaceholder(initAssignsTemplateString, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: key, placeholderType: "routine")
+            assignsResultArray.append(assignsResultString)
+            
+            let paramResultString = replacePlaceholder(initParamTemplateString, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: key,placeholderType: "objectPlaceholder")
+            paramsResultArray.append(paramResultString)
+        }
+    }
+    
     let eventInitAssignsString: String = assignsResultArray.joined(separator: "\n        ")
-    initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(EventTemplatePlaceholder.eventInitAssignsList.rawValue)*>", value: eventInitAssignsString)
+    initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(EventTemplatePlaceholder.eventInitAssignsList.rawValue)*>", value: eventInitAssignsString, placeholderType: "routine")
     
     let eventInitParamsAssignsString: String = paramsResultArray.joined(separator: ",\n                ")
-    initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(EventTemplatePlaceholder.eventInitParams.rawValue)*>", value: eventInitParamsAssignsString)
+    initTemplateString = replacePlaceholder(initTemplateString, placeholder: "<*\(EventTemplatePlaceholder.eventInitParams.rawValue)*>", value: eventInitParamsAssignsString, placeholderType: "routine" )
     
     return initTemplateString
 }
