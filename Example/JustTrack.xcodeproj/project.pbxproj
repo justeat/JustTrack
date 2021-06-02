@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23CCE1EA265D30FE007B5F64 /* EventObjectStructTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */; };
+		23CCE1EB265D4BF1007B5F64 /* EventObjectStructTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */; };
+		23CCE233265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */; };
+		23CCE234265F0AE9007B5F64 /* EventObjectKeyVarTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		BC293FF24768D5563A9F3F05 /* Pods_JustTrack_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A30E6EF99EC591C444A8D7B /* Pods_JustTrack_Example.framework */; };
+		78C1E524E41E0331D8302F54 /* Pods_JustTrack_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6BDAD91D9CC197F11ADBF3 /* Pods_JustTrack_Example.framework */; };
 		C8566BEC1E293F8600CC27E3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8566BEA1E293F8600CC27E3 /* main.swift */; };
-		C8566BED1E293FA100CC27E3 /* JEEventInitAssignTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE31E293F8600CC27E3 /* JEEventInitAssignTemplate.jet */; };
-		C8566BEE1E293FA100CC27E3 /* JEEventInitParam.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE41E293F8600CC27E3 /* JEEventInitParam.jet */; };
-		C8566BEF1E293FA100CC27E3 /* JEEventInitTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE51E293F8600CC27E3 /* JEEventInitTemplate.jet */; };
-		C8566BF01E293FA100CC27E3 /* JEEventKeyNameTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE61E293F8600CC27E3 /* JEEventKeyNameTemplate.jet */; };
-		C8566BF11E293FA100CC27E3 /* JEEventKeyVarTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE71E293F8600CC27E3 /* JEEventKeyVarTemplate.jet */; };
-		C8566BF21E293FA100CC27E3 /* JEEventListTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE81E293F8600CC27E3 /* JEEventListTemplate.jet */; };
-		C8566BF31E293FA100CC27E3 /* JEEventTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE91E293F8600CC27E3 /* JEEventTemplate.jet */; };
+		C8566BED1E293FA100CC27E3 /* EventInitAssignTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */; };
+		C8566BEE1E293FA100CC27E3 /* EventInitParam.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE41E293F8600CC27E3 /* EventInitParam.jet */; };
+		C8566BEF1E293FA100CC27E3 /* EventInitTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE51E293F8600CC27E3 /* EventInitTemplate.jet */; };
+		C8566BF01E293FA100CC27E3 /* EventKeyNameTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE61E293F8600CC27E3 /* EventKeyNameTemplate.jet */; };
+		C8566BF11E293FA100CC27E3 /* EventKeyVarTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE71E293F8600CC27E3 /* EventKeyVarTemplate.jet */; };
+		C8566BF21E293FA100CC27E3 /* EventListTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE81E293F8600CC27E3 /* EventListTemplate.jet */; };
+		C8566BF31E293FA100CC27E3 /* EventTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE91E293F8600CC27E3 /* EventTemplate.jet */; };
 		C8C75BEC1E4E0D5B006BC73B /* Events_with_errors.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8C75BEB1E4E0D5B006BC73B /* Events_with_errors.plist */; };
 		C8EDCE1E1FB9CBE000296B37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EDCE1D1FB9CBE000296B37 /* ViewController.swift */; };
 		E073ABC41D47A414001B8D51 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = E073ABC31D47A414001B8D51 /* Events.plist */; };
@@ -33,27 +37,25 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				C8566BED1E293FA100CC27E3 /* JEEventInitAssignTemplate.jet in CopyFiles */,
-				C8566BEE1E293FA100CC27E3 /* JEEventInitParam.jet in CopyFiles */,
-				C8566BEF1E293FA100CC27E3 /* JEEventInitTemplate.jet in CopyFiles */,
-				C8566BF01E293FA100CC27E3 /* JEEventKeyNameTemplate.jet in CopyFiles */,
-				C8566BF11E293FA100CC27E3 /* JEEventKeyVarTemplate.jet in CopyFiles */,
-				C8566BF21E293FA100CC27E3 /* JEEventListTemplate.jet in CopyFiles */,
-				C8566BF31E293FA100CC27E3 /* JEEventTemplate.jet in CopyFiles */,
+				23CCE234265F0AE9007B5F64 /* EventObjectKeyVarTemplate.jet in CopyFiles */,
+				23CCE1EB265D4BF1007B5F64 /* EventObjectStructTemplate.jet in CopyFiles */,
+				C8566BED1E293FA100CC27E3 /* EventInitAssignTemplate.jet in CopyFiles */,
+				C8566BEE1E293FA100CC27E3 /* EventInitParam.jet in CopyFiles */,
+				C8566BEF1E293FA100CC27E3 /* EventInitTemplate.jet in CopyFiles */,
+				C8566BF01E293FA100CC27E3 /* EventKeyNameTemplate.jet in CopyFiles */,
+				C8566BF11E293FA100CC27E3 /* EventKeyVarTemplate.jet in CopyFiles */,
+				C8566BF21E293FA100CC27E3 /* EventListTemplate.jet in CopyFiles */,
+				C8566BF31E293FA100CC27E3 /* EventTemplate.jet in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1A30E6EF99EC591C444A8D7B /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		21675A35E21330467F875074 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		273A64F5DDAC33D55C7BE4A3 /* Pods-JustTrack_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Tests/Pods-JustTrack_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		1A6BDAD91D9CC197F11ADBF3 /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectStructTemplate.jet; sourceTree = "<group>"; };
+		23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectKeyVarTemplate.jet; sourceTree = "<group>"; };
 		4544CED3F31AEB9E0E041E76 /* JustTrack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JustTrack.podspec; path = ../JustTrack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		483FC80E1DCCF18B008E2EE0 /* Trackers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trackers.swift; sourceTree = "<group>"; };
-		483FC8101DD09CCC008E2EE0 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
-		4ACC5FA321CD52C8330640C9 /* Pods_Example_with_Objective_C.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_with_Objective_C.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CA4E1D9F2BACAD9A21D947C /* Pods-JustTrack_Example_ObjC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example_ObjC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example_ObjC/Pods-JustTrack_Example_ObjC.debug.xcconfig"; sourceTree = "<group>"; };
 		587548F5EB6E75F385206CFC /* Pods-JustTrack_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* JustTrack_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustTrack_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,32 +63,23 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTests.swift; sourceTree = "<group>"; };
 		695000F9344F9959D5739C1B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		8BDBAFDA2677AEAF650C3BDC /* Pods-JustTrack_Example_ObjC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example_ObjC.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example_ObjC/Pods-JustTrack_Example_ObjC.release.xcconfig"; sourceTree = "<group>"; };
-		92C2380C0281280B47E02DF4 /* Pods-Example with Objective-C.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example with Objective-C.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example with Objective-C/Pods-Example with Objective-C.debug.xcconfig"; sourceTree = "<group>"; };
 		A50CAE54C8FA146A010BACD4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		AA6BCA791E88E0DDE8B9EEE3 /* Pods_JustTrack_Example_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB838AA6D85DC9B92BE0A7C5 /* Pods-JustTrack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.release.xcconfig"; sourceTree = "<group>"; };
-		C8566BE31E293F8600CC27E3 /* JEEventInitAssignTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitAssignTemplate.jet; sourceTree = "<group>"; };
-		C8566BE41E293F8600CC27E3 /* JEEventInitParam.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitParam.jet; sourceTree = "<group>"; };
-		C8566BE51E293F8600CC27E3 /* JEEventInitTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventInitTemplate.jet; sourceTree = "<group>"; };
-		C8566BE61E293F8600CC27E3 /* JEEventKeyNameTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventKeyNameTemplate.jet; sourceTree = "<group>"; };
-		C8566BE71E293F8600CC27E3 /* JEEventKeyVarTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventKeyVarTemplate.jet; sourceTree = "<group>"; };
-		C8566BE81E293F8600CC27E3 /* JEEventListTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventListTemplate.jet; sourceTree = "<group>"; };
-		C8566BE91E293F8600CC27E3 /* JEEventTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JEEventTemplate.jet; sourceTree = "<group>"; };
+		C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventInitAssignTemplate.jet; sourceTree = "<group>"; };
+		C8566BE41E293F8600CC27E3 /* EventInitParam.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventInitParam.jet; sourceTree = "<group>"; };
+		C8566BE51E293F8600CC27E3 /* EventInitTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventInitTemplate.jet; sourceTree = "<group>"; };
+		C8566BE61E293F8600CC27E3 /* EventKeyNameTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventKeyNameTemplate.jet; sourceTree = "<group>"; };
+		C8566BE71E293F8600CC27E3 /* EventKeyVarTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventKeyVarTemplate.jet; sourceTree = "<group>"; };
+		C8566BE81E293F8600CC27E3 /* EventListTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventListTemplate.jet; sourceTree = "<group>"; };
+		C8566BE91E293F8600CC27E3 /* EventTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventTemplate.jet; sourceTree = "<group>"; };
 		C8566BEA1E293F8600CC27E3 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C8566BEB1E293F8600CC27E3 /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		C8C75BEB1E4E0D5B006BC73B /* Events_with_errors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events_with_errors.plist; sourceTree = "<group>"; };
 		C8EDCE1D1FB9CBE000296B37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D21EAF4E4356F3C03D7F5348 /* Pods-Example with Objective-C.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example with Objective-C.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example with Objective-C/Pods-Example with Objective-C.release.xcconfig"; sourceTree = "<group>"; };
-		D80A28E106E29B09E01D0DAA /* Pods_JustTrack_Example_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E073ABC31D47A414001B8D51 /* Events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
-		E0766338A23F3EBF348C3F5C /* Pods_JustTrack_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0CC1E9C1D5238F500FD8AF8 /* EventGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EventGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0CC1EA71D523C8000FD8AF8 /* TrackingEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingEvents.swift; sourceTree = "<group>"; };
-		FCF9BF3A2EB6D55D4E1BF401 /* Pods-JustTrack_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Tests/Pods-JustTrack_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC293FF24768D5563A9F3F05 /* Pods_JustTrack_Example.framework in Frameworks */,
+				78C1E524E41E0331D8302F54 /* Pods_JustTrack_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,13 +104,12 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				C8566BE21E293F8500CC27E3 /* JEEventsGenerator */,
+				C8566BE21E293F8500CC27E3 /* EventsGenerator */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for JustTrack */,
-				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
-				C7FDF60032E4F6772636D32B /* Frameworks */,
 				78EEC4026664FC2BF79F01FB /* Pods */,
+				7A4E64690C9416CEC77BEF12 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,25 +147,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		607FACE81AFB9204008FA782 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEB1AFB9204008FA782 /* TrackerTests.swift */,
-				483FC8101DD09CCC008E2EE0 /* Events.swift */,
-				483FC80E1DCCF18B008E2EE0 /* Trackers.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		607FACE91AFB9204008FA782 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEA1AFB9204008FA782 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,46 +160,37 @@
 		78EEC4026664FC2BF79F01FB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				92C2380C0281280B47E02DF4 /* Pods-Example with Objective-C.debug.xcconfig */,
-				D21EAF4E4356F3C03D7F5348 /* Pods-Example with Objective-C.release.xcconfig */,
 				587548F5EB6E75F385206CFC /* Pods-JustTrack_Example.debug.xcconfig */,
 				BB838AA6D85DC9B92BE0A7C5 /* Pods-JustTrack_Example.release.xcconfig */,
-				FCF9BF3A2EB6D55D4E1BF401 /* Pods-JustTrack_Tests.debug.xcconfig */,
-				273A64F5DDAC33D55C7BE4A3 /* Pods-JustTrack_Tests.release.xcconfig */,
-				4CA4E1D9F2BACAD9A21D947C /* Pods-JustTrack_Example_ObjC.debug.xcconfig */,
-				8BDBAFDA2677AEAF650C3BDC /* Pods-JustTrack_Example_ObjC.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		C7FDF60032E4F6772636D32B /* Frameworks */ = {
+		7A4E64690C9416CEC77BEF12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				21675A35E21330467F875074 /* Pods.framework */,
-				4ACC5FA321CD52C8330640C9 /* Pods_Example_with_Objective_C.framework */,
-				1A30E6EF99EC591C444A8D7B /* Pods_JustTrack_Example.framework */,
-				E0766338A23F3EBF348C3F5C /* Pods_JustTrack_Tests.framework */,
-				AA6BCA791E88E0DDE8B9EEE3 /* Pods_JustTrack_Example_ObjC.framework */,
-				D80A28E106E29B09E01D0DAA /* Pods_JustTrack_Example_Tests.framework */,
+				1A6BDAD91D9CC197F11ADBF3 /* Pods_JustTrack_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C8566BE21E293F8500CC27E3 /* JEEventsGenerator */ = {
+		C8566BE21E293F8500CC27E3 /* EventsGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				C8566BE31E293F8600CC27E3 /* JEEventInitAssignTemplate.jet */,
-				C8566BE41E293F8600CC27E3 /* JEEventInitParam.jet */,
-				C8566BE51E293F8600CC27E3 /* JEEventInitTemplate.jet */,
-				C8566BE61E293F8600CC27E3 /* JEEventKeyNameTemplate.jet */,
-				C8566BE71E293F8600CC27E3 /* JEEventKeyVarTemplate.jet */,
-				C8566BE81E293F8600CC27E3 /* JEEventListTemplate.jet */,
-				C8566BE91E293F8600CC27E3 /* JEEventTemplate.jet */,
+				C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */,
+				C8566BE41E293F8600CC27E3 /* EventInitParam.jet */,
+				C8566BE51E293F8600CC27E3 /* EventInitTemplate.jet */,
+				23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */,
+				C8566BE61E293F8600CC27E3 /* EventKeyNameTemplate.jet */,
+				C8566BE71E293F8600CC27E3 /* EventKeyVarTemplate.jet */,
+				C8566BE81E293F8600CC27E3 /* EventListTemplate.jet */,
+				23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */,
+				C8566BE91E293F8600CC27E3 /* EventTemplate.jet */,
 				C8566BEA1E293F8600CC27E3 /* main.swift */,
 				C8566BEB1E293F8600CC27E3 /* test.txt */,
 			);
-			name = JEEventsGenerator;
-			path = ../JustTrack/JEEventsGenerator;
+			name = EventsGenerator;
+			path = ../JustTrack/EventsGenerator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +284,8 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				23CCE233265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet in Resources */,
+				23CCE1EA265D30FE007B5F64 /* EventObjectStructTemplate.jet in Resources */,
 				E073ABC41D47A414001B8D51 /* Events.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,7 +341,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcrun --sdk macosx swift \"${PODS_ROOT}/../../JustTrack/JEEventsGenerator/main.swift\" \"${SRCROOT}/JustTrack/Events.plist\" \"${SRCROOT}/JustTrack/TrackingEvents.swift\"\n";
+			shellScript = "xcrun --sdk macosx swift \"${PODS_ROOT}/../../JustTrack/EventsGenerator/main.swift\" \"${SRCROOT}/JustTrack/Events.plist\" \"${SRCROOT}/JustTrack/TrackingEvents.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -539,6 +505,7 @@
 				DEVELOPMENT_TEAM = ZKPN288GRK;
 				INFOPLIST_FILE = JustTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.justeat.JustTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -554,6 +521,7 @@
 				DEVELOPMENT_TEAM = ZKPN288GRK;
 				INFOPLIST_FILE = JustTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.justeat.JustTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";

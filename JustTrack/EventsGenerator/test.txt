@@ -1,6 +1,6 @@
-@objcMembers class JEEvent<*!event_name*>: NSObject, JEEvent {
+class Event<*!event*>: Event {
 
-    //JEEvent protocol
+    //Event protocol
     let name: String = "<*event_name*>"
 
     var payload: [String : String]? {
@@ -58,9 +58,7 @@ self.test2 = test2
 self.test3 = test3
 
 
-
-
-@objcMembers public class JEEventExample: NSObject, JEEvent {
+public class EventExample: NSObject, Event {
     public let name: String = "example"
 
     public var payload: [String : String]? {

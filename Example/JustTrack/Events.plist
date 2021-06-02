@@ -6,6 +6,8 @@
 	<dict>
 		<key>example</key>
 		<dict>
+			<key>name</key>
+			<string>example</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>
@@ -16,10 +18,30 @@
 				<string>test_1</string>
 				<string>test_2</string>
 				<string>test_3</string>
+				<dict>
+					<key>name</key>
+					<string>testObject</string>
+					<key>objectPayloadKeys</key>
+					<array>
+						<string>item_name</string>
+						<string>item_number</string>
+					</array>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>secondTestObject</string>
+					<key>objectPayloadKeys</key>
+					<array>
+						<string>item_name</string>
+						<string>item_number</string>
+					</array>
+				</dict>
 			</array>
 		</dict>
-		<key>ViewScreen</key>
+		<key>view_screen</key>
 		<dict>
+			<key>name</key>
+			<string>view_screen</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>
@@ -29,10 +51,14 @@
 			<array>
 				<string>screenName</string>
 				<string>screenData</string>
+				<string>screenData_var</string>
+				<string>screenData_varSetting</string>
 			</array>
 		</dict>
 		<key>Tap</key>
 		<dict>
+			<key>name</key>
+			<string>Tap</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>
@@ -45,6 +71,8 @@
 		</dict>
 		<key>User</key>
 		<dict>
+			<key>name</key>
+			<string>User</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>
@@ -59,6 +87,8 @@
 		</dict>
 		<key>NoPayload</key>
 		<dict>
+			<key>name</key>
+			<string>NoPayload</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>

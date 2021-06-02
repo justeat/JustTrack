@@ -1,0 +1,23 @@
+public class Event<*!event*>: Event {
+
+    public let name: String = "<*name*>"
+    <*event_ObjectStructs*>
+
+    public var payload: Payload {
+        return [<*event_keyValueChain*><*event_objectKeyChain*>]
+    }
+
+    public var registeredTrackers: [String] {
+        return [<*event_cs_trackers_str*>]
+    }
+    
+    <*event_keysNames*>
+    
+    <*object_keyNames*>
+
+    <*event_keysVars*>
+    <*object_keysVars*>
+
+    <*event_init*>
+}
+

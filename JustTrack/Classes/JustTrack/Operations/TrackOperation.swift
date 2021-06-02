@@ -6,17 +6,17 @@
 
 import Foundation
 
-class JETrackOperation: Operation {
+class TrackOperation: Operation {
     
     // MARK: - Variables
     
-    let event: JEEvent
-    let tracker: JETracker
+    let event: Event
+    let tracker: EventTracker
     fileprivate var eventKey: String
     
     // MARK: - Initialization
     
-    init(tracker: JETracker, event: JEEvent) {
+    init(tracker: EventTracker, event: Event) {
         self.event = event
         self.tracker = tracker
         self.eventKey = "\(event.name)_ON_\(tracker.name)_\(Date().timeIntervalSince1970)"
@@ -50,9 +50,9 @@ class JETrackOperation: Operation {
 
 // MARK: - Persistence
 
-private extension JETrackOperation {
+private extension TrackOperation {
 
-    func saveEvent(_ event: JEEvent, key: String) {
+    func saveEvent(_ event: Event, key: String) {
         let serializedEvent = event.encode()
         saveEventDictionary(serializedEvent , key: key)
     }
@@ -60,7 +60,7 @@ private extension JETrackOperation {
     func saveEventDictionary(_ eventDictionary: [String: Any], key: String) {
         
         var operations: NSMutableDictionary
-        if let outData = UserDefaults.standard.data(forKey: JETracking.kPersistentStorageName) {
+        if let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName) {
             if let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] {
                 operations = NSMutableDictionary(dictionary: dataDictionary)
             }
@@ -74,14 +74,13 @@ private extension JETrackOperation {
         
         operations.setObject(eventDictionary, forKey: key as NSCopying)
         let data = NSKeyedArchiver.archivedData(withRootObject: operations)
-        UserDefaults.standard.set(data, forKey: JETracking.kPersistentStorageName)
-        UserDefaults.standard.synchronize()
+        UserDefaults.standard.set(data, forKey: EventTracking.kPersistentStorageName)
     }
     
     func deleteEvent(_ key: String) {
         
         var operations: NSMutableDictionary
-        if let outData = UserDefaults.standard.data(forKey: JETracking.kPersistentStorageName) {
+        if let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName) {
             guard let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
                 return
             }
@@ -89,8 +88,7 @@ private extension JETrackOperation {
             operations = NSMutableDictionary(dictionary: dataDictionary)
             operations.removeObject(forKey: key)
             let data = NSKeyedArchiver.archivedData(withRootObject: operations)
-            UserDefaults.standard.set(data, forKey: JETracking.kPersistentStorageName)
-            UserDefaults.standard.synchronize()
+            UserDefaults.standard.set(data, forKey: EventTracking.kPersistentStorageName)
         }
     }
 }

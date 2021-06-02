@@ -6,10 +6,9 @@
 
 import Foundation
 
-@objcMembers
-class JETrackerConsole: NSObject, JETracker {
+class TrackerConsole: NSObject, EventTracker {
     
-    // MARK: - JETracker protocol implementation
+    // MARK: - Tracker protocol implementation
     
     let name = "console"
     
