@@ -19,7 +19,7 @@
   "social_media_url": "https://twitter.com/justeat_tech",
   "swift_versions": "5.0",
   "platforms": {
-    "ios": "9.0"
+    "ios": "11.0"
   },
   "source_files": "JustTrack/Classes/**/*",
   "preserve_paths": "JustTrack/EventsGenerator/*",
