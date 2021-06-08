@@ -25,6 +25,38 @@ class EventInternalTests: XCTestCase {
         XCTAssertEqual(firstTrackerName, "AmazingTracker")
     }
     
+    
+    func testEventDictionaryEncodingWithArrayOfItems() {
+        
+       struct Items: Equatable {
+            public var itemName = ""
+            public var itemNumber = ""
+            
+            public init(itemName: String,
+                        itemNumber: String) {
+                self.itemName = itemName
+                self.itemNumber = itemNumber
+            }
+        }
+        
+        let event = EventInternal(name: "AmazingEvent",
+                                  payload:["AmazingId": 123456, "arrayOfItems": [Items]()],
+                                  registeredTrackers: ["AmazingTracker"])
+        let eventDictionary = event.encode()
+        
+        let eventName = eventDictionary["name"] as! String
+        let payload = eventDictionary["payload"] as! Payload
+        let payloadId = payload["AmazingId"] as! Int
+        let arrayOfItems = payload["arrayOfItems"] as! [Items]
+        let trackers = eventDictionary["trackers"] as! [String]
+        let firstTrackerName = trackers[0]
+        
+        XCTAssertEqual(eventName, "AmazingEvent")
+        XCTAssertEqual(payloadId, 123456)
+        XCTAssertEqual(arrayOfItems, [Items]())
+        XCTAssertEqual(firstTrackerName, "AmazingTracker")
+    }
+    
     func testEventDecoding() {
         let eventDictionary = ["name": "UnrealEvent",
                                "payload": ["unrealId": 654321],

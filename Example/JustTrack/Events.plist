@@ -7,7 +7,7 @@
 		<key>example</key>
 		<dict>
 			<key>name</key>
-			<string>example</string>
+			<string>example_name</string>
 			<key>registeredTrackers</key>
 			<array>
 				<string>console</string>
@@ -33,7 +33,7 @@
 					<key>objectPayloadKeys</key>
 					<array>
 						<string>item_name</string>
-						<string>item_number</string>
+						<string>item_number_test</string>
 					</array>
 				</dict>
 			</array>

@@ -1,4 +1,7 @@
 public struct <*object_name*>: Equatable {
-        <*object_paramter_list*>
+        <*object_parameter_list*>
+        
+        
+        <*event_object_init*>
         
     }
