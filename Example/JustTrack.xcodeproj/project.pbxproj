@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		231FC37B266E74A800FFBEDB /* EventObjectInitTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 231FC37A266E74A800FFBEDB /* EventObjectInitTemplate.jet */; };
+		231FC37D266E74B900FFBEDB /* EventObjectInitParam.jet in Sources */ = {isa = PBXBuildFile; fileRef = 231FC37C266E74B900FFBEDB /* EventObjectInitParam.jet */; };
+		231FC37F266E7F3600FFBEDB /* EventObjectInitAssignTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 231FC37E266E7F3600FFBEDB /* EventObjectInitAssignTemplate.jet */; };
 		23CCE1EA265D30FE007B5F64 /* EventObjectStructTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */; };
 		23CCE1EB265D4BF1007B5F64 /* EventObjectStructTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = 23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */; };
 		23CCE233265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */; };
@@ -53,6 +56,9 @@
 
 /* Begin PBXFileReference section */
 		1A6BDAD91D9CC197F11ADBF3 /* Pods_JustTrack_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JustTrack_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		231FC37A266E74A800FFBEDB /* EventObjectInitTemplate.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectInitTemplate.jet; sourceTree = "<group>"; };
+		231FC37C266E74B900FFBEDB /* EventObjectInitParam.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectInitParam.jet; sourceTree = "<group>"; };
+		231FC37E266E7F3600FFBEDB /* EventObjectInitAssignTemplate.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectInitAssignTemplate.jet; sourceTree = "<group>"; };
 		23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectStructTemplate.jet; sourceTree = "<group>"; };
 		23CCE232265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectKeyVarTemplate.jet; sourceTree = "<group>"; };
 		4544CED3F31AEB9E0E041E76 /* JustTrack.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = JustTrack.podspec; path = ../JustTrack.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -178,8 +184,11 @@
 			isa = PBXGroup;
 			children = (
 				C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */,
+				231FC37E266E7F3600FFBEDB /* EventObjectInitAssignTemplate.jet */,
 				C8566BE41E293F8600CC27E3 /* EventInitParam.jet */,
 				C8566BE51E293F8600CC27E3 /* EventInitTemplate.jet */,
+				231FC37A266E74A800FFBEDB /* EventObjectInitTemplate.jet */,
+				231FC37C266E74B900FFBEDB /* EventObjectInitParam.jet */,
 				23CCE1E9265D30FE007B5F64 /* EventObjectStructTemplate.jet */,
 				C8566BE61E293F8600CC27E3 /* EventKeyNameTemplate.jet */,
 				C8566BE71E293F8600CC27E3 /* EventKeyVarTemplate.jet */,
@@ -281,10 +290,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8C75BEC1E4E0D5B006BC73B /* Events_with_errors.plist in Resources */,
+				231FC37F266E7F3600FFBEDB /* EventObjectInitAssignTemplate.jet in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				23CCE233265F0ADD007B5F64 /* EventObjectKeyVarTemplate.jet in Resources */,
+				231FC37B266E74A800FFBEDB /* EventObjectInitTemplate.jet in Resources */,
 				23CCE1EA265D30FE007B5F64 /* EventObjectStructTemplate.jet in Resources */,
 				E073ABC41D47A414001B8D51 /* Events.plist in Resources */,
 			);
@@ -353,6 +364,7 @@
 				C8EDCE1E1FB9CBE000296B37 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				E0CC1EA81D523C8000FD8AF8 /* TrackingEvents.swift in Sources */,
+				231FC37D266E74B900FFBEDB /* EventObjectInitParam.jet in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

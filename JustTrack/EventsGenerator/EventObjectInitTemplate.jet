@@ -1,0 +1,3 @@
+    public init(<*event_object_init_params*>) {
+            <*event_object_init_assigns_list*>
+        }

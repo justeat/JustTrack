@@ -82,16 +82,28 @@ public class EventViewScreen: Event {
 }
 public class EventExample: Event {
 
-    public let name: String = "example"
+    public let name: String = "example_name"
     
     public struct TestObject: Equatable {
         public var itemName = ""
         public var itemNumber = ""        
+        
+        public init(itemName: String,
+                    itemNumber: String) {
+            self.itemName = itemName
+            self.itemNumber = itemNumber
+        }        
     }
 
     public struct SecondTestObject: Equatable {
         public var itemName = ""
-        public var itemNumber = ""        
+        public var itemNumberTest = ""        
+        
+        public init(itemName: String,
+                    itemNumberTest: String) {
+            self.itemName = itemName
+            self.itemNumberTest = itemNumberTest
+        }        
     }
       
 
