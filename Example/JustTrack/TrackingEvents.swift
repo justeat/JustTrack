@@ -84,18 +84,36 @@ public class EventExample: Event {
 
     public let name: String = "example_name"
     
-    public struct TestObject: Equatable {
+    public struct TestObject: Equatable, Codable {
+
         public var itemName = ""
-        public var itemNumber = ""        
+        public var itemNumber = 0
+        public var itemPrice = 0.0
+        public var itemValue = false        
         
         public init(itemName: String,
-                    itemNumber: String) {
+                    itemNumber: Int,
+                    itemPrice: Double,
+                    itemValue: Bool) {
             self.itemName = itemName
             self.itemNumber = itemNumber
+            self.itemPrice = itemPrice
+            self.itemValue = itemValue
         }        
+        
+        var asDict: [String: Any] {
+            [
+             "item_name" : itemName,
+             "item_number" : itemNumber,
+             "item_price" : itemPrice,
+             "item_value" : itemValue
+            ]            
+        }
+        
     }
 
-    public struct SecondTestObject: Equatable {
+    public struct SecondTestObject: Equatable, Codable {
+
         public var itemName = ""
         public var itemNumberTest = ""        
         
@@ -104,6 +122,14 @@ public class EventExample: Event {
             self.itemName = itemName
             self.itemNumberTest = itemNumberTest
         }        
+        
+        var asDict: [String: Any] {
+            [
+             "item_name" : itemName,
+             "item_number_test" : itemNumberTest
+            ]            
+        }
+        
     }
       
 
@@ -113,8 +139,8 @@ public class EventExample: Event {
             kTest2: test2 == "" ? NSNull() : test2 as NSString, 
             kTest3: test3 == "" ? NSNull() : test3 as NSString,
         
-            kTestObject: testObject == [] ? NSNull() : testObject as [TestObject] , 
-            kSecondTestObject: secondTestObject == [] ? NSNull() : secondTestObject as [SecondTestObject] 
+            kTestObject: testObject == [] ? NSNull() : testObject.map { $0.asDict }, 
+            kSecondTestObject: secondTestObject == [] ? NSNull() : secondTestObject.map { $0.asDict }
         ]
     }
 

@@ -234,7 +234,25 @@ Another change made within version 4.0 is the preservation of order within the a
 
 ### Facilitating an array of objects
 
-**JustTrack** now allows for the implementation of an array of objects as part of the payload. In order to implement such events, create a new item of type Dictionary and adhere to the objectPayloadKeys notation as detailed by the example event.
+**JustTrack** now allows for the implementation of an array of objects as part of the payload. In order to implement such events, create a new item of type Dictionary and adhere to the objectPayloadKeys notation as detailed by the example event. An array of objects also supports different data types. To add these to your array of objects, simply append the varable type to the end of the value as follows: 
+
+Integers:
+
+```
+itemNumber_int
+```
+
+Double:
+
+```
+itemPrice_double
+```
+
+Booleans:
+
+```
+itemAvailable_bool
+```
 
 ## Upgrading to v3.0
 
