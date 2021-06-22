@@ -1,7 +1,16 @@
-public struct <*object_name*>: Equatable {
+public struct <*object_name*>: Equatable, Codable {
+
         <*object_parameter_list*>
         
         
         <*event_object_init*>
         
+        
+        var asDict: [String: Any] {
+            <*dictionary_parameter_list*>
+            
+        }
+        
     }
+    
+

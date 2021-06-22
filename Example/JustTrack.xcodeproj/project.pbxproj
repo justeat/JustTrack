@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		230EB93C2681395300BF6162 /* EventObjectInitAssignTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = 231FC37E266E7F3600FFBEDB /* EventObjectInitAssignTemplate.jet */; };
+		230EB93D2681395300BF6162 /* EventObjectInitTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = 231FC37A266E74A800FFBEDB /* EventObjectInitTemplate.jet */; };
+		230EB93E2681395300BF6162 /* EventObjectInitParam.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = 231FC37C266E74B900FFBEDB /* EventObjectInitParam.jet */; };
 		231FC37B266E74A800FFBEDB /* EventObjectInitTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 231FC37A266E74A800FFBEDB /* EventObjectInitTemplate.jet */; };
 		231FC37D266E74B900FFBEDB /* EventObjectInitParam.jet in Sources */ = {isa = PBXBuildFile; fileRef = 231FC37C266E74B900FFBEDB /* EventObjectInitParam.jet */; };
 		231FC37F266E7F3600FFBEDB /* EventObjectInitAssignTemplate.jet in Resources */ = {isa = PBXBuildFile; fileRef = 231FC37E266E7F3600FFBEDB /* EventObjectInitAssignTemplate.jet */; };
@@ -40,6 +43,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				230EB93C2681395300BF6162 /* EventObjectInitAssignTemplate.jet in CopyFiles */,
+				230EB93D2681395300BF6162 /* EventObjectInitTemplate.jet in CopyFiles */,
+				230EB93E2681395300BF6162 /* EventObjectInitParam.jet in CopyFiles */,
 				23CCE234265F0AE9007B5F64 /* EventObjectKeyVarTemplate.jet in CopyFiles */,
 				23CCE1EB265D4BF1007B5F64 /* EventObjectStructTemplate.jet in CopyFiles */,
 				C8566BED1E293FA100CC27E3 /* EventInitAssignTemplate.jet in CopyFiles */,

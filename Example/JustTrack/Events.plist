@@ -24,7 +24,7 @@
 					<key>objectPayloadKeys</key>
 					<array>
 						<string>item_name</string>
-						<string>item_number</string>
+						<string>item_number_int</string>
 					</array>
 				</dict>
 				<dict>
