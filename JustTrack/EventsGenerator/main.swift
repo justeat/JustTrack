@@ -459,7 +459,7 @@ func generateObjectDictionaryFunction(objectParameters: [String]) -> String {
         structureResult = resultArray.joined(separator: "\n")
     }
     
-    structureResult = "[" + structureResult + "]"
+    structureResult = "[\n             " + structureResult + "\n            ]"
     
     return structureResult
 }

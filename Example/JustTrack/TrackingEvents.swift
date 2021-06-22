@@ -102,10 +102,12 @@ public class EventExample: Event {
         }        
         
         var asDict: [String: Any] {
-            ["item_name" : itemName,
+            [
+             "item_name" : itemName,
              "item_number" : itemNumber,
              "item_price" : itemPrice,
-             "item_value" : itemValue]            
+             "item_value" : itemValue
+            ]            
         }
         
     }
@@ -122,8 +124,10 @@ public class EventExample: Event {
         }        
         
         var asDict: [String: Any] {
-            ["item_name" : itemName,
-             "item_number_test" : itemNumberTest]            
+            [
+             "item_name" : itemName,
+             "item_number_test" : itemNumberTest
+            ]            
         }
         
     }
