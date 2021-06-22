@@ -415,7 +415,7 @@ func generateObjectStructs(_ objects: [Any]) throws -> String {
         let objectKeysVars: String = try generateStructKeyVariables(objectParameters, keyType: "objectKey")
         structObjectKeyString = replacePlaceholder(structObjectKeyString, placeholder: "<*\(EventTemplatePlaceholder.objectStructParams.rawValue)*>\n", value: objectKeysVars, placeholderType: "routine")
         
-        let objectKeysInit: String = try generateEventObjectInit(objectParameters, objectParameters)
+        let objectKeysInit: String = try generateEventObjectInit(objectParameters)
         
         structObjectKeyString = replacePlaceholder(structObjectKeyString, placeholder: "<*\(EventTemplatePlaceholder.eventObjectInit.rawValue)*>\n", value: objectKeysInit, placeholderType: "routine")
         
@@ -594,7 +594,7 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
     return initTemplateString
 }
 
-private func generateEventObjectInit(_ keys: [String], _ objectKeys: [String]) throws -> String {
+private func generateEventObjectInit(_ keys: [String]) throws -> String {
     
     if keys.count == 0 {
         return "//MARK: Payload not configured"
