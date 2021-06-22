@@ -39,7 +39,7 @@ public class EventExample: Event {
 import Foundation
 import JustTrack
 
-public class EventViewScreen: Event  {
+public class EventViewScreen: Event {
 
     public let name: String = "view_screen"
     
@@ -64,10 +64,10 @@ public class EventViewScreen: Event  {
     
     
 
-    public var screenName = "" 
-    public var screenData = "" 
-    public var screenDataVar = "" 
-    public var screenDataVarSetting = "" 
+    public var screenName = ""
+    public var screenData = ""
+    public var screenDataVar = ""
+    public var screenDataVarSetting = ""
     
 
     public init(screenName: String,
@@ -80,13 +80,12 @@ public class EventViewScreen: Event  {
         self.screenDataVarSetting = screenDataVarSetting
     }
 }
-public class EventExample: Event  {
+public class EventExample: Event {
 
     public let name: String = "example_name"
     
     public struct TestObject: Equatable, Codable {
-
-        public var itemName = "" 
+        public var itemName = ""
         public var itemNumber = 0        
         
         public init(itemName: String,
@@ -103,9 +102,8 @@ public class EventExample: Event  {
     }
 
     public struct SecondTestObject: Equatable, Codable {
-
-        public var itemName = "" 
-        public var itemNumberTest = ""         
+        public var itemName = ""
+        public var itemNumberTest = ""        
         
         public init(itemName: String,
                     itemNumberTest: String) {
@@ -143,9 +141,9 @@ public class EventExample: Event  {
     private let kTestObject = "testObject"
     private let kSecondTestObject = "secondTestObject"
 
-    public var test1 = "" 
-    public var test2 = "" 
-    public var test3 = "" 
+    public var test1 = ""
+    public var test2 = ""
+    public var test3 = ""
     public var testObject: [TestObject]
     public var secondTestObject: [SecondTestObject]
 
@@ -161,7 +159,7 @@ public class EventExample: Event  {
         self.secondTestObject = secondTestObject
     }
 }
-public class EventUser: Event  {
+public class EventUser: Event {
 
     public let name: String = "User"
     
@@ -184,9 +182,9 @@ public class EventUser: Event  {
     
     
 
-    public var action = "" 
-    public var response = "" 
-    public var extra = "" 
+    public var action = ""
+    public var response = ""
+    public var extra = ""
     
 
     public init(action: String,
@@ -197,7 +195,7 @@ public class EventUser: Event  {
         self.extra = extra
     }
 }
-public class EventTap: Event  {
+public class EventTap: Event {
 
     public let name: String = "Tap"
     
@@ -216,14 +214,14 @@ public class EventTap: Event  {
     
     
 
-    public var elementName = "" 
+    public var elementName = ""
     
 
     public init(elementName: String) {
         self.elementName = elementName
     }
 }
-public class EventNoPayload: Event  {
+public class EventNoPayload: Event {
 
     public let name: String = "NoPayload"
     

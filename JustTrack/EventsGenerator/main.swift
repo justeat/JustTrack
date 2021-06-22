@@ -286,7 +286,7 @@ private func generateEvents(_ events: [String : AnyObject]) throws -> NSString {
          let key2 : String
          */
         
-        let eventKeysVars: String = try generateKeyVariables(cleanKeys, keyType: "eventKey")
+        let eventKeysVars: String = try generateKeyVariables(cleanKeys)
         let objectKeysVars: String = try generateObjectKeysVariables(objectNames)
         structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.keysVars.rawValue)*>", value: eventKeysVars, placeholderType: "routine")
         structString = replacePlaceholder(structString, placeholder: "<*\(EventTemplatePlaceholder.objectKeysVars.rawValue)*>", value: objectKeysVars, placeholderType: "routine")
@@ -340,7 +340,7 @@ private func replacePlaceholder(_ original: String, placeholder: String, value: 
         case "routine":
             return original.replacingOccurrences(of: placeholder, with: valueToReplace)
         case "eventStringParameter":
-            return original.replacingOccurrences(of: placeholder, with: valueToReplace + " = " + "\"\" ")
+            return original.replacingOccurrences(of: placeholder, with: valueToReplace + " = " + "\"\"")
         case "eventIntParameter":
             return original.replacingOccurrences(of: placeholder, with: valueToReplace + " = 0")
         case "eventAssignedStringParameter":
@@ -481,7 +481,7 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
     return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
 }
 
-private func generateKeyVariables(_ keys: [String], keyType: String) throws -> String {
+private func generateKeyVariables(_ keys: [String]) throws -> String {
     
     let structVarTemplate: String = try stringFromTemplate(EventTemplate.keyVar.rawValue)
         
@@ -491,14 +491,7 @@ private func generateKeyVariables(_ keys: [String], keyType: String) throws -> S
         resultArray.append(structVarString)
     }
     
-    switch keyType {
-        case "eventKey":
-            return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
-        case "objectKey":
-            return resultArray.count > 0 ? resultArray.joined(separator: "\n        ") : ""
-        default:
-            return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
-    }
+    return resultArray.count > 0 ? resultArray.joined(separator: "\n    ") : ""
 }
 
 
@@ -509,7 +502,7 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
     var resultArray: [String] = Array()
     
     for keyString in keys {
-        if keyString.contains("int") {
+        if keyString.contains("_int") {
             let paramResultString = replacePlaceholder(structVarTemplate, placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>", value: sanitised(keyString), placeholderType: "eventIntParameter")
             resultArray.append(paramResultString)
         }

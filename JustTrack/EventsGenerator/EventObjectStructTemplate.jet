@@ -1,5 +1,4 @@
 public struct <*object_name*>: Equatable, Codable {
-
         <*object_parameter_list*>
         
         

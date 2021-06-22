@@ -1,4 +1,4 @@
-public class Event<*!event*>: Event  {
+public class Event<*!event*>: Event {
 
     public let name: String = "<*name*>"
     <*event_ObjectStructs*>
