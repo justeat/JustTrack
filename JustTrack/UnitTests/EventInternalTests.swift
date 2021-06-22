@@ -30,10 +30,10 @@ class EventInternalTests: XCTestCase {
         
        struct Items: Equatable {
             public var itemName = ""
-            public var itemNumber = ""
+            public var itemNumber = 0
             
             public init(itemName: String,
-                        itemNumber: String) {
+                        itemNumber: Int) {
                 self.itemName = itemName
                 self.itemNumber = itemNumber
             }
