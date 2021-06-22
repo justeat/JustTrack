@@ -251,7 +251,7 @@ itemPrice_double
 Booleans:
 
 ```
-itemAvaliable_bool
+itemAvailable_bool
 ```
 
 ## Upgrading to v3.0
