@@ -25,6 +25,8 @@
 					<array>
 						<string>item_name</string>
 						<string>item_number_int</string>
+						<string>Item_price_double</string>
+						<string>item_value_bool</string>
 					</array>
 				</dict>
 				<dict>

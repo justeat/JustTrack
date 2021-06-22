@@ -85,23 +85,33 @@ public class EventExample: Event {
     public let name: String = "example_name"
     
     public struct TestObject: Equatable, Codable {
+
         public var itemName = ""
-        public var itemNumber = 0        
+        public var itemNumber = 0
+        public var ItemPrice = 0.0
+        public var itemValue = false        
         
         public init(itemName: String,
-                    itemNumber: Int) {
+                    itemNumber: Int,
+                    ItemPrice: Double,
+                    itemValue: Bool) {
             self.itemName = itemName
             self.itemNumber = itemNumber
+            self.ItemPrice = ItemPrice
+            self.itemValue = itemValue
         }        
         
         var asDict: [String: Any] {
             ["item_name" : itemName,
-             "item_number" : itemNumber]            
+             "item_number" : itemNumber,
+             "Item_price" : ItemPrice,
+             "item_value" : itemValue]            
         }
         
     }
 
     public struct SecondTestObject: Equatable, Codable {
+
         public var itemName = ""
         public var itemNumberTest = ""        
         
