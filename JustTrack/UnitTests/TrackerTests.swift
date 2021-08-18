@@ -14,8 +14,11 @@ class TrackerTests: XCTestCase {
     
     // MARK: - Stubs / Mocks
     
-    var tracker1:MockTracker?
-    var tracker2:AnotherMockTracker?
+    var tracker1: MockTracker!
+    var tracker2: MockTracker!
+    
+    let tracker1Name = "MockTracker"
+    let tracker2Name = "SomeOtherMockTracker"
     
     // MARK: - Setup
     override func setUp() {
@@ -26,8 +29,8 @@ class TrackerTests: XCTestCase {
             print("[trackerService] [\(logLevel.rawValue)] \(logString)")
         }
         
-        tracker1 = MockTracker()
-        tracker2 = AnotherMockTracker()
+        tracker1 = MockTracker(name: tracker1Name)
+        tracker2 = MockTracker(name: tracker2Name)
     }
     
     // MARK: - Teardown
@@ -45,17 +48,17 @@ class TrackerTests: XCTestCase {
         let tracker1EventExpectation = expectation(description: "Event is tracked in IMMEDIATE dispatch mode for tracker1")
         let tracker2EventExpectation = expectation(description: "Event is tracked in IMMEDIATE dispatch mode for tracker2")
         
-        // GIVEN an event targeted to "Mock Tracker" and "Some Other Mock Tracker"
-        let event = ExampleEvent(trackers: "MockTracker", "SomeOtherMockTracker")
+        // GIVEN an event targeted to two trackers
+        let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
         
         // AND a tracker service using these two trackers in "immediate" mode
-        trackerService.loadCustomTracker(tracker1!)
-        trackerService.loadCustomTracker(tracker2!)
+        trackerService.loadCustomTracker(tracker1)
+        trackerService.loadCustomTracker(tracker2)
         trackerService.deliveryType = .immediate
         
         // WHEN we ask JustTrack to track the event
-        tracker1!.didTrackExpectation = tracker1EventExpectation
-        tracker2!.didTrackExpectation = tracker2EventExpectation
+        tracker1.didTrackExpectation = tracker1EventExpectation
+        tracker2.didTrackExpectation = tracker2EventExpectation
         trackerService.trackEvent(event)
                 
         // THEN the expected trackers have been asked to "track / post" that event
@@ -69,18 +72,18 @@ class TrackerTests: XCTestCase {
         let tracker1EventExpectation = expectation(description: "Event is tracked in BATCH dispatch mode for tracker1")
         let tracker2EventExpectation = expectation(description: "Event is tracked in BATCH dispatch mode for tracker2")
 
-        // GIVEN an event targeted to "Mock Tracker" and "Some Other Mock Tracker"
-        let event = ExampleEvent(trackers: "MockTracker", "SomeOtherMockTracker")
+        // GIVEN an event targeted to two trackers
+        let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
-        trackerService.loadCustomTracker(tracker1!)
-        trackerService.loadCustomTracker(tracker2!)
+        trackerService.loadCustomTracker(tracker1)
+        trackerService.loadCustomTracker(tracker2)
         trackerService.deliveryType = .batch
         trackerService.dispatchInterval = 2.0
                 
         // WHEN we ask JustTrack to track the event
-        tracker1!.didTrackExpectation = tracker1EventExpectation
-        tracker2!.didTrackExpectation = tracker2EventExpectation
+        tracker1.didTrackExpectation = tracker1EventExpectation
+        tracker2.didTrackExpectation = tracker2EventExpectation
         trackerService.trackEvent(event)
         
         // THEN the expected trackers have been asked to "track / post" that event
@@ -93,12 +96,12 @@ class TrackerTests: XCTestCase {
         let tracker1EventExpectation = expectation(description: "Event tracking should respect BATCH mode dispatch times for tracker1")
         let tracker2EventExpectation = expectation(description: "Event tracking should respect BATCH mode dispatch times for tracker2")
 
-        // GIVEN an event targeted to "Mock Tracker" and "Some Other Mock Tracker"
-        let event = ExampleEvent(trackers: "MockTracker", "SomeOtherMockTracker")
+        // GIVEN an event targeted to two trackers
+        let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
-        trackerService.loadCustomTracker(tracker1!)
-        trackerService.loadCustomTracker(tracker2!)
+        trackerService.loadCustomTracker(tracker1)
+        trackerService.loadCustomTracker(tracker2)
         trackerService.deliveryType = .batch
         trackerService.dispatchInterval = 3.0
         
@@ -110,8 +113,8 @@ class TrackerTests: XCTestCase {
         // AND wait for LESS seconds than the batch size for the events to be processed
         // THEN the expected trackers have NOT been asked to "track / post" that event yet
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            XCTAssertEqual(self.tracker1!.trackEventInvocationCount, 0)
-            XCTAssertEqual(self.tracker2!.trackEventInvocationCount, 0)
+            XCTAssertEqual(self.tracker1.trackEventInvocationCount, 0)
+            XCTAssertEqual(self.tracker2.trackEventInvocationCount, 0)
             eventNotTrackedExpectation.fulfill()
         }
         
@@ -128,13 +131,13 @@ class TrackerTests: XCTestCase {
         
         let eventExpectation = expectation(description: "Event should be tracked by the registered tracker.")
         
-        // GIVEN an event targeted to "Mock Tracker" only
-        let event = ExampleEvent(trackers: "MockTracker")
+        // GIVEN an event targeted to one tracker
+        let event = ExampleEvent(trackers: tracker1Name)
         event.test1 = "value1"
         event.test2 = "value2"
         event.test3 = "value3"
         
-        trackerService.loadCustomTracker(tracker1!)
+        trackerService.loadCustomTracker(tracker1)
         trackerService.deliveryType = .immediate
         trackerService.enable()
         
@@ -142,10 +145,10 @@ class TrackerTests: XCTestCase {
         trackerService.trackEvent(event)
         
         // AND wait for the events to be processed
-        // THEN ONLY tracker1 ("MockTracker") has been asked to track the event
+        // THEN ONLY tracker1 has been asked to track the event
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            XCTAssertEqual(self.tracker1!.trackEventInvocationCount, 1, "Registered Tracker1 has not been called")
-            XCTAssertEqual(self.tracker2!.trackEventInvocationCount, 0, "Unregistered Tracker2 has been called, but it should not be called")
+            XCTAssertEqual(self.tracker1.trackEventInvocationCount, 1, "Registered Tracker1 has not been called")
+            XCTAssertEqual(self.tracker2.trackEventInvocationCount, 0, "Unregistered Tracker2 has been called, but it should not be called")
             eventExpectation.fulfill()
         }
         
@@ -156,15 +159,15 @@ class TrackerTests: XCTestCase {
     
         let eventExpectation = expectation(description: "Event should only be tracked by the expected trackers.")
         
-        // GIVEN an event targeted to "Mock Tracker" only
-        let event = ExampleEvent(trackers: "MockTracker")
+        // GIVEN an event targeted to one tracker
+        let event = ExampleEvent(trackers: tracker1Name)
         event.test1 = "value1"
         event.test2 = "value2"
         event.test3 = "value3"
         
-        // AND a tracker service using "MockTracker" and "SomeOtherMockTracker"
-        trackerService.loadCustomTracker(tracker1!)
-        trackerService.loadCustomTracker(tracker2!)
+        // AND a tracker service using two trackers
+        trackerService.loadCustomTracker(tracker1)
+        trackerService.loadCustomTracker(tracker2)
         trackerService.deliveryType = .immediate
         trackerService.enable()
         
@@ -172,10 +175,10 @@ class TrackerTests: XCTestCase {
         trackerService.trackEvent(event)
         
         // AND wait for the events to be processed
-        // THEN ONLY tracker1 ("MockTracker") has been asked to track the event
+        // THEN ONLY tracker1 has been asked to track the event
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            XCTAssertEqual(self.tracker1!.trackEventInvocationCount, 1, "Tracker1 has not been called")
-            XCTAssertEqual(self.tracker2!.trackEventInvocationCount, 0, "Tracker2 has been called, but it should not be called")
+            XCTAssertEqual(self.tracker1.trackEventInvocationCount, 1, "Tracker1 has not been called")
+            XCTAssertEqual(self.tracker2.trackEventInvocationCount, 0, "Tracker2 has been called, but it should not be called")
             eventExpectation.fulfill()
         }
         
@@ -186,12 +189,12 @@ class TrackerTests: XCTestCase {
         
         let eventExpectation = expectation(description: "Event should not be tracked regardless if the tracker name is capitalised or not")
         
-        // GIVEN an event targeted to "Mock Tracker" only
-        let event = ExampleEvent(trackers: "mockTracker")
+        // GIVEN an event targeted to one tracker
+        let event = ExampleEvent(trackers: tracker1Name)
         
-        // AND a tracker service using "MockTracker" and "SomeOtherMockTracker"
-        trackerService.loadCustomTracker(tracker1!)
-        trackerService.loadCustomTracker(tracker2!)
+        // AND a tracker service using two trackers
+        trackerService.loadCustomTracker(tracker1)
+        trackerService.loadCustomTracker(tracker2)
         trackerService.deliveryType = .immediate
         
         // WHEN we ask JustTrack to track the event
@@ -199,10 +202,10 @@ class TrackerTests: XCTestCase {
         
         // AND wait for a few seconds for the events to be processed
         let intervalToFireExpectationFulfill = 1.0
-        // THEN ONLY tracker1 ("MockTracker") has been asked to track the event
+        // THEN ONLY tracker1 has been asked to track the event
         DispatchQueue.main.asyncAfter(deadline: .now() + intervalToFireExpectationFulfill) {
-            XCTAssertEqual(self.tracker1!.trackEventInvocationCount, 1)
-            XCTAssertEqual(self.tracker2!.trackEventInvocationCount, 0)
+            XCTAssertEqual(self.tracker1.trackEventInvocationCount, 1)
+            XCTAssertEqual(self.tracker2.trackEventInvocationCount, 0)
             eventExpectation.fulfill()
         }
         
@@ -219,7 +222,7 @@ class TrackerTests: XCTestCase {
         let event = InvalidEventExample()
         
         // AND a tracker service using some tracker
-        trackerService.loadCustomTracker(tracker1!)
+        trackerService.loadCustomTracker(tracker1)
         trackerService.deliveryType = .immediate
         
         // WHEN we ask JustTrack to track the event
@@ -230,7 +233,7 @@ class TrackerTests: XCTestCase {
         // THEN we should not have attempted to track the event
         DispatchQueue.main.asyncAfter(deadline: .now() + intervalToFireExpectationFulfill) {
             XCTAssertFalse(didAttemptToTrack)
-            XCTAssertEqual(self.tracker2!.trackEventInvocationCount, 0)
+            XCTAssertEqual(self.tracker2.trackEventInvocationCount, 0)
             eventExpectation.fulfill()
         }
         
