@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "2FFB3C81-719E-49A3-81D9-D5073DF28F54",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:JustTrack.xcodeproj",
+      "identifier" : "607FACCF1AFB9204008FA782",
+      "name" : "JustTrack_Example"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Pods\/Pods.xcodeproj",
+        "identifier" : "4408DD50423900E8DFF1B0886BA5869B",
+        "name" : "JustTrack-Unit-UnitTests"
+      }
+    }
+  ],
+  "version" : 1
+}
