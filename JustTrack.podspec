@@ -1,11 +1,3 @@
-#
-# Be sure to run `pod lib lint JustTrack.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = 'JustTrack'
   s.version          = '4.2.0'
@@ -18,7 +10,7 @@ JustTrack is the event tracking solution we built for that.
 
   s.homepage         = 'https://github.com/JustEat/JustTrack'
   s.license          = { :type => 'Apache 2.0', :file => 'LICENSE' }
-  s.authors          = { 'Federico Cappelli' => 'federico.cappelli@just-eat.com', 'Joakim Lazakis' => 'joakim.lazakis@just-eat.com' }
+  s.author           = 'Just Eat Takeaway iOS Team'
   s.source           = { :git => 'https://github.com/justeat/JustTrack.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/justeat_tech'
   
