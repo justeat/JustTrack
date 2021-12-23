@@ -8,10 +8,7 @@
     "type": "Apache 2.0",
     "file": "LICENSE"
   },
-  "authors": {
-    "Federico Cappelli": "federico.cappelli@just-eat.com",
-    "Joakim Lazakis": "joakim.lazakis@just-eat.com"
-  },
+  "authors": "Just Eat Takeaway iOS Team",
   "source": {
     "git": "https://github.com/justeat/JustTrack.git",
     "tag": "4.2.0"
