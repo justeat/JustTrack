@@ -24,4 +24,3 @@ final class MockTracker: NSObject, EventTracker {
         completion(true)
     }
 }
-

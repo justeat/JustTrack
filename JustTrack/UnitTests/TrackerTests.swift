@@ -25,7 +25,7 @@ class TrackerTests: XCTestCase {
         super.setUp()
         trackerService = EventTracking()
         trackerService.loadDefaultTracker(.consoleLogger)
-        trackerService.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
+        trackerService.logClosure = { (logString: String, logLevel: TrackingLogLevel) in
             print("[trackerService] [\(logLevel.rawValue)] \(logString)")
         }
         
