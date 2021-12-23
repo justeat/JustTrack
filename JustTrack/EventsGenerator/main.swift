@@ -164,12 +164,12 @@ private func sanitised(_ originalString: String) -> String {
     result = components.joined(separator: "")
     result = removeItemSuffixes(item: result)
     
-    let componantsByUnderscore = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
+    let componentsByUnderscore = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
 
-    if !componantsByUnderscore.isEmpty {
+    if !componentsByUnderscore.isEmpty {
         result = ""
-        for component in componantsByUnderscore {
-            if component != componantsByUnderscore[0] {
+        for component in componentsByUnderscore {
+            if component != componentsByUnderscore[0] {
                 result.append(component.capitalizingFirstLetter())
             } else {
                 result.append(component)

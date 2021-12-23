@@ -255,5 +255,5 @@ public class EventNoPayload: Event {
     
     
 
-    //MARK: Payload not configured
+    // MARK: Payload not configured
 }
