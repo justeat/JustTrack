@@ -19,7 +19,7 @@ class TrackOperation: Operation {
     init(tracker: EventTracker, event: Event) {
         self.event = event
         self.tracker = tracker
-        self.eventKey = "\(event.name)_ON_\(tracker.name)_\(Date().timeIntervalSince1970)"
+        eventKey = "\(event.name)_ON_\(tracker.name)_\(Date().timeIntervalSince1970)"
         super.init()
     }
     
@@ -40,11 +40,11 @@ class TrackOperation: Operation {
         let eventPayload = event.payload
         tracker.trackEvent(eventName,
                            payload: eventPayload,
-                           completion: { (success) in
-            if success {
-                self.deleteEvent(self.eventKey) // Event was posted, it's safe to remove.
-            }
-        })
+                           completion: { success in
+                               if success {
+                                   self.deleteEvent(self.eventKey) // Event was posted, it's safe to remove.
+                               }
+                           })
     }
 }
 
@@ -54,7 +54,7 @@ private extension TrackOperation {
 
     func saveEvent(_ event: Event, key: String) {
         let serializedEvent = event.encode()
-        saveEventDictionary(serializedEvent , key: key)
+        saveEventDictionary(serializedEvent, key: key)
     }
     
     func saveEventDictionary(_ eventDictionary: [String: Any], key: String) {
@@ -63,12 +63,10 @@ private extension TrackOperation {
         if let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName) {
             if let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] {
                 operations = NSMutableDictionary(dictionary: dataDictionary)
-            }
-            else {
+            } else {
                 operations = NSMutableDictionary()
             }
-        }
-        else {
+        } else {
             operations = NSMutableDictionary()
         }
         
