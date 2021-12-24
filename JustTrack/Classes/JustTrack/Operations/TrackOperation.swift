@@ -38,13 +38,9 @@ class TrackOperation: Operation {
         
         let eventName = event.name
         let eventPayload = event.payload
-        tracker.trackEvent(eventName,
-                           payload: eventPayload,
-                           completion: { success in
-                               if success {
-                                   self.deleteEvent(self.eventKey) // Event was posted, it's safe to remove.
-                               }
-                           })
+        if tracker.trackEvent(eventName, payload: eventPayload) {
+            deleteEvent(eventKey) // Event was posted, it's safe to remove.
+        }
     }
 }
 

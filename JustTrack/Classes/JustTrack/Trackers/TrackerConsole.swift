@@ -12,8 +12,8 @@ class TrackerConsole: EventTracker {
     
     let name = "console"
     
-    func trackEvent(_ name: String, payload: Payload, completion: (_ success: Bool) -> Void) {
+    func trackEvent(_ name: String, payload: Payload) -> Bool {
         print("[\(self.name)] ☞ Event: \(name) \(payload)")
-        completion(true)
+        return true
     }
 }

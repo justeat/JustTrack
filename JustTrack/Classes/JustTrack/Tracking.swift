@@ -88,7 +88,9 @@ public class EventTracking {
     ///
     /// - seealso: `TrackingDeliveryType`.
     public var deliveryType = TrackingDeliveryType.immediate
-    
+
+    public init() {}
+
     /// Registers a `TrackerConsole` for event tracking.
     /// Helpful for debugging purposes, as it will cause all events to be logged on the console.
     ///

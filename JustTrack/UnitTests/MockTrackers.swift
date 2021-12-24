@@ -17,10 +17,10 @@ final class MockTracker: EventTracker {
     init(name: String) {
         self.name = name
     }
-    
-    public func trackEvent(_ name: String, payload: Payload, completion: (_ success: Bool) -> Void) {
+
+    public func trackEvent(_ name: String, payload: Payload) -> Bool {
         trackEventInvocationCount += 1
         didTrackExpectation?.fulfill()
-        completion(true)
+        return true
     }
 }
