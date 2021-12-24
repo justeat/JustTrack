@@ -77,7 +77,7 @@ Swift
 func configureJustTrack() -> EventTracking {
     // configure the tracking Singleton with settings and trackers
     
-    let eventTracker: EventTracking = EventTracking.sharedInstance
+    let eventTracker: EventTracking = EventTracking.shared
     eventTracker.deliveryType = .batch
     
     eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in

@@ -113,8 +113,8 @@ public class EventTracking {
     }
 
     /// Singleton accessor
-    public static let sharedInstance = EventTracking()
-    
+    public static let shared = EventTracking()
+
     /// Validates the passed event and schedules it for posting
     /// with its associated `registeredTrackers`.
     ///

@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     }
     
     func configureJustTrack() -> EventTracking {
-        let eventTracker: EventTracking = EventTracking.sharedInstance
+        let eventTracker: EventTracking = EventTracking.shared
         eventTracker.deliveryType = .batch
         eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
             print("[EventTracker] [\(logLevel)] \(logString)")
