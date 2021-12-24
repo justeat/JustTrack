@@ -67,8 +67,8 @@ public class EventTracking {
     ///           If you've set the delivery type to anything else, this property will be ignored.
     ///
     /// - Requires: `deliveryType` property to be set to `batch`.
-    public var dispatchInterval = 3.0
-    
+    public let dispatchInterval: Double
+
     /// An optional closure that can be set for debugging purposes.
     /// JustTrack will call this closure when there is something worth mentioning / logging.
     ///
@@ -87,9 +87,13 @@ public class EventTracking {
     /// Default value is `immediate`.
     ///
     /// - seealso: `TrackingDeliveryType`.
-    public var deliveryType = TrackingDeliveryType.immediate
+    public let deliveryType: TrackingDeliveryType
 
-    public init() {}
+    public init(dispatchInterval: Double = 3.0,
+                deliveryType: TrackingDeliveryType = .immediate) {
+        self.dispatchInterval = dispatchInterval
+        self.deliveryType = deliveryType
+    }
 
     /// Registers a `TrackerConsole` for event tracking.
     /// Helpful for debugging purposes, as it will cause all events to be logged on the console.

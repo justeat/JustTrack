@@ -10,8 +10,7 @@ import JustTrack
 
 final class ViewController: UIViewController {
     private let eventTracker: EventTracking = {
-        let eventTracker = EventTracking()
-        eventTracker.deliveryType = .batch
+        let eventTracker = EventTracking(deliveryType: .batch)
         eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) in
             print("[EventTracker] [\(logLevel)] \(logString)")
         }
