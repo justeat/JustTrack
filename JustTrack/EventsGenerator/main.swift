@@ -108,18 +108,18 @@ func urlForTemplate(_ templateName: String) throws -> URL {
     var url: URL?
     
     let path: String? = Bundle.main.path(forResource: templateName, ofType: nil) // used by test target
-    if path != nil {
-        url = URL(fileURLWithPath: path!)
+    if let path = path {
+        url = URL(fileURLWithPath: path)
     } else {
         let dir = scriptPath()
         url = URL(fileURLWithPath: dir as String).appendingPathComponent(templateName) // used in the build phase
     }
     
-    guard url != nil else {
+    guard let url = url else {
         throw EventGeneratorError.templateNotFound
     }
 
-    return url!
+    return url
 }
 
 // Load the specific template
@@ -147,8 +147,8 @@ private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
     if FileManager.default.fileExists(atPath: plistPath) {
         var eventsDict: NSDictionary? = NSDictionary(contentsOfFile: plistPath)
         eventsDict = eventsDict?.object(forKey: "events") as? NSDictionary
-        if eventsDict != nil {
-            result.setDictionary(eventsDict as! [AnyHashable: Any])
+        if let eventsDict = eventsDict as? [AnyHashable: Any] {
+            result.setDictionary(eventsDict)
         }
     } else {
         throw EventGeneratorError.plistNotFound

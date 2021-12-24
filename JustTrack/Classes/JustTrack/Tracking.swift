@@ -102,9 +102,11 @@ public class EventTracking: NSObject {
         case .consoleLogger:
             tracker = TrackerConsole()
         }
-        
-        guard tracker != nil else { return false }
-        loadCustomTracker(tracker!)
+
+        guard let tracker = tracker else {
+            return false
+        }
+        loadCustomTracker(tracker)
         return true
     }
 
@@ -193,9 +195,7 @@ public class EventTracking: NSObject {
     }
     
     fileprivate func JTLog(_ string: String, level: TrackingLogLevel) {
-        if logClosure != nil {
-            logClosure!(string, level)
-        }
+        logClosure?(string, level)
     }
 
     fileprivate lazy var trackersInstances: [String: EventTracker] = {
@@ -231,11 +231,9 @@ public class EventTracking: NSObject {
                     
                 // Get uncompleted event tracking
                 if let eventDictionary = operations[eventKey] as? [String: AnyObject] {
-                    let internalEvent = EventInternal(dictionary: eventDictionary)
-                    
-                    if internalEvent != nil {
+                    if let internalEvent = EventInternal(dictionary: eventDictionary) {
                         // Enqueue event
-                        trackEvent(internalEvent!)
+                        trackEvent(internalEvent)
                     } else {
                         // TODO: manage error
                     }
