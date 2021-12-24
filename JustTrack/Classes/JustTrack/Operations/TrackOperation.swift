@@ -26,8 +26,10 @@ final class TrackOperation: Operation {
     // MARK: - Operation lifecycle
     
     override func main() {
-        guard !isCancelled else { return }
-        
+        guard !isCancelled else {
+            return
+        }
+
         // Persist the event.
         // Delete it before posting if the operation was cancelled while persisting the event.
         saveEvent(event, key: eventKey)

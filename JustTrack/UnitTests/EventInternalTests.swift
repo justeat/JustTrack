@@ -11,7 +11,9 @@ import XCTest
 final class EventInternalTests: XCTestCase {
 
     func testEventDictionaryEncoding() {
-        let event = EventInternal(name: "AmazingEvent", payload: ["AmazingId": 123456], registeredTrackers: ["AmazingTracker"])
+        let event = EventInternal(name: "AmazingEvent",
+                                  payload: ["AmazingId": 123456],
+                                  registeredTrackers: ["AmazingTracker"])
         let eventDictionary = event.encode()
         
         let eventName = eventDictionary["name"] as! String
@@ -45,7 +47,8 @@ final class EventInternalTests: XCTestCase {
         }
         
         let event = EventInternal(name: "AmazingEvent",
-                                  payload: ["AmazingId": 123456, "arrayOfItems": [Items]()],
+                                  payload: ["AmazingId": 123456,
+                                            "arrayOfItems": [Items]()],
                                   registeredTrackers: ["AmazingTracker"])
         let eventDictionary = event.encode()
         
