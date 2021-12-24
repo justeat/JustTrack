@@ -21,12 +21,9 @@ public protocol Event {
 }
 
 extension Event {
-    
     func encode() -> [String: Any] {
-        var dictionary = Dictionary<String, Any>()
-        dictionary[EventEncodingKey.payload.rawValue] = self.payload
-        dictionary[EventEncodingKey.name.rawValue] = self.name
-        dictionary[EventEncodingKey.trackers.rawValue] = self.registeredTrackers
-        return dictionary
+        [EventEncodingKey.payload.rawValue: payload,
+         EventEncodingKey.name.rawValue: name,
+         EventEncodingKey.trackers.rawValue: registeredTrackers]
     }
 }
