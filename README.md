@@ -74,25 +74,19 @@ Let's see how we use JustTrack:
 ```
 Swift
 
-func configureJustTrack() -> EventTracking {
-    // configure the tracking Singleton with settings and trackers
-    
-    let eventTracker: EventTracking = EventTracking.shared
-    eventTracker.deliveryType = .batch
-    
-    eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
-        print("[EventTracker] [\(logLevel)] \(logString)")
-    }
-    
-    // load the default tracker, in this case the console tracker
-    
-    eventTracker.loadDefaultTracker(.consoleLogger)
-    
-    //enable JustTrack
-    eventTracker.enable()
-    
-    return eventTracker
+// configure the tracking with settings and trackers
+let eventTracker = EventTracking()
+eventTracker.deliveryType = .batch
+
+eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
+    print("[EventTracker] [\(logLevel)] \(logString)")
 }
+
+// load the default tracker, in this case the console tracker
+eventTracker.loadDefaultTracker(.consoleLogger)
+
+//enable JustTrack
+eventTracker.enable()
 
 ```
 
