@@ -221,12 +221,14 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
         var cleanKeys: [String] = [] // Array of string items
         var objects: [Any] = [] // Array of object items?
         for key in originalKeys { // Go through payload items
-            if key is String {
-                let setKey = key as! String
+            switch key {
+            case let setKey as String:
                 cleanKeys.append(sanitised(setKey)) // Sanitise keys // let cleanKeys:[String] = originalKeys.map{ sanitised($0) }
                 originalStringKeys.append(setKey)
-            } else if key is NSDictionary {
-                objects.append(key)
+            case let dictionary as NSDictionary:
+                objects.append(dictionary)
+            default:
+                break
             }
         }
         
