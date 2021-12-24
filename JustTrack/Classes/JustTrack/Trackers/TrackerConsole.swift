@@ -6,8 +6,8 @@
 
 import Foundation
 
-class TrackerConsole: EventTracker {
-    
+final class TrackerConsole: EventTracker {
+
     // MARK: - Tracker protocol implementation
     
     let name = "console"

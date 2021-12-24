@@ -181,23 +181,23 @@ public class EventTracking {
     }
     
     // MARK: - Private
-    
-    fileprivate func eventIsValid(_ event: Event) -> Bool {
-        
+
+    private func eventIsValid(_ event: Event) -> Bool {
+
         return event.name.isEmpty == false && !event.registeredTrackers.isEmpty
     }
-    
-    fileprivate func JTLog(_ string: String, level: TrackingLogLevel) {
+
+    private func JTLog(_ string: String, level: TrackingLogLevel) {
         logClosure?(string, level)
     }
 
-    fileprivate lazy var trackersInstances: [String: EventTracker] = {
+    private lazy var trackersInstances: [String: EventTracker] = {
         var dictionary = [String: EventTracker]()
         return dictionary
     }()
-    
-    fileprivate lazy var operationQueue: OperationQueue = {
-        
+
+    private lazy var operationQueue: OperationQueue = {
+
         var queue = OperationQueue()
         queue.name = "com.justtrack.trackDispatchQueue"
         queue.maxConcurrentOperationCount = 1
@@ -205,9 +205,9 @@ public class EventTracking {
         
         return queue
     }()
- 
-    fileprivate func restoreUncompletedTracking() -> Int {
-        
+
+    private func restoreUncompletedTracking() -> Int {
+
         var operations: NSMutableDictionary
         guard let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName),
               let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
@@ -235,16 +235,16 @@ public class EventTracking {
         }
         return operations.count
     }
-    
-    fileprivate func pauseQueue(_ seconds: Int64) {
+
+    private func pauseQueue(_ seconds: Int64) {
         operationQueue.isSuspended = true
         let delayTime = DispatchTime.now() + Double(seconds) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
             self.operationQueue.isSuspended = false
         }
     }
-    
-    fileprivate func unpauseQueue() {
+
+    private func unpauseQueue() {
         operationQueue.isSuspended = false
     }
 }

@@ -6,14 +6,14 @@
 
 import Foundation
 
-class TrackOperation: Operation {
-    
+final class TrackOperation: Operation {
+
     // MARK: - Variables
     
     let event: Event
     let tracker: EventTracker
-    fileprivate var eventKey: String
-    
+    private var eventKey: String
+
     // MARK: - Initialization
     
     init(tracker: EventTracker, event: Event) {
@@ -46,15 +46,15 @@ class TrackOperation: Operation {
 
 // MARK: - Persistence
 
-private extension TrackOperation {
+extension TrackOperation {
 
-    func saveEvent(_ event: Event, key: String) {
+    private func saveEvent(_ event: Event, key: String) {
         let serializedEvent = event.encode()
         saveEventDictionary(serializedEvent, key: key)
     }
-    
-    func saveEventDictionary(_ eventDictionary: [String: Any], key: String) {
-        
+
+    private func saveEventDictionary(_ eventDictionary: [String: Any], key: String) {
+
         var operations: NSMutableDictionary
         if let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName) {
             if let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] {
@@ -70,16 +70,14 @@ private extension TrackOperation {
         let data = NSKeyedArchiver.archivedData(withRootObject: operations)
         UserDefaults.standard.set(data, forKey: EventTracking.kPersistentStorageName)
     }
-    
-    func deleteEvent(_ key: String) {
-        
-        var operations: NSMutableDictionary
+
+    private func deleteEvent(_ key: String) {
+
         if let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName) {
             guard let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
                 return
             }
-            
-            operations = NSMutableDictionary(dictionary: dataDictionary)
+            let operations = NSMutableDictionary(dictionary: dataDictionary)
             operations.removeObject(forKey: key)
             let data = NSKeyedArchiver.archivedData(withRootObject: operations)
             UserDefaults.standard.set(data, forKey: EventTracking.kPersistentStorageName)

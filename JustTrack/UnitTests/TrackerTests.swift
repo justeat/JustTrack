@@ -10,13 +10,13 @@ import JustTrack
 final class TrackerTests: XCTestCase {
 
     // MARK: - Stubs / Mocks
-    
-    var tracker1: MockTracker!
-    var tracker2: MockTracker!
-    
-    let tracker1Name = "MockTracker"
-    let tracker2Name = "SomeOtherMockTracker"
-    
+
+    private var tracker1: MockTracker!
+    private var tracker2: MockTracker!
+
+    private let tracker1Name = "MockTracker"
+    private let tracker2Name = "SomeOtherMockTracker"
+
     // MARK: - Setup
 
     override func setUp() {

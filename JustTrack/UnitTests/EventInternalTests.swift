@@ -8,8 +8,8 @@
 import XCTest
 @testable import JustTrack
 
-class EventInternalTests: XCTestCase {
-    
+final class EventInternalTests: XCTestCase {
+
     func testEventDictionaryEncoding() {
         let event = EventInternal(name: "AmazingEvent", payload: ["AmazingId": 123456], registeredTrackers: ["AmazingTracker"])
         let eventDictionary = event.encode()
