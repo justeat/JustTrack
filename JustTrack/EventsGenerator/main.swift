@@ -106,13 +106,13 @@ func scriptPath() -> String {
 func urlForTemplate(_ templateName: String) throws -> URL {
 
     var url: URL?
-    
-    let path: String? = Bundle.main.path(forResource: templateName, ofType: nil) // used by test target
+
+    let path: String? = Bundle.main.path(forResource: templateName, ofType: nil) // Used by test target
     if let path = path {
         url = URL(fileURLWithPath: path)
     } else {
         let dir = scriptPath()
-        url = URL(fileURLWithPath: dir as String).appendingPathComponent(templateName) // used in the build phase
+        url = URL(fileURLWithPath: dir as String).appendingPathComponent(templateName) // Used in the build phase
     }
     
     guard let url = url else {
