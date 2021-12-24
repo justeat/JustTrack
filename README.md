@@ -204,13 +204,13 @@ This update to **JustTrack** removes Objective-C attributes and prefixes, modern
 
 For example, a generated event class previously defined as:
 
-```
+```Swift
 JEEventUser
 ```
 
 will now adopt the naming scheme:
 
-```
+```Swift
 EventUser
 ```
 The effects of this change on your pre-defined events can be determined within the generated TrackingEvents.swift file. 
@@ -257,21 +257,21 @@ If your client code uses Swift then then you have two options.
 
 Option 1) The simplest way to upgrade to v3.0 of the SDK is to reintroduce the Configuration typealias in your client code as follows:
 
-```
+```Swift
 public typealias Configuration = [String : String]
 ```
 
 Option 2) Replace your initialisers with an equivalent where your arguments are passed in a strongly typed manner.  For example, this old init method....
 
-```
+```Swift
 public init(configuration: Configuration) {
     super.init()
-    self.token = conifiguration[TokenKey]
+    self.token = configuration[TokenKey]
 }
 ```
 might become...
 
-```
+```Swift
 public init(token: String) {
     super.init()
     self.token = token
