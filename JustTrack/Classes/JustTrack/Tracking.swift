@@ -111,10 +111,7 @@ public class EventTracking {
         loadCustomTracker(tracker)
         return true
     }
-
-    /// Singleton accessor
-    public static let shared = EventTracking()
-
+    
     /// Validates the passed event and schedules it for posting
     /// with its associated `registeredTrackers`.
     ///
