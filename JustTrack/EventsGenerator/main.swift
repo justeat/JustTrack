@@ -795,23 +795,21 @@ do {
     // Write struct string in file
     log(msg: "Generating swift code in: \(structSwiftFilePath)")
     try structsString.write(toFile: structSwiftFilePath, atomically: true, encoding: .utf8)
-} catch EventGeneratorError.plistNotFound {
-    log(msg: "Invalid plist path")
-    exitWithError()
-} catch EventGeneratorError.trackerMissing {
-    log(msg: "Tracker(s) missing in one or more event(s)")
-    exitWithError()
-} catch EventGeneratorError.templateNotFound {
-    log(msg: "Error generating events code")
-    exitWithError()
-} catch EventGeneratorError.templateMalformed {
-    log(msg: "Error generating events code")
-    exitWithError()
-} catch EventGeneratorError.swiftFileNotFound {
-    log(msg: "Swift file not found")
-    exitWithError()
 } catch {
-    log(msg: "Generic error")
+    switch error {
+    case EventGeneratorError.plistNotFound:
+        log(msg: "Invalid plist path")
+    case EventGeneratorError.trackerMissing:
+        log(msg: "Tracker(s) missing in one or more event(s)")
+    case EventGeneratorError.templateNotFound:
+        log(msg: "Error generating events code")
+    case EventGeneratorError.templateMalformed:
+        log(msg: "Error generating events code")
+    case EventGeneratorError.swiftFileNotFound:
+        log(msg: "Swift file not found")
+    default:
+        log(msg: "Generic error")
+    }
     exitWithError()
 }
 
