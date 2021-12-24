@@ -2,7 +2,6 @@
 //  ViewController.swift
 //  JustTrack_Example
 //
-//  Created by Federico Cappelli on 13/11/2017.
 //  Copyright © 2017 JUST EAT. All rights reserved.
 //
 
