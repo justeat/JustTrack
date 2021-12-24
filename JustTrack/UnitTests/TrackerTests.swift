@@ -8,6 +8,7 @@ import XCTest
 import JustTrack
 
 final class TrackerTests: XCTestCase {
+
     // MARK: - Stubs / Mocks
     
     var tracker1: MockTracker!
@@ -67,8 +68,7 @@ final class TrackerTests: XCTestCase {
         let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
-        let trackerService = EventTracking(dispatchInterval: 2.0,
-                                           deliveryType: .batch)
+        let trackerService = EventTracking(deliveryType: .batch(dispatchInterval: 2.0))
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
                 
@@ -91,8 +91,7 @@ final class TrackerTests: XCTestCase {
         let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
         
         // AND a tracker service using these two trackers that processes events in 3 second "batches"
-        let trackerService = EventTracking(dispatchInterval: 3.0,
-                                           deliveryType: .batch)
+        let trackerService = EventTracking(deliveryType: .batch(dispatchInterval: 3.0))
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
         

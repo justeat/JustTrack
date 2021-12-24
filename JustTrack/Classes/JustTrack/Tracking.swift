@@ -34,9 +34,9 @@ public enum TrackingLogLevel {
 ///
 /// - seealso: `dispatchInterval`
 public enum TrackingDeliveryType {
-    /// Will wait before dispatching events to trackers based on `dispatchInterval`.
-    case batch
-    
+    /// How long we should wait before events get pushed to trackers.
+    case batch(dispatchInterval: TimeInterval)
+
     /// Will dispatch events to trackers immediately.
     case immediate
 }
@@ -60,14 +60,6 @@ public class EventTracking {
     static let kPersistentStorageName = "com.justeat.TrackOperations"
     
     // MARK: - API
-    
-    /// How long we should wait before events get pushed to trackers.
-    ///
-    /// - Remark: Only applies to the `Batch` delivery type.
-    ///           If you've set the delivery type to anything else, this property will be ignored.
-    ///
-    /// - Requires: `deliveryType` property to be set to `batch`.
-    public let dispatchInterval: Double
 
     /// An optional closure that can be set for debugging purposes.
     /// JustTrack will call this closure when there is something worth mentioning / logging.
@@ -89,9 +81,7 @@ public class EventTracking {
     /// - seealso: `TrackingDeliveryType`.
     public let deliveryType: TrackingDeliveryType
 
-    public init(dispatchInterval: Double = 3.0,
-                deliveryType: TrackingDeliveryType = .immediate) {
-        self.dispatchInterval = dispatchInterval
+    public init(deliveryType: TrackingDeliveryType = .immediate) {
         self.deliveryType = deliveryType
     }
 
@@ -149,7 +139,7 @@ public class EventTracking {
 
                 // TODO: This conditional is sketchy, if the app dies while the queue is paused, we're going to lose the events.
                 // Need to rethink the policy here and / or cap the dispatch time to a sensible max value.
-                if deliveryType == .batch, operationQueue.operationCount == 0 {
+                if case let .batch(dispatchInterval) = deliveryType, operationQueue.operationCount == 0 {
                     pauseQueue(Int64(dispatchInterval * Double(NSEC_PER_SEC)))
                 }
                 
@@ -178,7 +168,7 @@ public class EventTracking {
     }
     
     public func completeAllOperations() {
-        if deliveryType == .batch {
+        if case .batch = deliveryType {
             unpauseQueue()
         }
     }
