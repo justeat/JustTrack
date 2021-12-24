@@ -81,7 +81,7 @@ func configureJustTrack() -> EventTracking {
     eventTracker.deliveryType = .batch
     
     eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
-        print("[EventTracker] [\(logLevel.rawValue)] \(logString)")
+        print("[EventTracker] [\(logLevel)] \(logString)")
     }
     
     // load the default tracker, in this case the console tracker

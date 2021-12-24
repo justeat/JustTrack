@@ -18,7 +18,7 @@ import Foundation
 /// ````
 ///
 /// - seealso: `logClosure`
-public enum TrackingLogLevel: Int {
+public enum TrackingLogLevel {
     case verbose
     case debug
     case info
@@ -33,7 +33,7 @@ public enum TrackingLogLevel: Int {
 /// ````
 ///
 /// - seealso: `dispatchInterval`
-public enum TrackingDeliveryType: Int {
+public enum TrackingDeliveryType {
     /// Will wait before dispatching events to trackers based on `dispatchInterval`.
     case batch
     
@@ -46,7 +46,7 @@ public enum TrackingDeliveryType: Int {
 /// ````
 /// case consoleLogger
 /// ````
-public enum TrackerType: Int {
+public enum TrackerType {
     case consoleLogger
 }
 
@@ -75,7 +75,7 @@ public class EventTracking {
     /// For example, you could use:
     /// ````
     /// myTrackingService.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
-    ///        print("[TrackingService] [\(logLevel.rawValue)] \(logString)")
+    ///        print("[TrackingService] [\(logLevel)] \(logString)")
     /// }
     /// ````
     /// to output the type of the message (log level) and associated string to the console.

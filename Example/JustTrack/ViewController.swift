@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         let eventTracker: EventTracking = EventTracking.sharedInstance
         eventTracker.deliveryType = .batch
         eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
-            print("[EventTracker] [\(logLevel.rawValue)] \(logString)")
+            print("[EventTracker] [\(logLevel)] \(logString)")
         }
         eventTracker.loadDefaultTracker(.consoleLogger)
         eventTracker.enable()
