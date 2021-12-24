@@ -71,8 +71,7 @@ Let's see how we use JustTrack:
 
 ### JustTrack Configuration
 
-```
-Swift
+```Swift
 
 // configure the tracking with settings and trackers
 let eventTracker = EventTracking()
