@@ -83,8 +83,8 @@ func log(msg: String) {
 }
 
 // Return the current script path
-func scriptPath() -> NSString {
-    
+func scriptPath() -> String {
+
     let cwd = FileManager.default.currentDirectoryPath
     let script = CommandLine.arguments[0]
     var path: NSString?
@@ -100,7 +100,7 @@ func scriptPath() -> NSString {
     }
 
     path = path!.deletingLastPathComponent as NSString?
-    return path!
+    return path! as String
 }
 
 func urlForTemplate(_ templateName: String) throws -> URL {
@@ -185,12 +185,12 @@ func printHelp() {
 
 // MARK: - Structs generator helpers
 
-private func generateEvents(_ events: [String: AnyObject]) throws -> NSString {
+private func generateEvents(_ events: [String: AnyObject]) throws -> String {
     // Load templates
     let structListTemplateString: String = try stringFromTemplate(EventTemplate.eventList.rawValue)
     let structTemplate: String = try stringFromTemplate(EventTemplate.event.rawValue)
-    
-    let resultString = NSMutableString(string: structListTemplateString)
+
+    var resultString = structListTemplateString
     var structsArray: [String] = Array()
     
     for event: String in events.keys.sorted(by: >) {
@@ -238,7 +238,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> NSString {
             }
         }
     
-        // <*event_keyValueChain*> = kKey1 : key1 == "" ? NSNull() : key1 as NSString
+        // <*event_keyValueChain*> = kKey1 : key1 == "" ? NSNull() : key1 as String
         let eventKeyValueChain = generateEventKeyValueChain(cleanKeys, eventHasObjects: !objects.isEmpty)
         
         structString = replacePlaceholder(structString,
@@ -341,10 +341,9 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> NSString {
     }
     
     // Base list template
-    resultString.replaceOccurrences(of: "<*\(EventTemplatePlaceholder.eventList.rawValue)*>",
-                                    with: structsArray.joined(separator: "\n"),
-                                    options: NSString.CompareOptions.caseInsensitive,
-                                    range: NSRange(location: 0, length: resultString.length))
+    resultString = resultString.replacingOccurrences(of: "<*\(EventTemplatePlaceholder.eventList.rawValue)*>",
+                                                     with: structsArray.joined(separator: "\n"),
+                                                     options: .caseInsensitive)
     return resultString
 }
 
@@ -402,7 +401,7 @@ func generateEventKeyValueChain(_ keys: [String], eventHasObjects: Bool) -> Stri
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex,
                                      with: String(capKeyString[capKeyString.startIndex]).capitalized)
-        resultArray.append("k\(capKeyString): \(keyString) == \"\" ? NSNull() : \(keyString) as NSString")
+        resultArray.append("k\(capKeyString): \(keyString) == \"\" ? NSNull() : \(keyString) as String")
     }
     
     if eventHasObjects {
@@ -788,12 +787,12 @@ do {
     }
     
     // Generate struct string
-    let structsString: NSString = try generateEvents(structsDict as! [String: AnyObject])
+    let structsString: String = try generateEvents(structsDict as! [String: AnyObject])
     log(msg: "Events code correctly generated")
     
     // Write struct string in file
     log(msg: "Generating swift code in: \(structSwiftFilePath)")
-    try structsString.write(toFile: structSwiftFilePath, atomically: true, encoding: String.Encoding.utf8.rawValue)
+    try structsString.write(toFile: structSwiftFilePath, atomically: true, encoding: .utf8)
 } catch EventGeneratorError.plistNotFound {
     log(msg: "Invalid plist path")
     exitWithError()

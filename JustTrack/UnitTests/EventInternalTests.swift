@@ -66,8 +66,8 @@ class EventInternalTests: XCTestCase {
         let eventDictionary = ["name": "UnrealEvent",
                                "payload": ["unrealId": 654321],
                                "trackers": ["UnrealTracker"]] as [String: AnyObject]
-        let event = EventInternal.decode(eventDictionary)!
-        
+        let event = EventInternal(dictionary: eventDictionary)!
+
         XCTAssertEqual(event.name, "UnrealEvent")
         XCTAssertEqual(event.payload["unrealId"] as! Int, 654321)
         XCTAssertEqual(event.registeredTrackers[0], "UnrealTracker")

@@ -231,7 +231,7 @@ public class EventTracking: NSObject {
                     
                 // Get uncompleted event tracking
                 if let eventDictionary = operations[eventKey] as? [String: AnyObject] {
-                    let internalEvent: EventInternal? = EventInternal.decode(eventDictionary)
+                    let internalEvent = EventInternal(dictionary: eventDictionary)
                     
                     if internalEvent != nil {
                         // Enqueue event

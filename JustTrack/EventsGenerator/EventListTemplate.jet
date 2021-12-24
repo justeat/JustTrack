@@ -7,9 +7,9 @@ public class EventExample: Event {
 
     public var payload: Payload {
         return [
-            kTest1 : test1 == "" ? NSNull() : test1 as NSString,
-            kTest2 : test2 == "" ? NSNull() : test2 as NSString,
-            kTest3 : test3 == "" ? NSNull() : test3 as NSString
+            kTest1 : test1 == "" ? NSNull() : test1 as String,
+            kTest2 : test2 == "" ? NSNull() : test2 as String,
+            kTest3 : test3 == "" ? NSNull() : test3 as String
         ]
     }
 

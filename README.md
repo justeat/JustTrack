@@ -145,9 +145,9 @@ public class EventUser: NSObject, Event {
 
     public var payload: Payload {
         return [
-            kAction: action == "" ? NSNull() : action as NSString, 
-            kResponse: response == "" ? NSNull() : response as NSString, 
-            kExtra: extra == "" ? NSNull() : extra as NSString
+            kAction: action == "" ? NSNull() : action as String, 
+            kResponse: response == "" ? NSNull() : response as String, 
+            kExtra: extra == "" ? NSNull() : extra as String
         ]
     }
 
