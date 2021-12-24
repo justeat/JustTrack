@@ -18,7 +18,7 @@ import Foundation
 /// ````
 ///
 /// - seealso: `logClosure`
-public enum TrackingLogLevel: NSInteger {
+public enum TrackingLogLevel: Int {
     case verbose
     case debug
     case info
@@ -33,7 +33,7 @@ public enum TrackingLogLevel: NSInteger {
 /// ````
 ///
 /// - seealso: `dispatchInterval`
-public enum TrackingDeliveryType: NSInteger {
+public enum TrackingDeliveryType: Int {
     /// Will wait before dispatching events to trackers based on `dispatchInterval`.
     case batch
     
@@ -46,7 +46,7 @@ public enum TrackingDeliveryType: NSInteger {
 /// ````
 /// case consoleLogger
 /// ````
-public enum TrackerType: NSInteger {
+public enum TrackerType: Int {
     case consoleLogger
 }
 
