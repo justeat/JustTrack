@@ -52,8 +52,8 @@ public enum TrackerType: Int {
 
 /// Tracking manages the mapping and dispatching of events to trackers.
 /// - TODO: More elaborate documentation for this with example usage.
-public class EventTracking: NSObject {
-    
+public class EventTracking {
+
     // MARK: - Internal Properties
     
     static let kEventTrackerEventsPlistName = "kEventTrackerEventsPlistName"

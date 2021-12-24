@@ -58,7 +58,7 @@ self.test2 = test2
 self.test3 = test3
 
 
-public class EventExample: NSObject, Event {
+public class EventExample: Event {
     public let name: String = "example"
 
     public var payload: [String : String]? {

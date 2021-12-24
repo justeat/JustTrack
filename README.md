@@ -140,7 +140,7 @@ An Event is made of:
 ##### Generated Swift Class
 
 ```Swift
-public class EventUser: NSObject, Event {
+public class EventUser: Event {
     public let name: String = "User"
 
     public var payload: Payload {

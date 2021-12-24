@@ -8,14 +8,14 @@
 import Foundation
 import JustTrack
 
-final class ExampleEvent: NSObject, Event {
+final class ExampleEvent: Event {
     
     // Event protocol
     public let name = "example"
     public var payload: Payload {
-        return [kTest1: test1 as NSObject,
-                kTest2: test2 as NSObject,
-                kTest3: test3 as NSObject]
+        return [kTest1: test1,
+                kTest2: test2,
+                kTest3: test3]
     }
     
     public private(set) var registeredTrackers: [String]
@@ -34,16 +34,14 @@ final class ExampleEvent: NSObject, Event {
         self.test2 = test2
         self.test3 = test3
         registeredTrackers = []
-        super.init()
     }
     
     public init(trackers: String...) {
         registeredTrackers = trackers
-        super.init()
     }
 }
 
-final class InvalidEventExample: NSObject, Event {
+final class InvalidEventExample: Event {
 
     // Event protocol
     public let name = ""
@@ -62,8 +60,4 @@ final class InvalidEventExample: NSObject, Event {
     var test1 = ""
     var test2 = ""
     var test3 = ""
-
-    public override init() {
-        super.init()
-    }
 }

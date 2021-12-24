@@ -9,7 +9,7 @@ import Foundation
 import JustTrack
 import XCTest
 
-final class MockTracker: NSObject, EventTracker {
+final class MockTracker: EventTracker {
     let name: String
     var didTrackExpectation: XCTestExpectation?
     var trackEventInvocationCount = 0

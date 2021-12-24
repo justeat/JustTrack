@@ -6,7 +6,7 @@
 
 import Foundation
 
-class TrackerConsole: NSObject, EventTracker {
+class TrackerConsole: EventTracker {
     
     // MARK: - Tracker protocol implementation
     
