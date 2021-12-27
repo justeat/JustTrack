@@ -145,13 +145,13 @@
 			isa = PBXGroup;
 			children = (
 				9F86A65F2779D7680049CD30 /* DataStorable.swift */,
-				9F86A6582779D45E0049CD30 /* TrackingDeliveryType.swift */,
-				9F86A6572779D45E0049CD30 /* TrackingLogLevel.swift */,
-				9F86A65D2779D4DC0049CD30 /* TrackerType.swift */,
 				97E76597232C08A6D7E6711A750E12DB /* Event.swift */,
 				A52CB5B349A46D9C51F009FF1A23EF93 /* EventInternal.swift */,
 				D14B39EA487F513DEC1EC611AC95A29C /* EventTracker.swift */,
+				9F86A65D2779D4DC0049CD30 /* TrackerType.swift */,
 				B7EF062AF74AD3DF8FBDCFF38A49F5DC /* Tracking.swift */,
+				9F86A6582779D45E0049CD30 /* TrackingDeliveryType.swift */,
+				9F86A6572779D45E0049CD30 /* TrackingLogLevel.swift */,
 				D2DF4A75A53CAE044CC299BE3807215E /* Operations */,
 				959E495947BBF771BE4F6A3423C99289 /* Pod */,
 				0F1C0E235140D663F57AB743889D46D3 /* Support Files */,
