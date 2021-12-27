@@ -156,16 +156,14 @@ public final class EventTracking {
     }()
 
     private func restoreUncompletedTracking() -> Int {
-
-        var operations: NSMutableDictionary
         guard let outData: Data = dataStorage.value(forKey: EventTracking.kPersistentStorageName),
               let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
             return 0
         }
-        
-        operations = NSMutableDictionary(dictionary: dataDictionary)
         if operations.count > 0 {
             
+
+        let operations = NSMutableDictionary(dictionary: dataDictionary)
             // Remove all the events stored
             dataStorage.setValue(nil, forKey: EventTracking.kPersistentStorageName)
             
