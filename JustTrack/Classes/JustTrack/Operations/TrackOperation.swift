@@ -9,10 +9,10 @@ import Foundation
 final class TrackOperation: Operation {
 
     // MARK: - Variables
-    
-    let event: Event
-    let tracker: EventTracker
-    private var eventKey: String
+
+    private let event: Event
+    private let tracker: EventTracker
+    private let eventKey: String
     private let dataStorage: DataStorable
 
     // MARK: - Initialization
