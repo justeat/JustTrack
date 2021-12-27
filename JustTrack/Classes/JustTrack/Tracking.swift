@@ -83,8 +83,7 @@ public class EventTracking {
                                           registeredTrackers: event.registeredTrackers)
 
         // TODO: validate event
-        if eventIsValid(internalEvent) == false {
-            
+        guard internalEvent.isValid else {
             JTLog("Invalid event \(event)", level: .error)
             return false
         }
@@ -141,11 +140,6 @@ public class EventTracking {
     }
     
     // MARK: - Private
-
-    private func eventIsValid(_ event: Event) -> Bool {
-
-        return event.name.isEmpty == false && !event.registeredTrackers.isEmpty
-    }
 
     private func JTLog(_ string: String, level: TrackingLogLevel) {
         logClosure?(string, level)

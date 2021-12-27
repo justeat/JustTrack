@@ -26,4 +26,8 @@ extension Event {
          EventEncodingKey.name.rawValue: name,
          EventEncodingKey.trackers.rawValue: registeredTrackers]
     }
+
+    var isValid: Bool {
+        return !name.isEmpty && !registeredTrackers.isEmpty
+    }
 }
