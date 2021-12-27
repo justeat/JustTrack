@@ -11,16 +11,12 @@ import Foundation
 /// Used by `logger` to filter events based on user's needs.
 ///
 /// ````
-/// case verbose
-/// case debug
 /// case info
 /// case error
 /// ````
 ///
 /// - seealso: `logger`
 public enum TrackingLogLevel {
-    case verbose
-    case debug
     case info
     case error
 }
