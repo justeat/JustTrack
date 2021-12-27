@@ -16,17 +16,8 @@ public final class EventTracking {
 
     // MARK: - API
 
-    /// An optional closure that can be set for debugging purposes.
-    /// JustTrack will call this closure when there is something worth mentioning / logging.
-    ///
-    /// For example, you could use:
-    /// ````
-    /// myTrackingService.logger = { (level: LogLevel, message: String) -> Void in
-    ///        print("[TrackingService] [\(level)] \(message)")
-    /// }
-    /// ````
-    /// to output the type of the message (log level) and associated string to the console.
-    /// Or you could use the closure to log to your logging framework of choice etc.
+    /// An optional logger that can be set for debugging purposes.
+    /// JustTrack will call this when there is something worth mentioning / logging.
     private let logger: Logger?
 
     /// The delivery type used for pushing events to trackers.
@@ -34,8 +25,10 @@ public final class EventTracking {
     /// Default value is `immediate`.
     ///
     /// - seealso: `TrackingDeliveryType`.
-    public let deliveryType: TrackingDeliveryType
+    private let deliveryType: TrackingDeliveryType
     private let dataStorage: DataStorable
+    private let operationQueue: OperationQueue
+    private var trackersInstances = [String: EventTracker]()
 
     public init(dataStorage: DataStorable,
                 deliveryType: TrackingDeliveryType = .immediate,
@@ -43,6 +36,9 @@ public final class EventTracking {
         self.deliveryType = deliveryType
         self.dataStorage = dataStorage
         self.logger = logger
+        operationQueue = OperationQueue(name: "com.justtrack.trackDispatchQueue",
+                                        maxConcurrentOperationCount: 1,
+                                        qualityOfService: .background)
     }
 
     /// Registers a `TrackerConsole` for event tracking.
@@ -135,21 +131,6 @@ public final class EventTracking {
     }
 
     // MARK: - Private
-
-    private lazy var trackersInstances: [String: EventTracker] = {
-        var dictionary = [String: EventTracker]()
-        return dictionary
-    }()
-
-    private lazy var operationQueue: OperationQueue = {
-
-        var queue = OperationQueue()
-        queue.name = "com.justtrack.trackDispatchQueue"
-        queue.maxConcurrentOperationCount = 1
-        queue.qualityOfService = QualityOfService.background
-
-        return queue
-    }()
 
     private func restoreUncompletedTracking() -> Int {
         guard let outData: Data = dataStorage.value(forKey: EventTracking.kPersistentStorageName),
