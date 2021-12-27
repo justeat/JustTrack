@@ -6,50 +6,6 @@
 
 import Foundation
 
-/// Log level, based on severity.
-///
-/// Used by `logClosure` to filter events based on user's needs.
-///
-/// ````
-/// case verbose
-/// case debug
-/// case info
-/// case error
-/// ````
-///
-/// - seealso: `logClosure`
-public enum TrackingLogLevel {
-    case verbose
-    case debug
-    case info
-    case error
-}
-
-/// Tracking delivery type.
-///
-/// ````
-/// case batch
-/// case immediate
-/// ````
-///
-/// - seealso: `dispatchInterval`
-public enum TrackingDeliveryType {
-    /// How long we should wait before events get pushed to trackers.
-    case batch(dispatchInterval: TimeInterval)
-
-    /// Will dispatch events to trackers immediately.
-    case immediate
-}
-
-/// Tracker type. Used for trackers provided by JustTrack out of the box.
-///
-/// ````
-/// case consoleLogger
-/// ````
-public enum TrackerType {
-    case consoleLogger
-}
-
 /// Tracking manages the mapping and dispatching of events to trackers.
 /// - TODO: More elaborate documentation for this with example usage.
 public class EventTracking {
