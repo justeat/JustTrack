@@ -12,8 +12,8 @@ final class ViewController: UIViewController {
     private let eventTracker: EventTracking = {
         let eventTracker = EventTracking(dataStorage: UserDefaults.standard,
                                          deliveryType: .batch(dispatchInterval: 3.0))
-        eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) in
-            print("[EventTracker] [\(logLevel)] \(logString)")
+        eventTracker.logger = { (level: TrackingLogLevel, message: String) in
+            print("[EventTracker] [\(level)] \(message)")
         }
         eventTracker.loadDefaultTracker(.consoleLogger)
         eventTracker.enable()

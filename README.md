@@ -77,8 +77,8 @@ Let's see how we use JustTrack:
 let eventTracker = EventTracking()
 eventTracker.deliveryType = .batch
 
-eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
-    print("[EventTracker] [\(logLevel)] \(logString)")
+eventTracker.logger = { (level: TrackingLogLevel, message: String) -> Void in
+    print("[EventTracker] [\(level)] \(message)")
 }
 
 // load the default tracker, in this case the console tracker

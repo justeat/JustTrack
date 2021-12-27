@@ -21,13 +21,13 @@ public final class EventTracking {
     ///
     /// For example, you could use:
     /// ````
-    /// myTrackingService.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
-    ///        print("[TrackingService] [\(logLevel)] \(logString)")
+    /// myTrackingService.logger = { (level: TrackingLogLevel, message: String) -> Void in
+    ///        print("[TrackingService] [\(level)] \(message)")
     /// }
     /// ````
     /// to output the type of the message (log level) and associated string to the console.
     /// Or you could use the closure to log to your logging framework of choice etc.
-    public var logClosure: ((_ logString: String, _ logLevel: TrackingLogLevel) -> Void)?
+    public var logger: ((_ level: TrackingLogLevel, _ message: String) -> Void)?
 
     /// The delivery type used for pushing events to trackers.
     ///
@@ -78,7 +78,7 @@ public final class EventTracking {
     public func trackEvent(_ event: Event) -> Bool {
         // TODO: validate event
         guard event.isValid else {
-            JTLog("Invalid event \(event)", level: .error)
+            log(level: .error, message: "Invalid event \(event)")
             return false
         }
                 
@@ -98,7 +98,8 @@ public final class EventTracking {
                 
                 operationQueue.addOperation(operation)
             } else {
-                JTLog("Trying to track an event (\"\(event.name)\") in an invalid Tracker (\"\(trackerName)\")", level: .error)
+                log(level: .error,
+                    message: "Trying to track an event (\"\(event.name)\") in an invalid Tracker (\"\(trackerName)\")")
             }
         }
         
@@ -111,12 +112,12 @@ public final class EventTracking {
             // TODO: propagate error
             return
         }
-        
-        JTLog("Enabling tracker...", level: .info)
-        
+
+        log(level: .info, message: "Enabling tracker...")
+
         let restoredEventsCount = restoreUncompletedTracking()
         if restoredEventsCount > 0 {
-            JTLog("\(restoredEventsCount) events restored", level: .info)
+            log(level: .info, message: "\(restoredEventsCount) events restored")
         }
     }
     
@@ -135,8 +136,8 @@ public final class EventTracking {
     
     // MARK: - Private
 
-    private func JTLog(_ string: String, level: TrackingLogLevel) {
-        logClosure?(string, level)
+    private func log(level: TrackingLogLevel, message: String) {
+        logger?(level, message)
     }
 
     private lazy var trackersInstances: [String: EventTracker] = {

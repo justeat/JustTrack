@@ -8,7 +8,7 @@ import Foundation
 
 /// Log level, based on severity.
 ///
-/// Used by `logClosure` to filter events based on user's needs.
+/// Used by `logger` to filter events based on user's needs.
 ///
 /// ````
 /// case verbose
@@ -17,7 +17,7 @@ import Foundation
 /// case error
 /// ````
 ///
-/// - seealso: `logClosure`
+/// - seealso: `logger`
 public enum TrackingLogLevel {
     case verbose
     case debug
