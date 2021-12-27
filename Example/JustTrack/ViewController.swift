@@ -12,7 +12,7 @@ final class ViewController: UIViewController {
     private let eventTracker: EventTracking = {
         let eventTracker = EventTracking(dataStorage: UserDefaults.standard,
                                          deliveryType: .batch(dispatchInterval: 3.0),
-                                         logger: { level, message in
+                                         logger: InlineLogger { level, message in
                                              print("[EventTracker] [\(level)] \(message)")
                                          })
         eventTracker.loadDefaultTracker(.consoleLogger)

@@ -24,6 +24,7 @@
 		9F86A65A2779D45F0049CD30 /* TrackingDeliveryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A6582779D45E0049CD30 /* TrackingDeliveryType.swift */; };
 		9F86A65E2779D4DC0049CD30 /* TrackerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A65D2779D4DC0049CD30 /* TrackerType.swift */; };
 		9F86A6602779D7680049CD30 /* DataStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A65F2779D7680049CD30 /* DataStorable.swift */; };
+		9F86A873277A129F0049CD30 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A872277A129F0049CD30 /* Logger.swift */; };
 		BACA2576833E0DED4FD3AE692E4EC756 /* TestEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C0F51599B2BEABFC3974D02264976 /* TestEvents.swift */; };
 		CBF4E3F0479B4BD7562255BF43D6072D /* TrackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30ECAB9E9C77792E2B0188E9E3FFFD3 /* TrackOperation.swift */; };
 		D1E9C390894000FC17896D00B0D68DCA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -72,6 +73,7 @@
 		9F86A6582779D45E0049CD30 /* TrackingDeliveryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingDeliveryType.swift; sourceTree = "<group>"; };
 		9F86A65D2779D4DC0049CD30 /* TrackerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerType.swift; sourceTree = "<group>"; };
 		9F86A65F2779D7680049CD30 /* DataStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorable.swift; sourceTree = "<group>"; };
+		9F86A872277A129F0049CD30 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A4F96B13292EF5D6B8CAA3100957E726 /* JustTrack.unit-unittests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "JustTrack.unit-unittests.release.xcconfig"; sourceTree = "<group>"; };
 		A51D51CF5CAEA1FA7ABC433C93351885 /* JustTrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JustTrack.release.xcconfig; sourceTree = "<group>"; };
 		A52CB5B349A46D9C51F009FF1A23EF93 /* EventInternal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventInternal.swift; path = JustTrack/Classes/JustTrack/EventInternal.swift; sourceTree = "<group>"; };
@@ -227,10 +229,12 @@
 		9F86A874277A12BE0049CD30 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
+				9F86A872277A129F0049CD30 /* Logger.swift */,
 				9F86A6572779D45E0049CD30 /* LogLevel.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
+		};
 		B8C178855C8F81C5CAAE755545DC6EA2 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,6 +465,7 @@
 				7624F8FB6D3DE1FC3FF3DC8EFD5A08C6 /* JustTrack-dummy.m in Sources */,
 				5136A7BD7C96A1D504A75C6F76663A82 /* TrackerConsole.swift in Sources */,
 				9F86A6602779D7680049CD30 /* DataStorable.swift in Sources */,
+				9F86A873277A129F0049CD30 /* Logger.swift in Sources */,
 				84ED29EA57F61259C16878E28C79BB8B /* Tracking.swift in Sources */,
 				9F86A65A2779D45F0049CD30 /* TrackingDeliveryType.swift in Sources */,
 				9F86A6592779D45F0049CD30 /* LogLevel.swift in Sources */,

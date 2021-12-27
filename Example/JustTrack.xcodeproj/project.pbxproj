@@ -17,6 +17,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		78C1E524E41E0331D8302F54 /* Pods_JustTrack_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A6BDAD91D9CC197F11ADBF3 /* Pods_JustTrack_Example.framework */; };
 		9F86A20D2774A52F0049CD30 /* EventObjectInitParam.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9F86A20B2774A3540049CD30 /* EventObjectInitParam.jet */; };
+		9F86A876277A17040049CD30 /* InlineLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A875277A17040049CD30 /* InlineLogger.swift */; };
 		C8566BEC1E293F8600CC27E3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8566BEA1E293F8600CC27E3 /* main.swift */; };
 		C8566BED1E293FA100CC27E3 /* EventInitAssignTemplate.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */; };
 		C8566BEE1E293FA100CC27E3 /* EventInitParam.jet in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8566BE41E293F8600CC27E3 /* EventInitParam.jet */; };
@@ -72,6 +73,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		695000F9344F9959D5739C1B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9F86A20B2774A3540049CD30 /* EventObjectInitParam.jet */ = {isa = PBXFileReference; lastKnownFileType = text; path = EventObjectInitParam.jet; sourceTree = "<group>"; };
+		9F86A875277A17040049CD30 /* InlineLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineLogger.swift; sourceTree = "<group>"; };
 		A50CAE54C8FA146A010BACD4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		BB838AA6D85DC9B92BE0A7C5 /* Pods-JustTrack_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JustTrack_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JustTrack_Example/Pods-JustTrack_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C8566BE31E293F8600CC27E3 /* EventInitAssignTemplate.jet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EventInitAssignTemplate.jet; sourceTree = "<group>"; };
@@ -133,15 +135,16 @@
 		607FACD21AFB9204008FA782 /* Example for JustTrack */ = {
 			isa = PBXGroup;
 			children = (
-				4F7E257F26CD2D12001F66F7 /* UnitTests.xctestplan */,
-				E073ABC31D47A414001B8D51 /* Events.plist */,
 				C8C75BEB1E4E0D5B006BC73B /* Events_with_errors.plist */,
-				E0CC1EA71D523C8000FD8AF8 /* TrackingEvents.swift */,
+				E073ABC31D47A414001B8D51 /* Events.plist */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				9F86A875277A17040049CD30 /* InlineLogger.swift */,
+				E0CC1EA71D523C8000FD8AF8 /* TrackingEvents.swift */,
 				C8EDCE1D1FB9CBE000296B37 /* ViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				4F7E257F26CD2D12001F66F7 /* UnitTests.xctestplan */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for JustTrack";
@@ -159,9 +162,9 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				4544CED3F31AEB9E0E041E76 /* JustTrack.podspec */,
-				695000F9344F9959D5739C1B /* README.md */,
 				A50CAE54C8FA146A010BACD4 /* LICENSE */,
+				695000F9344F9959D5739C1B /* README.md */,
+				4544CED3F31AEB9E0E041E76 /* JustTrack.podspec */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F86A876277A17040049CD30 /* InlineLogger.swift in Sources */,
 				C8EDCE1E1FB9CBE000296B37 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				E0CC1EA81D523C8000FD8AF8 /* TrackingEvents.swift in Sources */,

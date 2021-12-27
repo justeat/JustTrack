@@ -27,7 +27,7 @@ public final class EventTracking {
     /// ````
     /// to output the type of the message (log level) and associated string to the console.
     /// Or you could use the closure to log to your logging framework of choice etc.
-    private let logger: ((_ level: TrackingLogLevel, _ message: String) -> Void)?
+    private let logger: Logger?
 
     /// The delivery type used for pushing events to trackers.
     ///
@@ -39,7 +39,7 @@ public final class EventTracking {
 
     public init(dataStorage: DataStorable,
                 deliveryType: TrackingDeliveryType = .immediate,
-                logger: ((_ level: TrackingLogLevel, _ message: String) -> Void)? = nil) {
+                logger: Logger? = nil) {
         self.deliveryType = deliveryType
         self.dataStorage = dataStorage
         self.logger = logger
@@ -80,7 +80,7 @@ public final class EventTracking {
     public func trackEvent(_ event: Event) -> Bool {
         // TODO: validate event
         guard event.isValid else {
-            log(level: .error, message: "Invalid event \(event)")
+            logger?.error("Invalid event \(event)")
             return false
         }
 
@@ -100,8 +100,7 @@ public final class EventTracking {
 
                 operationQueue.addOperation(operation)
             } else {
-                log(level: .error,
-                    message: "Trying to track an event (\"\(event.name)\") in an invalid Tracker (\"\(trackerName)\")")
+                logger?.error("Trying to track an event (\"\(event.name)\") in an invalid Tracker (\"\(trackerName)\")")
             }
         }
 
@@ -114,11 +113,11 @@ public final class EventTracking {
             return
         }
 
-        log(level: .info, message: "Enabling tracker...")
+        logger?.info("Enabling tracker...")
 
         let restoredEventsCount = restoreUncompletedTracking()
         if restoredEventsCount > 0 {
-            log(level: .info, message: "\(restoredEventsCount) events restored")
+            logger?.info("\(restoredEventsCount) events restored")
         }
     }
 
@@ -136,10 +135,6 @@ public final class EventTracking {
     }
 
     // MARK: - Private
-
-    private func log(level: TrackingLogLevel, message: String) {
-        logger?(level, message)
-    }
 
     private lazy var trackersInstances: [String: EventTracker] = {
         var dictionary = [String: EventTracker]()
