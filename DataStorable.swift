@@ -6,13 +6,13 @@
 
 import Foundation
 
-protocol DataStorable {
+public protocol DataStorable {
     func value<T>(forKey key: String) -> T?
     func setValue(_ value: Any?, forKey key: String)
 }
 
 extension UserDefaults: DataStorable {
-    func value<T>(forKey key: String) -> T? {
+    public func value<T>(forKey key: String) -> T? {
         value(forKey: key) as? T
     }
 }

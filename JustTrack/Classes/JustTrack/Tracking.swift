@@ -37,8 +37,8 @@ public class EventTracking {
     public let deliveryType: TrackingDeliveryType
     private let dataStorage: DataStorable
 
-    public init(deliveryType: TrackingDeliveryType = .immediate,
-                dataStorage: UserDefaults = .standard) {
+    public init(dataStorage: DataStorable,
+                deliveryType: TrackingDeliveryType = .immediate) {
         self.deliveryType = deliveryType
         self.dataStorage = dataStorage
     }

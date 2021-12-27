@@ -13,14 +13,17 @@ final class TrackerTests: XCTestCase {
 
     private var tracker1: MockTracker!
     private var tracker2: MockTracker!
+    private var dataStorageStub: UserDefaults!
 
     private let tracker1Name = "MockTracker"
     private let tracker2Name = "SomeOtherMockTracker"
+    private let suiteName = String(describing: TrackerTests.self)
 
     // MARK: - Setup
 
     override func setUp() {
         super.setUp()
+        dataStorageStub = UserDefaults(suiteName: suiteName)
         tracker1 = MockTracker(name: tracker1Name)
         tracker2 = MockTracker(name: tracker2Name)
     }
@@ -28,6 +31,8 @@ final class TrackerTests: XCTestCase {
     // MARK: - Teardown
 
     override func tearDown() {
+        dataStorageStub.removeSuite(named: suiteName)
+        dataStorageStub = nil
         tracker1 = nil
         tracker2 = nil
         super.tearDown()
@@ -44,7 +49,8 @@ final class TrackerTests: XCTestCase {
         let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
         
         // AND a tracker service using these two trackers in "immediate" mode
-        let trackerService = EventTracking(deliveryType: .immediate)
+        let trackerService = EventTracking(dataStorage: dataStorageStub,
+                                           deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
         
@@ -68,7 +74,8 @@ final class TrackerTests: XCTestCase {
         let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
-        let trackerService = EventTracking(deliveryType: .batch(dispatchInterval: 2.0))
+        let trackerService = EventTracking(dataStorage: dataStorageStub,
+                                           deliveryType: .batch(dispatchInterval: 2.0))
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
                 
@@ -91,7 +98,8 @@ final class TrackerTests: XCTestCase {
         let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
         
         // AND a tracker service using these two trackers that processes events in 3 second "batches"
-        let trackerService = EventTracking(deliveryType: .batch(dispatchInterval: 3.0))
+        let trackerService = EventTracking(dataStorage: dataStorageStub,
+                                           deliveryType: .batch(dispatchInterval: 3.0))
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
         
@@ -125,8 +133,9 @@ final class TrackerTests: XCTestCase {
         event.test1 = "value1"
         event.test2 = "value2"
         event.test3 = "value3"
-        
-        let trackerService = EventTracking(deliveryType: .immediate)
+
+        let trackerService = EventTracking(dataStorage: dataStorageStub,
+                                           deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
         trackerService.enable()
         
@@ -155,7 +164,8 @@ final class TrackerTests: XCTestCase {
         event.test3 = "value3"
         
         // AND a tracker service using two trackers
-        let trackerService = EventTracking(deliveryType: .immediate)
+        let trackerService = EventTracking(dataStorage: dataStorageStub,
+                                           deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
         trackerService.enable()
@@ -182,7 +192,8 @@ final class TrackerTests: XCTestCase {
         let event = ExampleEvent(trackers: tracker1Name)
         
         // AND a tracker service using two trackers
-        let trackerService = EventTracking(deliveryType: .immediate)
+        let trackerService = EventTracking(dataStorage: dataStorageStub,
+                                           deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
         
@@ -211,7 +222,8 @@ final class TrackerTests: XCTestCase {
         let event = InvalidEventExample()
         
         // AND a tracker service using some tracker
-        let trackerService = EventTracking(deliveryType: .immediate)
+        let trackerService = EventTracking(dataStorage: dataStorageStub,
+                                           deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
         
         // WHEN we ask JustTrack to track the event
