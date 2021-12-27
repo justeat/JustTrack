@@ -8,7 +8,7 @@ import Foundation
 
 /// Tracking manages the mapping and dispatching of events to trackers.
 /// - TODO: More elaborate documentation for this with example usage.
-public class EventTracking {
+public final class EventTracking {
 
     // MARK: - Internal Properties
     
