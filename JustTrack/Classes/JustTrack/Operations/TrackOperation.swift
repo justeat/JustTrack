@@ -13,12 +13,16 @@ final class TrackOperation: Operation {
     let event: Event
     let tracker: EventTracker
     private var eventKey: String
+    private let dataStorage: UserDefaults
 
     // MARK: - Initialization
     
-    init(tracker: EventTracker, event: Event) {
+    init(tracker: EventTracker,
+         event: Event,
+         dataStorage: UserDefaults) {
         self.event = event
         self.tracker = tracker
+        self.dataStorage = dataStorage
         eventKey = "\(event.name)_ON_\(tracker.name)_\(Date().timeIntervalSince1970)"
         super.init()
     }
@@ -58,7 +62,7 @@ extension TrackOperation {
     private func saveEventDictionary(_ eventDictionary: [String: Any], key: String) {
 
         var operations: NSMutableDictionary
-        if let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName) {
+        if let outData = dataStorage.data(forKey: EventTracking.kPersistentStorageName) {
             if let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] {
                 operations = NSMutableDictionary(dictionary: dataDictionary)
             } else {
@@ -70,19 +74,19 @@ extension TrackOperation {
         
         operations.setObject(eventDictionary, forKey: key as NSCopying)
         let data = NSKeyedArchiver.archivedData(withRootObject: operations)
-        UserDefaults.standard.set(data, forKey: EventTracking.kPersistentStorageName)
+        dataStorage.set(data, forKey: EventTracking.kPersistentStorageName)
     }
 
     private func deleteEvent(_ key: String) {
 
-        if let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName) {
+        if let outData = dataStorage.data(forKey: EventTracking.kPersistentStorageName) {
             guard let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
                 return
             }
             let operations = NSMutableDictionary(dictionary: dataDictionary)
             operations.removeObject(forKey: key)
             let data = NSKeyedArchiver.archivedData(withRootObject: operations)
-            UserDefaults.standard.set(data, forKey: EventTracking.kPersistentStorageName)
+            dataStorage.set(data, forKey: EventTracking.kPersistentStorageName)
         }
     }
 }

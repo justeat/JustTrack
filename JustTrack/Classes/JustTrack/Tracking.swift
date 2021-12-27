@@ -36,9 +36,12 @@ public class EventTracking {
     ///
     /// - seealso: `TrackingDeliveryType`.
     public let deliveryType: TrackingDeliveryType
+    private let dataStorage: UserDefaults
 
-    public init(deliveryType: TrackingDeliveryType = .immediate) {
+    public init(deliveryType: TrackingDeliveryType = .immediate,
+                dataStorage: UserDefaults = .standard) {
         self.deliveryType = deliveryType
+        self.dataStorage = dataStorage
     }
 
     /// Registers a `TrackerConsole` for event tracking.
@@ -91,7 +94,9 @@ public class EventTracking {
         for trackerName in internalEvent.registeredTrackers {
             if let tracker = trackersInstances[trackerName.lowercased()] {
                 // Enqueue
-                let operation = TrackOperation(tracker: tracker, event: internalEvent)
+                let operation = TrackOperation(tracker: tracker,
+                                               event: internalEvent,
+                                               dataStorage: dataStorage)
 
                 // TODO: This conditional is sketchy, if the app dies while the queue is paused, we're going to lose the events.
                 // Need to rethink the policy here and / or cap the dispatch time to a sensible max value.
@@ -165,7 +170,7 @@ public class EventTracking {
     private func restoreUncompletedTracking() -> Int {
 
         var operations: NSMutableDictionary
-        guard let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName),
+        guard let outData = dataStorage.data(forKey: EventTracking.kPersistentStorageName),
               let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
             return 0
         }
@@ -174,7 +179,7 @@ public class EventTracking {
         if operations.count > 0 {
             
             // Remove all the events stored
-            UserDefaults.standard.set(nil, forKey: EventTracking.kPersistentStorageName)
+            dataStorage.set(nil, forKey: EventTracking.kPersistentStorageName)
             
             for eventKey: String in operations.allKeys as! [String] {
                     
