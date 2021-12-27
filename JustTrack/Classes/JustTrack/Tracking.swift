@@ -12,7 +12,6 @@ public class EventTracking {
 
     // MARK: - Internal Properties
     
-    static let kEventTrackerEventsPlistName = "kEventTrackerEventsPlistName"
     static let kPersistentStorageName = "com.justeat.TrackOperations"
     
     // MARK: - API
