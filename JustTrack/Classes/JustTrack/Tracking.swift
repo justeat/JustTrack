@@ -107,8 +107,7 @@ public final class EventTracking {
     }
     
     public func enable() {
-        
-        if trackersInstances.count < 1 {
+        guard !trackersInstances.isEmpty else {
             // TODO: propagate error
             return
         }
@@ -160,10 +159,9 @@ public final class EventTracking {
               let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
             return 0
         }
-        if operations.count > 0 {
-            
 
         let operations = NSMutableDictionary(dictionary: dataDictionary)
+        if !dataDictionary.isEmpty {
             // Remove all the events stored
             dataStorage.setValue(nil, forKey: EventTracking.kPersistentStorageName)
             
