@@ -76,24 +76,18 @@ public class EventTracking {
     /// - seealso: `Event`
     @discardableResult
     public func trackEvent(_ event: Event) -> Bool {
-        
-        // Transform generic event in an internal event
-        let internalEvent = EventInternal(name: event.name,
-                                          payload: event.payload,
-                                          registeredTrackers: event.registeredTrackers)
-
         // TODO: validate event
-        guard internalEvent.isValid else {
+        guard event.isValid else {
             JTLog("Invalid event \(event)", level: .error)
             return false
         }
                 
         // Send the event to any registered tracker
-        for trackerName in internalEvent.registeredTrackers {
+        for trackerName in event.registeredTrackers {
             if let tracker = trackersInstances[trackerName.lowercased()] {
                 // Enqueue
                 let operation = TrackOperation(tracker: tracker,
-                                               event: internalEvent,
+                                               event: event,
                                                dataStorage: dataStorage)
 
                 // TODO: This conditional is sketchy, if the app dies while the queue is paused, we're going to lose the events.
