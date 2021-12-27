@@ -20,7 +20,7 @@
 		7624F8FB6D3DE1FC3FF3DC8EFD5A08C6 /* JustTrack-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284C43B177BE21F170E93AB7B4ED217 /* JustTrack-dummy.m */; };
 		84ED29EA57F61259C16878E28C79BB8B /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF062AF74AD3DF8FBDCFF38A49F5DC /* Tracking.swift */; };
 		96FDBB94C3EFBE70DA1E5DA5FEB7764E /* Pods-JustTrack_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 598635D38CA2E22B0689E2CA7DEC6BBC /* Pods-JustTrack_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9F86A6592779D45F0049CD30 /* TrackingLogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A6572779D45E0049CD30 /* TrackingLogLevel.swift */; };
+		9F86A6592779D45F0049CD30 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A6572779D45E0049CD30 /* LogLevel.swift */; };
 		9F86A65A2779D45F0049CD30 /* TrackingDeliveryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A6582779D45E0049CD30 /* TrackingDeliveryType.swift */; };
 		9F86A65E2779D4DC0049CD30 /* TrackerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A65D2779D4DC0049CD30 /* TrackerType.swift */; };
 		9F86A6602779D7680049CD30 /* DataStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86A65F2779D7680049CD30 /* DataStorable.swift */; };
@@ -68,7 +68,7 @@
 		97E76597232C08A6D7E6711A750E12DB /* Event.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Event.swift; path = JustTrack/Classes/JustTrack/Event.swift; sourceTree = "<group>"; };
 		9A79403DA808CFC2EDF4DDB117CBA3FC /* JustTrack-Unit-UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JustTrack-Unit-UnitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9F86A6572779D45E0049CD30 /* TrackingLogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingLogLevel.swift; sourceTree = "<group>"; };
+		9F86A6572779D45E0049CD30 /* LogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
 		9F86A6582779D45E0049CD30 /* TrackingDeliveryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingDeliveryType.swift; sourceTree = "<group>"; };
 		9F86A65D2779D4DC0049CD30 /* TrackerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerType.swift; sourceTree = "<group>"; };
 		9F86A65F2779D7680049CD30 /* DataStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorable.swift; sourceTree = "<group>"; };
@@ -144,6 +144,7 @@
 		2015546F9E88AB5ECD20D007AD448476 /* JustTrack */ = {
 			isa = PBXGroup;
 			children = (
+				9F86A874277A12BE0049CD30 /* Logger */,
 				9F86A65F2779D7680049CD30 /* DataStorable.swift */,
 				97E76597232C08A6D7E6711A750E12DB /* Event.swift */,
 				A52CB5B349A46D9C51F009FF1A23EF93 /* EventInternal.swift */,
@@ -151,7 +152,6 @@
 				9F86A65D2779D4DC0049CD30 /* TrackerType.swift */,
 				B7EF062AF74AD3DF8FBDCFF38A49F5DC /* Tracking.swift */,
 				9F86A6582779D45E0049CD30 /* TrackingDeliveryType.swift */,
-				9F86A6572779D45E0049CD30 /* TrackingLogLevel.swift */,
 				D2DF4A75A53CAE044CC299BE3807215E /* Operations */,
 				959E495947BBF771BE4F6A3423C99289 /* Pod */,
 				0F1C0E235140D663F57AB743889D46D3 /* Support Files */,
@@ -224,6 +224,13 @@
 			name = Pod;
 			sourceTree = "<group>";
 		};
+		9F86A874277A12BE0049CD30 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				9F86A6572779D45E0049CD30 /* LogLevel.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
 		B8C178855C8F81C5CAAE755545DC6EA2 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,7 +463,7 @@
 				9F86A6602779D7680049CD30 /* DataStorable.swift in Sources */,
 				84ED29EA57F61259C16878E28C79BB8B /* Tracking.swift in Sources */,
 				9F86A65A2779D45F0049CD30 /* TrackingDeliveryType.swift in Sources */,
-				9F86A6592779D45F0049CD30 /* TrackingLogLevel.swift in Sources */,
+				9F86A6592779D45F0049CD30 /* LogLevel.swift in Sources */,
 				CBF4E3F0479B4BD7562255BF43D6072D /* TrackOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@ import Foundation
 /// ````
 ///
 /// - seealso: `logger`
-public enum TrackingLogLevel {
+public enum LogLevel {
     case info
     case error
 }

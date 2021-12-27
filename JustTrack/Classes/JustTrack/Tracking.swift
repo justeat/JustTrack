@@ -21,7 +21,7 @@ public final class EventTracking {
     ///
     /// For example, you could use:
     /// ````
-    /// myTrackingService.logger = { (level: TrackingLogLevel, message: String) -> Void in
+    /// myTrackingService.logger = { (level: LogLevel, message: String) -> Void in
     ///        print("[TrackingService] [\(level)] \(message)")
     /// }
     /// ````
