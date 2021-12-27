@@ -36,7 +36,7 @@ public class EventTracking {
     ///
     /// - seealso: `TrackingDeliveryType`.
     public let deliveryType: TrackingDeliveryType
-    private let dataStorage: UserDefaults
+    private let dataStorage: DataStorable
 
     public init(deliveryType: TrackingDeliveryType = .immediate,
                 dataStorage: UserDefaults = .standard) {
@@ -170,7 +170,7 @@ public class EventTracking {
     private func restoreUncompletedTracking() -> Int {
 
         var operations: NSMutableDictionary
-        guard let outData = dataStorage.data(forKey: EventTracking.kPersistentStorageName),
+        guard let outData: Data = dataStorage.value(forKey: EventTracking.kPersistentStorageName),
               let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
             return 0
         }
@@ -179,7 +179,7 @@ public class EventTracking {
         if operations.count > 0 {
             
             // Remove all the events stored
-            dataStorage.set(nil, forKey: EventTracking.kPersistentStorageName)
+            dataStorage.setValue(nil, forKey: EventTracking.kPersistentStorageName)
             
             for eventKey: String in operations.allKeys as! [String] {
                     
