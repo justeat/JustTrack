@@ -11,9 +11,9 @@ import Foundation
 public final class EventTracking {
 
     // MARK: - Internal Properties
-    
+
     static let kPersistentStorageName = "com.justeat.TrackOperations"
-    
+
     // MARK: - API
 
     /// An optional closure that can be set for debugging purposes.
@@ -27,7 +27,7 @@ public final class EventTracking {
     /// ````
     /// to output the type of the message (log level) and associated string to the console.
     /// Or you could use the closure to log to your logging framework of choice etc.
-    public var logger: ((_ level: TrackingLogLevel, _ message: String) -> Void)?
+    private let logger: ((_ level: TrackingLogLevel, _ message: String) -> Void)?
 
     /// The delivery type used for pushing events to trackers.
     ///
@@ -38,9 +38,11 @@ public final class EventTracking {
     private let dataStorage: DataStorable
 
     public init(dataStorage: DataStorable,
-                deliveryType: TrackingDeliveryType = .immediate) {
+                deliveryType: TrackingDeliveryType = .immediate,
+                logger: ((_ level: TrackingLogLevel, _ message: String) -> Void)? = nil) {
         self.deliveryType = deliveryType
         self.dataStorage = dataStorage
+        self.logger = logger
     }
 
     /// Registers a `TrackerConsole` for event tracking.
@@ -49,9 +51,9 @@ public final class EventTracking {
     /// - seealso: `TrackerConsole`.
     @discardableResult
     public func loadDefaultTracker(_ type: TrackerType) -> Bool {
-        
+
         var tracker: EventTracker?
-        
+
         switch type {
         case .consoleLogger:
             tracker = TrackerConsole()
@@ -63,7 +65,7 @@ public final class EventTracking {
         loadCustomTracker(tracker)
         return true
     }
-    
+
     /// Validates the passed event and schedules it for posting
     /// with its associated `registeredTrackers`.
     ///
@@ -81,7 +83,7 @@ public final class EventTracking {
             log(level: .error, message: "Invalid event \(event)")
             return false
         }
-                
+
         // Send the event to any registered tracker
         for trackerName in event.registeredTrackers {
             if let tracker = trackersInstances[trackerName.lowercased()] {
@@ -95,17 +97,17 @@ public final class EventTracking {
                 if case let .batch(dispatchInterval) = deliveryType, operationQueue.operationCount == 0 {
                     pauseQueue(Int64(dispatchInterval * Double(NSEC_PER_SEC)))
                 }
-                
+
                 operationQueue.addOperation(operation)
             } else {
                 log(level: .error,
                     message: "Trying to track an event (\"\(event.name)\") in an invalid Tracker (\"\(trackerName)\")")
             }
         }
-        
+
         return true
     }
-    
+
     public func enable() {
         guard !trackersInstances.isEmpty else {
             // TODO: propagate error
@@ -119,20 +121,20 @@ public final class EventTracking {
             log(level: .info, message: "\(restoredEventsCount) events restored")
         }
     }
-    
+
     public func completeAllOperations() {
         if case .batch = deliveryType {
             unpauseQueue()
         }
     }
-    
+
     /// Registers the passed tracker instance for tracking events.
     ///
     /// - parameter tracker: The tracker instance to start tracking events.
     public func loadCustomTracker(_ tracker: EventTracker) {
         trackersInstances[tracker.name.lowercased()] = tracker // Register trackers
     }
-    
+
     // MARK: - Private
 
     private func log(level: TrackingLogLevel, message: String) {
@@ -150,7 +152,7 @@ public final class EventTracking {
         queue.name = "com.justtrack.trackDispatchQueue"
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = QualityOfService.background
-        
+
         return queue
     }()
 
@@ -164,9 +166,9 @@ public final class EventTracking {
         if !dataDictionary.isEmpty {
             // Remove all the events stored
             dataStorage.setValue(nil, forKey: EventTracking.kPersistentStorageName)
-            
+
             for eventKey: String in operations.allKeys as! [String] {
-                    
+
                 // Get uncompleted event tracking
                 if let eventDictionary = operations[eventKey] as? [String: AnyObject] {
                     if let internalEvent = EventInternal(dictionary: eventDictionary) {
