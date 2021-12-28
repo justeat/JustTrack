@@ -513,7 +513,7 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
         resultArray.append(structKeyNameString)
     }
 
-    return !resultArray.isEmpty ? resultArray.joined(separator: "\n    ") : ""
+    return resultArray.joined(separator: "\n    ")
 }
 
 private func generateKeyVariables(_ keys: [String]) throws -> String {
@@ -528,7 +528,7 @@ private func generateKeyVariables(_ keys: [String]) throws -> String {
         resultArray.append(structVarString)
     }
 
-    return !resultArray.isEmpty ? resultArray.joined(separator: "\n    ") : ""
+    return resultArray.joined(separator: "\n    ")
 }
 
 private func generateStructKeyVariables(_ keys: [String], keyType: String) throws -> String {
@@ -566,11 +566,11 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
 
     switch keyType {
     case "eventKey":
-        return !resultArray.isEmpty ? resultArray.joined(separator: "\n    ") : ""
+        return resultArray.joined(separator: "\n    ")
     case "objectKey":
-        return !resultArray.isEmpty ? resultArray.joined(separator: "\n        ") : ""
+        return resultArray.joined(separator: "\n        ")
     default:
-        return !resultArray.isEmpty ? resultArray.joined(separator: "\n    ") : ""
+        return resultArray.joined(separator: "\n    ")
     }
 }
 
@@ -589,7 +589,7 @@ private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
                                              placeholderType: "routine")
         resultArray.append(structVarString)
     }
-    return !resultArray.isEmpty ? resultArray.joined(separator: "\n    ") : ""
+    return resultArray.joined(separator: "\n    ")
 }
 
 private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws -> String {
