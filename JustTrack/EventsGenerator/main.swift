@@ -132,19 +132,14 @@ func string(fromTemplate templateName: String) throws -> String {
     return result
 }
 
-    let result = NSMutableDictionary()
-    if FileManager.default.fileExists(atPath: plistPath) {
-        var eventsDict = NSDictionary(contentsOfFile: plistPath)
-        eventsDict = eventsDict?.object(forKey: "events") as? NSDictionary
-        if let eventsDict = eventsDict as? [AnyHashable: Any] {
-            result.setDictionary(eventsDict)
-        }
-    } else {
 private func loadEvent(fromPlistPath plistPath: String) throws -> [String: AnyObject] {
+    guard FileManager.default.fileExists(atPath: plistPath) else {
         throw EventGeneratorError.plistNotFound
     }
-
-    return result
+    guard let events = NSDictionary(contentsOfFile: plistPath)?.object(forKey: "events") as? [String: AnyObject] else {
+        throw EventGeneratorError.eventMalformed
+    }
+    return events
 }
 
 private func sanitised(_ originalString: String) -> String {
@@ -783,7 +778,7 @@ do {
     }
 
     // Generate struct string
-    let structsString = try generateEvents(structsDict as! [String: AnyObject])
+    let structsString = try generateEvents(structsDict)
     log(message: "Events code correctly generated")
 
     // Write struct string in file
