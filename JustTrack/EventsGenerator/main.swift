@@ -179,10 +179,6 @@ private func sanitised(_ originalString: String) -> String {
     return result
 }
 
-func printHelp() {
-    log(msg: "HELP: // TODO")
-}
-
 // MARK: - Structs generator helpers
 
 private func generateEvents(_ events: [String: AnyObject]) throws -> String {
@@ -755,7 +751,6 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
 }
 
 private func exitWithError() {
-//    printHelp()
     exit(1)
 }
 
@@ -767,6 +762,7 @@ extension String {
         return prefix(1).lowercased() + dropFirst()
     }
 }
+
 
 // ------------------------------------------------------------------------------------------------------------------------------
 
