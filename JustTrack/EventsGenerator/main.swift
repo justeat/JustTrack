@@ -376,16 +376,13 @@ func generateObjectKeyValue(_ keys: [String]) -> String {
     return "\n            " + resultArray.joined(separator: ", \n            ") + "\n        "
 }
 
-func generateObjectStructs(_ objects: [Any]) throws -> String {
+func generateObjectStructs(_ objects: [NSDictionary]) throws -> String {
     guard !objects.isEmpty else {
         return ""
     }
-    var resultArray = [String]()
-
     let structEventObjectTemplate = try string(fromTemplate: EventTemplate.eventObjectStruct.rawValue)
 
-    for object in objects {
-        let key = (object as! NSDictionary)
+    let resultArray = try objects.map { key -> String in
         let objectName = key["name"] as! String
         let objectParameters = key[EventPlistKey.objectPayload.rawValue] as! [String]
 
@@ -408,19 +405,13 @@ func generateObjectStructs(_ objects: [Any]) throws -> String {
                                                    placeholderType: "routine")
 
         let structFunctionString = generateObjectDictionaryFunction(objectParameters: objectParameters)
-        structObjectKeyString = replacePlaceholder(structObjectKeyString,
-                                                   placeholder: "<*\(EventTemplatePlaceholder.objectDictionaryParameterList.rawValue)*>\n",
-                                                   value: structFunctionString,
-                                                   placeholderType: "routine")
-
-        resultArray.append(structObjectKeyString)
+        return replacePlaceholder(structObjectKeyString,
+                                  placeholder: "<*\(EventTemplatePlaceholder.objectDictionaryParameterList.rawValue)*>\n",
+                                  value: structFunctionString,
+                                  placeholderType: "routine")
     }
 
-    if !resultArray.isEmpty {
-        return "\n    " + resultArray.joined(separator: "\n\n    ") + "\n      "
-    } else {
-        return "\n" + resultArray.joined(separator: "\n") + "\n        "
-    }
+    return "\n    " + resultArray.joined(separator: "\n\n    ") + "\n      "
 }
 
 func removeItemSuffixes(item: String) -> String {
@@ -528,19 +519,16 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
 private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
 
     let structVarTemplate = try string(fromTemplate: EventTemplate.objectKeyVar.rawValue)
-    var resultArray = [String]()
-    for keyString in keys {
-        var structVarString = replacePlaceholder(structVarTemplate,
+    return keys.map { keyString in
+        let structVarString = replacePlaceholder(structVarTemplate,
                                                  placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
                                                  value: keyString,
                                                  placeholderType: "routine")
-        structVarString = replacePlaceholder(structVarString,
-                                             placeholder: "<*\(EventTemplatePlaceholder.formattedObjectKeyName.rawValue)*>",
-                                             value: keyString.capitalizingFirstLetter(),
-                                             placeholderType: "routine")
-        resultArray.append(structVarString)
-    }
-    return resultArray.joined(separator: "\n    ")
+        return replacePlaceholder(structVarString,
+                                  placeholder: "<*\(EventTemplatePlaceholder.formattedObjectKeyName.rawValue)*>",
+                                  value: keyString.capitalizingFirstLetter(),
+                                  placeholderType: "routine")
+    }.joined(separator: "\n    ")
 }
 
 private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws -> String {
