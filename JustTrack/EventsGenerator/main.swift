@@ -118,7 +118,7 @@ func urlForTemplate(_ templateName: String) -> URL {
 
 func stringFromTemplate(_ templateName: String) throws -> String {
 
-    let url: URL = try urlForTemplate(templateName)
+    let url = urlForTemplate(templateName)
     var result: String?
 
     do {
@@ -137,7 +137,7 @@ private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
 
     let result = NSMutableDictionary()
     if FileManager.default.fileExists(atPath: plistPath) {
-        var eventsDict: NSDictionary? = NSDictionary(contentsOfFile: plistPath)
+        var eventsDict = NSDictionary(contentsOfFile: plistPath)
         eventsDict = eventsDict?.object(forKey: "events") as? NSDictionary
         if let eventsDict = eventsDict as? [AnyHashable: Any] {
             result.setDictionary(eventsDict)
