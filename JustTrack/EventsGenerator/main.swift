@@ -143,25 +143,18 @@ private func loadEvent(fromPlistPath plistPath: String) throws -> [String: AnyOb
 }
 
 private func sanitised(_ originalString: String) -> String {
-    var result = originalString
+    let componentsByUnderscore = originalString.components(separatedBy: .whitespacesAndNewlines)
+        .joined(separator: "")
+        .removeDataTypes()
+        .components(separatedBy: CharacterSet.alphanumerics.inverted)
 
-    let components = result.components(separatedBy: .whitespacesAndNewlines)
-    result = components.joined(separator: "")
-    result = removeItemSuffixes(item: result)
-
-    let componentsByUnderscore = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
-
-    if !componentsByUnderscore.isEmpty {
-        result = ""
-        for component in componentsByUnderscore {
-            if component != componentsByUnderscore[0] {
-                result.append(component.capitalizingFirstLetter())
-            } else {
-                result.append(component)
-            }
+    return componentsByUnderscore.map { component in
+        if component != componentsByUnderscore[0] {
+            return component.capitalizingFirstLetter()
+        } else {
+            return component
         }
-    }
-    return result
+    }.joined()
 }
 
 // MARK: - Structs generator helpers
