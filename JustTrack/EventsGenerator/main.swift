@@ -77,6 +77,12 @@ enum EventGeneratorError: Error {
 
 // MARK: - Utility
 
+enum DataType: String, CaseIterable {
+    case integer = "_int"
+    case double = "_double"
+    case bool = "_bool"
+}
+
 // Log string prepending the name of the project
 func log(message: String) {
     print("TRACK: \(message)")
@@ -401,16 +407,16 @@ func generateObjectStructs(_ objects: [NSDictionary]) throws -> String {
     return "\n    " + resultArray.joined(separator: "\n\n    ") + "\n      "
 }
 
-func removeItemSuffixes(item: String) -> String {
-    item
-        .replacingOccurrences(of: "_int", with: "")
-        .replacingOccurrences(of: "_double", with: "")
-        .replacingOccurrences(of: "_bool", with: "")
+extension String {
+    func removeDataTypes() -> String {
+        let rawDataTypes = DataType.allCases.map { $0.rawValue }
+        return replacingOccurrences(of: rawDataTypes, with: "")
+    }
 }
 
 func generateObjectDictionaryFunction(objectParameters: [String]) -> String {
     let resultArray = objectParameters.map { item -> String in
-        let itemString = removeItemSuffixes(item: item).lowercasingFirstLetter()
+        let itemString = item.removeDataTypes().lowercasingFirstLetter()
         let paramString = "\"\(itemString)\""
         return paramString + " : " + sanitised(itemString).lowercasingFirstLetter()
     }
@@ -462,11 +468,11 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
     let structVarTemplate = try string(fromTemplate: EventTemplate.keyVar.rawValue)
     let resultArray = keys.map { keyString -> String in
         let placeholderType: String
-        if keyString.contains("_int") {
+        if keyString.contains(DataType.integer.rawValue) {
             placeholderType = "eventIntParameter"
-        } else if keyString.contains("_double") {
+        } else if keyString.contains(DataType.double.rawValue) {
             placeholderType = "eventDoubleParameter"
-        } else if keyString.contains("_bool") {
+        } else if keyString.contains(DataType.bool.rawValue) {
             placeholderType = "eventBoolParameter"
         } else {
             placeholderType = "eventStringParameter"
@@ -580,11 +586,11 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
     }
     let paramsResultArray = keys.map { keyString -> String in
         let placeholderType: String
-        if keyString.contains("_int") {
+        if keyString.contains(DataType.integer.rawValue) {
             placeholderType = "eventAssignedIntParameter"
-        } else if keyString.contains("_double") {
+        } else if keyString.contains(DataType.double.rawValue) {
             placeholderType = "eventAssignedDoubleParameter"
-        } else if keyString.contains("_bool") {
+        } else if keyString.contains(DataType.bool.rawValue) {
             placeholderType = "eventAssignedBoolParameter"
         } else {
             placeholderType = "eventAssignedStringParameter"
@@ -614,9 +620,16 @@ private func exitWithError() {
 }
 
 extension String {
+    func replacingOccurrences<Target, Replacement>(of targets: [Target],
+                                                   with replacement: Replacement) -> String
+    where Target: StringProtocol, Replacement: StringProtocol {
+        targets.reduce(self) { return $0.replacingOccurrences(of: $1, with: replacement) }
+    }
+
     func capitalizingFirstLetter() -> String {
         return prefix(1).uppercased() + dropFirst()
     }
+
     func lowercasingFirstLetter() -> String {
         return prefix(1).lowercased() + dropFirst()
     }
