@@ -220,18 +220,11 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
                                           value: eventKeyValueChain,
                                           placeholderType: "routine")
 
-        if !objects.isEmpty { // Create array definition for each object item using name definition
-            let objectKeyValueKeyChain = generateObjectKeyValue(objectNames)
-            structString = replacePlaceholder(structString,
-                                              placeholder: "<*\(EventTemplatePlaceholder.objectKeyChain.rawValue)*>",
-                                              value: objectKeyValueKeyChain,
-                                              placeholderType: "routine")
-        } else {
-            structString = replacePlaceholder(structString,
-                                              placeholder: "<*\(EventTemplatePlaceholder.objectKeyChain.rawValue)*>",
-                                              value: "",
-                                              placeholderType: "routine")
-        }
+        // Create array definition for each object item using name definition
+        structString = replacePlaceholder(structString,
+                                          placeholder: "<*\(EventTemplatePlaceholder.objectKeyChain.rawValue)*>",
+                                          value: generateObjectKeyValue(objectNames),
+                                          placeholderType: "routine")
 
         // <*event_cs_trackers_str*> = "console", "GA"
         let eventCsTrackers = try generateEventCsTrackers(eventDic![EventPlistKey.trackers.rawValue] as! [String])
@@ -259,18 +252,10 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
                                           value: objectKeyNames,
                                           placeholderType: "routine")
 
-        if !objects.isEmpty {
-            let objectStructure = try generateObjectStructs(objects)
-            structString = replacePlaceholder(structString,
-                                              placeholder: "<*\(EventTemplatePlaceholder.objectStruct.rawValue)*>",
-                                              value: objectStructure,
-                                              placeholderType: "routine")
-        } else {
-            structString = replacePlaceholder(structString,
-                                              placeholder: "<*\(EventTemplatePlaceholder.objectStruct.rawValue)*>",
-                                              value: "",
-                                              placeholderType: "routine")
-        }
+        structString = replacePlaceholder(structString,
+                                          placeholder: "<*\(EventTemplatePlaceholder.objectStruct.rawValue)*>",
+                                          value: try generateObjectStructs(objects),
+                                          placeholderType: "routine")
 
         /*
          <*event_keysVars*> =
@@ -382,13 +367,15 @@ func generateEventKeyValueChain(_ keys: [String], eventHasObjects: Bool) -> Stri
         return "\n            " + resultArray.joined(separator: ", \n            ") + ",\n        "
     } else if !resultArray.isEmpty {
         return "\n            " + resultArray.joined(separator: ", \n            ") + "\n        "
+    } else {
+        return ":"
     }
-
-    return ":"
 }
 
 func generateObjectKeyValue(_ keys: [String]) -> String {
-
+    guard !keys.isEmpty else {
+        return ""
+    }
     var resultArray = [String]()
     for keyString in keys {
         var capKeyString = keyString
@@ -399,13 +386,15 @@ func generateObjectKeyValue(_ keys: [String]) -> String {
 
     if !resultArray.isEmpty {
         return "\n            " + resultArray.joined(separator: ", \n            ") + "\n        "
+    } else {
+        return ":"
     }
-
-    return ":"
 }
 
 func generateObjectStructs(_ objects: [Any]) throws -> String {
-
+    guard !objects.isEmpty else {
+        return ""
+    }
     var resultArray = [String]()
 
     let structEventObjectTemplate = try string(fromTemplate: EventTemplate.eventObjectStruct.rawValue)
@@ -594,7 +583,7 @@ private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
 
 private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws -> String {
 
-    if keys.isEmpty {
+    guard !keys.isEmpty else {
         return "// MARK: Payload not configured"
     }
 
