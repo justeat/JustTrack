@@ -78,8 +78,8 @@ enum EventGeneratorError: Error {
 // MARK: - Utility
 
 // Log string prepending the name of the project
-func log(msg: String) {
-    print("TRACK: \(msg)")
+func log(message: String) {
+    print("TRACK: \(message)")
 }
 
 // Return the current script path
@@ -130,11 +130,11 @@ func stringFromTemplate(_ templateName: String) throws -> String {
     var result: String?
 
     do {
-        log(msg: "Load template \(url)")
+        log(message: "Load template \(url)")
         result = try String(contentsOf: url)
         result = result?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     } catch {
-        log(msg: "Error loading template \(templateName)")
+        log(message: "Error loading template \(templateName)")
         throw EventGeneratorError.templateMalformed
     }
     
@@ -768,16 +768,16 @@ extension String {
 
 // MARK: - Main script
 
-log(msg: "Generating Events Swift code...")
+log(message: "Generating Events Swift code...")
 
-log(msg: "Script arguments:")
+log(message: "Script arguments:")
 for argument in CommandLine.arguments {
-    log(msg: "- \(argument)")
+    log(message: "- \(argument)")
 }
 
 // Validate
 if CommandLine.arguments.count < 3 {
-    log(msg: "Wrong arguments")
+    log(message: "Wrong arguments")
     exitWithError()
 }
 
@@ -785,8 +785,8 @@ do {
     // Load plist
     let plistPath = CommandLine.arguments[1]
     let structsDict = try loadEventPlist(plistPath)
-    log(msg: "Events Plist loaded \(structsDict)")
-    
+    log(message: "Events Plist loaded \(structsDict)")
+
     // Write struct file
     let structSwiftFilePath = CommandLine.arguments[2]
     if !FileManager.default.fileExists(atPath: structSwiftFilePath) {
@@ -794,28 +794,28 @@ do {
     }
     
     // Generate struct string
-    log(msg: "Events code correctly generated")
-    
     let structsString = try generateEvents(structsDict as! [String: AnyObject])
+    log(message: "Events code correctly generated")
+
     // Write struct string in file
-    log(msg: "Generating swift code in: \(structSwiftFilePath)")
+    log(message: "Generating swift code in: \(structSwiftFilePath)")
     try structsString.write(toFile: structSwiftFilePath, atomically: true, encoding: .utf8)
 } catch {
     switch error {
     case EventGeneratorError.plistNotFound:
-        log(msg: "Invalid plist path")
+        log(message: "Invalid plist path")
     case EventGeneratorError.trackerMissing:
-        log(msg: "Tracker(s) missing in one or more event(s)")
+        log(message: "Tracker(s) missing in one or more event(s)")
     case EventGeneratorError.templateNotFound:
-        log(msg: "Error generating events code")
+        log(message: "Error generating events code")
     case EventGeneratorError.templateMalformed:
-        log(msg: "Error generating events code")
+        log(message: "Error generating events code")
     case EventGeneratorError.swiftFileNotFound:
-        log(msg: "Swift file not found")
+        log(message: "Swift file not found")
     default:
-        log(msg: "Generic error")
+        log(message: "Generic error")
     }
     exitWithError()
 }
 
-log(msg: "**Swift code generated successfully**")
+log(message: "**Swift code generated successfully**")
