@@ -187,19 +187,19 @@ func printHelp() {
 
 private func generateEvents(_ events: [String: AnyObject]) throws -> String {
     // Load templates
-    let structListTemplateString: String = try stringFromTemplate(EventTemplate.eventList.rawValue)
-    let structTemplate: String = try stringFromTemplate(EventTemplate.event.rawValue)
+    let structListTemplateString = try stringFromTemplate(EventTemplate.eventList.rawValue)
+    let structTemplate = try stringFromTemplate(EventTemplate.event.rawValue)
 
     var resultString = structListTemplateString
     var structsArray: [String] = Array()
-    
-    for event: String in events.keys.sorted(by: >) {
-        
+
+    for event in events.keys.sorted(by: >) {
+
         var objectNames: [String] = []
 
         let eventDic: [String: AnyObject]? = events[event] as? [String: AnyObject]
 
-        guard let eventName: String = eventDic?[EventTemplatePlaceholder.eventName.rawValue] as? String else {
+        guard let eventName = eventDic?[EventTemplatePlaceholder.eventName.rawValue] as? String else {
             continue
         }
         
@@ -262,7 +262,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
         }
         
         // <*event_cs_trackers_str*> = "console", "GA"
-        let eventCsTrackers: String = try generateEventCsTrackers(eventDic![EventPlistKey.trackers.rawValue] as! [String])
+        let eventCsTrackers = try generateEventCsTrackers(eventDic![EventPlistKey.trackers.rawValue] as! [String])
         structString = replacePlaceholder(structString,
                                           placeholder: "<*\(EventTemplatePlaceholder.eventTrackers.rawValue)*>",
                                           value: eventCsTrackers,
@@ -273,15 +273,15 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
          private let kKey1 = "key1"
          private let kKey2 = "key2"
          */
-        let eventKeyNames: String = try generateEventKeysNames(originalStringKeys)
-        
+        let eventKeyNames = try generateEventKeysNames(originalStringKeys)
+
         structString = replacePlaceholder(structString,
                                           placeholder: "<*\(EventTemplatePlaceholder.keysNames.rawValue)*>",
                                           value: eventKeyNames,
                                           placeholderType: "routine")
 
-        let objectKeyNames: String = try generateEventKeysNames(objectNames)
-        
+        let objectKeyNames = try generateEventKeysNames(objectNames)
+
         structString = replacePlaceholder(structString,
                                           placeholder: "<*\(EventTemplatePlaceholder.objectKeyNames.rawValue)*>",
                                           value: objectKeyNames,
@@ -305,10 +305,10 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
          let key1 : String
          let key2 : String
          */
-        
-        let eventKeysVars: String = try generateKeyVariables(cleanKeys)
-        let objectKeysVars: String = try generateObjectKeysVariables(objectNames)
-        
+
+        let eventKeysVars = try generateKeyVariables(cleanKeys)
+        let objectKeysVars = try generateObjectKeysVariables(objectNames)
+
         structString = replacePlaceholder(structString,
                                           placeholder: "<*\(EventTemplatePlaceholder.keysVars.rawValue)*>",
                                           value: eventKeysVars,
@@ -331,8 +331,8 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
          self.test2 = test2
          self.test3 = test3
          */
-        
-        let eventInit: String = try generateEventInit(cleanKeys, objectNames)
+
+        let eventInit = try generateEventInit(cleanKeys, objectNames)
         structString = replacePlaceholder(structString,
                                           placeholder: "<*\(EventTemplatePlaceholder.eventInit.rawValue)*>",
                                           value: eventInit,
@@ -435,9 +435,9 @@ func generateObjectKeyValue(_ keys: [String]) -> String {
 func generateObjectStructs(_ objects: [Any]) throws -> String {
     
     var resultArray: [String] = Array()
-    
-    let structEventObjectTemplate: String = try stringFromTemplate(EventTemplate.eventObjectStruct.rawValue)
-    
+
+    let structEventObjectTemplate = try stringFromTemplate(EventTemplate.eventObjectStruct.rawValue)
+
     for object in objects {
         let key = (object as! NSDictionary)
         let objectName = key["name"] as! String
@@ -451,15 +451,15 @@ func generateObjectStructs(_ objects: [Any]) throws -> String {
                                                        value: sanitised(capItemName),
                                                        placeholderType: "routine")
 
-        let objectKeysVars: String = try generateStructKeyVariables(objectParameters, keyType: "objectKey")
-        
+        let objectKeysVars = try generateStructKeyVariables(objectParameters, keyType: "objectKey")
+
         structObjectKeyString = replacePlaceholder(structObjectKeyString,
                                                    placeholder: "<*\(EventTemplatePlaceholder.objectStructParams.rawValue)*>\n",
                                                    value: objectKeysVars,
                                                    placeholderType: "routine")
 
-        let objectKeysInit: String = try generateEventObjectInit(objectParameters)
-        
+        let objectKeysInit = try generateEventObjectInit(objectParameters)
+
         structObjectKeyString = replacePlaceholder(structObjectKeyString,
                                                    placeholder: "<*\(EventTemplatePlaceholder.eventObjectInit.rawValue)*>\n",
                                                    value: objectKeysInit,
@@ -526,8 +526,8 @@ private func generateEventCsTrackers(_ trackers: [String]) throws -> String {
 }
 
 private func generateEventKeysNames(_ keys: [String]) throws -> String {
-    
-    let structKeyNameTemplate: String = try stringFromTemplate(EventTemplate.keyName.rawValue)
+
+    let structKeyNameTemplate = try stringFromTemplate(EventTemplate.keyName.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
         var structKeyNameString = replacePlaceholder(structKeyNameTemplate,
@@ -545,8 +545,8 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
 }
 
 private func generateKeyVariables(_ keys: [String]) throws -> String {
-    
-    let structVarTemplate: String = try stringFromTemplate(EventTemplate.keyVar.rawValue)
+
+    let structVarTemplate = try stringFromTemplate(EventTemplate.keyVar.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
         let structVarString = replacePlaceholder(structVarTemplate,
@@ -560,8 +560,8 @@ private func generateKeyVariables(_ keys: [String]) throws -> String {
 }
 
 private func generateStructKeyVariables(_ keys: [String], keyType: String) throws -> String {
-    
-    let structVarTemplate: String = try stringFromTemplate(EventTemplate.keyVar.rawValue)
+
+    let structVarTemplate = try stringFromTemplate(EventTemplate.keyVar.rawValue)
     var resultArray: [String] = Array()
     
     for keyString in keys {
@@ -603,8 +603,8 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
 }
 
 private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
-    
-    let structVarTemplate: String = try stringFromTemplate(EventTemplate.objectKeyVar.rawValue)
+
+    let structVarTemplate = try stringFromTemplate(EventTemplate.objectKeyVar.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
         var structVarString = replacePlaceholder(structVarTemplate,
@@ -625,15 +625,15 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
     if keys.isEmpty {
         return "// MARK: Payload not configured"
     }
-    
-    var initTemplateString: String = try stringFromTemplate(EventTemplate.eventInit.rawValue)
-    
+
+    var initTemplateString = try stringFromTemplate(EventTemplate.eventInit.rawValue)
+
     // Replace event_init_assigns_list
-    let initAssignsTemplateString: String = try stringFromTemplate(EventTemplate.eventInitAssignsList.rawValue)
-    
+    let initAssignsTemplateString = try stringFromTemplate(EventTemplate.eventInitAssignsList.rawValue)
+
     // Replace event_init_params
-    let initParamTemplateString: String = try stringFromTemplate(EventTemplate.eventInitParam.rawValue)
-    
+    let initParamTemplateString = try stringFromTemplate(EventTemplate.eventInitParam.rawValue)
+
     var assignsResultArray: [String] = Array()
     var paramsResultArray: [String] = Array()
     
@@ -667,15 +667,15 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
             paramsResultArray.append(paramResultString)
         }
     }
-    
-    let eventInitAssignsString: String = assignsResultArray.joined(separator: "\n        ")
-    
+
+    let eventInitAssignsString = assignsResultArray.joined(separator: "\n        ")
+
     initTemplateString = replacePlaceholder(initTemplateString,
                                             placeholder: "<*\(EventTemplatePlaceholder.eventInitAssignsList.rawValue)*>",
                                             value: eventInitAssignsString,
                                             placeholderType: "routine")
 
-    let eventInitParamsAssignsString: String = paramsResultArray.joined(separator: ",\n                ")
+    let eventInitParamsAssignsString = paramsResultArray.joined(separator: ",\n                ")
     initTemplateString = replacePlaceholder(initTemplateString,
                                             placeholder: "<*\(EventTemplatePlaceholder.eventInitParams.rawValue)*>",
                                             value: eventInitParamsAssignsString,
@@ -689,15 +689,15 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
     if keys.isEmpty {
         return "// MARK: Payload not configured"
     }
-    
-    var initTemplateString: String = try stringFromTemplate(EventTemplate.eventObjectInit.rawValue)
-    
+
+    var initTemplateString = try stringFromTemplate(EventTemplate.eventObjectInit.rawValue)
+
     // Replace event_init_assigns_list
-    let initAssignsTemplateString: String = try stringFromTemplate(EventTemplate.eventObjectInitAssignsList.rawValue)
-    
+    let initAssignsTemplateString = try stringFromTemplate(EventTemplate.eventObjectInitAssignsList.rawValue)
+
     // Replace event_init_params
-    let initParamTemplateString: String = try stringFromTemplate(EventTemplate.eventObjectInitParam.rawValue)
-    
+    let initParamTemplateString = try stringFromTemplate(EventTemplate.eventObjectInitParam.rawValue)
+
     var assignsResultArray: [String] = Array()
     var paramsResultArray: [String] = Array()
     
@@ -738,14 +738,14 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
             paramsResultArray.append(paramResultString)
         }
     }
-    
-    let eventInitAssignsString: String = assignsResultArray.joined(separator: "\n            ")
+
+    let eventInitAssignsString = assignsResultArray.joined(separator: "\n            ")
     initTemplateString = replacePlaceholder(initTemplateString,
                                             placeholder: "<*\(EventTemplatePlaceholder.eventObjectInitAssignsList.rawValue)*>",
                                             value: eventInitAssignsString,
                                             placeholderType: "routine")
 
-    let eventInitParamsAssignsString: String = paramsResultArray.joined(separator: ",\n                    ")
+    let eventInitParamsAssignsString = paramsResultArray.joined(separator: ",\n                    ")
     initTemplateString = replacePlaceholder(initTemplateString,
                                             placeholder: "<*\(EventTemplatePlaceholder.eventObjectInitParams.rawValue)*>",
                                             value: eventInitParamsAssignsString,
@@ -789,9 +789,9 @@ do {
     }
     
     // Generate struct string
-    let structsString: String = try generateEvents(structsDict as! [String: AnyObject])
     log(msg: "Events code correctly generated")
     
+    let structsString = try generateEvents(structsDict as! [String: AnyObject])
     // Write struct string in file
     log(msg: "Generating swift code in: \(structSwiftFilePath)")
     try structsString.write(toFile: structSwiftFilePath, atomically: true, encoding: .utf8)
