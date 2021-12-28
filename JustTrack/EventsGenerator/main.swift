@@ -194,9 +194,9 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
         let originalKeys = eventDic![EventPlistKey.payload.rawValue] as! [Any]
 
         var originalStringKeys = [String]()
-
         var cleanKeys = [String]()
         var objects = [NSDictionary]()
+
         for key in originalKeys { // Go through payload items
             switch key {
             case let setKey as String:
@@ -238,14 +238,12 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
          private let kKey2 = "key2"
          */
         let eventKeyNames = try generateEventKeysNames(originalStringKeys)
-
         structString = replacePlaceholder(structString,
                                           placeholder: "<*\(EventTemplatePlaceholder.keysNames.rawValue)*>",
                                           value: eventKeyNames,
                                           placeholderType: "routine")
 
         let objectKeyNames = try generateEventKeysNames(objectNames)
-
         structString = replacePlaceholder(structString,
                                           placeholder: "<*\(EventTemplatePlaceholder.objectKeyNames.rawValue)*>",
                                           value: objectKeyNames,
@@ -295,7 +293,6 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
                                           placeholderType: "routine")
 
         structsArray.append(structString)
-
     }
 
     // Base list template
@@ -308,7 +305,6 @@ private func replacePlaceholder(_ original: String,
                                 placeholder: String,
                                 value: String,
                                 placeholderType: String) -> String {
-
     if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 {
         return original
     }
@@ -345,13 +341,11 @@ private func replacePlaceholder(_ original: String,
     default:
         return original.replacingOccurrences(of: placeholder, with: valueToReplace)
     }
-
 }
 
 // MARK: Components generator
 
 func generateEventKeyValueChain(_ keys: [String], eventHasObjects: Bool) -> String {
-
     let resultArray = keys.map { keyString in
         "k\(keyString.capitalizingFirstLetter()): \(keyString) == \"\" ? NSNull() : \(keyString) as String"
     }
@@ -449,7 +443,7 @@ private func generateEventCsTrackers(_ trackers: [String]) throws -> String {
 
 private func generateEventKeysNames(_ keys: [String]) throws -> String {
     let structKeyNameTemplate = try string(fromTemplate: EventTemplate.keyName.rawValue)
-    let resultArray = keys.map { keyString -> String in
+    return keys.map { keyString -> String in
         let structKeyNameString = replacePlaceholder(structKeyNameTemplate,
                                                      placeholder: "<*\(EventTemplatePlaceholder.keyNameOriginal.rawValue)*>",
                                                      value: keyString,
@@ -458,9 +452,7 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
                                   placeholder: "<*!\(EventTemplatePlaceholder.keyName.rawValue)*>",
                                   value: sanitised(keyString),
                                   placeholderType: "routine")
-    }
-
-    return resultArray.joined(separator: "\n    ")
+    }.joined(separator: "\n    ")
 }
 
 private func generateKeyVariables(_ keys: [String]) throws -> String {
@@ -474,36 +466,22 @@ private func generateKeyVariables(_ keys: [String]) throws -> String {
 }
 
 private func generateStructKeyVariables(_ keys: [String], keyType: String) throws -> String {
-
     let structVarTemplate = try string(fromTemplate: EventTemplate.keyVar.rawValue)
-    var resultArray = [String]()
-
-    for keyString in keys {
+    let resultArray = keys.map { keyString -> String in
+        let placeholderType: String
         if keyString.contains("_int") {
-            let paramResultString = replacePlaceholder(structVarTemplate,
-                                                       placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
-                                                       value: sanitised(keyString).lowercasingFirstLetter(),
-                                                       placeholderType: "eventIntParameter")
-            resultArray.append(paramResultString)
+            placeholderType = "eventIntParameter"
         } else if keyString.contains("_double") {
-            let paramResultString = replacePlaceholder(structVarTemplate,
-                                                       placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
-                                                       value: sanitised(keyString).lowercasingFirstLetter(),
-                                                       placeholderType: "eventDoubleParameter")
-            resultArray.append(paramResultString)
+            placeholderType = "eventDoubleParameter"
         } else if keyString.contains("_bool") {
-            let paramResultString = replacePlaceholder(structVarTemplate,
-                                                       placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
-                                                       value: sanitised(keyString).lowercasingFirstLetter(),
-                                                       placeholderType: "eventBoolParameter")
-            resultArray.append(paramResultString)
+            placeholderType = "eventBoolParameter"
         } else {
-            let paramResultString = replacePlaceholder(structVarTemplate,
-                                                       placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
-                                                       value: sanitised(keyString).lowercasingFirstLetter(),
-                                                       placeholderType: "eventStringParameter")
-            resultArray.append(paramResultString)
+            placeholderType = "eventStringParameter"
         }
+        return replacePlaceholder(structVarTemplate,
+                                  placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
+                                  value: sanitised(keyString).lowercasingFirstLetter(),
+                                  placeholderType: placeholderType)
     }
 
     switch keyType {
@@ -517,7 +495,6 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
 }
 
 private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
-
     let structVarTemplate = try string(fromTemplate: EventTemplate.objectKeyVar.rawValue)
     return keys.map { keyString in
         let structVarString = replacePlaceholder(structVarTemplate,
@@ -532,7 +509,6 @@ private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
 }
 
 private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws -> String {
-
     guard !keys.isEmpty else {
         return "// MARK: Payload not configured"
     }
@@ -578,23 +554,19 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
     }
 
     let eventInitAssignsString = assignsResultArray.joined(separator: "\n        ")
-
     initTemplateString = replacePlaceholder(initTemplateString,
                                             placeholder: "<*\(EventTemplatePlaceholder.eventInitAssignsList.rawValue)*>",
                                             value: eventInitAssignsString,
                                             placeholderType: "routine")
 
     let eventInitParamsAssignsString = paramsResultArray.joined(separator: ",\n                ")
-    initTemplateString = replacePlaceholder(initTemplateString,
-                                            placeholder: "<*\(EventTemplatePlaceholder.eventInitParams.rawValue)*>",
-                                            value: eventInitParamsAssignsString,
-                                            placeholderType: "routine")
-
-    return initTemplateString
+    return replacePlaceholder(initTemplateString,
+                              placeholder: "<*\(EventTemplatePlaceholder.eventInitParams.rawValue)*>",
+                              value: eventInitParamsAssignsString,
+                              placeholderType: "routine")
 }
 
 private func generateEventObjectInit(_ keys: [String]) throws -> String {
-
     guard !keys.isEmpty else {
         return "// MARK: Payload not configured"
     }
@@ -607,45 +579,28 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
     // Replace event_init_params
     let initParamTemplateString = try string(fromTemplate: EventTemplate.eventObjectInitParam.rawValue)
 
-    var assignsResultArray = [String]()
-    var paramsResultArray = [String]()
-
-    for keyString in keys {
-        let assignsResultString = replacePlaceholder(initAssignsTemplateString,
-                                                     placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
-                                                     value: sanitised(keyString).lowercasingFirstLetter(),
-                                                     placeholderType: "routine")
-        assignsResultArray.append(assignsResultString)
-
+    let assignsResultArray = keys.map { keyString in
+        replacePlaceholder(initAssignsTemplateString,
+                           placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
+                           value: sanitised(keyString).lowercasingFirstLetter(),
+                           placeholderType: "routine")
+    }
+    let paramsResultArray = keys.map { keyString -> String in
+        let placeholderType: String
         if keyString.contains("_int") {
-            let paramResultString = replacePlaceholder(initParamTemplateString,
-                                                       placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
-                                                       value: sanitised(keyString).lowercasingFirstLetter(),
-                                                       placeholderType: "eventAssignedIntParameter")
-
-            paramsResultArray.append(paramResultString)
+            placeholderType = "eventAssignedIntParameter"
         } else if keyString.contains("_double") {
-            let paramResultString = replacePlaceholder(initParamTemplateString,
-                                                       placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
-                                                       value: sanitised(keyString).lowercasingFirstLetter(),
-                                                       placeholderType: "eventAssignedDoubleParameter")
-
-            paramsResultArray.append(paramResultString)
+            placeholderType = "eventAssignedDoubleParameter"
         } else if keyString.contains("_bool") {
-            let paramResultString = replacePlaceholder(initParamTemplateString,
-                                                       placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
-                                                       value: sanitised(keyString).lowercasingFirstLetter(),
-                                                       placeholderType: "eventAssignedBoolParameter")
-
-            paramsResultArray.append(paramResultString)
+            placeholderType = "eventAssignedBoolParameter"
         } else {
-            let paramResultString = replacePlaceholder(initParamTemplateString,
-                                                       placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
-                                                       value: sanitised(keyString).lowercasingFirstLetter(),
-                                                       placeholderType: "eventAssignedStringParameter")
-
-            paramsResultArray.append(paramResultString)
+            placeholderType = "eventAssignedStringParameter"
         }
+
+        return replacePlaceholder(initParamTemplateString,
+                                  placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
+                                  value: sanitised(keyString).lowercasingFirstLetter(),
+                                  placeholderType: placeholderType)
     }
 
     let eventInitAssignsString = assignsResultArray.joined(separator: "\n            ")
@@ -655,12 +610,10 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
                                             placeholderType: "routine")
 
     let eventInitParamsAssignsString = paramsResultArray.joined(separator: ",\n                    ")
-    initTemplateString = replacePlaceholder(initTemplateString,
-                                            placeholder: "<*\(EventTemplatePlaceholder.eventObjectInitParams.rawValue)*>",
-                                            value: eventInitParamsAssignsString,
-                                            placeholderType: "routine")
-
-    return initTemplateString
+    return replacePlaceholder(initTemplateString,
+                              placeholder: "<*\(EventTemplatePlaceholder.eventObjectInitParams.rawValue)*>",
+                              value: eventInitParamsAssignsString,
+                              placeholderType: "routine")
 }
 
 private func exitWithError() {
