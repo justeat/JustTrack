@@ -132,8 +132,6 @@ func string(fromTemplate templateName: String) throws -> String {
     return result
 }
 
-private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
-
     let result = NSMutableDictionary()
     if FileManager.default.fileExists(atPath: plistPath) {
         var eventsDict = NSDictionary(contentsOfFile: plistPath)
@@ -142,6 +140,7 @@ private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
             result.setDictionary(eventsDict)
         }
     } else {
+private func loadEvent(fromPlistPath plistPath: String) throws -> [String: AnyObject] {
         throw EventGeneratorError.plistNotFound
     }
 
@@ -774,7 +773,7 @@ if CommandLine.arguments.count < 3 {
 do {
     // Load plist
     let plistPath = CommandLine.arguments[1]
-    let structsDict = try loadEventPlist(plistPath)
+    let structsDict = try loadEvent(fromPlistPath: plistPath)
     log(message: "Events Plist loaded \(structsDict)")
 
     // Write struct file
