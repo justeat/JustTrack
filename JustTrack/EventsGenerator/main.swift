@@ -370,7 +370,7 @@ private func replacePlaceholder(_ original: String, placeholder: String, value: 
 
 func generateEventKeyValueChain(_ keys: [String], eventHasObjects: Bool) -> String {
 
-    var resultArray: [String] = Array()
+    var resultArray = [String]()
     for keyString in keys {
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex,
@@ -389,7 +389,7 @@ func generateEventKeyValueChain(_ keys: [String], eventHasObjects: Bool) -> Stri
 
 func generateObjectKeyValue(_ keys: [String]) -> String {
 
-    var resultArray: [String] = Array()
+    var resultArray = [String]()
     for keyString in keys {
         var capKeyString = keyString
         capKeyString.replaceSubrange(capKeyString.startIndex...capKeyString.startIndex,
@@ -406,7 +406,7 @@ func generateObjectKeyValue(_ keys: [String]) -> String {
 
 func generateObjectStructs(_ objects: [Any]) throws -> String {
 
-    var resultArray: [String] = Array()
+    var resultArray = [String]()
 
     let structEventObjectTemplate = try string(fromTemplate: EventTemplate.eventObjectStruct.rawValue)
 
@@ -463,7 +463,7 @@ func removeItemSuffixes(item: String) -> String {
 
 func generateObjectDictionaryFunction(objectParameters: [String]) -> String {
     var structureResult = ""
-    var resultArray: [String] = Array()
+    var resultArray = [String]()
 
     for item in objectParameters {
         let itemString = removeItemSuffixes(item: item).lowercasingFirstLetter()
@@ -485,7 +485,7 @@ func generateObjectDictionaryFunction(objectParameters: [String]) -> String {
 
 private func generateEventCsTrackers(_ trackers: [String]) throws -> String {
 
-    var resultArray: [String] = Array()
+    var resultArray = [String]()
     for keyString in trackers {
         resultArray.append("\"\(keyString)\"")
     }
@@ -500,7 +500,7 @@ private func generateEventCsTrackers(_ trackers: [String]) throws -> String {
 private func generateEventKeysNames(_ keys: [String]) throws -> String {
 
     let structKeyNameTemplate = try string(fromTemplate: EventTemplate.keyName.rawValue)
-    var resultArray: [String] = Array()
+    var resultArray = [String]()
     for keyString in keys {
         var structKeyNameString = replacePlaceholder(structKeyNameTemplate,
                                                      placeholder: "<*\(EventTemplatePlaceholder.keyNameOriginal.rawValue)*>",
@@ -519,7 +519,7 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
 private func generateKeyVariables(_ keys: [String]) throws -> String {
 
     let structVarTemplate = try string(fromTemplate: EventTemplate.keyVar.rawValue)
-    var resultArray: [String] = Array()
+    var resultArray = [String]()
     for keyString in keys {
         let structVarString = replacePlaceholder(structVarTemplate,
                                                  placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
@@ -534,7 +534,7 @@ private func generateKeyVariables(_ keys: [String]) throws -> String {
 private func generateStructKeyVariables(_ keys: [String], keyType: String) throws -> String {
 
     let structVarTemplate = try string(fromTemplate: EventTemplate.keyVar.rawValue)
-    var resultArray: [String] = Array()
+    var resultArray = [String]()
 
     for keyString in keys {
         if keyString.contains("_int") {
@@ -577,7 +577,7 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
 private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
 
     let structVarTemplate = try string(fromTemplate: EventTemplate.objectKeyVar.rawValue)
-    var resultArray: [String] = Array()
+    var resultArray = [String]()
     for keyString in keys {
         var structVarString = replacePlaceholder(structVarTemplate,
                                                  placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
@@ -606,8 +606,8 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
     // Replace event_init_params
     let initParamTemplateString = try string(fromTemplate: EventTemplate.eventInitParam.rawValue)
 
-    var assignsResultArray: [String] = Array()
-    var paramsResultArray: [String] = Array()
+    var assignsResultArray = [String]()
+    var paramsResultArray = [String]()
 
     for keyString in keys {
         let assignsResultString = replacePlaceholder(initAssignsTemplateString,
@@ -668,8 +668,8 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
     // Replace event_init_params
     let initParamTemplateString = try string(fromTemplate: EventTemplate.eventObjectInitParam.rawValue)
 
-    var assignsResultArray: [String] = Array()
-    var paramsResultArray: [String] = Array()
+    var assignsResultArray = [String]()
+    var paramsResultArray = [String]()
 
     for keyString in keys {
         let assignsResultString = replacePlaceholder(initAssignsTemplateString,
