@@ -759,6 +759,15 @@ private func exitWithError() {
     exit(1)
 }
 
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + dropFirst()
+    }
+    func lowercasingFirstLetter() -> String {
+        return prefix(1).lowercased() + dropFirst()
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------------------------------
 
 // MARK: - Main script
@@ -814,12 +823,3 @@ do {
 }
 
 log(msg: "**Swift code generated successfully**")
-
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + dropFirst()
-    }
-    func lowercasingFirstLetter() -> String {
-        return prefix(1).lowercased() + dropFirst()
-    }
-}
