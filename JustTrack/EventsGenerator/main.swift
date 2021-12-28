@@ -175,9 +175,6 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
     var structsArray = [String]()
 
     for event in events.keys.sorted(by: >) {
-
-        var objectNames = [String]()
-
         let eventDic = events[event] as? [String: AnyObject]
 
         guard let eventName = eventDic?[EventTemplatePlaceholder.eventName.rawValue] as? String else {
@@ -200,7 +197,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
         var originalStringKeys = [String]()
 
         var cleanKeys = [String]()
-        var objects = [Any]()
+        var objects = [NSDictionary]()
         for key in originalKeys { // Go through payload items
             switch key {
             case let setKey as String:
@@ -213,13 +210,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
             }
         }
 
-        if !objects.isEmpty {
-            for item in objects {
-                let object = (item as! NSDictionary)
-                let objectName = object["name"] as! String
-                objectNames.append(objectName)
-            }
-        }
+        let objectNames = objects.map { $0["name"] as! String }
 
         // <*event_keyValueChain*> = kKey1 : key1 == "" ? NSNull() : key1 as String
         let eventKeyValueChain = generateEventKeyValueChain(cleanKeys, eventHasObjects: !objects.isEmpty)
@@ -633,20 +624,18 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
     }
 
     // Object Keys
-    if !objectKeys.isEmpty {
-        for key in objectKeys {
-            let assignsResultString = replacePlaceholder(initAssignsTemplateString,
-                                                         placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
-                                                         value: key,
-                                                         placeholderType: "routine")
-            assignsResultArray.append(assignsResultString)
+    for key in objectKeys {
+        let assignsResultString = replacePlaceholder(initAssignsTemplateString,
+                                                     placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
+                                                     value: key,
+                                                     placeholderType: "routine")
+        assignsResultArray.append(assignsResultString)
 
-            let paramResultString = replacePlaceholder(initParamTemplateString,
-                                                       placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
-                                                       value: key,
-                                                       placeholderType: "objectPlaceholder")
-            paramsResultArray.append(paramResultString)
-        }
+        let paramResultString = replacePlaceholder(initParamTemplateString,
+                                                   placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
+                                                   value: key,
+                                                   placeholderType: "objectPlaceholder")
+        paramsResultArray.append(paramResultString)
     }
 
     let eventInitAssignsString = assignsResultArray.joined(separator: "\n        ")
@@ -667,7 +656,7 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
 
 private func generateEventObjectInit(_ keys: [String]) throws -> String {
 
-    if keys.isEmpty {
+    guard !keys.isEmpty else {
         return "// MARK: Payload not configured"
     }
 
@@ -773,7 +762,7 @@ do {
 
     // Write struct file
     let structSwiftFilePath = CommandLine.arguments[2]
-    if !FileManager.default.fileExists(atPath: structSwiftFilePath) {
+    guard FileManager.default.fileExists(atPath: structSwiftFilePath) else {
         throw EventGeneratorError.swiftFileNotFound
     }
 
