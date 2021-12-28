@@ -103,22 +103,14 @@ func scriptPath() -> String {
     return path! as String
 }
 
-func urlForTemplate(_ templateName: String) throws -> URL {
-
-    var url: URL?
-
-    let path: String? = Bundle.main.path(forResource: templateName, ofType: nil) // Used by test target
-    if let path = path {
-        url = URL(fileURLWithPath: path)
+func urlForTemplate(_ templateName: String) -> URL {
+    let url: URL
+    if let path = Bundle.main.url(forResource: templateName, withExtension: nil) { // Used by test target
+        url = path
     } else {
         let dir = scriptPath()
-        url = URL(fileURLWithPath: dir as String).appendingPathComponent(templateName) // Used in the build phase
+        url = URL(fileURLWithPath: dir).appendingPathComponent(templateName) // Used in the build phase
     }
-    
-    guard let url = url else {
-        throw EventGeneratorError.templateNotFound
-    }
-
     return url
 }
 
