@@ -220,7 +220,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
                                           value: eventKeyValueChain,
                                           placeholderType: "routine")
 
-        if !objects.isEmpty { // Create array definition for each object item using name definiton
+        if !objects.isEmpty { // Create array definition for each object item using name definition
             let objectKeyValueKeyChain = generateObjectKeyValue(objectNames)
             structString = replacePlaceholder(structString,
                                               placeholder: "<*\(EventTemplatePlaceholder.objectKeyChain.rawValue)*>",
