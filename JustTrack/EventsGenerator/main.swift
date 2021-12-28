@@ -119,18 +119,18 @@ func urlForTemplate(_ templateName: String) -> URL {
 func stringFromTemplate(_ templateName: String) throws -> String {
 
     let url = urlForTemplate(templateName)
-    var result: String?
+    let result: String
 
     do {
         log(message: "Load template \(url)")
         result = try String(contentsOf: url)
-        result = result?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     } catch {
         log(message: "Error loading template \(templateName)")
         throw EventGeneratorError.templateMalformed
     }
 
-    return result!
+    return result
 }
 
 private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
