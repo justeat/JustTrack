@@ -81,6 +81,33 @@ enum DataType: String, CaseIterable {
     case integer = "_int"
     case double = "_double"
     case bool = "_bool"
+    case string = "_string"
+
+    var eventParameter: String {
+        switch self {
+        case .integer:
+            return "eventIntParameter"
+        case .double:
+            return "eventDoubleParameter"
+        case .bool:
+            return "eventBoolParameter"
+        case .string:
+            return "eventStringParameter"
+        }
+    }
+
+    var eventAssignedParameter: String {
+        switch self {
+        case .integer:
+            return "eventAssignedIntParameter"
+        case .double:
+            return "eventAssignedDoubleParameter"
+        case .bool:
+            return "eventAssignedBoolParameter"
+        case .string:
+            return "eventAssignedStringParameter"
+        }
+    }
 }
 
 // Log string prepending the name of the project
@@ -467,16 +494,8 @@ private func generateKeyVariables(_ keys: [String]) throws -> String {
 private func generateStructKeyVariables(_ keys: [String], keyType: String) throws -> String {
     let structVarTemplate = try string(fromTemplate: EventTemplate.keyVar.rawValue)
     let resultArray = keys.map { keyString -> String in
-        let placeholderType: String
-        if keyString.contains(DataType.integer.rawValue) {
-            placeholderType = "eventIntParameter"
-        } else if keyString.contains(DataType.double.rawValue) {
-            placeholderType = "eventDoubleParameter"
-        } else if keyString.contains(DataType.bool.rawValue) {
-            placeholderType = "eventBoolParameter"
-        } else {
-            placeholderType = "eventStringParameter"
-        }
+        let dataType = DataType.allCases.first { keyString.contains($0.rawValue) } ?? .string
+        let placeholderType = dataType.eventParameter
         return replacePlaceholder(structVarTemplate,
                                   placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
                                   value: sanitised(keyString).lowercasingFirstLetter(),
@@ -585,17 +604,8 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
                            placeholderType: "routine")
     }
     let paramsResultArray = keys.map { keyString -> String in
-        let placeholderType: String
-        if keyString.contains(DataType.integer.rawValue) {
-            placeholderType = "eventAssignedIntParameter"
-        } else if keyString.contains(DataType.double.rawValue) {
-            placeholderType = "eventAssignedDoubleParameter"
-        } else if keyString.contains(DataType.bool.rawValue) {
-            placeholderType = "eventAssignedBoolParameter"
-        } else {
-            placeholderType = "eventAssignedStringParameter"
-        }
-
+        let dataType = DataType.allCases.first { keyString.contains($0.rawValue) } ?? .string
+        let placeholderType = dataType.eventAssignedParameter
         return replacePlaceholder(initParamTemplateString,
                                   placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
                                   value: sanitised(keyString).lowercasingFirstLetter(),
