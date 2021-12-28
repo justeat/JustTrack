@@ -178,13 +178,13 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
     let structTemplate = try string(fromTemplate: EventTemplate.event.rawValue)
 
     var resultString = structListTemplateString
-    var structsArray: [String] = Array()
+    var structsArray = [String]()
 
     for event in events.keys.sorted(by: >) {
 
-        var objectNames: [String] = []
+        var objectNames = [String]()
 
-        let eventDic: [String: AnyObject]? = events[event] as? [String: AnyObject]
+        let eventDic = events[event] as? [String: AnyObject]
 
         guard let eventName = eventDic?[EventTemplatePlaceholder.eventName.rawValue] as? String else {
             continue
@@ -201,12 +201,12 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
                                           value: eventName,
                                           placeholderType: "routine") // <*name*> = example_event
 
-        let originalKeys: [Any] = eventDic![EventPlistKey.payload.rawValue] as! [Any]
+        let originalKeys = eventDic![EventPlistKey.payload.rawValue] as! [Any]
 
-        var originalStringKeys: [String] = []
+        var originalStringKeys = [String]()
 
-        var cleanKeys: [String] = [] // Array of string items
-        var objects: [Any] = [] // Array of object items?
+        var cleanKeys = [String]()
+        var objects = [Any]()
         for key in originalKeys { // Go through payload items
             switch key {
             case let setKey as String:
