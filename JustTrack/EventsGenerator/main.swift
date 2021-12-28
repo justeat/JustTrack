@@ -103,7 +103,7 @@ func scriptPath() -> String {
     return path! as String
 }
 
-func urlForTemplate(_ templateName: String) -> URL {
+func url(forTemplate templateName: String) -> URL {
     let url: URL
     if let path = Bundle.main.url(forResource: templateName, withExtension: nil) { // Used by test target
         url = path
@@ -116,9 +116,8 @@ func urlForTemplate(_ templateName: String) -> URL {
 
 // Load the specific template
 
-func stringFromTemplate(_ templateName: String) throws -> String {
-
-    let url = urlForTemplate(templateName)
+func string(fromTemplate templateName: String) throws -> String {
+    let url = url(forTemplate: templateName)
     let result: String
 
     do {
@@ -175,8 +174,8 @@ private func sanitised(_ originalString: String) -> String {
 
 private func generateEvents(_ events: [String: AnyObject]) throws -> String {
     // Load templates
-    let structListTemplateString = try stringFromTemplate(EventTemplate.eventList.rawValue)
-    let structTemplate = try stringFromTemplate(EventTemplate.event.rawValue)
+    let structListTemplateString = try string(fromTemplate: EventTemplate.eventList.rawValue)
+    let structTemplate = try string(fromTemplate: EventTemplate.event.rawValue)
 
     var resultString = structListTemplateString
     var structsArray: [String] = Array()
@@ -424,7 +423,7 @@ func generateObjectStructs(_ objects: [Any]) throws -> String {
 
     var resultArray: [String] = Array()
 
-    let structEventObjectTemplate = try stringFromTemplate(EventTemplate.eventObjectStruct.rawValue)
+    let structEventObjectTemplate = try string(fromTemplate: EventTemplate.eventObjectStruct.rawValue)
 
     for object in objects {
         let key = (object as! NSDictionary)
@@ -515,7 +514,7 @@ private func generateEventCsTrackers(_ trackers: [String]) throws -> String {
 
 private func generateEventKeysNames(_ keys: [String]) throws -> String {
 
-    let structKeyNameTemplate = try stringFromTemplate(EventTemplate.keyName.rawValue)
+    let structKeyNameTemplate = try string(fromTemplate: EventTemplate.keyName.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
         var structKeyNameString = replacePlaceholder(structKeyNameTemplate,
@@ -534,7 +533,7 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
 
 private func generateKeyVariables(_ keys: [String]) throws -> String {
 
-    let structVarTemplate = try stringFromTemplate(EventTemplate.keyVar.rawValue)
+    let structVarTemplate = try string(fromTemplate: EventTemplate.keyVar.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
         let structVarString = replacePlaceholder(structVarTemplate,
@@ -549,7 +548,7 @@ private func generateKeyVariables(_ keys: [String]) throws -> String {
 
 private func generateStructKeyVariables(_ keys: [String], keyType: String) throws -> String {
 
-    let structVarTemplate = try stringFromTemplate(EventTemplate.keyVar.rawValue)
+    let structVarTemplate = try string(fromTemplate: EventTemplate.keyVar.rawValue)
     var resultArray: [String] = Array()
 
     for keyString in keys {
@@ -592,7 +591,7 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
 
 private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
 
-    let structVarTemplate = try stringFromTemplate(EventTemplate.objectKeyVar.rawValue)
+    let structVarTemplate = try string(fromTemplate: EventTemplate.objectKeyVar.rawValue)
     var resultArray: [String] = Array()
     for keyString in keys {
         var structVarString = replacePlaceholder(structVarTemplate,
@@ -614,13 +613,13 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
         return "// MARK: Payload not configured"
     }
 
-    var initTemplateString = try stringFromTemplate(EventTemplate.eventInit.rawValue)
+    var initTemplateString = try string(fromTemplate: EventTemplate.eventInit.rawValue)
 
     // Replace event_init_assigns_list
-    let initAssignsTemplateString = try stringFromTemplate(EventTemplate.eventInitAssignsList.rawValue)
+    let initAssignsTemplateString = try string(fromTemplate: EventTemplate.eventInitAssignsList.rawValue)
 
     // Replace event_init_params
-    let initParamTemplateString = try stringFromTemplate(EventTemplate.eventInitParam.rawValue)
+    let initParamTemplateString = try string(fromTemplate: EventTemplate.eventInitParam.rawValue)
 
     var assignsResultArray: [String] = Array()
     var paramsResultArray: [String] = Array()
@@ -678,13 +677,13 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
         return "// MARK: Payload not configured"
     }
 
-    var initTemplateString = try stringFromTemplate(EventTemplate.eventObjectInit.rawValue)
+    var initTemplateString = try string(fromTemplate: EventTemplate.eventObjectInit.rawValue)
 
     // Replace event_init_assigns_list
-    let initAssignsTemplateString = try stringFromTemplate(EventTemplate.eventObjectInitAssignsList.rawValue)
+    let initAssignsTemplateString = try string(fromTemplate: EventTemplate.eventObjectInitAssignsList.rawValue)
 
     // Replace event_init_params
-    let initParamTemplateString = try stringFromTemplate(EventTemplate.eventObjectInitParam.rawValue)
+    let initParamTemplateString = try string(fromTemplate: EventTemplate.eventObjectInitParam.rawValue)
 
     var assignsResultArray: [String] = Array()
     var paramsResultArray: [String] = Array()
@@ -754,7 +753,6 @@ extension String {
         return prefix(1).lowercased() + dropFirst()
     }
 }
-
 
 // ------------------------------------------------------------------------------------------------------------------------------
 
