@@ -30,7 +30,7 @@ private enum EventTemplatePlaceholder: String {
     case keyValueChain = "event_keyValueChain"
     case eventTrackers = "event_cs_trackers_str"
     case keysNames = "event_keysNames"
-    
+
     case keysVars = "event_keysVars"
     case keyName = "key_name"
     case formattedObjectKeyName = "formatted_object_key_name"
@@ -38,11 +38,11 @@ private enum EventTemplatePlaceholder: String {
     case eventInit = "event_init"
     case eventInitParams = "event_init_params"
     case eventInitAssignsList = "event_init_assigns_list"
-    
+
     case eventObjectInit = "event_object_init"
     case eventObjectInitParams = "event_object_init_params"
     case eventObjectInitAssignsList = "event_object_init_assigns_list"
-    
+
     // Facilitates array of objects
     case objectKeyChain = "event_objectKeyChain"
     case objectName = "object_name"
@@ -88,7 +88,7 @@ func scriptPath() -> String {
     let cwd = FileManager.default.currentDirectoryPath
     let script = CommandLine.arguments[0]
     var path: NSString?
-    
+
     // Get script working dir
     if script.hasPrefix("/") {
         path = script as NSString?
@@ -125,7 +125,7 @@ func urlForTemplate(_ templateName: String) throws -> URL {
 // Load the specific template
 
 func stringFromTemplate(_ templateName: String) throws -> String {
-    
+
     let url: URL = try urlForTemplate(templateName)
     var result: String?
 
@@ -137,12 +137,12 @@ func stringFromTemplate(_ templateName: String) throws -> String {
         log(message: "Error loading template \(templateName)")
         throw EventGeneratorError.templateMalformed
     }
-    
+
     return result!
 }
 
 private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
-    
+
     let result = NSMutableDictionary()
     if FileManager.default.fileExists(atPath: plistPath) {
         var eventsDict: NSDictionary? = NSDictionary(contentsOfFile: plistPath)
@@ -153,17 +153,17 @@ private func loadEventPlist(_ plistPath: String) throws -> NSDictionary {
     } else {
         throw EventGeneratorError.plistNotFound
     }
-    
+
     return result
 }
 
 private func sanitised(_ originalString: String) -> String {
     var result = originalString
-    
+
     let components = result.components(separatedBy: .whitespacesAndNewlines)
     result = components.joined(separator: "")
     result = removeItemSuffixes(item: result)
-    
+
     let componentsByUnderscore = result.components(separatedBy: CharacterSet.alphanumerics.inverted)
 
     if !componentsByUnderscore.isEmpty {
@@ -198,7 +198,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
         guard let eventName = eventDic?[EventTemplatePlaceholder.eventName.rawValue] as? String else {
             continue
         }
-        
+
         let sanitisedValue = sanitised(event)
         var structString = structTemplate
         structString = replacePlaceholder(structString,
@@ -227,7 +227,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
                 break
             }
         }
-        
+
         if !objects.isEmpty {
             for item in objects {
                 let object = (item as! NSDictionary)
@@ -235,10 +235,10 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
                 objectNames.append(objectName)
             }
         }
-    
+
         // <*event_keyValueChain*> = kKey1 : key1 == "" ? NSNull() : key1 as String
         let eventKeyValueChain = generateEventKeyValueChain(cleanKeys, eventHasObjects: !objects.isEmpty)
-        
+
         structString = replacePlaceholder(structString,
                                           placeholder: "<*\(EventTemplatePlaceholder.keyValueChain.rawValue)*>",
                                           value: eventKeyValueChain,
@@ -256,7 +256,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
                                               value: "",
                                               placeholderType: "routine")
         }
-        
+
         // <*event_cs_trackers_str*> = "console", "GA"
         let eventCsTrackers = try generateEventCsTrackers(eventDic![EventPlistKey.trackers.rawValue] as! [String])
         structString = replacePlaceholder(structString,
@@ -295,7 +295,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
                                               value: "",
                                               placeholderType: "routine")
         }
-       
+
         /*
          <*event_keysVars*> =
          let key1 : String
@@ -320,7 +320,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
              super.init()
              <*event_init_assigns_list*>
          }
-         
+
          <*event_init_params*> = test1: String, test2: String, test3: String
          <*event_init_assigns_list*> =
          self.test1 = test1
@@ -337,7 +337,7 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
         structsArray.append(structString)
 
     }
-    
+
     // Base list template
     resultString = resultString.replacingOccurrences(of: "<*\(EventTemplatePlaceholder.eventList.rawValue)*>",
                                                      with: structsArray.joined(separator: "\n"),
@@ -346,11 +346,11 @@ private func generateEvents(_ events: [String: AnyObject]) throws -> String {
 }
 
 private func replacePlaceholder(_ original: String, placeholder: String, value: String, placeholderType: String) -> String {
-    
+
     if original.lengthOfBytes(using: String.Encoding.utf8) < 1 || placeholder.lengthOfBytes(using: String.Encoding.utf8) < 1 {
         return original
     }
-    
+
     let valueToReplace: String
     var mutableValue = value
     if placeholder.contains("<*!") {
@@ -361,7 +361,7 @@ private func replacePlaceholder(_ original: String, placeholder: String, value: 
     } else {
         valueToReplace = value
     }
-    
+
     switch placeholderType {
     case "routine":
         return original.replacingOccurrences(of: placeholder, with: valueToReplace)
@@ -393,7 +393,7 @@ private func replacePlaceholder(_ original: String, placeholder: String, value: 
 // MARK: Components generator
 
 func generateEventKeyValueChain(_ keys: [String], eventHasObjects: Bool) -> String {
-    
+
     var resultArray: [String] = Array()
     for keyString in keys {
         var capKeyString = keyString
@@ -401,18 +401,18 @@ func generateEventKeyValueChain(_ keys: [String], eventHasObjects: Bool) -> Stri
                                      with: String(capKeyString[capKeyString.startIndex]).capitalized)
         resultArray.append("k\(capKeyString): \(keyString) == \"\" ? NSNull() : \(keyString) as String")
     }
-    
+
     if eventHasObjects {
         return "\n            " + resultArray.joined(separator: ", \n            ") + ",\n        "
     } else if !resultArray.isEmpty {
         return "\n            " + resultArray.joined(separator: ", \n            ") + "\n        "
     }
-    
+
     return ":"
 }
 
 func generateObjectKeyValue(_ keys: [String]) -> String {
-    
+
     var resultArray: [String] = Array()
     for keyString in keys {
         var capKeyString = keyString
@@ -420,16 +420,16 @@ func generateObjectKeyValue(_ keys: [String]) -> String {
                                      with: String(capKeyString[capKeyString.startIndex]).capitalized)
         resultArray.append("k\(capKeyString): \(keyString) == [] ? NSNull() : \(sanitised(keyString)).map { $0.asDict }")
     }
-    
+
     if !resultArray.isEmpty {
         return "\n            " + resultArray.joined(separator: ", \n            ") + "\n        "
     }
-    
+
     return ":"
 }
 
 func generateObjectStructs(_ objects: [Any]) throws -> String {
-    
+
     var resultArray: [String] = Array()
 
     let structEventObjectTemplate = try stringFromTemplate(EventTemplate.eventObjectStruct.rawValue)
@@ -439,7 +439,7 @@ func generateObjectStructs(_ objects: [Any]) throws -> String {
         let objectName = key["name"] as! String
         let objectParameters: [String] = key[EventPlistKey.objectPayload.rawValue] as! [String]
         var capItemName = objectName
-        
+
         capItemName.replaceSubrange(capItemName.startIndex...capItemName.startIndex,
                                     with: String(capItemName[capItemName.startIndex]).capitalized)
         var structObjectKeyString = replacePlaceholder(structEventObjectTemplate,
@@ -462,7 +462,7 @@ func generateObjectStructs(_ objects: [Any]) throws -> String {
                                                    placeholderType: "routine")
 
         let structFunctionString = generateObjectDictionaryFunction(objectParameters: objectParameters)
-        
+
         structObjectKeyString = replacePlaceholder(structObjectKeyString,
                                                    placeholder: "<*\(EventTemplatePlaceholder.objectDictionaryParameterList.rawValue)*>\n",
                                                    value: structFunctionString,
@@ -470,7 +470,7 @@ func generateObjectStructs(_ objects: [Any]) throws -> String {
 
         resultArray.append(structObjectKeyString)
     }
-    
+
     if !resultArray.isEmpty {
         return "\n    " + resultArray.joined(separator: "\n\n    ") + "\n      "
     } else {
@@ -488,36 +488,36 @@ func removeItemSuffixes(item: String) -> String {
 func generateObjectDictionaryFunction(objectParameters: [String]) -> String {
     var structureResult = ""
     var resultArray: [String] = Array()
-    
+
     for item in objectParameters {
         let itemString = removeItemSuffixes(item: item).lowercasingFirstLetter()
         let paramString = "\"\(itemString)\""
         let assignString = paramString + " : " + sanitised(itemString).lowercasingFirstLetter()
         resultArray.append(assignString)
     }
-    
+
     if !resultArray.isEmpty {
         structureResult = resultArray.joined(separator: ",\n             ")
     } else {
         structureResult = resultArray.joined(separator: "\n")
     }
-    
+
     structureResult = "[\n             " + structureResult + "\n            ]"
-    
+
     return structureResult
 }
 
 private func generateEventCsTrackers(_ trackers: [String]) throws -> String {
-    
+
     var resultArray: [String] = Array()
     for keyString in trackers {
         resultArray.append("\"\(keyString)\"")
     }
-    
+
     if resultArray.count < 1 {
         throw EventGeneratorError.trackerMissing
     }
-    
+
     return resultArray.joined(separator: ", ")
 }
 
@@ -536,7 +536,7 @@ private func generateEventKeysNames(_ keys: [String]) throws -> String {
                                                  placeholderType: "routine")
         resultArray.append(structKeyNameString)
     }
-    
+
     return !resultArray.isEmpty ? resultArray.joined(separator: "\n    ") : ""
 }
 
@@ -551,7 +551,7 @@ private func generateKeyVariables(_ keys: [String]) throws -> String {
                                                  placeholderType: "eventStringParameter")
         resultArray.append(structVarString)
     }
-    
+
     return !resultArray.isEmpty ? resultArray.joined(separator: "\n    ") : ""
 }
 
@@ -559,7 +559,7 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
 
     let structVarTemplate = try stringFromTemplate(EventTemplate.keyVar.rawValue)
     var resultArray: [String] = Array()
-    
+
     for keyString in keys {
         if keyString.contains("_int") {
             let paramResultString = replacePlaceholder(structVarTemplate,
@@ -587,7 +587,7 @@ private func generateStructKeyVariables(_ keys: [String], keyType: String) throw
             resultArray.append(paramResultString)
         }
     }
-    
+
     switch keyType {
     case "eventKey":
         return !resultArray.isEmpty ? resultArray.joined(separator: "\n    ") : ""
@@ -617,7 +617,7 @@ private func generateObjectKeysVariables(_ keys: [String]) throws -> String {
 }
 
 private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws -> String {
-    
+
     if keys.isEmpty {
         return "// MARK: Payload not configured"
     }
@@ -632,21 +632,21 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
 
     var assignsResultArray: [String] = Array()
     var paramsResultArray: [String] = Array()
-    
+
     for keyString in keys {
         let assignsResultString = replacePlaceholder(initAssignsTemplateString,
                                                      placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
                                                      value: keyString,
                                                      placeholderType: "routine")
         assignsResultArray.append(assignsResultString)
-        
+
         let paramResultString = replacePlaceholder(initParamTemplateString,
                                                    placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
                                                    value: keyString,
                                                    placeholderType: "eventAssignedStringParameter")
         paramsResultArray.append(paramResultString)
     }
-    
+
     // Object Keys
     if !objectKeys.isEmpty {
         for key in objectKeys {
@@ -655,7 +655,7 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
                                                          value: key,
                                                          placeholderType: "routine")
             assignsResultArray.append(assignsResultString)
-            
+
             let paramResultString = replacePlaceholder(initParamTemplateString,
                                                        placeholder: "<*\(EventTemplatePlaceholder.keyName.rawValue)*>",
                                                        value: key,
@@ -681,7 +681,7 @@ private func generateEventInit(_ keys: [String], _ objectKeys: [String]) throws 
 }
 
 private func generateEventObjectInit(_ keys: [String]) throws -> String {
-    
+
     if keys.isEmpty {
         return "// MARK: Payload not configured"
     }
@@ -696,14 +696,14 @@ private func generateEventObjectInit(_ keys: [String]) throws -> String {
 
     var assignsResultArray: [String] = Array()
     var paramsResultArray: [String] = Array()
-    
+
     for keyString in keys {
         let assignsResultString = replacePlaceholder(initAssignsTemplateString,
                                                      placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
                                                      value: sanitised(keyString).lowercasingFirstLetter(),
                                                      placeholderType: "routine")
         assignsResultArray.append(assignsResultString)
-        
+
         if keyString.contains("_int") {
             let paramResultString = replacePlaceholder(initParamTemplateString,
                                                        placeholder: "<*\(EventTemplatePlaceholder.objectKeyName.rawValue)*>",
@@ -792,7 +792,7 @@ do {
     if !FileManager.default.fileExists(atPath: structSwiftFilePath) {
         throw EventGeneratorError.swiftFileNotFound
     }
-    
+
     // Generate struct string
     let structsString = try generateEvents(structsDict as! [String: AnyObject])
     log(message: "Events code correctly generated")
