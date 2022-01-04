@@ -8,10 +8,7 @@
     "type": "Apache 2.0",
     "file": "LICENSE"
   },
-  "authors": {
-    "Federico Cappelli": "federico.cappelli@just-eat.com",
-    "Joakim Lazakis": "joakim.lazakis@just-eat.com"
-  },
+  "authors": "Just Eat Takeaway iOS Team",
   "source": {
     "git": "https://github.com/justeat/JustTrack.git",
     "tag": "4.2.0"
@@ -19,7 +16,7 @@
   "social_media_url": "https://twitter.com/justeat_tech",
   "swift_versions": "5.0",
   "platforms": {
-    "ios": "11.0"
+    "ios": "13.0"
   },
   "source_files": "JustTrack/Classes/**/*",
   "preserve_paths": "JustTrack/EventsGenerator/*",

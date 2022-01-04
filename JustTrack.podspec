@@ -15,7 +15,7 @@ JustTrack is the event tracking solution we built for that.
   s.social_media_url = 'https://twitter.com/justeat_tech'
   
   s.swift_version = '5.0'
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '13.0'
 
   s.source_files = 'JustTrack/Classes/**/*'
   s.preserve_paths = 'JustTrack/EventsGenerator/*'
