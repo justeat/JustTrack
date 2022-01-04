@@ -188,6 +188,10 @@ public class EventTracking: NSObject {
     }
     
     // MARK: - Private
+    public func unloadTrackers() {
+        UserDefaults.standard.set(nil, forKey: EventTracking.kPersistentStorageName)
+        trackersInstances.removeAll()
+    }
     
     fileprivate func eventIsValid(_ event: Event) -> Bool {
         

@@ -35,6 +35,7 @@ class TrackerTests: XCTestCase {
     
     // MARK: - Teardown
     override func tearDown() {
+        trackerService.unloadTrackers()
         trackerService = nil
         tracker1 = nil
         tracker2 = nil
