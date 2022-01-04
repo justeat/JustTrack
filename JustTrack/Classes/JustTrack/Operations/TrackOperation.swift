@@ -21,16 +21,15 @@ class TrackOperation: Operation {
         self.tracker = tracker
         self.eventKey = "\(event.name)_ON_\(tracker.name)_\(Date().timeIntervalSince1970)"
         super.init()
+        
+        // Persist the event.
+        saveEvent(event, key: eventKey)
     }
     
     // MARK: - Operation lifecycle
     
     override func main() {
-        guard !isCancelled else { return }
-        
-        // Persist the event.
         // Delete it before posting if the operation was cancelled while persisting the event.
-        saveEvent(event, key: eventKey)
         guard !isCancelled else {
             deleteEvent(eventKey)
             return
