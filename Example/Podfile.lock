@@ -1,6 +1,6 @@
 PODS:
-  - JustTrack (4.2.0)
-  - JustTrack/UnitTests (4.2.0)
+  - JustTrack (4.3.0)
+  - JustTrack/UnitTests (4.3.0)
 
 DEPENDENCIES:
   - JustTrack (from `../`)
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JustTrack: 29a5c5a59bf9f17a1d1e1add93507b391a3c1e33
+  JustTrack: cc2226c9fd392d6bc68e83dd90e3e031ff116481
 
 PODFILE CHECKSUM: 87c66d39402a0e334765edb85cd69f6d00c12128
 

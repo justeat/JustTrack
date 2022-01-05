@@ -95,22 +95,19 @@ public class EventTracking: NSObject {
     /// - seealso: `TrackerConsole`.
     @discardableResult
     public func loadDefaultTracker(_ type: TrackerType) -> Bool {
+        let tracker: EventTracker = {
+            switch type {
+            case .consoleLogger:
+                return TrackerConsole()
+            }
+        }()
         
-        var tracker: EventTracker?
-        
-        switch type {
-        case .consoleLogger:
-            tracker = TrackerConsole()
-        }
-        
-        guard tracker != nil else { return false }
-        loadCustomTracker(tracker!)
+        self.loadCustomTracker(tracker)
         return true
     }
 
     /// Singleton accessor
     public static let sharedInstance = EventTracking()
-    
     /// Validates the passed event and schedules it for posting
     /// with its associated `registeredTrackers`.
     ///
@@ -158,7 +155,6 @@ public class EventTracking: NSObject {
     }
     
     public func enable() {
-        
         if trackersInstances.count < 1 {
             // TODO: propagate error
             return
@@ -182,13 +178,17 @@ public class EventTracking: NSObject {
     ///
     /// - parameter tracker: The tracker instance to start tracking events.
     public func loadCustomTracker(_ tracker: EventTracker) {
-        trackersInstances[tracker.name.lowercased()] = tracker // Register trackers
+        trackersInstances[tracker.name.lowercased()] = tracker
     }
     
-    // MARK: - Private
+    public func unloadTrackers() {
+        UserDefaults.standard.set(nil, forKey: EventTracking.kPersistentStorageName)
+        trackersInstances.removeAll()
+    }
+    
+    // MARK: - Fileprivate
     
     fileprivate func eventIsValid(_ event: Event) -> Bool {
-        
         return event.name.isEmpty == false && !event.registeredTrackers.isEmpty
     }
     
@@ -198,23 +198,17 @@ public class EventTracking: NSObject {
         }
     }
 
-    fileprivate lazy var trackersInstances: [String: EventTracker] = {
-        var dictionary = [String: EventTracker]()
-        return dictionary
-    }()
+    fileprivate var trackersInstances = [String : EventTracker]()
     
     fileprivate lazy var operationQueue: OperationQueue = {
-        
         var queue = OperationQueue()
         queue.name = "com.justtrack.trackDispatchQueue"
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = QualityOfService.background
-        
         return queue
     }()
  
     fileprivate func restoreUncompletedTracking() -> Int {
-        
         var operations: NSMutableDictionary
         guard let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName),
               let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
