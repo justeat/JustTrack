@@ -94,14 +94,16 @@ public class EventTracking: NSObject {
     ///
     /// - seealso: `TrackerConsole`.
     @discardableResult
-    public func loadDefaultTracker(_ type: TrackerType) {
+    public func loadDefaultTracker(_ type: TrackerType) -> Bool {
         let tracker: EventTracker = {
             switch type {
             case .consoleLogger:
                 return TrackerConsole()
             }
         }()
-        loadCustomTracker(tracker)
+        
+        self.loadCustomTracker(tracker)
+        return true
     }
 
     /// Singleton accessor
