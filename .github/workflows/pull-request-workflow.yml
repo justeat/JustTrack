@@ -5,10 +5,6 @@ jobs:
     runs-on: macos-11
     timeout-minutes: 15
     steps:
-    - name: Add SSH key
-      run: ssh-add "$SSH_KEY"
-      env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
     - name: Cancel previous jobs
       uses: styfle/cancel-workflow-action@0.9.1
       with:
@@ -27,6 +23,10 @@ jobs:
         bundler-cache: true
     - name: Run pod install
       run: bundle exec pod install --project-directory=Example
+    - name: Add SSH key
+      uses: webfactory/ssh-agent@v0.5.4
+      with:
+         ssh-private-key: ${{ secrets.SSH_KEY }}
     - name: Allow SSH fingerprinting
       run: |
         sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
