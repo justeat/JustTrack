@@ -23,12 +23,10 @@ jobs:
         bundler-cache: true
     - name: Run pod install
       run: bundle exec pod install --project-directory=Example
-    - name: Validate SSH_KEY
-      run: echo "${{ secrets.SSH_KEY }}"
     - name: Add SSH key
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-        ssh-private-key: ${{ secrets.SSH_KEY }}
+      run: ssh-add - <<< "${{ SSH_KEY }}"
+      env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
     - name: Allow SSH fingerprinting
       run: |
         sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
