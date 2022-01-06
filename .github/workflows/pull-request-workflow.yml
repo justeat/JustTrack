@@ -24,7 +24,7 @@ jobs:
     - name: Run pod install
       run: bundle exec pod install --project-directory=Example
     - name: Add SSH key
-      run: ssh-add - <<< "${{ SSH_KEY }}"
+      run: ssh-add - <<< "$SSH_KEY"
       env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
     - name: Allow SSH fingerprinting
