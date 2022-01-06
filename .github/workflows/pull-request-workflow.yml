@@ -23,6 +23,8 @@ jobs:
         bundler-cache: true
     - name: Run pod install
       run: bundle exec pod install --project-directory=Example
+    - name: Validate SSH_KEY
+      run: echo "${{ secrets.SSH_KEY }}"
     - name: Add SSH key
       uses: webfactory/ssh-agent@v0.5.4
       with:
