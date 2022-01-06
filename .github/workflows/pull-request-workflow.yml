@@ -9,6 +9,8 @@ jobs:
       uses: styfle/cancel-workflow-action@0.9.1
       with:
         access_token: ${{ github.token }}
+    - name: Add SSH key
+      run: ssh-add - <<< "${{ secrets.SSH_KEY }}"
     - name: Git checkout
       uses: actions/checkout@v2.4.0
       with:
