@@ -14,9 +14,7 @@ jobs:
       with:
         ref: ${{ github.ref }}
     - name: Add SSH key
-      uses: webfactory/ssh-agent@v0.5.4
-      with:
-         ssh-private-key: ${{ secrets.SSH_KEY }}
+      run: ssh-add - <<< "${{ secrets.SSH_KEY }}"
     - name: Setup Xcode
       uses: maxim-lobanov/setup-xcode@v1.4.0
       with:
