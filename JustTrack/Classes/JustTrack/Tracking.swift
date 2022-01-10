@@ -91,17 +91,13 @@ public class EventTracking {
     /// - seealso: `TrackerConsole`.
     @discardableResult
     public func loadDefaultTracker(_ type: TrackerType) -> Bool {
+        let tracker: EventTracker = {
+            switch type {
+            case .consoleLogger:
+                return TrackerConsole()
+            }
+        }()
         
-        var tracker: EventTracker?
-        
-        switch type {
-        case .consoleLogger:
-            tracker = TrackerConsole()
-        }
-
-        guard let tracker = tracker else {
-            return false
-        }
         loadCustomTracker(tracker)
         return true
     }
@@ -153,7 +149,6 @@ public class EventTracking {
     }
     
     public func enable() {
-        
         if trackersInstances.count < 1 {
             // TODO: propagate error
             return
@@ -177,13 +172,17 @@ public class EventTracking {
     ///
     /// - parameter tracker: The tracker instance to start tracking events.
     public func loadCustomTracker(_ tracker: EventTracker) {
-        trackersInstances[tracker.name.lowercased()] = tracker // Register trackers
+        trackersInstances[tracker.name.lowercased()] = tracker
+    }
+    
+    public func unloadTrackers() {
+        UserDefaults.standard.set(nil, forKey: EventTracking.kPersistentStorageName)
+        trackersInstances.removeAll()
     }
     
     // MARK: - Private
-
+    
     private func eventIsValid(_ event: Event) -> Bool {
-
         return event.name.isEmpty == false && !event.registeredTrackers.isEmpty
     }
 
@@ -191,23 +190,17 @@ public class EventTracking {
         logClosure?(string, level)
     }
 
-    private lazy var trackersInstances: [String: EventTracker] = {
-        var dictionary = [String: EventTracker]()
-        return dictionary
-    }()
-
+    private var trackersInstances = [String : EventTracker]()
+    
     private lazy var operationQueue: OperationQueue = {
-
         var queue = OperationQueue()
         queue.name = "com.justtrack.trackDispatchQueue"
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = QualityOfService.background
-        
         return queue
     }()
 
     private func restoreUncompletedTracking() -> Int {
-
         var operations: NSMutableDictionary
         guard let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName),
               let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {

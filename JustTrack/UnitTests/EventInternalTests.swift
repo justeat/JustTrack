@@ -28,7 +28,6 @@ final class EventInternalTests: XCTestCase {
     }
     
     func testEventDictionaryEncodingWithArrayOfItems() {
-        
         struct Items: Equatable {
             public var itemName = ""
             public var itemNumber = 0

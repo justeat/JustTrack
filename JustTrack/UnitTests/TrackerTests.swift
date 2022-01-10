@@ -10,24 +10,23 @@ import JustTrack
 final class TrackerTests: XCTestCase {
 
     // MARK: - Stubs / Mocks
-
+    
     private var tracker1: MockTracker!
     private var tracker2: MockTracker!
-
-    private let tracker1Name = "MockTracker"
-    private let tracker2Name = "SomeOtherMockTracker"
-
+    
     // MARK: - Setup
 
     override func setUp() {
         super.setUp()
-        tracker1 = MockTracker(name: tracker1Name)
-        tracker2 = MockTracker(name: tracker2Name)
+        tracker1 = MockTracker(name: "MockTracker")
+        tracker2 = MockTracker(name: "SomeOtherMockTracker")
     }
     
     // MARK: - Teardown
 
     override func tearDown() {
+        trackerService.unloadTrackers()
+        trackerService = nil
         tracker1 = nil
         tracker2 = nil
         super.tearDown()
@@ -36,12 +35,11 @@ final class TrackerTests: XCTestCase {
     // MARK: - Immediate Mode
     
     func testExpectedTrackersAreCalledInImmediateMode() {
-        
         let tracker1EventExpectation = expectation(description: "Event is tracked in IMMEDIATE dispatch mode for tracker1")
         let tracker2EventExpectation = expectation(description: "Event is tracked in IMMEDIATE dispatch mode for tracker2")
         
         // GIVEN an event targeted to two trackers
-        let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
+        let event = ExampleEvent(trackers: tracker1.name, tracker2.name)
         
         // AND a tracker service using these two trackers in "immediate" mode
         let trackerService = EventTracking(deliveryType: .immediate)
@@ -60,12 +58,11 @@ final class TrackerTests: XCTestCase {
     // MARK: - BATCH Mode
     
     func testExpectedTrackersAreCalledInBatchMode() {
-        
         let tracker1EventExpectation = expectation(description: "Event is tracked in BATCH dispatch mode for tracker1")
         let tracker2EventExpectation = expectation(description: "Event is tracked in BATCH dispatch mode for tracker2")
 
         // GIVEN an event targeted to two trackers
-        let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
+        let event = ExampleEvent(trackers: tracker1.name, tracker2.name)
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
         let trackerService = EventTracking(deliveryType: .batch(dispatchInterval: 2.0))
@@ -82,13 +79,12 @@ final class TrackerTests: XCTestCase {
     }
     
     func testExpectedTrackersHaveNotBeenCalledBeforeBatchInterval() {
-        
         let eventNotTrackedExpectation = expectation(description: "Event tracking should respect BATCH mode dispatch times.")
         let tracker1EventExpectation = expectation(description: "Event tracking should respect BATCH mode dispatch times for tracker1")
         let tracker2EventExpectation = expectation(description: "Event tracking should respect BATCH mode dispatch times for tracker2")
 
         // GIVEN an event targeted to two trackers
-        let event = ExampleEvent(trackers: tracker1Name, tracker2Name)
+        let event = ExampleEvent(trackers: tracker1.name, tracker2.name)
         
         // AND a tracker service using these two trackers that processes events in 3 second "batches"
         let trackerService = EventTracking(deliveryType: .batch(dispatchInterval: 3.0))
@@ -117,11 +113,10 @@ final class TrackerTests: XCTestCase {
     // MARK: - Event-Tracker Mapping
     
     func testEventsTrackedByTracker() {
-        
         let eventExpectation = expectation(description: "Event should be tracked by the registered tracker.")
         
         // GIVEN an event targeted to one tracker
-        let event = ExampleEvent(trackers: tracker1Name)
+        let event = ExampleEvent(trackers: tracker1.name)
         event.test1 = "value1"
         event.test2 = "value2"
         event.test3 = "value3"
@@ -145,11 +140,10 @@ final class TrackerTests: XCTestCase {
     }
     
     func testEventsAreNotTrackedByNonWantedTrackers() {
-    
         let eventExpectation = expectation(description: "Event should only be tracked by the expected trackers.")
         
         // GIVEN an event targeted to one tracker
-        let event = ExampleEvent(trackers: tracker1Name)
+        let event = ExampleEvent(trackers: tracker1.name)
         event.test1 = "value1"
         event.test2 = "value2"
         event.test3 = "value3"
@@ -175,11 +169,10 @@ final class TrackerTests: XCTestCase {
     }
     
     func testTrackersCaseSensitiveNames() {
-        
         let eventExpectation = expectation(description: "Event should not be tracked regardless if the tracker name is capitalised or not")
         
         // GIVEN an event targeted to one tracker
-        let event = ExampleEvent(trackers: tracker1Name)
+        let event = ExampleEvent(trackers: tracker1.name)
         
         // AND a tracker service using two trackers
         let trackerService = EventTracking(deliveryType: .immediate)
@@ -204,7 +197,6 @@ final class TrackerTests: XCTestCase {
     // MARK: - Invalid Event Handling
     
     func testInvalidEventIsDiscarded() {
-     
         let eventExpectation = expectation(description: "Service should not attempt to track invalid event.")
         
         // GIVEN an INVALID event (event without name and / or trackers)
