@@ -89,8 +89,7 @@ public class EventTracking {
     /// Helpful for debugging purposes, as it will cause all events to be logged on the console.
     ///
     /// - seealso: `TrackerConsole`.
-    @discardableResult
-    public func loadDefaultTracker(_ type: TrackerType) -> Bool {
+    public func loadDefaultTracker(_ type: TrackerType) {
         let tracker: EventTracker = {
             switch type {
             case .consoleLogger:
@@ -99,7 +98,6 @@ public class EventTracking {
         }()
         
         loadCustomTracker(tracker)
-        return true
     }
     
     /// Validates the passed event and schedules it for posting
