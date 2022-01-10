@@ -30,7 +30,7 @@ public enum TrackingLogLevel: NSInteger {
 /// ````
 /// case batch
 /// case immediate
-/// ```
+/// ````
 ///
 /// - seealso: `dispatchInterval`
 public enum TrackingDeliveryType: NSInteger {
@@ -46,7 +46,7 @@ public enum TrackingDeliveryType: NSInteger {
 /// ````
 /// case consoleLogger
 /// ````
-public enum TrackerType : NSInteger {
+public enum TrackerType: NSInteger {
     case consoleLogger
 }
 
@@ -80,8 +80,8 @@ public class EventTracking: NSObject {
     /// ````
     /// to output the type of the message (log level) and associated string to the console.
     /// Or you could use the closure to log to your logging framework of choice etc.
-    public var logClosure : ((_ logString: String, _ logLevel: TrackingLogLevel) -> Void)?
-    
+    public var logClosure: ((_ logString: String, _ logLevel: TrackingLogLevel) -> Void)?
+
     /// The delivery type used for pushing events to trackers.
     ///
     /// Default value is `immediate`.
@@ -121,33 +121,32 @@ public class EventTracking: NSObject {
     @discardableResult
     public func trackEvent(_ event: Event) -> Bool {
         
-        //transform generic event in an internal event
-        let internalEvent: EventInternal = EventInternal(name: event.name, payload: event.payload, registeredTrackers: event.registeredTrackers)
-        
-        //TODO: validate event
+        // Transform generic event in an internal event
+        let internalEvent = EventInternal(name: event.name,
+                                          payload: event.payload,
+                                          registeredTrackers: event.registeredTrackers)
+
+        // TODO: validate event
         if eventIsValid(internalEvent) == false {
             
             JTLog("Invalid event \(event)", level: .error)
             return false
         }
-        
-        //send the event to any registered tracker
-        for trackerName in internalEvent.registeredTrackers
-        {
-            if let tracker = self.trackersInstances[trackerName.lowercased()] {
                 
-                //enqueue
-                let operation: TrackOperation = TrackOperation(tracker: tracker, event: internalEvent)
-                
+        // Send the event to any registered tracker
+        for trackerName in internalEvent.registeredTrackers {
+            if let tracker = trackersInstances[trackerName.lowercased()] {
+                // Enqueue
+                let operation = TrackOperation(tracker: tracker, event: internalEvent)
+
                 // TODO: This conditional is sketchy, if the app dies while the queue is paused, we're going to lose the events.
                 // Need to rethink the policy here and / or cap the dispatch time to a sensible max value.
-                if self.deliveryType == .batch && self.operationQueue.operationCount == 0 {
-                    self.pauseQueue(Int64(dispatchInterval * Double(NSEC_PER_SEC)))
+                if deliveryType == .batch, operationQueue.operationCount == 0 {
+                    pauseQueue(Int64(dispatchInterval * Double(NSEC_PER_SEC)))
                 }
                 
-                self.operationQueue.addOperation(operation)
-            }
-            else {
+                operationQueue.addOperation(operation)
+            } else {
                 JTLog("Trying to track an event (\"\(event.name)\") in an invalid Tracker (\"\(trackerName)\")", level: .error)
             }
         }
@@ -156,22 +155,22 @@ public class EventTracking: NSObject {
     }
     
     public func enable() {
-        if self.trackersInstances.count < 1 {
-            //TODO: propagate error
+        if trackersInstances.count < 1 {
+            // TODO: propagate error
             return
         }
         
         JTLog("Enabling tracker...", level: .info)
         
-        let restoredEventsCount = self.restoreUncompletedTracking()
+        let restoredEventsCount = restoreUncompletedTracking()
         if restoredEventsCount > 0 {
             JTLog("\(restoredEventsCount) events restored", level: .info)
         }
     }
     
     public func completeAllOperations() {
-        if self.deliveryType == .batch {
-            self.unpauseQueue()
+        if deliveryType == .batch {
+            unpauseQueue()
         }
     }
     
@@ -190,19 +189,19 @@ public class EventTracking: NSObject {
     // MARK: - Fileprivate
     
     fileprivate func eventIsValid(_ event: Event) -> Bool {
-        return event.name.isEmpty == false && event.registeredTrackers.count > 0
+        return event.name.isEmpty == false && !event.registeredTrackers.isEmpty
     }
     
     fileprivate func JTLog(_ string: String, level: TrackingLogLevel) {
-        if self.logClosure != nil {
-            self.logClosure!(string, level)
+        if logClosure != nil {
+            logClosure!(string, level)
         }
     }
 
     fileprivate var trackersInstances = [String : EventTracker]()
     
     fileprivate lazy var operationQueue: OperationQueue = {
-        var queue: OperationQueue = OperationQueue()
+        var queue = OperationQueue()
         queue.name = "com.justtrack.trackDispatchQueue"
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = QualityOfService.background
@@ -212,30 +211,27 @@ public class EventTracking: NSObject {
     fileprivate func restoreUncompletedTracking() -> Int {
         var operations: NSMutableDictionary
         guard let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName),
-              let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any]
-        else {
+              let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
             return 0
         }
         
         operations = NSMutableDictionary(dictionary: dataDictionary)
         if operations.count > 0 {
             
-            //remove all the events stored
+            // Remove all the events stored
             UserDefaults.standard.set(nil, forKey: EventTracking.kPersistentStorageName)
             
             for eventKey: String in operations.allKeys as! [String] {
-                
-                //get uncompleted event tracking
-                if let eventDictionary = operations[eventKey] as? [String : AnyObject] {
                     
+                // Get uncompleted event tracking
+                if let eventDictionary = operations[eventKey] as? [String: AnyObject] {
                     let internalEvent: EventInternal? = EventInternal.decode(eventDictionary)
                     
                     if internalEvent != nil {
-                        //enqueue event
-                        self.trackEvent(internalEvent!);
-                    }
-                    else {
-                        //TODO: manage error
+                        // Enqueue event
+                        trackEvent(internalEvent!)
+                    } else {
+                        // TODO: manage error
                     }
                 }
             }
@@ -244,14 +240,14 @@ public class EventTracking: NSObject {
     }
     
     fileprivate func pauseQueue(_ seconds: Int64) {
-        self.operationQueue.isSuspended = true;
+        operationQueue.isSuspended = true
         let delayTime = DispatchTime.now() + Double(seconds) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
-            self.operationQueue.isSuspended = false;
+            self.operationQueue.isSuspended = false
         }
     }
     
     fileprivate func unpauseQueue() {
-        self.operationQueue.isSuspended = false;
+        operationQueue.isSuspended = false
     }
 }

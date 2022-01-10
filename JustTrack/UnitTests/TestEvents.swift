@@ -10,60 +10,60 @@ import JustTrack
 
 final class ExampleEvent: NSObject, Event {
     
-    //Event protocol
-    public let name: String = "example"
-    
+    // Event protocol
+    public let name = "example"
     public var payload: Payload {
-        return [kTest1 : test1 as NSObject, kTest2 : test2 as NSObject, kTest3 : test3 as NSObject]
+        return [kTest1: test1 as NSObject,
+                kTest2: test2 as NSObject,
+                kTest3: test3 as NSObject]
     }
     
     public private(set) var registeredTrackers: [String]
     
-    //keys
+    // Keys
     private let kTest1 = "test1"
     private let kTest2 = "test2"
     private let kTest3 = "test3"
     
-    var test1: String = ""
-    var test2: String = ""
-    var test3: String = ""
     
+    var test1 = ""
+    var test2 = ""
+    var test3 = ""
     public init(test1: String, test2: String, test3: String) {
         self.test1 = test1
         self.test2 = test2
         self.test3 = test3
-        self.registeredTrackers = []
+        registeredTrackers = []
         super.init()
     }
     
     public init(trackers: String...) {
-        self.registeredTrackers = trackers
+        registeredTrackers = trackers
         super.init()
     }
 }
 
 final class InvalidEventExample: NSObject, Event {
-    
-    //Event protocol
-    public let name: String = ""
-    
+
+    // Event protocol
+    public let name = ""
+
     public var payload: Payload {
         return [:]
     }
     
     public var registeredTrackers: [String] = []
     
-    //keys
+    // Keys
     private let kTest1 = "test1"
     private let kTest2 = "test2"
     private let kTest3 = "test3"
-    
-    var test1: String = ""
-    var test2: String = ""
-    var test3: String = ""
-    
+
+    var test1 = ""
+    var test2 = ""
+    var test3 = ""
+
     public override init() {
         super.init()
     }
 }
-
