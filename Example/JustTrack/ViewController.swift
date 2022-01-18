@@ -2,38 +2,39 @@
 //  ViewController.swift
 //  JustTrack_Example
 //
-//  Created by Federico Cappelli on 13/11/2017.
 //  Copyright © 2017 JUST EAT. All rights reserved.
 //
 
 import UIKit
 import JustTrack
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    @IBAction func fireEventsHandler(sender: UIButton?) {
-        
-        let trackingService: EventTracking = configureJustTrack()
-        
-        trackingService.trackEvent(EventUser(action: "UserLogIn", response: "success", extra: "Additional info"))
-        trackingService.trackEvent(EventViewScreen(screenName: "MainView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
-        trackingService.trackEvent(EventViewScreen(screenName: "RestaurantView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
-        trackingService.trackEvent(EventViewScreen(screenName: "MenuView", screenData: "fake screendata", screenDataVar: "fake screendata", screenDataVarSetting: "fake screendata"))
-        trackingService.trackEvent(EventNoPayload())
-    }
-    
-    func configureJustTrack() -> EventTracking {
-        let eventTracker: EventTracking = EventTracking.sharedInstance
-        eventTracker.deliveryType = .batch
-        eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
-            print("[EventTracker] [\(logLevel.rawValue)] \(logString)")
+final class ViewController: UIViewController {
+    private let eventTracker: EventTracking = {
+        let eventTracker = EventTracking(deliveryType: .batch(dispatchInterval: 3.0))
+        eventTracker.logClosure = { (logString: String, logLevel: TrackingLogLevel) in
+            print("[EventTracker] [\(logLevel)] \(logString)")
         }
         eventTracker.loadDefaultTracker(.consoleLogger)
         eventTracker.enable()
         return eventTracker
+    }()
+
+    @IBAction func fireEventsHandler(sender: UIButton?) {
+        eventTracker.trackEvent(EventUser(action: "UserLogIn",
+                                          response: "success",
+                                          extra: "Additional info"))
+        eventTracker.trackEvent(EventViewScreen(screenName: "MainView",
+                                                screenData: "fake screendata",
+                                                screenDataVar: "fake screendata",
+                                                screenDataVarSetting: "fake screendata"))
+        eventTracker.trackEvent(EventViewScreen(screenName: "RestaurantView",
+                                                screenData: "fake screendata",
+                                                screenDataVar: "fake screendata",
+                                                screenDataVarSetting: "fake screendata"))
+        eventTracker.trackEvent(EventViewScreen(screenName: "MenuView",
+                                                screenData: "fake screendata",
+                                                screenDataVar: "fake screendata",
+                                                screenDataVarSetting: "fake screendata"))
+        eventTracker.trackEvent(EventNoPayload())
     }
 }

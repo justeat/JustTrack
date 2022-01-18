@@ -7,30 +7,25 @@
 import XCTest
 import JustTrack
 
-class TrackerTests: XCTestCase {
-    
-    // MARK: - SUT
-    var trackerService: EventTracking!
-    
+final class TrackerTests: XCTestCase {
+
     // MARK: - Stubs / Mocks
-    
-    var tracker1: MockTracker!
-    var tracker2: MockTracker!
+
+    private var trackerService: EventTracking!
+    private var tracker1: MockTracker!
+    private var tracker2: MockTracker!
     
     // MARK: - Setup
+
     override func setUp() {
         super.setUp()
-        trackerService = EventTracking()
-        trackerService.loadDefaultTracker(.consoleLogger)
-        trackerService.logClosure = { (logString: String, logLevel: TrackingLogLevel) in
-            print("[trackerService] [\(logLevel.rawValue)] \(logString)")
-        }
-        
+        trackerService = EventTracking(deliveryType: .immediate)
         tracker1 = MockTracker(name: "MockTracker")
         tracker2 = MockTracker(name: "SomeOtherMockTracker")
     }
     
     // MARK: - Teardown
+
     override func tearDown() {
         trackerService.unloadTrackers()
         trackerService = nil
@@ -49,9 +44,9 @@ class TrackerTests: XCTestCase {
         let event = ExampleEvent(trackers: tracker1.name, tracker2.name)
         
         // AND a tracker service using these two trackers in "immediate" mode
+        trackerService = EventTracking(deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
-        trackerService.deliveryType = .immediate
         
         // WHEN we ask JustTrack to track the event
         tracker1.didTrackExpectation = tracker1EventExpectation
@@ -72,10 +67,9 @@ class TrackerTests: XCTestCase {
         let event = ExampleEvent(trackers: tracker1.name, tracker2.name)
         
         // AND a tracker service using these two trackers that processes events in 2 second "batches"
+        trackerService = EventTracking(deliveryType: .batch(dispatchInterval: 2.0))
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
-        trackerService.deliveryType = .batch
-        trackerService.dispatchInterval = 2.0
                 
         // WHEN we ask JustTrack to track the event
         tracker1.didTrackExpectation = tracker1EventExpectation
@@ -94,11 +88,10 @@ class TrackerTests: XCTestCase {
         // GIVEN an event targeted to two trackers
         let event = ExampleEvent(trackers: tracker1.name, tracker2.name)
         
-        // AND a tracker service using these two trackers that processes events in 2 second "batches"
+        // AND a tracker service using these two trackers that processes events in 3 second "batches"
+        trackerService = EventTracking(deliveryType: .batch(dispatchInterval: 3.0))
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
-        trackerService.deliveryType = .batch
-        trackerService.dispatchInterval = 3.0
         
         // WHEN we ask JustTrack to track the event
         tracker1?.didTrackExpectation = tracker1EventExpectation
@@ -112,7 +105,6 @@ class TrackerTests: XCTestCase {
             XCTAssertEqual(self.tracker2.trackEventInvocationCount, 0)
             eventNotTrackedExpectation.fulfill()
         }
-        
                 
         // BUT if we wait for MORE seconds than the batch size for the events to be processed
         // THEN the expected trackers have been asked to "track / post" that event
@@ -130,9 +122,9 @@ class TrackerTests: XCTestCase {
         event.test1 = "value1"
         event.test2 = "value2"
         event.test3 = "value3"
-        
+
+        trackerService = EventTracking(deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
-        trackerService.deliveryType = .immediate
         trackerService.enable()
         
         // WHEN we ask JustTrack to track the event
@@ -159,9 +151,9 @@ class TrackerTests: XCTestCase {
         event.test3 = "value3"
         
         // AND a tracker service using two trackers
+        trackerService = EventTracking(deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
-        trackerService.deliveryType = .immediate
         trackerService.enable()
         
         // WHEN we ask JustTrack to track the event
@@ -185,9 +177,9 @@ class TrackerTests: XCTestCase {
         let event = ExampleEvent(trackers: tracker1.name)
         
         // AND a tracker service using two trackers
+        trackerService = EventTracking(deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
         trackerService.loadCustomTracker(tracker2)
-        trackerService.deliveryType = .immediate
         
         // WHEN we ask JustTrack to track the event
         trackerService.trackEvent(event)
@@ -213,8 +205,8 @@ class TrackerTests: XCTestCase {
         let event = InvalidEventExample()
         
         // AND a tracker service using some tracker
+        trackerService = EventTracking(deliveryType: .immediate)
         trackerService.loadCustomTracker(tracker1)
-        trackerService.deliveryType = .immediate
         
         // WHEN we ask JustTrack to track the event
         let didAttemptToTrack = trackerService.trackEvent(event)

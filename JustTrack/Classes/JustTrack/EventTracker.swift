@@ -8,5 +8,7 @@ import Foundation
 
 public protocol EventTracker {
     var name: String { get }
-    func trackEvent(_ name: String, payload: Payload, completion: (_ success: Bool) -> Void)
+    
+    @discardableResult
+    func trackEvent(_ name: String, payload: Payload) -> Bool
 }

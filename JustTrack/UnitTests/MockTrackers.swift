@@ -9,7 +9,7 @@ import Foundation
 import JustTrack
 import XCTest
 
-final class MockTracker: NSObject, EventTracker {
+final class MockTracker: EventTracker {
     let name: String
     var didTrackExpectation: XCTestExpectation?
     var trackEventInvocationCount = 0
@@ -17,10 +17,10 @@ final class MockTracker: NSObject, EventTracker {
     init(name: String) {
         self.name = name
     }
-    
-    public func trackEvent(_ name: String, payload: Payload, completion: (_ success: Bool) -> Void) {
+
+    public func trackEvent(_ name: String, payload: Payload) -> Bool {
         trackEventInvocationCount += 1
         didTrackExpectation?.fulfill()
-        completion(true)
+        return true
     }
 }

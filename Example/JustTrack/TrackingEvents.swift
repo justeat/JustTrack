@@ -7,9 +7,9 @@ public class EventExample: Event {
 
     public var payload: Payload {
         return [
-            kTest1 : test1 == "" ? NSNull() : test1 as NSString,
-            kTest2 : test2 == "" ? NSNull() : test2 as NSString,
-            kTest3 : test3 == "" ? NSNull() : test3 as NSString
+            kTest1 : test1 == "" ? NSNull() : test1 as String,
+            kTest2 : test2 == "" ? NSNull() : test2 as String,
+            kTest3 : test3 == "" ? NSNull() : test3 as String
         ]
     }
 
@@ -46,10 +46,10 @@ public class EventViewScreen: Event {
 
     public var payload: Payload {
         return [
-            kScreenName: screenName == "" ? NSNull() : screenName as NSString, 
-            kScreenData: screenData == "" ? NSNull() : screenData as NSString, 
-            kScreenDataVar: screenDataVar == "" ? NSNull() : screenDataVar as NSString, 
-            kScreenDataVarSetting: screenDataVarSetting == "" ? NSNull() : screenDataVarSetting as NSString
+            kScreenName: screenName == "" ? NSNull() : screenName as String, 
+            kScreenData: screenData == "" ? NSNull() : screenData as String, 
+            kScreenDataVar: screenDataVar == "" ? NSNull() : screenDataVar as String, 
+            kScreenDataVarSetting: screenDataVarSetting == "" ? NSNull() : screenDataVarSetting as String
         ]
     }
 
@@ -135,9 +135,9 @@ public class EventExample: Event {
 
     public var payload: Payload {
         return [
-            kTest1: test1 == "" ? NSNull() : test1 as NSString, 
-            kTest2: test2 == "" ? NSNull() : test2 as NSString, 
-            kTest3: test3 == "" ? NSNull() : test3 as NSString,
+            kTest1: test1 == "" ? NSNull() : test1 as String, 
+            kTest2: test2 == "" ? NSNull() : test2 as String, 
+            kTest3: test3 == "" ? NSNull() : test3 as String,
         
             kTestObject: testObject == [] ? NSNull() : testObject.map { $0.asDict }, 
             kSecondTestObject: secondTestObject == [] ? NSNull() : secondTestObject.map { $0.asDict }
@@ -180,9 +180,9 @@ public class EventUser: Event {
 
     public var payload: Payload {
         return [
-            kAction: action == "" ? NSNull() : action as NSString, 
-            kResponse: response == "" ? NSNull() : response as NSString, 
-            kExtra: extra == "" ? NSNull() : extra as NSString
+            kAction: action == "" ? NSNull() : action as String, 
+            kResponse: response == "" ? NSNull() : response as String, 
+            kExtra: extra == "" ? NSNull() : extra as String
         ]
     }
 
@@ -216,7 +216,7 @@ public class EventTap: Event {
 
     public var payload: Payload {
         return [
-            kElementName: elementName == "" ? NSNull() : elementName as NSString
+            kElementName: elementName == "" ? NSNull() : elementName as String
         ]
     }
 

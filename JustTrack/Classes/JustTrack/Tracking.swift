@@ -18,7 +18,7 @@ import Foundation
 /// ````
 ///
 /// - seealso: `logClosure`
-public enum TrackingLogLevel: NSInteger {
+public enum TrackingLogLevel {
     case verbose
     case debug
     case info
@@ -33,10 +33,10 @@ public enum TrackingLogLevel: NSInteger {
 /// ````
 ///
 /// - seealso: `dispatchInterval`
-public enum TrackingDeliveryType: NSInteger {
-    /// Will wait before dispatching events to trackers based on `dispatchInterval`.
-    case batch
-    
+public enum TrackingDeliveryType {
+    /// How long we should wait before events get pushed to trackers.
+    case batch(dispatchInterval: TimeInterval)
+
     /// Will dispatch events to trackers immediately.
     case immediate
 }
@@ -46,36 +46,28 @@ public enum TrackingDeliveryType: NSInteger {
 /// ````
 /// case consoleLogger
 /// ````
-public enum TrackerType: NSInteger {
+public enum TrackerType {
     case consoleLogger
 }
 
 /// Tracking manages the mapping and dispatching of events to trackers.
 /// - TODO: More elaborate documentation for this with example usage.
-public class EventTracking: NSObject {
-    
+public class EventTracking {
+
     // MARK: - Internal Properties
     
     static let kEventTrackerEventsPlistName = "kEventTrackerEventsPlistName"
     static let kPersistentStorageName = "com.justeat.TrackOperations"
     
     // MARK: - API
-    
-    /// How long we should wait before events get pushed to trackers.
-    ///
-    /// - Remark: Only applies to the `Batch` delivery type.
-    ///           If you've set the delivery type to anything else, this property will be ignored.
-    ///
-    /// - Requires: `deliveryType` property to be set to `batch`.
-    public var dispatchInterval = 3.0
-    
+
     /// An optional closure that can be set for debugging purposes.
     /// JustTrack will call this closure when there is something worth mentioning / logging.
     ///
     /// For example, you could use:
     /// ````
     /// myTrackingService.logClosure = { (logString: String, logLevel: TrackingLogLevel) -> Void in
-    ///        print("[TrackingService] [\(logLevel.rawValue)] \(logString)")
+    ///        print("[TrackingService] [\(logLevel)] \(logString)")
     /// }
     /// ````
     /// to output the type of the message (log level) and associated string to the console.
@@ -87,14 +79,17 @@ public class EventTracking: NSObject {
     /// Default value is `immediate`.
     ///
     /// - seealso: `TrackingDeliveryType`.
-    public var deliveryType = TrackingDeliveryType.immediate
-    
+    public let deliveryType: TrackingDeliveryType
+
+    public init(deliveryType: TrackingDeliveryType = .immediate) {
+        self.deliveryType = deliveryType
+    }
+
     /// Registers a `TrackerConsole` for event tracking.
     /// Helpful for debugging purposes, as it will cause all events to be logged on the console.
     ///
     /// - seealso: `TrackerConsole`.
-    @discardableResult
-    public func loadDefaultTracker(_ type: TrackerType) -> Bool {
+    public func loadDefaultTracker(_ type: TrackerType) {
         let tracker: EventTracker = {
             switch type {
             case .consoleLogger:
@@ -102,12 +97,9 @@ public class EventTracking: NSObject {
             }
         }()
         
-        self.loadCustomTracker(tracker)
-        return true
+        loadCustomTracker(tracker)
     }
-
-    /// Singleton accessor
-    public static let sharedInstance = EventTracking()
+    
     /// Validates the passed event and schedules it for posting
     /// with its associated `registeredTrackers`.
     ///
@@ -141,7 +133,7 @@ public class EventTracking: NSObject {
 
                 // TODO: This conditional is sketchy, if the app dies while the queue is paused, we're going to lose the events.
                 // Need to rethink the policy here and / or cap the dispatch time to a sensible max value.
-                if deliveryType == .batch, operationQueue.operationCount == 0 {
+                if case let .batch(dispatchInterval) = deliveryType, operationQueue.operationCount == 0 {
                     pauseQueue(Int64(dispatchInterval * Double(NSEC_PER_SEC)))
                 }
                 
@@ -169,7 +161,7 @@ public class EventTracking: NSObject {
     }
     
     public func completeAllOperations() {
-        if deliveryType == .batch {
+        if case .batch = deliveryType {
             unpauseQueue()
         }
     }
@@ -186,29 +178,27 @@ public class EventTracking: NSObject {
         trackersInstances.removeAll()
     }
     
-    // MARK: - Fileprivate
+    // MARK: - Private
     
-    fileprivate func eventIsValid(_ event: Event) -> Bool {
+    private func eventIsValid(_ event: Event) -> Bool {
         return event.name.isEmpty == false && !event.registeredTrackers.isEmpty
     }
-    
-    fileprivate func JTLog(_ string: String, level: TrackingLogLevel) {
-        if logClosure != nil {
-            logClosure!(string, level)
-        }
+
+    private func JTLog(_ string: String, level: TrackingLogLevel) {
+        logClosure?(string, level)
     }
 
-    fileprivate var trackersInstances = [String : EventTracker]()
+    private var trackersInstances = [String : EventTracker]()
     
-    fileprivate lazy var operationQueue: OperationQueue = {
+    private lazy var operationQueue: OperationQueue = {
         var queue = OperationQueue()
         queue.name = "com.justtrack.trackDispatchQueue"
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = QualityOfService.background
         return queue
     }()
- 
-    fileprivate func restoreUncompletedTracking() -> Int {
+
+    private func restoreUncompletedTracking() -> Int {
         var operations: NSMutableDictionary
         guard let outData = UserDefaults.standard.data(forKey: EventTracking.kPersistentStorageName),
               let dataDictionary = NSKeyedUnarchiver.unarchiveObject(with: outData) as? [AnyHashable: Any] else {
@@ -225,11 +215,9 @@ public class EventTracking: NSObject {
                     
                 // Get uncompleted event tracking
                 if let eventDictionary = operations[eventKey] as? [String: AnyObject] {
-                    let internalEvent: EventInternal? = EventInternal.decode(eventDictionary)
-                    
-                    if internalEvent != nil {
+                    if let internalEvent = EventInternal(dictionary: eventDictionary) {
                         // Enqueue event
-                        trackEvent(internalEvent!)
+                        trackEvent(internalEvent)
                     } else {
                         // TODO: manage error
                     }
@@ -238,16 +226,16 @@ public class EventTracking: NSObject {
         }
         return operations.count
     }
-    
-    fileprivate func pauseQueue(_ seconds: Int64) {
+
+    private func pauseQueue(_ seconds: Int64) {
         operationQueue.isSuspended = true
         let delayTime = DispatchTime.now() + Double(seconds) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
             self.operationQueue.isSuspended = false
         }
     }
-    
-    fileprivate func unpauseQueue() {
+
+    private func unpauseQueue() {
         operationQueue.isSuspended = false
     }
 }
