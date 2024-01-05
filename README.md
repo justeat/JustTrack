@@ -2,6 +2,8 @@
 
 # JustTrack
 
+### Warning: This library is not supported by Just Eat Takeaway anymore and therefore considered deprecated. The repository has been archived.
+
 [![Build Status](https://travis-ci.org/justeat/JustTrack.svg?branch=master)](https://travis-ci.org/justeat/JustTrack)
 [![Version](https://img.shields.io/cocoapods/v/JustTrack.svg?style=flat)](http://cocoapods.org/pods/JustTrack)
 [![License](https://img.shields.io/cocoapods/l/JustTrack.svg?style=flat)](http://cocoapods.org/pods/JustTrack)
